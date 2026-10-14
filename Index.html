@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>TikTok TCG & Live</title>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<style>
+/* BLOCKIERT AUTOMATISCH FREMDE HOSTER-WERBEBANNERS */
+body > *:not(#appRoot):not(script):not(style) {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  z-index: -9999 !important;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+body,html,#appRoot{width:100vw;height:100dvh;background:#000;color:#fff;overflow:hidden;position:relative;z-index:99999}
+
+/* FILTER FÜR VIDEOS & LIVE */
+.fx-none{filter:none}
+.fx-neon{filter:contrast(145%) saturate(220%) hue-rotate(35deg)}
+.fx-retro{filter:sepia(75%) contrast(125%) brightness(105%)}
+.fx-bw{filter:grayscale(100%) contrast(145%)}
+.fx-glow{filter:brightness(122%) saturate(165%) contrast(115%)}
+
+/* ================= 1. TIKTOK TOP-BAR (MIT SICHERHEITS-ABSTAND NACH OBEN) ================= */
+.top-bar{position:fixed;top:8px;left:0;width:100%;height:50px;display:flex;justify-content:space-between;align-items:center;padding:0 14px;z-index:100000;background:linear-gradient(180deg,rgba(0,0,0,.7),transparent)}
+.top-bar.profile-mode{top:0;height:54px;background:#fff;border-bottom:1px solid #e2e8f0}
+.top-bar.profile-mode .top-center-tabs span,.top-bar.profile-mode .top-live-icon{color:#0f172a;text-shadow:none}
+
+.top-live-icon{background:rgba(255,0,80,.9);padding:6px 12px;border-radius:20px;font-size:12px;font-weight:900;color:#fff;display:flex;align-items:center;gap:5px;cursor:pointer;box-shadow:0 2px 10px rgba(255,0,80,.5)}
+.top-live-dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:blinkDot 1s infinite}
+@keyframes blinkDot{50%{opacity:.3}}
+
+.top-center-tabs{display:flex;gap:18px;font-weight:800;font-size:16px;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.top-center-tabs span{opacity:.65;cursor:pointer;padding-bottom:4px;color:#fff}
+.top-center-tabs span.active{opacity:1;border-bottom:3px solid #fff}
+.top-bar.profile-mode .top-center-tabs span.active{border-bottom-color:#ff0050;color:#ff0050}
+
+.top-right-icons{display:flex;align-items:center;gap:10px}
+.clean-icon-btn{font-size:18px;cursor:pointer;filter:drop-shadow(0 1px 3px rgba(0,0,0,.8))}
+.hamburger-btn{width:34px;height:32px;background:rgba(0,0,0,.5);border-radius:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;cursor:pointer}
+.hamburger-line{width:18px;height:2px;background:#fff;border-radius:2px}
+.top-bar.profile-mode .hamburger-btn{background:#f1f5f9}
+.top-bar.profile-mode .hamburger-line{background:#0f172a}
+
+/* DROPDOWN MENÜ (RECHTS OBEN ☰) */
+.dropdown-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(3px);z-index:100010;display:none}
+.dropdown-backdrop.open{display:block}
+.top-dropdown-menu{position:fixed;top:60px;right:12px;width:275px;max-height:calc(100dvh - 80px);overflow-y:auto;background:#fff;color:#0f172a;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.55);z-index:100020;padding:8px;transform:translateY(-10px) scale(.95);opacity:0;pointer-events:none;transition:.2s}
+.top-dropdown-menu.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto}
+.dropdown-section-label{font-size:10px;font-weight:900;color:#64748b;text-transform:uppercase;padding:6px 10px 2px}
+.dropdown-item{display:flex;align-items:center;justify-content:space-between;padding:9px 10px;border-radius:10px;font-size:13px;font-weight:800;color:#1e293b;cursor:pointer}
+.dropdown-item:active{background:#f1f5f9}
+.dropdown-item-left{display:flex;align-items:center;gap:9px}
+.dropdown-icon{width:26px;height:26px;border-radius:7px;background:#f1f5f9;display:flex;justify-content:center;align-items:center;font-size:14px}
+.dropdown-badge{font-size:10px;font-weight:900;padding:2px 7px;border-radius:8px;background:#fef3c7;color:#b45309}
+.dropdown-divider{height:1px;background:#e2e8f0;margin:4px 0}
+
+.xp-toast{position:fixed;top:64px;left:50%;transform:translate(-50%,-10px);background:rgba(0,0,0,.85);border:1px solid #ffd700;color:#ffd700;font-size:11px;font-weight:900;padding:5px 14px;border-radius:20px;z-index:300000;opacity:0;transition:.25s;pointer-events:none}
+.xp-toast.show{opacity:1;transform:translate(-50%,0)}
+
+.view-section{width:100vw;height:100dvh;display:none;position:relative}
+.view-section.active{display:block}
+
+/* ================= 2. RANDLOSER TIKTOK VIDEO-FEED ================= */
+.feed-container{width:100%;height:100%;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
+.feed-container::-webkit-scrollbar{display:none}
+.video-card{width:100vw;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;background:#000;overflow:hidden}
+video{width:100%;height:100%;object-fit:cover;background:transparent}
+video::-webkit-media-controls{display:none!important}
+
+.video-bottom-gradient{position:absolute;left:0;right:0;bottom:0;height:240px;background:linear-gradient(0deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.25) 55%,transparent 100%);pointer-events:none;z-index:10}
+
+/* Rechte Seitenleiste (MIT NEUEM UNVERDECKBAREN LIVE-BUTTON IN DER MITTE!) */
+.sidebar{position:absolute;right:12px;bottom:85px;display:flex;flex-direction:column;align-items:center;gap:15px;z-index:25}
+.side-live-pill{background:linear-gradient(135deg,#ff0050,#ff3366);color:#fff;border:2px solid #fff;padding:7px 10px;border-radius:16px;font-size:11px;font-weight:900;cursor:pointer;box-shadow:0 4px 15px rgba(255,0,80,.6);display:flex;flex-direction:column;align-items:center;gap:2px;animation:pulseLive 1.8s infinite}
+.tt-side-avatar{position:relative;width:48px;height:48px;border-radius:50%;border:2px solid #fff;background:#222;overflow:hidden;display:flex;justify-content:center;align-items:center;font-size:22px;cursor:pointer;margin-bottom:4px}
+.tt-side-avatar img{width:100%;height:100%;object-fit:cover}
+.tt-follow-badge{position:absolute;bottom:-2px;background:#ff0050;color:#fff;width:18px;height:18px;border-radius:50%;font-size:12px;font-weight:900;display:flex;justify-content:center;align-items:center}
+.tt-action-btn{display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.tt-action-icon{font-size:28px;filter:drop-shadow(0 2px 5px rgba(0,0,0,.65));transition:transform .15s}
+.tt-action-btn:active .tt-action-icon{transform:scale(1.25)}
+.tt-action-count{font-size:11px;font-weight:700;color:#fff;margin-top:2px;text-shadow:0 1px 3px rgba(0,0,0,.9)}
+
+.video-bottom-info{position:absolute;left:12px;bottom:75px;width:72%;z-index:20}
+.tt-shop-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(20,20,25,.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);padding:6px 10px;border-radius:8px;margin-bottom:8px;cursor:pointer;max-width:100%}
+.tt-shop-pill-bag{background:#ff0050;color:#fff;width:22px;height:22px;border-radius:5px;display:flex;justify-content:center;align-items:center;font-size:12px;flex-shrink:0}
+.tt-shop-pill-text{font-size:12px;font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tt-shop-pill-buy{background:#ff0050;color:#fff;font-size:11px;font-weight:900;padding:3px 8px;border-radius:5px;flex-shrink:0}
+.tt-video-user{font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;text-shadow:0 1px 3px rgba(0,0,0,.9)}
+.tt-video-caption{font-size:13px;color:rgba(255,255,255,.92);line-height:1.35;text-shadow:0 1px 3px rgba(0,0,0,.9)}
+
+/* ================= 3. EXTRA VOLLBILD-BILDSCHIRM FÜR TIKTOK LIVE (MAXIMALER Z-INDEX) ================= */
+.tiktok-live-fullscreen-modal{position:fixed;inset:0;width:100vw;height:100dvh;background:#0a0914;z-index:200000;display:none;overflow:hidden}
+.tiktok-live-fullscreen-modal.open{display:block}
+
+.live-simulated-person{position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,#311042 0%,#0f172a 60%,#05050a 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:5;padding:20px;text-align:center}
+.pulse-avatar-ring{width:96px;height:96px;border-radius:50%;border:3px solid #ff0050;background:#1e1b4b;display:flex;justify-content:center;align-items:center;font-size:44px;box-shadow:0 0 35px rgba(255,0,80,.5);animation:pulseLive 2s infinite;overflow:hidden}
+.pulse-avatar-ring img{width:100%;height:100%;object-fit:cover}
+@keyframes pulseLive{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+/* Großer Kamera-Freigabe-Button mitten im Bild */
+.activate-cam-center-btn{margin-top:14px;background:linear-gradient(90deg,#00f2fe,#0284c7);color:#0f172a;border:2px solid #fff;padding:12px 20px;border-radius:25px;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 6px 20px rgba(0,242,254,.4);z-index:30}
+
+.live-video-stage{position:absolute;inset:0;display:flex;flex-direction:column;z-index:6;pointer-events:none}
+.live-video-stage.split-mode #liveCameraVideo{height:50%;border-bottom:2px solid #ff0050}
+#liveCoHostVideo{width:100%;height:50%;object-fit:cover;display:none;background:#111}
+.live-video-stage.split-mode #liveCoHostVideo{display:block}
+
+/* PHASE 1: TIKTOK LIVE-VORSCHAU-BILDSCHIRM */
+.tt-prelive-screen{position:absolute;inset:0;z-index:15;display:flex;flex-direction:column;justify-content:space-between;padding:24px 14px 40px;background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,transparent 30%,transparent 65%,rgba(0,0,0,.85) 100%);pointer-events:none}
+.tt-prelive-screen *{pointer-events:auto}
+.tt-prelive-screen.hidden{display:none}
+
+.tt-prelive-top{display:flex;flex-direction:column;gap:12px}
+.tt-prelive-close-row{display:flex;justify-content:space-between;align-items:center}
+.tt-close-x{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.3);display:flex;justify-content:center;align-items:center;font-size:18px;color:#fff;cursor:pointer}
+.tt-cam-status-pill{background:rgba(0,0,0,.6);padding:5px 12px;border-radius:20px;font-size:11px;font-weight:800;color:#4ade80}
+
+.tt-title-setup-card{background:rgba(25,25,35,.75);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.tt-title-top{display:flex;gap:12px;align-items:center}
+.tt-cover-thumb{width:50px;height:50px;border-radius:10px;border:1.5px solid rgba(255,255,255,.4);background:#1e1b4b;display:flex;justify-content:center;align-items:center;font-size:24px;overflow:hidden;flex-shrink:0}
+.tt-cover-thumb img{width:100%;height:100%;object-fit:cover}
+.tt-title-inp{flex:1;background:transparent;border:none;color:#fff;font-size:15px;font-weight:800;outline:none}
+.tt-topic-pills{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.tt-topic-pill{padding:5px 11px;border-radius:14px;background:rgba(255,255,255,.12);color:#e2e8f0;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer}
+.tt-topic-pill.active{background:#ff0050;color:#fff}
+
+.tt-prelive-bottom{display:flex;flex-direction:column;align-items:center;gap:16px}
+.tt-prelive-tools{display:flex;justify-content:space-around;width:100%;max-width:360px}
+.tt-prelive-tool{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;font-size:11px;font-weight:700;color:#fff;text-shadow:0 1px 2px #000}
+.tt-prelive-tool-icon{font-size:24px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+.tt-golive-main-btn{width:88%;max-width:320px;background:#ff0050;color:#fff;border:2px solid #fff;padding:15px;border-radius:30px;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 6px 24px rgba(255,0,80,.65)}
+
+.countdown-overlay{position:absolute;inset:0;background:rgba(0,0,0,.65);z-index:30;display:none;justify-content:center;align-items:center;font-size:90px;font-weight:900;color:#fff}
+.countdown-overlay.show{display:flex}
+
+/* PHASE 2: AKTIVER TIKTOK LIVE-STREAM BILDSCHIRM */
+.tt-onair-screen{position:absolute;inset:0;z-index:20;display:none;flex-direction:column;justify-content:space-between;padding:22px 14px 34px;pointer-events:none}
+.tt-onair-screen *{pointer-events:auto}
+.tt-onair-screen.active{display:flex}
+
+.tt-onair-top{display:flex;justify-content:space-between;align-items:center}
+.tt-host-capsule{background:rgba(0,0,0,.55);backdrop-filter:blur(8px);padding:4px 12px 4px 4px;border-radius:30px;display:flex;align-items:center;gap:8px}
+.tt-host-ava{width:34px;height:34px;border-radius:50%;background:#222;overflow:hidden;display:flex;justify-content:center;align-items:center;font-size:18px}
+.tt-host-ava img{width:100%;height:100%;object-fit:cover}
+.tt-viewer-pill{background:rgba(0,0,0,.55);padding:6px 10px;border-radius:20px;font-size:12px;font-weight:800}
+
+.tt-onair-bottom{display:flex;flex-direction:column;gap:10px}
+.live-chat-box{width:78%;max-height:175px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;scrollbar-width:none}
+.live-chat-msg{background:rgba(0,0,0,.55);padding:6px 10px;border-radius:12px;font-size:12px;width:fit-content;line-height:1.3}
+.chat-lvl-badge{background:#6366f1;color:#fff;font-size:9px;font-weight:900;padding:1px 5px;border-radius:4px;margin-right:4px}
+
+.tt-onair-bar{display:flex;gap:8px;align-items:center}
+.live-input{flex:1;background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.3);color:#fff;padding:10px 14px;border-radius:24px;font-size:13px;outline:none}
+.live-circle-btn{width:40px;height:40px;border-radius:50%;border:none;background:rgba(0,0,0,.65);color:#fff;font-size:18px;display:flex;justify-content:center;align-items:center;cursor:pointer}
+
+/* ================= 4. 1v1 KARTEN-DUELL-ARENA ================= */
+.duel-board-wrap{width:100vw;height:100dvh;padding:64px 10px 76px;background:radial-gradient(circle at 50% 45%,rgba(220,38,38,.22),transparent 55%),radial-gradient(circle at top,#1e1b4b,#06050c 85%);display:flex;flex-direction:column;justify-content:space-between;overflow-y:auto}
+.duel-player-bar{background:rgba(18,15,36,.92);border:1.5px solid rgba(255,215,0,.45);border-radius:14px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center}
+.lp-bar-outer{width:120px;height:9px;background:#1e293b;border-radius:8px;overflow:hidden;margin-top:3px}
+.lp-bar-inner{height:100%;width:100%;background:linear-gradient(90deg,#22c55e,#eab308);transition:width .35s}
+.lp-bar-enemy{background:linear-gradient(90deg,#ef4444,#f97316)}
+.duel-battlefield{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;gap:6px}
+.battle-monster-slot{background:linear-gradient(180deg,#1e1b38,#0d0a1a);border:2px solid #eab308;border-radius:16px;padding:7px;text-align:center}
+.battle-monster-slot.enemy-slot{border-color:#ef4444}
+.battle-art-box{width:100%;height:95px;border-radius:10px;overflow:hidden;border:1.5px solid rgba(255,215,0,.5);margin:4px 0;background:#0f172a}
+.battle-art-box img{width:100%;height:100%;object-fit:cover}
+.vs-center-badge{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ef4444,#eab308);border:2px solid #fff;color:#0f172a;font-weight:900;font-size:12px;display:flex;justify-content:center;align-items:center}
+.duel-log-banner{background:rgba(12,9,24,.9);border:1.5px solid #eab308;border-radius:12px;padding:8px;font-size:11px;font-weight:800;text-align:center;color:#fef08a}
+.duel-hand-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.hand-mini-card{min-width:84px;background:#18142c;border:2px solid #475569;border-radius:12px;padding:5px;text-align:center;cursor:pointer;flex-shrink:0}
+.hand-mini-card.selected-hand{border-color:#fde047;background:#2e1f5e}
+.hand-mini-card img{width:100%;height:42px;object-fit:cover;border-radius:6px}
+.duel-action-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.duel-cmd-btn{border:none;padding:10px 6px;border-radius:12px;font-weight:900;font-size:11px;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+.cmd-atk{background:linear-gradient(135deg,#e11d48,#ea580c)}
+.cmd-def{background:linear-gradient(135deg,#0284c7,#1e3a8a)}
+.cmd-ult{background:linear-gradient(135deg,#ca8a04,#9333ea)}
+
+/* ================= 5. TIKTOK PROFIL MIT BREITEN REITERN ================= */
+.tiktok-profile-wrap{width:100%;height:100%;overflow-y:auto;padding:58px 0 80px;background:#fff;color:#0f172a}
+.tt-header{padding:16px 16px 10px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.tt-avatar-box{position:relative;width:90px;height:90px;border-radius:50%;border:2.5px solid #eab308;background:#f1f5f9;display:flex;justify-content:center;align-items:center;font-size:40px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tt-avatar-box img{width:100%;height:100%;object-fit:cover}
+.tt-cam-plus{position:absolute;bottom:2px;right:2px;background:#00f2fe;color:#000;width:24px;height:24px;border-radius:50%;border:2px solid #fff;display:flex;justify-content:center;align-items:center;font-size:13px;font-weight:900}
+.tt-username{font-size:17px;font-weight:900;color:#0f172a;display:flex;align-items:center;gap:6px}
+.tt-lvl-tag{background:linear-gradient(90deg,#eab308,#ea580c);color:#fff;font-size:10px;font-weight:900;padding:2px 8px;border-radius:12px}
+.tt-stats-row{display:flex;justify-content:center;gap:26px;margin:12px 0}
+.tt-stat{text-align:center;cursor:pointer}
+.tt-stat-num{font-size:16px;font-weight:900;color:#0f172a}
+.tt-stat-lbl{font-size:11px;color:#64748b}
+.tt-btn-row{display:flex;gap:6px;width:100%;max-width:330px;margin-bottom:10px}
+.tt-btn-gray{flex:1;background:#f1f5f9;border:1px solid #e2e8f0;color:#0f172a;padding:9px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer}
+.tt-btn-gold{background:#fef3c7;border:1px solid #f59e0b;color:#b45309;padding:9px 12px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer}
+.tt-bio-text{font-size:12px;color:#334155;max-width:300px;line-height:1.35}
+
+.tt-wide-tabs{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;background:#fff;position:sticky;top:0;z-index:25}
+.tt-tab-item{padding:11px 4px;text-align:center;font-size:12px;font-weight:800;color:#94a3b8;cursor:pointer;border-bottom:2.5px solid transparent}
+.tt-tab-item.active{color:#0f172a;border-bottom-color:#0f172a}
+.tt-tab-pane{display:none}.tt-tab-pane.active{display:block}
+.tt-video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#e2e8f0}
+.tt-grid-tile{position:relative;aspect-ratio:3/4;background:#0f172a;overflow:hidden;cursor:pointer}
+.tt-grid-tile video{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.tt-tile-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.75));display:flex;flex-direction:column;justify-content:space-between;padding:5px}
+.tt-tile-badge{align-self:flex-end;background:#ff0050;color:#fff;font-size:9px;font-weight:900;padding:2px 5px;border-radius:4px}
+
+.binder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px}
+.tcg-collectible-card{border-radius:16px;padding:5px;position:relative;cursor:pointer}
+.tcg-collectible-card.locked-card{background:#cbd5e1;opacity:.75;filter:grayscale(85%)}
+.rarity-COMMON{background:linear-gradient(135deg,#64748b,#334155)}
+.rarity-RARE{background:linear-gradient(135deg,#0284c7,#1e3a8a)}
+.rarity-SUPER{background:linear-gradient(135deg,#9333ea,#4c1d95)}
+.rarity-ULTRA{background:linear-gradient(135deg,#facc15,#ea580c,#991b1b)}
+.rarity-MYTHIC{background:linear-gradient(135deg,#ffd700,#ff0055,#00f2fe,#a855f7,#ffd700);background-size:300% 300%;animation:foilShift 3s ease infinite}
+@keyframes foilShift{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.tcg-collectible-inner{background:linear-gradient(180deg,#18142c,#090712);border-radius:12px;padding:7px;color:#fff}
+.monster-art-frame{width:100%;height:110px;border-radius:8px;border:2px solid #ca8a04;overflow:hidden;position:relative;background:#1e1b4b;margin:4px 0}
+.monster-art-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.card-count-pill{position:absolute;top:5px;right:5px;background:rgba(0,0,0,.85);border:1px solid #fde047;color:#fde047;font-size:10px;font-weight:900;padding:2px 6px;border-radius:6px}
+.one-time-coin-tag{position:absolute;bottom:4px;left:4px;right:4px;background:rgba(15,23,42,.88);color:#4ade80;font-size:9px;font-weight:800;text-align:center;padding:2px;border-radius:4px}
+
+/* SLIDE-UP MODALS */
+.slide-modal{position:fixed;bottom:-100%;left:0;width:100vw;max-height:82dvh;overflow-y:auto;background:#161426;border-top:2px solid #ffd700;border-radius:22px 22px 0 0;z-index:250000;display:flex;flex-direction:column;transition:bottom .28s ease;padding-bottom:28px;color:#fff;box-shadow:0 -10px 35px rgba(0,0,0,.85)}
+.slide-modal.open{bottom:0}
+.modal-header{padding:13px;text-align:center;font-weight:900;color:#fde047;border-bottom:1px solid rgba(255,255,255,.1);position:relative}
+.close-modal{position:absolute;right:16px;top:11px;font-size:20px;cursor:pointer;color:#aaa}
+.form-input-dark{width:100%;background:#221f38;border:1px solid #475569;color:#fff;padding:10px;border-radius:10px;margin-bottom:8px;font-size:13px;outline:none}
+.primary-btn{width:100%;background:linear-gradient(90deg,#ff0050,#ff5500);color:#fff;border:none;padding:12px;border-radius:12px;font-weight:900;font-size:13px;cursor:pointer}
+.upload-type-switch{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.type-opt-btn{padding:10px;border-radius:10px;border:1.5px solid #334155;background:#221f38;color:#cbd5e1;font-size:12px;font-weight:800;text-align:center;cursor:pointer}
+.type-opt-btn.active{border-color:#ffd700;background:#31255a;color:#fde047}
+.up-fx-strip{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.up-fx-chip{padding:7px 11px;border-radius:10px;border:1px solid #475569;background:#221f38;color:#cbd5e1;font-size:11px;font-weight:800;white-space:nowrap;cursor:pointer}
+.up-fx-chip.active{border-color:#00f2fe;background:#0e7490;color:#fff}
+.odds-table,.coin-grid,.effect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px}
+.odds-row,.coin-pack,.effect-card{background:#221f38;border:1px solid rgba(255,215,0,.35);padding:11px;border-radius:12px;font-size:12px;font-weight:800;text-align:center;cursor:pointer}
+.gift-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px}
+.gift-item{background:#221f38;border:1px solid rgba(255,215,0,.3);border-radius:12px;padding:10px 4px;text-align:center;cursor:pointer}
+
+.card-inspector-overlay{position:fixed;inset:0;background:rgba(5,4,12,.94);backdrop-filter:blur(12px);z-index:280000;display:none;flex-direction:column;justify-content:center;align-items:center;padding:16px}
+.card-inspector-overlay.open{display:flex}
+.large-tcg-showcase{width:290px;border-radius:20px;padding:6px}
+.large-tcg-inner{background:#131022;border-radius:15px;padding:12px;color:#fff}
+.large-art-window{width:100%;height:195px;border-radius:10px;border:2px solid #ffd700;overflow:hidden;margin:6px 0}
+.large-art-window img{width:100%;height:100%;object-fit:cover}
+.reward-explain-box{background:rgba(250,204,21,.15);border:1px solid #eab308;border-radius:8px;padding:7px;font-size:11px;font-weight:800;color:#fef08a;margin-bottom:8px;text-align:center}
+
+/* UNTERE TIKTOK NAVIGATION */
+.bottom-nav-container{position:fixed;bottom:0;left:0;width:100vw;height:56px;background:rgba(0,0,0,.95);border-top:1px solid rgba(255,255,255,.15);display:flex;justify-content:space-around;align-items:center;z-index:100000;padding-bottom:4px}
+.bottom-nav-container.light-dock{background:#fff;border-top:1px solid #e2e8f0}
+.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#888;cursor:pointer;padding:6px 12px}
+.nav-item.active{color:#fff}
+.bottom-nav-container.light-dock .nav-item.active{color:#0f172a}
+.upload-btn-tiktok{width:46px;height:30px;background:#fff;color:#000;border-radius:8px;display:flex;justify-content:center;align-items:center;font-size:22px;font-weight:900;box-shadow:-3px 0 0 #00f2fe,3px 0 0 #ff0050;cursor:pointer}
+</style>
+</head>
+<body>
+<div id="appRoot">
+
+  <!-- OBEN: MINIMALISTISCHE TIKTOK LEISTE -->
+  <div class="top-bar" id="topBar">
+    <div class="top-live-icon" onclick="openDedicatedLiveScreen()">
+      <span class="top-live-dot"></span> LIVE
+    </div>
+
+    <div class="top-center-tabs">
+      <span id="tabFeed" class="active" onclick="switchView('feed')">Für dich</span>
+      <span id="tabDuel" onclick="switchView('duel')">⚔️ Duell</span>
+    </div>
+
+    <div class="top-right-icons">
+      <span class="clean-icon-btn" id="soundToggle" onclick="toggleGlobalSound()">🔇</span>
+      <div class="hamburger-btn" id="hamburgerBtn" onclick="toggleDropdownMenu()">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DREI-STRICHE-MENÜ RECHTS OBEN -->
+  <div class="dropdown-backdrop" id="dropdownBackdrop" onclick="closeDropdownMenu()"></div>
+  <div class="top-dropdown-menu" id="topDropdownMenu">
+    <div class="dropdown-item" style="background:#ffe4e6;border:1.5px solid #ff0050;margin-bottom:6px" onclick="openDedicatedLiveScreen()">
+      <div class="dropdown-item-left"><div class="dropdown-icon">🔴</div><span style="color:#be123c">Jetzt LIVE gehen (Vollbild)</span></div><span>➔</span>
+    </div>
+    <div class="dropdown-item" style="background:#dcfce7;border:1.5px solid #16a34a;margin-bottom:6px" onclick="downloadAppFile()">
+      <div class="dropdown-item-left"><div class="dropdown-icon">📲</div><span style="color:#15803d">Als index.html speichern</span></div><span>⬇️</span>
+    </div>
+    <div class="dropdown-section-label">Mein Status & Guthaben</div>
+    <div class="dropdown-item" onclick="closeDropdownMenu();openModal('vaultModal')">
+      <div class="dropdown-item-left"><div class="dropdown-icon">🪙</div><span>Mein Guthaben & Level</span></div>
+      <span class="dropdown-badge"><span id="menuCoinBadge">45 🪙</span> • Lvl <span id="menuLvlBadge">1</span></span>
+    </div>
+    <div class="dropdown-item" onclick="closeDropdownMenu();openModal('coinModal')">
+      <div class="dropdown-item-left"><div class="dropdown-icon">➕</div><span>Coins aufladen</span></div><span class="dropdown-badge">Shop</span>
+    </div>
+    <div class="dropdown-item" onclick="closeDropdownMenu();openModal('ordersModal')">
+      <div class="dropdown-item-left"><div class="dropdown-icon">📦</div><span>Meine Bestellungen</span></div><span class="dropdown-badge" id="menuOrdersBadge">1</span>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="dropdown-section-label">Sammlung & Arena</div>
+    <div class="dropdown-item" onclick="closeDropdownMenu();openModal('wheelModal')">
+      <div class="dropdown-item-left"><div class="dropdown-icon">🎴</div><span>Mystery-Booster (0,5%)</span></div><span>15 🪙</span>
+    </div>
+    <div class="dropdown-item" onclick="closeDropdownMenu();switchView('duel')">
+      <div class="dropdown-item-left"><div class="dropdown-icon">⚔️</div><span>1v1 Karten-Duell-Arena</span></div><span>+120 XP</span>
+    </div>
+    <div class="dropdown-item" onclick="closeDropdownMenu();switchView('profile');switchTTTab('cards')">
+      <div class="dropdown-item-left"><div class="dropdown-icon">🃏</div><span>Karten-Album</span></div><span class="dropdown-badge" id="menuDexBadge">2/8</span>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="dropdown-item" onclick="closeDropdownMenu();claimTodayBonus()">
+      <div class="dropdown-item-left"><div class="dropdown-icon">🎁</div><span>Täglicher Login-Bonus</span></div><span>+3 🪙</span>
+    </div>
+    <div class="dropdown-item" onclick="closeDropdownMenu();openModal('impressumModal')">
+      <div class="dropdown-item-left"><div class="dropdown-icon">📜</div><span>Impressum & Rechtliches</span></div><span>➔</span>
+    </div>
+  </div>
+
+  <div class="xp-toast" id="xpToast">+25 XP ⭐</div>
+
+  <!-- 1. AUFGERÄUMTER TIKTOK VIDEO-FEED -->
+  <div class="view-section active" id="view-feed">
+    <div class="feed-container" id="feed"></div>
+  </div>
+
+  <!-- 2. 1v1 KARTEN-DUELL-ARENA -->
+  <div class="view-section" id="view-duel">
+    <div class="duel-board-wrap">
+      <div class="duel-player-bar">
+        <div>
+          <div style="font-size:12px;font-weight:900;color:#f87171" id="enemyDuelName">👹 Rivale @shadow_kaiba</div>
+          <div class="lp-bar-outer"><div class="lp-bar-inner lp-bar-enemy" id="enemyLpBar"></div></div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:14px;font-weight:900;color:#fca5a5">LP <span id="enemyLpText">4000</span></div>
+          <span style="font-size:10px;text-decoration:underline;cursor:pointer" onclick="startNewDuel()">🔄 Neuer Gegner</span>
+        </div>
+      </div>
+
+      <div class="duel-battlefield">
+        <div class="battle-monster-slot" id="playerBattleSlot">
+          <div style="font-size:10px;font-weight:900;color:#fde047" id="pDuelCardName">Koloss</div>
+          <div class="battle-art-box"><img id="pDuelCardImg" src=""></div>
+          <div style="display:flex;justify-content:space-around;font-size:10px;font-weight:900"><span style="color:#fde047">⚔️ <span id="pDuelCardAtk">1300</span></span><span style="color:#38bdf8">🛡️ <span id="pDuelCardDef">2000</span></span></div>
+        </div>
+        <div class="vs-center-badge">VS</div>
+        <div class="battle-monster-slot enemy-slot" id="enemyBattleSlot">
+          <div style="font-size:10px;font-weight:900;color:#fca5a5" id="eDuelCardName">Wolf</div>
+          <div class="battle-art-box"><img id="eDuelCardImg" src=""></div>
+          <div style="display:flex;justify-content:space-around;font-size:10px;font-weight:900"><span style="color:#fca5a5">⚔️ <span id="eDuelCardAtk">1900</span></span><span style="color:#38bdf8">🛡️ <span id="eDuelCardDef">1500</span></span></div>
+        </div>
+      </div>
+
+      <div class="duel-log-banner" id="duelLogText">⚔️ Wähle unten eine deiner gezogenen Karten & greife an!</div>
+
+      <div>
+        <div style="font-size:10px;font-weight:900;margin-bottom:4px;display:flex;justify-content:space-between"><span>🃏 Deine Album-Karten:</span><span style="color:#fde047;cursor:pointer" onclick="openModal('wheelModal')">+ Booster öffnen</span></div>
+        <div class="duel-hand-scroll" id="duelHandContainer"></div>
+      </div>
+
+      <div>
+        <div class="duel-player-bar" style="margin-bottom:7px">
+          <div><div style="font-size:12px;font-weight:900;color:#fde047">🛡️ Du (<span id="playerDuelWins">0</span> Siege)</div><div class="lp-bar-outer"><div class="lp-bar-inner" id="playerLpBar"></div></div></div>
+          <div style="font-size:15px;font-weight:900;color:#4ade80">LP <span id="playerLpText">4000</span></div>
+        </div>
+        <div class="duel-action-grid">
+          <button class="duel-cmd-btn cmd-atk" onclick="executeDuelTurn('atk')"><span>⚔️ Angriff</span><span style="font-size:9px">Volle ATK</span></button>
+          <button class="duel-cmd-btn cmd-def" onclick="executeDuelTurn('def')"><span>🛡️ Konter</span><span style="font-size:9px">DEF + Heilung</span></button>
+          <button class="duel-cmd-btn cmd-ult" onclick="executeDuelTurn('ult')"><span>⚡ Mana-Schlag</span><span style="font-size:9px">+1000 ATK (5🪙)</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. TIKTOK-PROFIL MIT BREITEN REITERN -->
+  <div class="view-section" id="view-profile">
+    <div class="tiktok-profile-wrap">
+      <div class="tt-header">
+        <div class="tt-avatar-box" onclick="document.getElementById('avatarUploadInput').click()">
+          <div id="profAvatarDisplay">😎</div>
+          <div class="tt-cam-plus">+</div>
+        </div>
+        <div class="tt-username"><span id="profCardName">@duell_meister</span><span class="tt-lvl-tag" id="profRankBadge">Lvl 1</span></div>
+        <div style="font-size:11px;color:#64748b;font-weight:700;margin-top:3px">⭐ <span id="profCurrentXp">0</span>/<span id="profNextXp">100</span> XP • ⚔️ ATK <span id="profAtkStat">350</span></div>
+        <div class="tt-stats-row">
+          <div class="tt-stat" onclick="switchTTTab('videos')"><div class="tt-stat-num" id="ttStatVideos">2</div><div class="tt-stat-lbl">Videos</div></div>
+          <div class="tt-stat"><div class="tt-stat-num">1.4K</div><div class="tt-stat-lbl">Follower</div></div>
+          <div class="tt-stat"><div class="tt-stat-num">2.4K</div><div class="tt-stat-lbl">Likes</div></div>
+        </div>
+        <div class="tt-btn-row">
+          <button class="tt-btn-gray" onclick="openModal('settingsModal')">Profil bearbeiten</button>
+          <button class="tt-btn-gold" onclick="openModal('vaultModal')">🪙 <span id="ttBtnCoins">45</span></button>
+          <button class="tt-btn-gray" style="flex:0 0 40px" onclick="toggleDropdownMenu()">☰</button>
+        </div>
+        <div class="tt-bio-text" id="profBioDisplay">Sammler & Creator 🔥 Schau dir unten meine Videos & meinen Karten-Shop an!</div>
+      </div>
+
+      <div class="tt-wide-tabs">
+        <div class="tt-tab-item active" id="ttTabBtn-videos" onclick="switchTTTab('videos')">🎬 Videos</div>
+        <div class="tt-tab-item" id="ttTabBtn-shop" onclick="switchTTTab('shop')">🛍️ Shop (<span id="ttShopCount">1</span>)</div>
+        <div class="tt-tab-item" id="ttTabBtn-cards" onclick="switchTTTab('cards')">🃏 Karten (<span id="overviewDexCount">2/8</span>)</div>
+      </div>
+
+      <div class="tt-tab-pane active" id="ttPane-videos"><div class="tt-video-grid" id="ttVideoGrid"></div></div>
+      <div class="tt-tab-pane" id="ttPane-shop">
+        <div style="padding:12px">
+          <button class="primary-btn" style="margin-bottom:10px" onclick="openUploadModal('shop')">🛍️ + Neues Verkaufs-Video hochladen</button>
+          <div id="ownDealsContainer"></div>
+        </div>
+      </div>
+      <div class="tt-tab-pane" id="ttPane-cards">
+        <div style="padding:12px 12px 0;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;font-weight:800;color:#64748b">Coin-Bonus nur 1x beim 1. Ziehen!</span>
+          <button class="tt-btn-gold" style="padding:6px 10px;font-size:11px" onclick="openModal('wheelModal')">+ Booster (15🪙)</button>
+        </div>
+        <div class="binder-grid" id="binderGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= EXTRA VOLLBILD-BILDSCHIRM FÜR TIKTOK LIVE ================= -->
+  <div class="tiktok-live-fullscreen-modal" id="dedicatedLiveScreen">
+    <!-- Mitte: Direkter Button zum Kamera-Freigeben falls noch nicht aktiv -->
+    <div class="live-simulated-person" id="liveCameraPromptBox">
+      <div class="pulse-avatar-ring" id="liveFallbackAvatar">😎</div>
+      <button class="activate-cam-center-btn" onclick="requestCameraDirectly()">📷 Kamera & Mikrofon jetzt einschalten</button>
+      <div style="font-size:11px;color:#cbd5e1;margin-top:8px;max-width:260px" id="camHintSubtext">Tippe auf den blauen Button und danach im Browser-Fenster auf „Zulassen“</div>
+    </div>
+
+    <!-- Echte Kamera-Bühne (inkl. Split-Screen für Freunde) -->
+    <div class="live-video-stage" id="liveVideoStage">
+      <video id="liveCameraVideo" autoplay playsinline muted poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></video>
+      <video id="liveCoHostVideo" autoplay playsinline poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></video>
+    </div>
+
+    <!-- BILDSCHIRM A: TIKTOK LIVE-VORSCHAU & EINSTELLUNGEN VOR DEM START -->
+    <div class="tt-prelive-screen" id="ttPreLiveUI">
+      <div class="tt-prelive-top">
+        <div class="tt-prelive-close-row">
+          <div class="tt-close-x" onclick="closeDedicatedLiveScreen()">✕</div>
+          <div class="tt-cam-status-pill" id="topCamStatusBadge">● Live-Studio Vorschau</div>
+          <div style="width:38px"></div>
+        </div>
+
+        <div class="tt-title-setup-card">
+          <div class="tt-title-top">
+            <div class="tt-cover-thumb" id="studioAvatarBox">😎</div>
+            <div style="flex:1">
+              <input id="studioStreamTitle" class="tt-title-inp" value="Live Pack-Opening & Talk 🔥" placeholder="Titel hinzufügen...">
+              <div style="font-size:11px;color:#cbd5e1;margin-top:3px">Wähle unten Effekte oder lade Freunde ein</div>
+            </div>
+          </div>
+          <div class="tt-topic-pills">
+            <div class="tt-topic-pill active" onclick="selectStudioMode('💬 Quatschen',this)">💬 Quatschen</div>
+            <div class="tt-topic-pill" onclick="selectStudioMode('🎴 Pack-Opening',this)">🎴 Pack-Opening</div>
+            <div class="tt-topic-pill" onclick="selectStudioMode('🛍️ Live-Shop',this)">🛍️ Live-Shop</div>
+            <div class="tt-topic-pill" onclick="selectStudioMode('👥 Mit Freunden',this)">👥 Mit Freunden</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tt-prelive-bottom">
+        <div class="tt-prelive-tools">
+          <div class="tt-prelive-tool" onclick="flipLiveCamera()">
+            <div class="tt-prelive-tool-icon">🔄</div>
+            <span>Drehen</span>
+          </div>
+          <div class="tt-prelive-tool" onclick="openModal('effectModal')">
+            <div class="tt-prelive-tool-icon">✨</div>
+            <span>Effekte</span>
+          </div>
+          <div class="tt-prelive-tool" onclick="openModal('friendsLiveModal')">
+            <div class="tt-prelive-tool-icon">👥</div>
+            <span>Gäste</span>
+          </div>
+          <div class="tt-prelive-tool" onclick="toggleStudioDeal()">
+            <div class="tt-prelive-tool-icon">🛍️</div>
+            <span id="studioDealLbl">Shop: AN</span>
+          </div>
+          <div class="tt-prelive-tool" onclick="toggleLiveMic()">
+            <div class="tt-prelive-tool-icon" id="studioMicIcon">🎙️</div>
+            <span id="studioMicLbl">Mikro</span>
+          </div>
+        </div>
+
+        <button class="tt-golive-main-btn" onclick="startGoLiveCountdown()">🔴 LIVE gehen</button>
+      </div>
+    </div>
+
+    <!-- 3-2-1 COUNTDOWN -->
+    <div class="countdown-overlay" id="liveCountdownOverlay">3</div>
+
+    <!-- BILDSCHIRM B: AKTIVER LIVE-STREAM -->
+    <div class="tt-onair-screen" id="ttOnAirUI">
+      <div class="tt-onair-top">
+        <div class="tt-host-capsule">
+          <div class="tt-host-ava" id="onAirHostAva">😎</div>
+          <div>
+            <div style="font-size:12px;font-weight:900" id="liveHostName">@duell_meister</div>
+            <div style="font-size:10px;color:#ffd700">💎 <span id="liveDiamondCount">1450</span> • <span id="liveTopicBadge">💬 Quatschen</span></div>
+          </div>
+          <span style="background:#ff0050;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px">LIVE</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="tt-viewer-pill">👁️ 248</div>
+          <div class="tt-close-x" style="background:#dc2626" onclick="stopLiveBroadcast()">✕</div>
+        </div>
+      </div>
+
+      <div class="tt-onair-bottom">
+        <div class="live-chat-box" id="liveChatBox">
+          <div class="live-chat-msg"><b>System:</b> Du bist jetzt LIVE auf Sendung!</div>
+        </div>
+
+        <div id="livePinnedDealWrap">
+          <div class="tt-shop-pill" style="margin-bottom:2px" onclick="openBuyModal(0,event)">
+            <div class="tt-shop-pill-bag">🃏</div>
+            <div class="tt-shop-pill-text">Live 1st Edition Mystery-Box • 19,99 €</div>
+            <div class="tt-shop-pill-buy">Kaufen</div>
+          </div>
+        </div>
+
+        <div class="tt-onair-bar">
+          <input id="liveChatInput" class="live-input" placeholder="Kommentar schreiben...">
+          <button class="live-circle-btn" onclick="sendLiveChat()">➤</button>
+          <button class="live-circle-btn" onclick="openModal('effectModal')">✨</button>
+          <button class="live-circle-btn" onclick="openModal('friendsLiveModal')">👥</button>
+          <button class="live-circle-btn" style="background:#ff0050" onclick="openModal('giftModal')">🎁</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input type="file" id="avatarUploadInput" accept="image/*" style="display:none" onchange="handleAvatarUpload(event)">
+  <input type="file" id="videoUpload" accept="video/*" style="display:none" onchange="onVideoFilePicked(event)">
+
+  <!-- MODAL: MIT FREUNDEN LIVE GEHEN -->
+  <div class="slide-modal" id="friendsLiveModal">
+    <div class="modal-header"><span>👥 Mit Freunden zusammen LIVE gehen</span><span class="close-modal" onclick="closeModal('friendsLiveModal')">✕</span></div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+      <div style="background:#221f38;padding:12px;border-radius:12px;border:1px solid #00f2fe;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:11px;color:#94a3b8">Dein persönlicher Raum-Code:</div><div style="font-size:18px;font-weight:900;color:#00f2fe" id="myRoomCodeDisplay">----</div></div>
+        <button class="primary-btn" style="width:auto;padding:10px 14px;background:#0284c7" onclick="shareLiveWithFriends()">🔗 Link teilen</button>
+      </div>
+      <div style="font-size:12px;font-weight:800;color:#cbd5e1">Oder Raum-Code eines Freundes eingeben:</div>
+      <div style="display:flex;gap:8px">
+        <input id="friendRoomInput" class="form-input-dark" style="margin:0;flex:1" placeholder="4-stelliger Code...">
+        <button class="primary-btn" style="width:auto;padding:10px 14px;background:#16a34a" onclick="joinAsCoHostWithMic()">🎙️ Mit-Quatschen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: UPLOAD -->
+  <div class="slide-modal" id="uploadModal">
+    <div class="modal-header"><span>➕ Erstellen (Video oder LIVE)</span><span class="close-modal" onclick="closeModal('uploadModal')">✕</span></div>
+    <div style="padding:16px">
+      <button class="primary-btn" style="margin-bottom:12px;background:linear-gradient(90deg,#ff0050,#ff3366)" onclick="closeModal('uploadModal');openDedicatedLiveScreen()">🔴 Zum Vollbild-LIVE-Bildschirm wechseln</button>
+
+      <div style="font-size:11px;font-weight:800;color:#cbd5e1;margin-bottom:6px">Oder Video in den Feed hochladen:</div>
+      <div class="upload-type-switch">
+        <div class="type-opt-btn active" id="upTypeNormal" onclick="setUploadMode('normal')">🎬 Normales Video<div style="font-size:10px;opacity:.75">Ohne Preis</div></div>
+        <div class="type-opt-btn" id="upTypeShop" onclick="setUploadMode('shop')">🛍️ Mit Verkauf<div style="font-size:10px;opacity:.75">Mit Preis & Kaufen</div></div>
+      </div>
+      <div style="font-size:11px;font-weight:800;color:#cbd5e1;margin-bottom:5px">Video-Effekt wählen:</div>
+      <div class="up-fx-strip" style="margin-bottom:10px">
+        <div class="up-fx-chip active" onclick="selectUploadFx('fx-none',this)">✨ Normal</div>
+        <div class="up-fx-chip" onclick="selectUploadFx('fx-neon',this)">⚡ Cyber-Foil</div>
+        <div class="up-fx-chip" onclick="selectUploadFx('fx-retro',this)">🔥 Gold-Relikt</div>
+        <div class="up-fx-chip" onclick="selectUploadFx('fx-bw',this)">🌑 Schatten</div>
+        <div class="up-fx-chip" onclick="selectUploadFx('fx-glow',this)">🌈 Mythic-Glow</div>
+      </div>
+      <input id="upCaption" class="form-input-dark" placeholder="Beschreibung zum Video...">
+      <div id="upShopFields" style="display:none;background:rgba(255,215,0,.08);border:1px solid #eab308;padding:10px;border-radius:12px;margin-bottom:10px">
+        <input id="upProdTitle" class="form-input-dark" placeholder="Produktname (z.B. Holo-Karte)">
+        <input id="upProdPrice" class="form-input-dark" style="margin-bottom:0" placeholder="Preis in € (z.B. 19,99 €)">
+      </div>
+      <button class="primary-btn" style="background:#4f46e5;margin-bottom:8px" onclick="document.getElementById('videoUpload').click()">📹 Video aus Handy-Galerie wählen</button>
+      <button class="primary-btn" style="background:#334155" onclick="publishPost(null)">⚡ Sofort als Demo-Clip posten</button>
+    </div>
+  </div>
+
+  <!-- WEITERE MODALS -->
+  <div class="slide-modal" id="effectModal"><div class="modal-header"><span>✨ Live- & Video-Effekte</span><span class="close-modal" onclick="closeModal('effectModal')">✕</span></div><div class="effect-grid"><div class="effect-card" onclick="applyEffect('fx-none')">✨ Normal</div><div class="effect-card" onclick="applyEffect('fx-neon')">⚡ Cyber-Foil</div><div class="effect-card" onclick="applyEffect('fx-retro')">🔥 Gold-Relikt</div><div class="effect-card" onclick="applyEffect('fx-bw')">🌑 Schatten</div><div class="effect-card" style="grid-column:span 2" onclick="applyEffect('fx-glow')">🌈 Mythic-Glow</div></div></div>
+  <div class="slide-modal" id="wheelModal"><div class="modal-header"><span>🃏 Mystery-Booster (15 Coins)</span><span class="close-modal" onclick="closeModal('wheelModal')">✕</span></div><div style="padding:14px;text-align:center"><div class="odds-table"><div class="odds-row"><span>⚪ Common</span><span>65%</span></div><div class="odds-row"><span>🔵 Rare</span><span>23%</span></div><div class="odds-row"><span>🟣 Super Rare</span><span>8,5%</span></div><div class="odds-row"><span>🟡 Ultra Rare</span><span>3,0%</span></div><div class="odds-row" style="grid-column:span 2;border-color:#ff0055"><span>🌈 Secret Mythic Holo</span><span style="color:#fde047">0,5% CHANCE!</span></div></div><p style="font-size:11px;color:#94a3b8;margin-bottom:10px">Coin-Bonus gibt es <b>nur 1x beim ersten Freischalten</b>!</p><button class="primary-btn" style="background:linear-gradient(90deg,#eab308,#ea580c);color:#0f172a" onclick="openBoosterPack()">⚡ Booster jetzt öffnen (15 🪙)</button></div></div>
+  <div class="slide-modal" id="buyModal"><div class="modal-header"><span>⚡ Sofort-Kauf</span><span class="close-modal" onclick="closeModal('buyModal')">✕</span></div><div style="padding:16px;display:flex;flex-direction:column;gap:8px"><div style="font-weight:900" id="buyModalTitle">Deal</div><div style="color:#38bdf8;font-weight:900" id="buyModalPrice">24,99 €</div><button class="primary-btn" onclick="buyWithCoins()">🪙 Mit 200 Coins zahlen</button><button class="primary-btn" style="background:#0284c7" onclick="buyProduct(24.99)">💳 Direktzahlung (15% Provision)</button></div></div>
+  <div class="slide-modal" id="commentModal"><div class="modal-header"><span>💬 Kommentare</span><span class="close-modal" onclick="closeModal('commentModal')">✕</span></div><div id="commentList" style="max-height:180px;overflow-y:auto;padding:12px"></div><div style="display:flex;gap:6px;padding:8px 12px"><input id="commentInput" class="live-input" placeholder="Kommentar..."><button class="primary-btn" style="width:auto;padding:8px 14px" onclick="postComment()">Senden</button></div></div>
+  <div class="slide-modal" id="coinModal"><div class="modal-header"><span>🪙 Coin-Shop (10% Provision)</span><span class="close-modal" onclick="closeModal('coinModal')">✕</span></div><div class="coin-grid"><div class="coin-pack" onclick="addCoins(100,.99)">🪙 100 (0,99 €)</div><div class="coin-pack" onclick="addCoins(500,4.49)">🪙 500 (4,49 €)</div><div class="coin-pack" onclick="addCoins(1500,12.99)">🪙 1500 (12,99 €)</div><div class="coin-pack" onclick="addCoins(6000,49.99)">🪙 6000 (49,99 €)</div></div></div>
+  <div class="slide-modal" id="giftModal"><div class="modal-header"><span>🎁 Geschenke senden</span><span class="close-modal" onclick="closeModal('giftModal')">✕</span></div><div class="gift-grid"><div class="gift-item" onclick="sendGift('🌹','Rose',1)">🌹<br>1🪙</div><div class="gift-item" onclick="sendGift('🔥','Feuer',5)">🔥<br>5🪙</div><div class="gift-item" onclick="sendGift('👑','Krone',50)">👑<br>50🪙</div><div class="gift-item" onclick="sendGift('🐉','Drache',500)">🐉<br>500🪙</div></div></div>
+  <div class="slide-modal" id="settingsModal"><div class="modal-header"><span>⚙️ Profil bearbeiten</span><span class="close-modal" onclick="closeModal('settingsModal')">✕</span></div><div style="padding:16px"><button class="primary-btn" style="background:#4f46e5;margin-bottom:10px" onclick="document.getElementById('avatarUploadInput').click()">📷 Eigenes Foto vom Handy wählen</button><input id="regUsername" class="form-input-dark" placeholder="@Benutzername"><input id="regBio" class="form-input-dark" placeholder="Deine Bio"><button class="primary-btn" onclick="saveUserProfile()">✅ Speichern (+50 XP)</button></div></div>
+  <div class="slide-modal" id="vaultModal"><div class="modal-header"><span>💰 Mein Guthaben & Provision</span><span class="close-modal" onclick="closeModal('vaultModal')">✕</span></div><div style="padding:16px;display:flex;flex-direction:column;gap:10px"><div style="background:#221f38;padding:12px;border-radius:12px;display:flex;justify-content:space-between"><span>🪙 Coin-Guthaben:</span><b style="color:#ffd700" id="profCoins">45 Coins</b></div><div style="background:#221f38;padding:12px;border-radius:12px;display:flex;justify-content:space-between"><span>💎 Stream-Diamanten:</span><b style="color:#38bdf8" id="profDiamonds">1450</b></div><div style="background:#221f38;padding:12px;border-radius:12px;display:flex;justify-content:space-between"><span>💶 Deine Provision:</span><b style="color:#4ade80" id="profPlatformEarnings">0,00 €</b></div><button class="primary-btn" onclick="closeModal('vaultModal');openModal('coinModal')">🪙 Jetzt Coins aufladen</button></div></div>
+  <div class="slide-modal" id="ordersModal"><div class="modal-header"><span>📦 Gekaufte Bestellungen</span><span class="close-modal" onclick="closeModal('ordersModal')">✕</span></div><div style="padding:16px" id="purchasedOrdersContainer"></div></div>
+  <div class="slide-modal" id="impressumModal"><div class="modal-header"><span>📜 Impressum (§ 5 DDG)</span><span class="close-modal" onclick="closeModal('impressumModal')">✕</span></div><div style="padding:16px;font-size:12px;line-height:1.5;color:#cbd5e1">DuelLive & TCG Shop Plattform • Musterstraße 1, 12345 Musterstadt • E-Mail: support@duellive-tcg.de</div></div>
+
+  <div class="card-inspector-overlay" id="cardInspector" onclick="closeInspector()">
+    <div id="inspectorBannerText" style="font-size:14px;font-weight:900;color:#fde047;margin-bottom:8px">✨ SAMMLERKARTE ✨</div>
+    <div class="large-tcg-showcase rarity-MYTHIC" id="inspectorOuterFrame" onclick="event.stopPropagation()"><div class="large-tcg-inner">
+      <div style="display:flex;justify-content:space-between"><b style="color:#fef08a" id="inspName">Drache</b><span style="background:#e11d48;font-size:9px;padding:2px 6px;border-radius:4px" id="inspRarity">MYTHIC</span></div>
+      <div style="font-size:10px;color:#ffd700;text-align:right" id="inspStars">✪✪✪✪✪</div>
+      <div class="large-art-window" id="inspArtwork"></div>
+      <div class="reward-explain-box" id="inspRewardStatus"></div>
+      <div style="font-size:11px;color:#cbd5e1;margin-bottom:8px" id="inspLore"></div>
+      <div style="display:flex;justify-content:space-between;font-weight:900;color:#fde047"><span id="inspAtk">⚔️ 4500</span><span id="inspDef">🛡️ 3800</span></div>
+    </div></div>
+    <button class="primary-btn" style="max-width:290px;margin-top:10px;background:#334155" onclick="closeInspector()">Schließen</button>
+  </div>
+
+  <!-- UNTERE TIKTOK LEISTE -->
+  <div class="bottom-nav-container" id="bottomDock">
+    <div class="nav-item active" id="navFeed" onclick="switchView('feed')"><span>🏠 Start</span></div>
+    <div class="nav-item" onclick="openDedicatedLiveScreen()"><span style="color:#ff0050;font-weight:900">🔴 LIVE</span></div>
+    <div class="upload-btn-tiktok" onclick="openUploadModal('normal')">+</div>
+    <div class="nav-item" id="navDuel" onclick="switchView('duel')"><span>⚔️ Duell</span></div>
+    <div class="nav-item" id="navProfile" onclick="switchView('profile')"><span>👤 Profil</span></div>
+  </div>
+
+</div>
+
+<script>
+let coins=Number(localStorage.getItem('app_coins'))||45,diamonds=Number(localStorage.getItem('app_diamonds'))||1450,platformEarnings=Number(localStorage.getItem('app_earnings'))||0,userLevel=Number(localStorage.getItem('app_level'))||1,userXp=Number(localStorage.getItem('app_xp'))||0,duelWins=Number(localStorage.getItem('app_duel_wins'))||0,activePostIndex=0,isMuted=true,uploadMode='normal',selectedUploadFx='fx-none',showDealInLive=true;
+let currentUser=JSON.parse(localStorage.getItem('app_user'))||{username:'@duell_meister',bio:'Sammler & Creator 🔥 Schau dir unten meine Videos & meinen Karten-Shop an!',photoData:null};
+let myPurchasedOrders=JSON.parse(localStorage.getItem('app_purchased_orders'))||[{icon:'🃏',title:'Starter-Booster',price:'14,99 €',method:'Direktkauf'}];
+
+// Entfernt nachträglich eingefügte Hoster-Werbebanner automatisch
+setInterval(()=>{
+  document.querySelectorAll('body > *:not(#appRoot):not(script):not(style)').forEach(el=>el.remove());
+},800);
+
+const MASTER_CARDS=[
+  {id:'mythic_bahamut',rarityKey:'MYTHIC',rarityLabel:'0,5% SECRET MYTHIC',chance:.5,stars:'✪✪✪✪✪✪✪✪',element:'🔥',name:'Sternen-Drache Bahamut',imageUrl:'https://image.pollinations.ai/prompt/epic%20trading%20card%20game%20boss%20monster%20cosmic%20golden%20fire%20dragon%20bahamut%20glowing%20runes%20dark%20fantasy%20digital%20painting%20masterpiece?width=420&height=420&seed=101&nologo=true',atk:4500,def:3800,firstPullCoins:40,xpReward:500,dupXpReward:120,lore:'0,5% Hauptgewinn! Gibt einmalig beim ersten Ziehen +40 Coins & +500 XP!'},
+  {id:'ultra_solaris',rarityKey:'ULTRA',rarityLabel:'3,0% ULTRA RARE',chance:3,stars:'✪✪✪✪✪✪✪',element:'✨',name:'Erzengel Solaris',imageUrl:'https://image.pollinations.ai/prompt/epic%20trading%20card%20game%20golden%20paladin%20archangel%20knight%20flaming%20sword%20radiant%20wings%20fantasy%20art%20masterpiece?width=420&height=420&seed=202&nologo=true',atk:3400,def:3000,firstPullCoins:15,xpReward:250,dupXpReward:80,lore:'ULTRA RARE (3% Chance): Unbesiegbarer Himmelskrieger.'},
+  {id:'super_leviathan',rarityKey:'SUPER',rarityLabel:'8,5% SUPER RARE',chance:4.25,stars:'✪✪✪✪✪✪',element:'💧',name:'Tiefsee-Leviathan',imageUrl:'https://image.pollinations.ai/prompt/epic%20trading%20card%20game%20giant%20glowing%20abyssal%20sea%20serpent%20leviathan%20dragon%20lightning%20ocean%20storm%20fantasy%20art?width=420&height=420&seed=303&nologo=true',atk:2700,def:2300,firstPullCoins:8,xpReward:140,dupXpReward:50,lore:'SUPER RARE: Herrscher der Tiefsee.'},
+  {id:'super_necromancer',rarityKey:'SUPER',rarityLabel:'8,5% SUPER RARE',chance:4.25,stars:'✪✪✪✪✪✪',element:'🌑',name:'Schatten-Lich Malakor',imageUrl:'https://image.pollinations.ai/prompt/epic%20trading%20card%20game%20dark%20undead%20lich%20king%20necromancer%20purple%20soul%20fire%20magic%20skull%20crown%20fantasy%20art?width=420&height=420&seed=404&nologo=true',atk:2600,def:2100,firstPullCoins:8,xpReward:140,dupXpReward:50,lore:'SUPER RARE: Gebieter der Seelenmagie.'},
+  {id:'rare_kitsune',rarityKey:'RARE',rarityLabel:'23% RARE',chance:11.5,stars:'✪✪✪✪',element:'🔥',name:'Neunschweif-Kitsune',imageUrl:'https://image.pollinations.ai/prompt/epic%20trading%20card%20game%20mystical%20nine%20tailed%20fire%20fox%20kitsune%20spirit%20glowing%20flames%20anime%20fantasy%20art?width=420&height=420&seed=505&nologo=true',atk:1950,def:1600,firstPullCoins:4,xpReward:80,dupXpReward:35,lore:'RARE: Mystischer Feuerfuchs.'},
+  {id:'rare_thunderwolf',rarityKey:'RARE',rarityLabel:'23% RARE',chance:11.5,stars:'✪✪✪✪',element:'⚡',name:'Donner-Wolf Fenrir',imageUrl:'https://image.pollinations.ai/prompt/epic%20trading%20card%20game%20giant%20electric%20thunder%20wolf%20fenrir%20blue%20lightning%20fur%20glowing%20eyes%20fantasy%20art?width=420&height=420&seed=606&nologo=true',atk:1900,def:1500,firstPullCoins:4,xpReward:80,dupXpReward:35,lore:'RARE: Schneller als der Blitz.'},
+  {id:'common_golem',rarityKey:'COMMON',rarityLabel:'65% COMMON',chance:32.5,stars:'✪✪✪',element:'🌍',name:'Runenstein-Koloss',imageUrl:'https://image.pollinations.ai/prompt/epic%20trading%20card%20game%20ancient%20mossy%20stone%20golem%20giant%20glowing%20emerald%20runes%20forest%20fantasy%20art?width=420&height=420&seed=707&nologo=true',atk:1300,def:2000,firstPullCoins:2,xpReward:45,dupXpReward:20,lore:'COMMON: Massiver Gebirgswächter.'},
+  {id:'common_imp',rarityKey:'COMMON',rarityLabel:'65% COMMON',chance:32.5,stars:'✪✪',element:'🌑',name:'Nachtklingen-Kobold',imageUrl:'https://image.pollinations.ai/prompt/epic%20trading%20card%20game%20armored%20shadow%20goblin%20rogue%20glowing%20daggers%20dark%20forest%20fantasy%20art?width=420&height=420&seed=808&nologo=true',atk:1150,def:900,firstPullCoins:2,xpReward:45,dupXpReward:20,lore:'COMMON: Flinker Schatten-Späher.'}
+];
+let myBinderCards=JSON.parse(localStorage.getItem('app_binder_v3'))||[{id:'common_golem',count:1},{id:'common_imp',count:1}];
+let playerLP=4000,enemyLP=4000,selectedDuelCardId=myBinderCards[0].id,currentEnemyCard=MASTER_CARDS[5];
+
+const posts=[
+  {id:'p1',user:currentUser.username,caption:'Mein Mystery Holo-Booster im Verkauf! Rechts oben über dem Herz kannst du jederzeit auf 🔴 LIVE klicken! 🔥',likes:1420,fxClass:'fx-none',videoUrl:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',product:{icon:'🃏',title:'1st Edition Mystery Holo-Booster',price:'24,99 €'},comments:[{lvl:12,user:'@lukas',text:'Mega!'}]},
+  {id:'p2',user:currentUser.username,caption:'Normales Video komplett OHNE Preis – einfach frei im Vollbild anschauen! 😎🎬',likes:980,fxClass:'fx-glow',videoUrl:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',product:null,comments:[]}
+];
+
+function downloadAppFile(){
+  closeDropdownMenu();
+  const blob=new Blob(["<!DOCTYPE html>\n"+document.documentElement.outerHTML],{type:"text/html;charset=utf-8"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="index.html";
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  alert("📲 'index.html' gespeichert!");
+}
+
+// ================= EXTRA VOLLBILD-BILDSCHIRM FÜR TIKTOK LIVE =================
+let peer=null,localStream=null,currentFacing='user',micEnabled=true,myRoomCode=String(Math.floor(1000+Math.random()*9000)),activeDataConns=[],selectedStudioMode='💬 Quatschen';
+
+function initPeerNetwork(){
+  if(typeof Peer==='undefined')return;
+  document.getElementById('myRoomCodeDisplay').textContent=myRoomCode;
+  try{
+    peer=new Peer('duellive-room-'+myRoomCode);
+    peer.on('connection',conn=>{
+      activeDataConns.push(conn);
+      conn.on('data',d=>handleIncomingLiveEvent(d));
+      if(localStream&&conn.peer)peer.call(conn.peer,localStream);
+    });
+    peer.on('call',call=>{
+      call.answer(localStream||undefined);
+      call.on('stream',remoteStream=>{
+        const mainVid=document.getElementById('liveCameraVideo'),coVid=document.getElementById('liveCoHostVideo');
+        if(localStream&&mainVid.srcObject===localStream){
+          coVid.srcObject=remoteStream;coVid.muted=false;
+          document.getElementById('liveVideoStage').classList.add('split-mode');
+          appendLiveMsg('🎙️ Freund ist live im Split-Screen dabei!');
+        }else{
+          mainVid.srcObject=remoteStream;mainVid.muted=false;
+          document.getElementById('liveCameraPromptBox').style.display='none';
+          document.getElementById('dedicatedLiveScreen').classList.add('open');
+          document.getElementById('ttPreLiveUI').classList.add('hidden');
+          document.getElementById('ttOnAirUI').classList.add('active');
+        }
+      });
+    });
+  }catch(e){}
+}
+
+async function openDedicatedLiveScreen(){
+  closeDropdownMenu();
+  document.getElementById('dedicatedLiveScreen').classList.add('open');
+  document.getElementById('ttPreLiveUI').classList.remove('hidden');
+  document.getElementById('ttOnAirUI').classList.remove('active');
+  document.getElementById('studioAvatarBox').innerHTML=getAvatarHTML();
+  document.getElementById('liveFallbackAvatar').innerHTML=getAvatarHTML();
+  document.getElementById('onAirHostAva').innerHTML=getAvatarHTML();
+  await requestCameraDirectly();
+}
+
+function closeDedicatedLiveScreen(){
+  if(localStream){localStream.getTracks().forEach(t=>t.stop());localStream=null}
+  document.getElementById('liveCameraVideo').srcObject=null;
+  document.getElementById('liveCameraPromptBox').style.display='flex';
+  document.getElementById('liveVideoStage').classList.remove('split-mode');
+  document.getElementById('dedicatedLiveScreen').classList.remove('open');
+}
+
+// DIREKTER KAMERA-AUFRUF BEIM KLICK AUF DEN BLAUEN BUTTON
+async function requestCameraDirectly(){
+  const mainVid=document.getElementById('liveCameraVideo');
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    document.getElementById('camHintSubtext').textContent='⚠️ Bitte öffne deinen Link über https:// in Google Chrome, damit die Kamera erlaubt wird.';
+    return;
+  }
+  try{
+    localStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:currentFacing},audio:true});
+    mainVid.srcObject=localStream;
+    mainVid.muted=true;
+    await mainVid.play().catch(()=>{});
+    document.getElementById('liveCameraPromptBox').style.display='none';
+    document.getElementById('topCamStatusBadge').textContent='● Kamera & Mikrofon aktiv';
+  }catch(err){
+    document.getElementById('camHintSubtext').textContent='⚠️ Kamera noch blockiert: Tippe oben links in Chrome neben der Adresse auf das Schloss-Symbol ➔ Berechtigungen ➔ Kamera zulassen!';
+  }
+}
+
+function selectStudioMode(m,el){
+  selectedStudioMode=m;
+  document.querySelectorAll('.tt-topic-pill').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function toggleStudioDeal(){
+  showDealInLive=!showDealInLive;
+  document.getElementById('studioDealLbl').textContent=showDealInLive?'Shop: AN':'Shop: AUS';
+  document.getElementById('livePinnedDealWrap').style.display=showDealInLive?'block':'none';
+}
+
+function startGoLiveCountdown(){
+  document.getElementById('ttPreLiveUI').classList.add('hidden');
+  const title=document.getElementById('studioStreamTitle').value.trim()||'Live Stream 🔥';
+  document.getElementById('liveHostName').textContent=currentUser.username+' • '+title;
+  document.getElementById('liveTopicBadge').textContent=selectedStudioMode;
+  const cd=document.getElementById('liveCountdownOverlay');
+  let c=3;cd.textContent=c;cd.classList.add('show');
+  const iv=setInterval(()=>{
+    c--;
+    if(c>0){cd.textContent=c}
+    else{
+      clearInterval(iv);cd.classList.remove('show');
+      document.getElementById('ttOnAirUI').classList.add('active');
+      addXP(50,'Live gestartet');
+    }
+  },650);
+}
+
+function stopLiveBroadcast(){
+  document.getElementById('ttOnAirUI').classList.remove('active');
+  document.getElementById('ttPreLiveUI').classList.remove('hidden');
+}
+
+function toggleLiveMic(){
+  micEnabled=!micEnabled;
+  if(localStream)localStream.getAudioTracks().forEach(t=>t.enabled=micEnabled);
+  document.getElementById('studioMicIcon').textContent=micEnabled?'🎙️':'🔇';
+  document.getElementById('studioMicLbl').textContent=micEnabled?'Mikro':'Stumm';
+}
+
+async function flipLiveCamera(){
+  currentFacing=currentFacing==='user'?'environment':'user';
+  if(localStream){localStream.getTracks().forEach(t=>t.stop());localStream=null}
+  await requestCameraDirectly();
+}
+
+async function joinAsCoHostWithMic(){
+  const code=document.getElementById('friendRoomInput').value.trim();
+  if(!code||!peer){alert('Bitte den 4-stelligen Raum-Code eingeben!');return}
+  closeModal('friendsLiveModal');
+  document.getElementById('dedicatedLiveScreen').classList.add('open');
+  document.getElementById('ttPreLiveUI').classList.add('hidden');
+  document.getElementById('ttOnAirUI').classList.add('active');
+  await requestCameraDirectly();
+  const coVid=document.getElementById('liveCoHostVideo');
+  coVid.srcObject=localStream;coVid.muted=true;
+  document.getElementById('liveVideoStage').classList.add('split-mode');
+  const conn=peer.connect('duellive-room-'+code);
+  conn.on('open',()=>{activeDataConns.push(conn);conn.send({type:'chat',lvl:userLevel,user:currentUser.username,text:'ist als Co-Host im Stream! 🎙️'})});
+  conn.on('data',d=>handleIncomingLiveEvent(d));
+  if(localStream){
+    const call=peer.call('duellive-room-'+code,localStream);
+    call.on('stream',hostStream=>{const mainVid=document.getElementById('liveCameraVideo');mainVid.srcObject=hostStream;mainVid.muted=false});
+  }
+}
+
+function broadcastLiveEvent(p){activeDataConns.forEach(c=>{if(c.open)c.send(p)})}
+function handleIncomingLiveEvent(d){
+  if(d.type==='chat')appendLiveMsg(`<span class="chat-lvl-badge">Lvl ${d.lvl}</span><b>${d.user}:</b> ${d.text}`);
+  if(d.type==='gift'){diamonds+=d.cost;updateUIStats();appendLiveMsg(`🎁 <b>${d.user}</b> schickt ${d.emoji} <b>${d.name}</b>!`)}
+}
+function appendLiveMsg(h){const b=document.getElementById('liveChatBox'),m=document.createElement('div');m.className='live-chat-msg';m.innerHTML=h;b.appendChild(m);b.scrollTop=b.scrollHeight}
+function shareLiveWithFriends(){
+  const u=location.origin+location.pathname+'?room='+myRoomCode;
+  if(navigator.share){navigator.share({title:'DuelLive Stream',text:'Mein Raum-Code: '+myRoomCode,url:u}).catch(()=>{})}
+  else if(navigator.clipboard){navigator.clipboard.writeText(u).then(()=>alert('🔗 Link kopiert! Raum-Code: '+myRoomCode))}
+  else{prompt('Dein Raum-Code: '+myRoomCode,u)}
+}
+
+// ================= UPLOAD & PROFIL =================
+function switchTTTab(t){
+  document.querySelectorAll('.tt-tab-item').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tt-tab-pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('ttTabBtn-'+t).classList.add('active');
+  document.getElementById('ttPane-'+t).classList.add('active');
+}
+function openUploadModal(m){setUploadMode(m||'normal');openModal('uploadModal')}
+function setUploadMode(m){
+  uploadMode=m;
+  document.getElementById('upTypeNormal').classList.toggle('active',m==='normal');
+  document.getElementById('upTypeShop').classList.toggle('active',m==='shop');
+  document.getElementById('upShopFields').style.display=m==='shop'?'block':'none';
+}
+function selectUploadFx(fx,el){
+  selectedUploadFx=fx;
+  document.querySelectorAll('#uploadModal .up-fx-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
+function onVideoFilePicked(e){const f=e.target.files[0];if(f)publishPost(URL.createObjectURL(f))}
+function publishPost(blobUrl){
+  const cap=document.getElementById('upCaption').value.trim()||(uploadMode==='shop'?'Mein neues Shop-Angebot! 🔥':'Mein neuer Clip! 🎬');
+  let prod=null;
+  if(uploadMode==='shop'){
+    const t=document.getElementById('upProdTitle').value.trim()||'Mystery Holo-Karte';
+    let pr=document.getElementById('upProdPrice').value.trim()||'19,99 €';
+    if(!pr.includes('€'))pr+=' €';
+    prod={icon:'🔥',title:t,price:pr};
+  }
+  posts.unshift({
+    id:'p'+Date.now(),user:currentUser.username,
+    caption:cap,likes:1,fxClass:selectedUploadFx,
+    videoUrl:blobUrl||'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoy.mp4',
+    product:prod,comments:[]
+  });
+  closeModal('uploadModal');addXP(120,'Video Upload');renderFeed();updateUIStats();switchView('feed');
+}
+
+// ================= BOOSTER & 1v1 DUELL =================
+function rollWeightedCard(){const r=Math.random()*100;let s=0;for(const c of MASTER_CARDS){s+=c.chance;if(r<=s)return c}return MASTER_CARDS[7]}
+function openBoosterPack(){
+  if(coins<15){closeModal('wheelModal');openModal('coinModal');alert('Nicht genug Coins (15 benötigt)!');return}
+  coins-=15;closeModal('wheelModal');const p=rollWeightedCard(),ex=myBinderCards.find(c=>c.id===p.id);
+  let h="",st="";
+  if(!ex){myBinderCards.push({id:p.id,count:1});coins+=p.firstPullCoins;addXP(p.xpReward,'NEU: '+p.name);h='🆕 NEUE KARTE FREIGESCHALTET!';st=`🎉 ERSTFINDER-BONUS: +${p.firstPullCoins} Coins (1x) & +${p.xpReward} XP!`}
+  else{ex.count++;addXP(p.dupXpReward,'Duplikat');h=`📦 DOPPELT (x${ex.count})`;st=`ℹ️ Coin-Bonus nur 1x beim ersten Mal! +${p.dupXpReward} XP!`}
+  selectedDuelCardId=p.id;updateUIStats();inspectCard(p.id,h,st);
+}
+function inspectCard(id,t,s){
+  const c=MASTER_CARDS.find(x=>x.id===id),o=myBinderCards.find(x=>x.id===id);if(!c)return;
+  document.getElementById('inspectorBannerText').textContent=t||(o?`📖 IM ALBUM (x${o.count})`:'🔒 GESPERRT');
+  document.getElementById('inspectorOuterFrame').className='large-tcg-showcase rarity-'+c.rarityKey;
+  document.getElementById('inspName').textContent=c.element+' '+c.name;document.getElementById('inspRarity').textContent=c.rarityLabel;
+  document.getElementById('inspStars').textContent=c.stars;document.getElementById('inspArtwork').innerHTML=`<img src="${c.imageUrl}">`;
+  document.getElementById('inspLore').textContent=c.lore;document.getElementById('inspAtk').textContent='⚔️ ATK '+c.atk;document.getElementById('inspDef').textContent='🛡️ DEF '+c.def;
+  document.getElementById('inspRewardStatus').textContent=s||(o?`✔ 1x Coin-Bonus (+${c.firstPullCoins}🪙) erhalten`:`🔒 Erstfinder-Bonus: +${c.firstPullCoins} Coins & +${c.xpReward} XP`);
+  document.getElementById('cardInspector').classList.add('open');
+}
+function closeInspector(){document.getElementById('cardInspector').classList.remove('open')}
+
+function initDuelArena(){
+  const h=document.getElementById('duelHandContainer');
+  h.innerHTML=myBinderCards.map(i=>{const c=MASTER_CARDS.find(x=>x.id===i.id);return `<div class="hand-mini-card ${c.id===selectedDuelCardId?'selected-hand':''}" onclick="selectedDuelCardId='${c.id}';initDuelArena()"><img src="${c.imageUrl}"><div style="font-size:9px;font-weight:900;color:#fef08a">${c.name}</div><div style="font-size:9px;color:#4ade80">⚔️ ${c.atk}</div></div>`}).join('');
+  const p=MASTER_CARDS.find(x=>x.id===selectedDuelCardId)||MASTER_CARDS[6];
+  document.getElementById('pDuelCardName').textContent=p.name;document.getElementById('pDuelCardImg').src=p.imageUrl;document.getElementById('pDuelCardAtk').textContent=p.atk;document.getElementById('pDuelCardDef').textContent=p.def;
+  document.getElementById('eDuelCardName').textContent=currentEnemyCard.name;document.getElementById('eDuelCardImg').src=currentEnemyCard.imageUrl;document.getElementById('eDuelCardAtk').textContent=currentEnemyCard.atk;document.getElementById('eDuelCardDef').textContent=currentEnemyCard.def;
+  document.getElementById('playerLpText').textContent=playerLP;document.getElementById('enemyLpText').textContent=enemyLP;
+  document.getElementById('playerLpBar').style.width=(playerLP/40)+'%';document.getElementById('enemyLpBar').style.width=(enemyLP/40)+'%';
+  document.getElementById('playerDuelWins').textContent=duelWins;
+}
+function startNewDuel(){playerLP=4000;enemyLP=4000;currentEnemyCard=MASTER_CARDS[Math.floor(Math.random()*7)+1];initDuelArena()}
+function executeDuelTurn(m){
+  if(playerLP<=0||enemyLP<=0){startNewDuel();return}
+  const p=MASTER_CARDS.find(x=>x.id===selectedDuelCardId)||MASTER_CARDS[6];
+  let mp=p.atk+Math.floor(Math.random()*400),ep=currentEnemyCard.atk+Math.floor(Math.random()*350);
+  if(m==='ult'){if(coins<5){openModal('coinModal');return}coins-=5;mp+=1000}
+  if(m==='def'){const d=Math.max(350,Math.round(p.def*.4));enemyLP=Math.max(0,enemyLP-d);playerLP=Math.min(4000,playerLP+250);document.getElementById('duelLogText').textContent=`🛡️ Konter! +250 LP geheilt & -${d} LP beim Gegner!`}
+  else if(mp>=ep){const d=Math.max(500,mp-Math.round(ep*.55));enemyLP=Math.max(0,enemyLP-d);document.getElementById('duelLogText').textContent=`💥 Treffer! -${d} LP beim Gegner!`}
+  else{const d=Math.max(400,ep-Math.round(mp*.6));playerLP=Math.max(0,playerLP-d);document.getElementById('duelLogText').textContent=`⚠️ Gegner kontert! Du verlierst -${d} LP!`}
+  if(enemyLP<=0){duelWins++;localStorage.setItem('app_duel_wins',duelWins);addXP(120,'Duell-Sieg');document.getElementById('duelLogText').textContent='🏆 SIEG! +120 XP gewonnen!'}
+  initDuelArena();updateUIStats();
+}
+
+function getAvatarHTML(){return currentUser.photoData?`<img src="${currentUser.photoData}">`:'😎'}
+function handleAvatarUpload(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{const i=new Image();i.onload=()=>{const c=document.createElement('canvas');c.width=160;c.height=160;c.getContext('2d').drawImage(i,0,0,160,160);currentUser.photoData=c.toDataURL('image/jpeg',.8);localStorage.setItem('app_user',JSON.stringify(currentUser));addXP(50,'Foto');updateUIStats();renderFeed()};i.src=ev.target.result};r.readAsDataURL(f)}
+function addXP(a,l){userXp+=a;let n=userLevel*100;while(userXp>=n){userXp-=n;userLevel++;coins+=3;n=userLevel*100;alert(`🎉 LEVEL ${userLevel}! +3 Gratis-Coins!`)}const t=document.getElementById('xpToast');t.textContent=`+${a} XP (${l}) ⭐`;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600);updateUIStats()}
+
+function updateUIStats(){
+  localStorage.setItem('app_coins',coins);localStorage.setItem('app_earnings',platformEarnings);localStorage.setItem('app_level',userLevel);localStorage.setItem('app_xp',userXp);localStorage.setItem('app_binder_v3',JSON.stringify(myBinderCards));
+  document.getElementById('profCoins').textContent=coins+' Coins';document.getElementById('ttBtnCoins').textContent=coins;document.getElementById('menuCoinBadge').textContent=coins+' 🪙';
+  document.getElementById('menuLvlBadge').textContent=userLevel;
+  document.getElementById('profPlatformEarnings').textContent=platformEarnings.toFixed(2)+' €';document.getElementById('liveDiamondCount').textContent=diamonds;
+  document.getElementById('profCardName').textContent=currentUser.username;document.getElementById('profBioDisplay').textContent=currentUser.bio;
+  document.getElementById('profRankBadge').textContent='Lvl '+userLevel;
+  document.getElementById('profAvatarDisplay').innerHTML=getAvatarHTML();
+  document.getElementById('profCurrentXp').textContent=userXp;document.getElementById('profNextXp').textContent=userLevel*100;
+  document.getElementById('profAtkStat').textContent=userLevel*250+myBinderCards.length*150;
+  const prog=myBinderCards.length+'/'+MASTER_CARDS.length;document.getElementById('menuDexBadge').textContent=prog;document.getElementById('overviewDexCount').textContent=prog;
+  document.getElementById('menuOrdersBadge').textContent=myPurchasedOrders.length;
+
+  document.getElementById('ttStatVideos').textContent=posts.length;
+  document.getElementById('ttVideoGrid').innerHTML=posts.map((p,idx)=>`
+    <div class="tt-grid-tile" onclick="jumpToVideo(${idx})">
+      <video class="${p.fxClass||'fx-none'}" src="${p.videoUrl}" muted playsinline></video>
+      <div class="tt-tile-overlay">
+        <div>${p.product?`<span class="tt-tile-badge">🛍️ ${p.product.price}</span>`:''}</div>
+        <div style="font-size:11px;font-weight:800;color:#fff">▶️ ${p.likes}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const shopPosts=posts.filter(p=>p.product!==null);
+  document.getElementById('ttShopCount').textContent=shopPosts.length;
+  document.getElementById('ownDealsContainer').innerHTML=shopPosts.length?shopPosts.map(p=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;margin-bottom:8px">
+      <div><b style="font-size:13px">${p.product.icon} ${p.product.title}</b><div style="font-size:12px;color:#0284c7;font-weight:800">${p.product.price}</div></div>
+      <button class="tt-btn-gold" style="padding:6px 10px;font-size:11px" onclick="const pr=prompt('Neuer Preis:','${p.product.price}');if(pr){posts.find(x=>x.id==='${p.id}').product.price=pr.includes('€')?pr:pr+' €';renderFeed();updateUIStats()}">✏️ Preis</button>
+    </div>
+  `).join(''):'<div style="text-align:center;color:#94a3b8;font-size:12px;padding:16px">Noch keine Verkaufs-Produkte aktiv.</div>';
+
+  document.getElementById('binderGrid').innerHTML=MASTER_CARDS.map(c=>{const o=myBinderCards.find(x=>x.id===c.id);return `<div class="tcg-collectible-card rarity-${c.rarityKey} ${o?'':'locked-card'}" onclick="inspectCard('${c.id}')"><div class="tcg-collectible-inner"><div style="font-size:10px;font-weight:900;color:#fef08a">${c.element} ${c.name}</div><div class="monster-art-frame"><img src="${c.imageUrl}"><span class="card-count-pill">${o?'x'+o.count:'🔒 '+c.chance+'%'}</span><div class="one-time-coin-tag">${o?'✔ 1x Bonus erhalten':'🎁 +'+c.firstPullCoins+' 🪙 (1x)'}</div></div><div style="display:flex;justify-content:space-between;font-size:10px;font-weight:900"><span>⚔️ ${c.atk}</span><span>🛡️ ${c.def}</span></div></div></div>`}).join('');
+
+  document.getElementById('purchasedOrdersContainer').innerHTML=myPurchasedOrders.map(o=>`<div style="display:flex;justify-content:space-between;padding:10px;background:#221f38;border-radius:10px;margin-bottom:6px"><div><b>${o.title}</b><div style="font-size:11px;color:#94a3b8">${o.price} • ${o.method}</div></div><b style="color:#4ade80;font-size:11px">✔ Bezahlt</b></div>`).join('');
+}
+
+function jumpToVideo(idx){
+  switchView('feed');
+  const cards=document.querySelectorAll('.video-card');
+  if(cards[idx])cards[idx].scrollIntoView({behavior:'smooth'});
+}
+
+function renderFeed(){
+  const f=document.getElementById('feed');f.innerHTML='';
+  posts.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='video-card';
+    const shopPillHTML=p.product?`
+      <div class="tt-shop-pill" onclick="openBuyModal(${i},event)">
+        <div class="tt-shop-pill-bag">🛍️</div>
+        <div class="tt-shop-pill-text">${p.product.title} • ${p.product.price}</div>
+        <div class="tt-shop-pill-buy">Kaufen</div>
+      </div>`:'';
+
+    d.innerHTML=`
+      <video class="${p.fxClass||'fx-none'}" src="${p.videoUrl}" loop playsinline ${isMuted?'muted':''} autoplay></video>
+      <div class="video-bottom-gradient"></div>
+
+      <div class="sidebar">
+        <!-- SICHERER LIVE-BUTTON MITTEN RECHTS (KANN VON KEINEM BANNER VERDECKT WERDEN) -->
+        <div class="side-live-pill" onclick="openDedicatedLiveScreen()">
+          <span>🔴</span>
+          <span>LIVE</span>
+        </div>
+        <div class="tt-side-avatar" onclick="switchView('profile')">${getAvatarHTML()}<div class="tt-follow-badge">+</div></div>
+        <div class="tt-action-btn" onclick="posts[${i}].likes++;addXP(15,'Like');renderFeed()"><div class="tt-action-icon">❤️</div><div class="tt-action-count">${p.likes}</div></div>
+        <div class="tt-action-btn" onclick="openComments(${i},event)"><div class="tt-action-icon">💬</div><div class="tt-action-count">${p.comments.length}</div></div>
+        <div class="tt-action-btn" onclick="openModal('giftModal')"><div class="tt-action-icon">🎁</div><div class="tt-action-count">Geschenk</div></div>
+        <div class="tt-action-btn" onclick="openModal('wheelModal')"><div class="tt-action-icon">🃏</div><div class="tt-action-count">Booster</div></div>
+      </div>
+
+      <div class="video-bottom-info">
+        ${shopPillHTML}
+        <div class="tt-video-user">${p.user}</div>
+        <div class="tt-video-caption">${p.caption}</div>
+      </div>`;
+    d.addEventListener('click',e=>{if(e.target.closest('.sidebar')||e.target.closest('.tt-shop-pill'))return;const v=d.querySelector('video');v.paused?v.play():v.pause()});
+    f.appendChild(d);
+  });
+}
+
+function toggleDropdownMenu(){const m=document.getElementById('topDropdownMenu');m.classList.contains('open')?closeDropdownMenu():(m.classList.add('open'),document.getElementById('dropdownBackdrop').classList.add('open'))}
+function closeDropdownMenu(){document.getElementById('topDropdownMenu').classList.remove('open');document.getElementById('dropdownBackdrop').classList.remove('open')}
+function openBuyModal(i,e){if(e)e.stopPropagation();if(!posts[i]||!posts[i].product)return;activePostIndex=i;document.getElementById('buyModalTitle').textContent=posts[i].product.title;document.getElementById('buyModalPrice').textContent=posts[i].product.price;openModal('buyModal')}
+function buyWithCoins(){if(coins<200){openModal('coinModal');return}coins-=200;platformEarnings+=2.5;myPurchasedOrders.unshift({icon:'🃏',title:posts[activePostIndex].product.title,price:'200 Coins',method:'Coins'});addXP(150,'Kauf');closeModal('buyModal');updateUIStats()}
+function buyProduct(pr){platformEarnings+=pr*.15;myPurchasedOrders.unshift({icon:'🃏',title:posts[activePostIndex].product.title,price:pr+' €',method:'Direktkauf'});addXP(150,'Kauf');closeModal('buyModal');updateUIStats();alert('Gekauft! +15% Provision verbucht.')}
+function addCoins(a,pr){coins+=a;platformEarnings+=pr*.1;addXP(40,'Coins');closeModal('coinModal');alert(`+${a} Coins geladen! (+${(pr*.1).toFixed(2)} € Provision)`)}
+function sendGift(em,n,c){if(coins<c){openModal('coinModal');return}coins-=c;diamonds+=c;addXP(c*2,n);broadcastLiveEvent({type:'gift',user:currentUser.username,emoji:em,name:n,cost:c});appendLiveMsg(`🎁 Du hast ${em} <b>${n}</b> gesendet!`);closeModal('giftModal')}
+function openComments(idx,e){if(e)e.stopPropagation();activePostIndex=idx;document.getElementById('commentList').innerHTML=posts[idx].comments.map(c=>`<div><b>${c.user}:</b> ${c.text}</div>`).join('');openModal('commentModal')}
+function postComment(){const inp=document.getElementById('commentInput');if(!inp.value.trim())return;posts[activePostIndex].comments.push({lvl:userLevel,user:currentUser.username,text:inp.value.trim()});inp.value='';addXP(25,'Kommentar');openComments(activePostIndex);renderFeed()}
+function saveUserProfile(){const u=document.getElementById('regUsername').value.trim();if(u)currentUser.username=u.startsWith('@')?u:'@'+u;const b=document.getElementById('regBio').value.trim();if(b)currentUser.bio=b;localStorage.setItem('app_user',JSON.stringify(currentUser));closeModal('settingsModal');addXP(50,'Profil');updateUIStats()}
+function claimTodayBonus(){coins+=3;addXP(50,'Tages-Bonus');alert('🎁 +3 Coins & +50 XP erhalten!')}
+function applyEffect(fxClass){document.querySelectorAll('#liveCameraVideo, #liveCoHostVideo, #feed video').forEach(v=>{v.className=fxClass});closeModal('effectModal')}
+function sendLiveChat(){const i=document.getElementById('liveChatInput');if(!i.value.trim())return;const txt=i.value.trim();appendLiveMsg(`<span class="chat-lvl-badge">Lvl ${userLevel}</span><b>${currentUser.username}:</b> ${txt}`);broadcastLiveEvent({type:'chat',lvl:userLevel,user:currentUser.username,text:txt});i.value='';addXP(25,'Chat')}
+function switchView(v){
+  closeDropdownMenu();
+  document.querySelectorAll('.view-section').forEach(s=>s.classList.remove('active'));
+  const target=document.getElementById('view-'+v);if(target)target.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('tabFeed').classList.toggle('active',v==='feed');
+  document.getElementById('tabDuel').classList.toggle('active',v==='duel');
+  if(v==='feed')document.getElementById('navFeed').classList.add('active');
+  if(v==='duel'){document.getElementById('navDuel').classList.add('active');initDuelArena()}
+  if(v==='profile')document.getElementById('navProfile').classList.add('active');
+  document.getElementById('bottomDock').classList.toggle('light-dock',v==='profile');
+  document.getElementById('topBar').classList.toggle('profile-mode',v==='profile');
+}
+function openModal(id){const el=document.getElementById(id);if(el)el.classList.add('open')}
+function closeModal(id){const el=document.getElementById(id);if(el)el.classList.remove('open')}
+function toggleGlobalSound(){isMuted=!isMuted;document.getElementById('soundToggle').textContent=isMuted?'🔇':'🔊';document.querySelectorAll('#feed video').forEach(v=>v.muted=isMuted)}
+
+updateUIStats();renderFeed();initDuelArena();window.addEventListener('load',initPeerNetwork);
+</script>
+</body>
+</html>
