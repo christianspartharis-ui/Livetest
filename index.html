@@ -1,13 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>StreamVerse - 10.000 Coins & Mega-Gifts</title>
+<title>StreamVerse - Live, Gefolgt & 10.000 Coins</title>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent;font-family:system-ui,-apple-system,sans-serif}
-body,html{width:100vw;height:100dvh;background:#0b0d19;color:#fff;overflow:hidden}
+body,html{width:100vw;height:100dvh;background:#070812;color:#fff;overflow:hidden}
 button,input{font-family:inherit;outline:none}
 
 /* VOLLBILD-FENSTER */
@@ -21,9 +22,58 @@ button,input{font-family:inherit;outline:none}
 .btn.dark{background:#262b4d;border:1px solid #475569}
 .btn.gold{background:linear-gradient(90deg,#f59e0b,#eab308);color:#0f172a}
 
-/* HAUPT-ANSICHTEN */
-.view{width:100vw;height:100dvh;padding-bottom:54px;display:none;overflow-y:auto}
+.view{width:100vw;height:100dvh;padding-bottom:54px;display:none;overflow-y:auto;position:relative}
 .view.active{display:block}
+
+/* ================= START-FEED (MIT LIVE, GEFOLGT & FÜR DICH) ================= */
+.feed-top-bar{position:fixed;top:0;left:0;width:100%;height:52px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;z-index:80;background:linear-gradient(180deg,rgba(0,0,0,.8),transparent)}
+.feed-top-tabs{display:flex;gap:16px;font-size:15px;font-weight:800;text-shadow:0 1px 4px #000}
+.feed-top-tabs span{color:rgba(255,255,255,.6);cursor:pointer;padding-bottom:4px;position:relative}
+.feed-top-tabs span.active{color:#fff;border-bottom:3px solid #fff}
+.live-tv-badge{background:rgba(255,0,80,.25);border:1.5px solid #ff0050;color:#fff;padding:4px 9px;border-radius:10px;font-size:11px;font-weight:900;cursor:pointer;display:flex;align-items:center;gap:4px}
+
+/* HORIZONTALE LEISTE FÜR AKTIVE FREUNDE / LIVE-KANÄLE */
+.live-stories-strip{position:fixed;top:52px;left:0;width:100%;padding:6px 12px;display:flex;gap:12px;overflow-x:auto;z-index:75;background:rgba(7,8,18,.65);backdrop-filter:blur(6px);scrollbar-width:none;border-bottom:1px solid rgba(255,255,255,.08)}
+.live-stories-strip::-webkit-scrollbar{display:none}
+.story-bubble{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;flex-shrink:0}
+.story-ring{width:48px;height:48px;border-radius:50%;padding:2px;background:linear-gradient(45deg,#ff0050,#00f2fe);position:relative;display:flex;justify-content:center;align-items:center}
+.story-inner{width:100%;height:100%;border-radius:50%;background:#15182e;display:flex;justify-content:center;align-items:center;font-size:22px;overflow:hidden}
+.story-live-tag{position:absolute;bottom:-3px;background:#ff0050;color:#fff;font-size:8px;font-weight:900;padding:1px 5px;border-radius:4px;border:1px solid #000}
+.story-name{font-size:10px;color:#e2e8f0;font-weight:700;max-width:58px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* SCROLL-SNAP FEED CARDS */
+.feed-scroller{width:100%;height:calc(100dvh - 54px);overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
+.feed-scroller::-webkit-scrollbar{display:none}
+.feed-slide{width:100vw;height:calc(100dvh - 54px);scroll-snap-align:start;scroll-snap-stop:always;position:relative;background:#050711;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.feed-slide video{width:100%;height:100%;object-fit:cover}
+
+/* LIVE-VORSCHAU KARTEN IM FEED (WIE SCREENSHOT 1 & 2) */
+.feed-live-preview-wrap{width:100%;padding:110px 10px 120px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:radial-gradient(circle at center,#162044 0%,#060814 100%);height:100%}
+.preview-box-grid{width:100%;max-width:390px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:145px 78px 78px;gap:5px}
+.preview-box-grid .p-host{grid-column:1/3;grid-row:1/2}
+.preview-box-grid .p-cohost{grid-column:3/5;grid-row:1/2}
+.p-cell{background:#232736;border-radius:10px;position:relative;overflow:hidden;display:flex;justify-content:center;align-items:center;border:1px solid rgba(255,255,255,.12)}
+.p-cell img{width:100%;height:100%;object-fit:cover}
+.p-cell-ava{width:44px;height:44px;border-radius:50%;background:#0f172a;border:2px solid #38bdf8;display:flex;justify-content:center;align-items:center;font-size:22px;overflow:hidden}
+.p-cell-ava img{width:100%;height:100%;object-fit:cover}
+.p-pts{position:absolute;top:4px;left:4px;background:rgba(0,0,0,.6);padding:1px 5px;border-radius:8px;font-size:9px;font-weight:800;color:#38bdf8}
+.p-usr{position:absolute;bottom:4px;left:4px;font-size:9px;font-weight:800;color:#fff;text-shadow:0 1px 3px #000}
+
+.preview-duo-grid{width:100%;max-width:390px;height:310px;display:grid;grid-template-columns:1fr 1fr;gap:4px;border-radius:14px;overflow:hidden}
+.tap-live-bar{width:100%;text-align:center;padding:12px 0 4px;font-size:14px;font-weight:900;color:#fff;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:6px;text-shadow:0 2px 6px #000}
+
+/* SEITENLEISTE & UNTERE INFOS IM FEED */
+.feed-right-bar{position:absolute;right:10px;bottom:22px;display:flex;flex-direction:column;align-items:center;gap:14px;z-index:30}
+.f-side-ava{width:46px;height:46px;border-radius:50%;border:2px solid #fff;background:#1e1b4b;display:flex;justify-content:center;align-items:center;font-size:22px;position:relative;cursor:pointer;overflow:hidden}
+.f-side-ava img{width:100%;height:100%;object-fit:cover}
+.f-follow-plus{position:absolute;bottom:-4px;background:#ff0050;color:#fff;width:18px;height:18px;border-radius:50%;font-size:12px;font-weight:900;display:flex;justify-content:center;align-items:center}
+.f-act-btn{display:flex;flex-direction:column;align-items:center;cursor:pointer;text-shadow:0 1px 4px #000}
+.f-act-btn span:first-child{font-size:26px}
+.f-act-btn span:last-child{font-size:11px;font-weight:800}
+
+.feed-bottom-meta{position:absolute;left:12px;bottom:18px;width:74%;z-index:30;text-shadow:0 1px 4px #000}
+.now-live-pill{display:inline-block;background:#ff0050;color:#fff;font-size:11px;font-weight:900;padding:3px 8px;border-radius:5px;margin-right:6px}
+.friend-pill{display:inline-block;background:#fff;color:#0f172a;font-size:11px;font-weight:800;padding:3px 8px;border-radius:5px}
 
 /* ================= KOMPAKTES PROFIL ================= */
 .prof-wrap{background:#f4f6fb;color:#0f172a;min-height:100%;padding-bottom:24px}
@@ -197,12 +247,12 @@ button,input{font-family:inherit;outline:none}
     </div>
 
     <!-- ZUSATZ-BOXEN FÜR BOX-RASTER -->
-    <div class="cam-box guest-box"><div class="box-badge">🪙 920</div><div style="font-size:26px">🦊</div><div class="box-name">@fuchs</div></div>
-    <div class="cam-box guest-box"><div class="box-badge">🪙 640</div><div style="font-size:26px">🐸</div><div class="box-name">@frog</div></div>
-    <div class="cam-box guest-box"><div class="box-badge">🪙 410</div><div style="font-size:26px">💄</div><div class="box-name">@bella</div></div>
-    <div class="cam-box guest-box"><div class="box-badge">🪙 230</div><div style="font-size:26px">🤡</div><div class="box-name">@joker</div></div>
-    <div class="cam-box guest-box"><div class="box-badge">🪙 120</div><div style="font-size:26px">👽</div><div class="box-name">@alien</div></div>
-    <div class="cam-box guest-box"><div class="box-badge">🪙 80</div><div style="font-size:26px">🐱</div><div class="box-name">@mimi</div></div>
+    <div class="cam-box guest-box"><div class="box-badge">🪙 2.2K</div><div style="font-size:26px">🐶</div><div class="box-name">D.j.Snooopy</div></div>
+    <div class="cam-box guest-box"><div class="box-badge">🪙 1.8K</div><div style="font-size:26px">🐣</div><div class="box-name">Ducky...</div></div>
+    <div class="cam-box guest-box"><div class="box-badge">🪙 563</div><div style="font-size:26px">🔥</div><div class="box-name">Tomcio</div></div>
+    <div class="cam-box guest-box"><div class="box-badge">🪙 318</div><div style="font-size:26px">🌸</div><div class="box-name">rosi</div></div>
+    <div class="cam-box guest-box"><div class="box-badge">🪙 264</div><div style="font-size:26px">💯</div><div class="box-name">MASA</div></div>
+    <div class="cam-box guest-box"><div class="box-badge">🪙 241</div><div style="font-size:26px">🎧</div><div class="box-name">DJ...</div></div>
     <div class="cam-box guest-box" style="grid-column:span 2;border-style:dashed;cursor:pointer" onclick="toggleScreen('friendModal',true)"><b style="font-size:11px;color:#38bdf8">＋ Freunde einladen</b></div>
   </div>
 
@@ -271,25 +321,46 @@ button,input{font-family:inherit;outline:none}
   </div>
 </div>
 
-<!-- ================= HAUPT-APP: DIREKT AUF DEM PROFIL STARTEN ================= -->
-<!-- VIEW 1: FEED -->
-<div class="view" id="vFeed" style="background:#000">
-  <div style="width:100%;height:calc(100dvh - 54px);position:relative">
-    <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover"></video>
-    <div style="position:absolute;bottom:20px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:flex-end;text-shadow:0 1px 4px #000">
-      <div>
-        <b style="font-size:16px" id="feedUname">@reckpunkt</b>
-        <p style="font-size:13px;margin-top:4px">Du hast 10.000 Coins! Teste die neuen Geschenke-Effekte!</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <button class="btn gold" style="width:auto;padding:9px 14px" onclick="toggleScreen('giftModal',true)">🎁 Geschenk</button>
-        <button class="btn" style="width:auto;padding:9px 14px" onclick="openLive()">🔴 LIVE</button>
-      </div>
+<!-- ================= HAUPT-APP: START-FEED (LIVE & GEFOLGT) + PROFIL ================= -->
+
+<!-- VIEW 1: START-FEED MIT LIVE-RAUM-VORSCHAUEN & GEFOLGTEN LEUTEN -->
+<div class="view" id="vFeed">
+  <!-- Obere Leiste wie auf deinen Bildern: LIVE | In der Nähe / Gefolgt / Für dich -->
+  <div class="feed-top-bar">
+    <div class="live-tv-badge" onclick="setFeedFilter('live')">📺 LIVE</div>
+    <div class="feed-top-tabs">
+      <span id="ftab-live" onclick="setFeedFilter('live')">Live-Räume</span>
+      <span id="ftab-follow" onclick="setFeedFilter('follow')">Gefolgt</span>
+      <span id="ftab-foryou" class="active" onclick="setFeedFilter('foryou')">Für dich</span>
+    </div>
+    <div class="live-tv-badge" style="border-color:#fde047;background:rgba(250,204,21,.2);color:#fde047" onclick="toggleScreen('friendModal',true)">🔑 Code</div>
+  </div>
+
+  <!-- Horizontale Leiste: Wer ist gerade LIVE & Gefolgt -->
+  <div class="live-stories-strip">
+    <div class="story-bubble" onclick="openLiveWithLayout('boxes')">
+      <div class="story-ring"><div class="story-inner">😎</div><span class="story-live-tag">LIVE</span></div>
+      <span class="story-name">Daddyy 😎</span>
+    </div>
+    <div class="story-bubble" onclick="openLiveWithLayout('duo')">
+      <div class="story-ring"><div class="story-inner">👩‍🎤</div><span class="story-live-tag">DUO</span></div>
+      <span class="story-name">ANI & LOKO</span>
+    </div>
+    <div class="story-bubble" onclick="openLiveWithLayout('duo')">
+      <div class="story-ring"><div class="story-inner">🐸</div><span class="story-live-tag">LIVE</span></div>
+      <span class="story-name">@frog_king</span>
+    </div>
+    <div class="story-bubble" onclick="toggleScreen('friendModal',true)">
+      <div class="story-ring" style="background:#38bdf8"><div class="story-inner">➕</div></div>
+      <span class="story-name">Freund-Code</span>
     </div>
   </div>
+
+  <!-- Vertikaler Vollbild-Scroller (Live-Vorschauen + Gefolgte Videos) -->
+  <div class="feed-scroller" id="feedScroller"></div>
 </div>
 
-<!-- VIEW 2: PROFIL (IST SOFORT AKTIV BEIM ÖFFNEN DER APP!) -->
+<!-- VIEW 2: PROFIL (STARTET SOFORT BEIM ÖFFNEN) -->
 <div class="view active" id="vProf">
   <div class="prof-wrap">
     <div class="prof-banner">
@@ -314,7 +385,7 @@ button,input{font-family:inherit;outline:none}
       <div class="prof-addr-chip" id="profAddrSummary">📍 Tippe auf „✏️ Bearbeiten“ für Name & Adresse</div>
 
       <div class="prof-stats-bar">
-        <div><div class="stat-num">4.779</div><div class="stat-lbl">Gefolgt</div></div>
+        <div onclick="showTab('vFeed');setFeedFilter('follow')" style="cursor:pointer"><div class="stat-num" id="profFollowCount">4.779</div><div class="stat-lbl">Gefolgt</div></div>
         <div><div class="stat-num">2.886</div><div class="stat-lbl">Follower</div></div>
         <div onclick="addFreeCoins()" style="cursor:pointer"><div class="stat-num" style="color:#d97706" id="profBalanceStat">🪙 10.000</div><div class="stat-lbl">Coins (+Aufladen)</div></div>
       </div>
@@ -326,7 +397,6 @@ button,input{font-family:inherit;outline:none}
       </div>
     </div>
 
-    <!-- Kompakte 3 Reiter -->
     <div class="compact-tabs">
       <div class="c-tab active" onclick="switchCompactTab('shop',this)">🛍️ Mein Shop (2)</div>
       <div class="c-tab" onclick="switchCompactTab('clips',this)">🎬 Clips (2)</div>
@@ -373,7 +443,7 @@ button,input{font-family:inherit;outline:none}
 
 <!-- UNTERE NAVIGATION -->
 <div class="bot-nav" id="botNav">
-  <div class="nav-tab" id="bHome" onclick="showTab('vFeed')"><span style="font-size:17px">🏠</span><span>Feed</span></div>
+  <div class="nav-tab" id="bHome" onclick="showTab('vFeed')"><span style="font-size:17px">🏠</span><span>Start (Live)</span></div>
   <div class="live-center-btn" onclick="openLive()">🔴 LIVE starten</div>
   <div class="nav-tab active" id="bProf" onclick="showTab('vProf')"><span style="font-size:17px">👤</span><span>Profil</span></div>
 </div>
@@ -383,7 +453,7 @@ button,input{font-family:inherit;outline:none}
 <input type="file" id="coverFile" accept="image/*" style="display:none" onchange="uploadImg(event,'cover')">
 
 <script>
-/* 1. DIREKT-START AUF PROFIL MIT 10.000 COINS (OHNE REGISTRIERUNGS-ZWANG) */
+/* 1. DIREKT-START AUF PROFIL MIT 10.000 COINS */
 let user=JSON.parse(localStorage.getItem('sv_user_v2'))||{
   dispName:'🍝Nudel King🍝',
   username:'@reckpunkt',
@@ -399,8 +469,53 @@ let storedCoins=localStorage.getItem('sv_coins_10k');
 let coins=storedCoins!==null?Number(storedCoins):10000;
 if(isNaN(coins)||coins<100)coins=10000;
 
-let activeProfTab='shop';
+let activeProfTab='shop',currentFeedFilter='foryou';
 const inviteRoom=new URLSearchParams(location.search).get('room')||'';
+
+/* FEED-EINTRAEGE: LIVE-VORSCHAUEN (WIE DEINE SCREENSHOTS) + VIDEOS VON GEFOLGTEN LEUTEN */
+const FEED_ITEMS=[
+  {
+    id:'f_boxlive',
+    kind:'box_live',
+    category:['foryou','live','follow'],
+    host:'Daddyy 😎',
+    caption:'Box Battle 🔥 Komm rein & mach mit!',
+    likes:3420,
+    followed:true
+  },
+  {
+    id:'f_duolive',
+    kind:'duo_live',
+    category:['foryou','live','follow'],
+    host:'🅰️🅽🅸 💍🔐 🅻🅾🅺🅾',
+    badgeText:'Dein*e Freund*in',
+    caption:'Zusammen im 2er-Duo Live! Tippe zum Anschauen oder gib deinen Freundes-Code ein 🎙️',
+    likes:1890,
+    followed:true
+  },
+  {
+    id:'f_vid1',
+    kind:'video',
+    category:['foryou','follow'],
+    host:'@bella_clips',
+    ava:'👩‍🎤',
+    caption:'Neues Video für meine Follower! Schickt mal den Bahamut-Drachen oder Frosch 🐸🐉 #live #community',
+    videoUrl:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    likes:2450,
+    followed:true
+  },
+  {
+    id:'f_vid2',
+    kind:'video',
+    category:['foryou'],
+    host:'@neon_rider',
+    ava:'🏎️',
+    caption:'Night-Run durch die Stadt ⚡ Folge mir für mehr!',
+    videoUrl:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    likes:980,
+    followed:false
+  }
+];
 
 /* DIE 12 GESCHENKE MIT SPEZIAL-EFFEKTEN */
 const GIFTS=[
@@ -427,11 +542,133 @@ reloadImages();
 
 function initApp(){
   renderGiftGrid();
+  renderStartFeed();
   updateUI();
   if(inviteRoom){
     document.getElementById('friendCodeInp').value=inviteRoom;
     setTimeout(()=>openLive().then(()=>joinFriendNow()),400);
   }
+}
+
+/* ================= START-FEED RENDERN (LIVE-BOXEN, DUO-LIVE & GEFOLGT-VIDEOS) ================= */
+function setFeedFilter(f){
+  currentFeedFilter=f;
+  document.getElementById('ftab-live').classList.toggle('active',f==='live');
+  document.getElementById('ftab-follow').classList.toggle('active',f==='follow');
+  document.getElementById('ftab-foryou').classList.toggle('active',f==='foryou');
+  renderStartFeed();
+}
+
+function openLiveWithLayout(layoutMode){
+  openLive().then(()=>setLayout(layoutMode));
+}
+
+function toggleFollowCreator(idx,ev){
+  if(ev)ev.stopPropagation();
+  FEED_ITEMS[idx].followed=!FEED_ITEMS[idx].followed;
+  renderStartFeed();
+}
+
+function likeFeedItem(idx,ev){
+  if(ev)ev.stopPropagation();
+  FEED_ITEMS[idx].likes++;
+  renderStartFeed();
+}
+
+function renderStartFeed(){
+  const scroller=document.getElementById('feedScroller');
+  const list=FEED_ITEMS.filter(item=>{
+    if(currentFeedFilter==='live')return item.kind==='box_live'||item.kind==='duo_live';
+    if(currentFeedFilter==='follow')return item.followed;
+    return true;
+  });
+
+  if(!list.length){
+    scroller.innerHTML=`<div class="feed-slide" style="align-items:center;text-align:center;padding:24px"><p style="color:#94a3b8;margin-bottom:12px">Noch niemandem in dieser Ansicht gefolgt.</p><button class="btn" style="max-width:220px" onclick="setFeedFilter('foryou')">Zu „Für dich“ wechseln</button></div>`;
+    return;
+  }
+
+  scroller.innerHTML=list.map(item=>{
+    const realIdx=FEED_ITEMS.findIndex(x=>x.id===item.id);
+    const sideBarHTML=`
+      <div class="feed-right-bar">
+        <div class="f-side-ava" onclick="toggleFollowCreator(${realIdx},event)">
+          <span>${item.ava||'😎'}</span>
+          <div class="f-follow-plus" style="background:${item.followed?'#10b981':'#ff0050'}">${item.followed?'✓':'+'}</div>
+        </div>
+        <div class="f-act-btn" onclick="likeFeedItem(${realIdx},event)"><span>❤️</span><span>${item.likes}</span></div>
+        <div class="f-act-btn" onclick="toggleScreen('giftModal',true)"><span>🎁</span><span>Geschenk</span></div>
+        <div class="f-act-btn" onclick="toggleScreen('friendModal',true)"><span>👥</span><span>Mitmachen</span></div>
+      </div>`;
+
+    if(item.kind==='box_live'){
+      /* GENAU WIE SCREENSHOT 1: BOX BATTLE LIVE-VORSCHAU IM FEED */
+      return `
+      <div class="feed-slide">
+        <div class="feed-live-preview-wrap" onclick="openLiveWithLayout('boxes')">
+          <div class="preview-box-grid">
+            <div class="p-cell p-host">
+              <img src="https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?w=500&auto=format&fit=crop&q=80">
+              <span class="p-pts" style="color:#fff;background:rgba(0,0,0,.7)">Host</span>
+              <span class="p-usr">Daddyy 😎</span>
+            </div>
+            <div class="p-cell p-cohost">
+              <div class="p-cell-ava" style="width:66px;height:66px;border-color:#ec4899"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80"></div>
+              <span class="p-pts">🪙 2.45K</span>
+              <span class="p-usr">👻Ash🎃</span>
+            </div>
+            <div class="p-cell"><div class="p-cell-ava">🐶</div><span class="p-pts">🪙 2.21K</span><span class="p-usr">D.j.Snooopy</span></div>
+            <div class="p-cell"><div class="p-cell-ava">☕</div><span class="p-pts">🪙 1.86K</span><span class="p-usr">🐣Ducky...</span></div>
+            <div class="p-cell"><div class="p-cell-ava">🧔</div><span class="p-pts">🪙 563</span><span class="p-usr">🔥Tomcio🔥</span></div>
+            <div class="p-cell"><div class="p-cell-ava">👩</div><span class="p-pts">🪙 318</span><span class="p-usr">rosi</span></div>
+            <div class="p-cell"><div class="p-cell-ava">👱‍♀️</div><span class="p-pts">🪙 264</span><span class="p-usr">💯MASA💯</span></div>
+            <div class="p-cell"><div class="p-cell-ava">🎧</div><span class="p-pts">🪙 241</span><span class="p-usr">DJ ...</span></div>
+            <div class="p-cell"><div class="p-cell-ava">🕶️</div><span class="p-pts">🪙 40</span><span class="p-usr">💞Monika💞</span></div>
+            <div class="p-cell" onclick="event.stopPropagation();toggleScreen('friendModal',true)" style="cursor:pointer;background:#2e3446"><div style="text-align:center;font-size:11px;font-weight:800">＋<br>Anfragen</div></div>
+          </div>
+          <div class="tap-live-bar">📊 Tippe zum LIVE Anschauen</div>
+        </div>
+        ${sideBarHTML}
+        <div class="feed-bottom-meta">
+          <div style="margin-bottom:6px"><span class="now-live-pill">Jetzt LIVE</span><span class="friend-pill">🔁 3 haben dies geteilt</span></div>
+          <div style="font-size:16px;font-weight:900">${item.host}</div>
+          <div style="font-size:13px;color:#cbd5e1">${item.caption}</div>
+        </div>
+      </div>`;
+    }
+
+    if(item.kind==='duo_live'){
+      /* GENAU WIE SCREENSHOT 2: 2ER DUO FREUND*INNEN LIVE-VORSCHAU IM FEED */
+      return `
+      <div class="feed-slide">
+        <div class="feed-live-preview-wrap" onclick="openLiveWithLayout('duo')">
+          <div class="preview-duo-grid">
+            <div class="p-cell"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80"><span class="p-usr">👑 Host</span></div>
+            <div class="p-cell"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80"><span class="p-usr">⚡ Co-Host</span></div>
+          </div>
+          <div class="tap-live-bar">📊 Tippe zum LIVE Anschauen</div>
+        </div>
+        ${sideBarHTML}
+        <div class="feed-bottom-meta">
+          <div style="margin-bottom:6px"><span class="now-live-pill">Jetzt LIVE</span><span class="friend-pill">${item.badgeText}</span></div>
+          <div style="font-size:16px;font-weight:900">${item.host}</div>
+          <div style="font-size:13px;color:#cbd5e1">${item.caption}</div>
+        </div>
+      </div>`;
+    }
+
+    /* NORMALES VIDEO VON GEFOLGTEN CREATORN */
+    return `
+      <div class="feed-slide">
+        <video src="${item.videoUrl}" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+        ${sideBarHTML}
+        <div class="feed-bottom-meta">
+          <div style="margin-bottom:4px"><span class="friend-pill" style="background:rgba(255,255,255,.2);color:#fff">${item.followed?'✓ Gefolgt':'✨ Für dich'}</span></div>
+          <div style="font-size:16px;font-weight:900">${item.host}</div>
+          <div style="font-size:13px;color:#e2e8f0;margin-top:3px">${item.caption}</div>
+        </div>
+      </div>`;
+  }).join('');
 }
 
 function addFreeCoins(){
@@ -494,19 +731,16 @@ function triggerGiftEffect(g,senderName){
     document.body.classList.add('screen-shake');
   }
 
-  /* Banner oben */
   const banner=document.createElement('div');
   banner.className='gift-banner';
   banner.innerHTML=`🎁 <b>${senderName}</b> sendet ${g.icon} <span style="color:#fde047">${g.name}</span>!`;
   stage.appendChild(banner);
 
-  /* Großes Haupt-Objekt in der Mitte */
   const hero=document.createElement('div');
   hero.className='gift-center-hero '+g.anim;
   hero.textContent=g.icon;
   stage.appendChild(hero);
 
-  /* 36 fliegende Effekt-Partikel */
   for(let i=0;i<36;i++){
     const p=document.createElement('div');
     p.className='gift-particle';
@@ -696,7 +930,7 @@ function initPeer(){
   if(typeof Peer==='undefined')return;
   document.getElementById('myCodeTxt').textContent=roomCode;
   document.getElementById('shareCodeBig').textContent=roomCode;
-  peer=new Peer('streamverse-v8-'+roomCode);
+  peer=new Peer('streamverse-v9-'+roomCode);
   peer.on('connection',c=>bindConn(c));
   peer.on('call',call=>{
     call.answer(getCanvasStreamWithAudio());
@@ -779,7 +1013,7 @@ async function joinFriendNow(){
   if(!code||!peer)return alert('Bitte 4-stelligen Raum-Code eingeben!');
   toggleScreen('friendModal',false);
   if(document.getElementById('liveScreen').classList.contains('hide'))await openLive();
-  const target='streamverse-v8-'+code;
+  const target='streamverse-v9-'+code;
   bindConn(peer.connect(target));
   const call=peer.call(target,getCanvasStreamWithAudio());
   if(call)call.on('stream',rem=>showFriendStream(rem));
@@ -816,7 +1050,7 @@ function renderProfileTabContent(){
       </div>`;
   }else if(activeProfTab==='clips'){
     box.innerHTML=`
-      <div class="content-card" onclick="showTab('vFeed')">
+      <div class="content-card" onclick="showTab('vFeed');setFeedFilter('foryou')">
         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=80">
         <div class="content-card-footer"><span>🎬 Highlight #1</span><span>▶️ 1.4K</span></div>
       </div>
@@ -843,7 +1077,6 @@ function updateUI(){
   document.getElementById('liveCoinTop').textContent=cStr;
   document.getElementById('profDispName').textContent=user.dispName||user.username;
   document.getElementById('profHandle').textContent=user.username;
-  document.getElementById('feedUname').textContent=user.username;
   document.getElementById('profBioTxt').textContent=user.bio;
   document.getElementById('thoughtBubble').textContent=user.thought||'💭 Was läuft?';
   document.getElementById('profAddrSummary').textContent='📍 '+([user.fullName,user.address].filter(Boolean).join(' • ')||'Tippe auf „✏️ Bearbeiten“ für Name & Adresse');
