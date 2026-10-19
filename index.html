@@ -54,7 +54,7 @@ button,input{font-family:inherit;outline:none;border:none}
 .f-meta{position:absolute;left:10px;bottom:42px;width:73%;z-index:35;background:linear-gradient(90deg,rgba(7,8,18,.82),rgba(7,8,18,.3));backdrop-filter:blur(5px);border-left:3px solid #38bdf8;padding:7px 10px;border-radius:0 12px 12px 0}
 .pl-bar{width:100%;height:34px;background:#0d1021;padding:0 12px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:800;color:#cbd5e1;cursor:pointer}
 
-/* ================= NEUES "+" KAMERA- & ERSTELLEN-STUDIO (WIE DEIN BILD, ABGEWANDELT) ================= */
+/* KAMERA- & ERSTELLEN-STUDIO */
 .cam-studio{position:fixed;inset:0;background:#000;z-index:350000;display:flex;flex-direction:column;justify-content:space-between;padding:12px 10px 14px}
 .cam-studio.hide{display:none}
 .cs-viewfinder{position:relative;width:100%;max-width:420px;height:calc(100dvh - 92px);margin:0 auto;border-radius:26px;overflow:hidden;background:#111426;box-shadow:0 0 30px rgba(0,0,0,.9)}
@@ -63,26 +63,24 @@ button,input{font-family:inherit;outline:none;border:none}
 .cs-close{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);color:#fff;font-size:18px;display:flex;justify-content:center;align-items:center;cursor:pointer}
 .cs-sound-pill{background:rgba(15,23,42,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);padding:7px 16px;border-radius:20px;font-size:12px;font-weight:800;color:#fff;display:flex;align-items:center;gap:6px;cursor:pointer}
 .cs-right-tools{position:absolute;top:64px;right:12px;background:rgba(15,23,42,.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);padding:10px 7px;border-radius:20px;display:flex;flex-direction:column;gap:14px;align-items:center;z-index:20}
-.cs-tool-ico{font-size:19px;cursor:pointer;position:relative;transition:transform .15s}
-.cs-tool-ico:active{transform:scale(.85)}
+.cs-tool-ico{font-size:19px;cursor:pointer}
 .cs-bottom-overlay{position:absolute;bottom:14px;left:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:20}
 .cs-dur-bar{display:flex;gap:8px;align-items:center}
-.cs-dur-pill{padding:5px 12px;border-radius:16px;font-size:12px;font-weight:800;color:rgba(255,255,255,.8);cursor:pointer;transition:.2s}
-.cs-dur-pill.active{background:#fff;color:#0f172a;box-shadow:0 2px 10px rgba(255,255,255,.3)}
+.cs-dur-pill{padding:5px 12px;border-radius:16px;font-size:12px;font-weight:800;color:rgba(255,255,255,.8);cursor:pointer}
+.cs-dur-pill.active{background:#fff;color:#0f172a}
 .cs-shutter-row{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;overflow-x:auto;padding:4px 10px;scrollbar-width:none}
-.cs-fx-orb{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:#1e1b4b;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:21px;cursor:pointer;flex-shrink:0;overflow:hidden;position:relative;transition:transform .15s,border-color .2s}
-.cs-fx-orb.active{border-color:#38bdf8;transform:scale(1.1);box-shadow:0 0 12px #38bdf8}
+.cs-fx-orb{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:#1e1b4b;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:21px;cursor:pointer;flex-shrink:0;overflow:hidden;position:relative}
+.cs-fx-orb.active{border-color:#38bdf8;transform:scale(1.1)}
 .cs-fx-orb span{font-size:8px;font-weight:900;background:rgba(0,0,0,.65);width:100%;text-align:center;position:absolute;bottom:0;padding:1px 0}
-.cs-shutter-btn{width:74px;height:74px;border-radius:50%;border:4px solid #fff;padding:4px;display:flex;justify-content:center;align-items:center;cursor:pointer;flex-shrink:0;box-shadow:0 0 20px rgba(244,63,94,.5)}
-.cs-shutter-inner{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#f43f5e,#e11d48);transition:.2s}
+.cs-shutter-btn{width:74px;height:74px;border-radius:50%;border:4px solid #fff;padding:4px;display:flex;justify-content:center;align-items:center;cursor:pointer;flex-shrink:0}
+.cs-shutter-inner{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#f43f5e,#e11d48)}
 .cs-shutter-btn.rec .cs-shutter-inner{border-radius:12px;transform:scale(.65);background:#ef4444}
 .cs-footer-nav{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;max-width:420px;margin:0 auto;width:100%}
-.cs-gal-box{width:40px;height:40px;border-radius:11px;border:2px solid #fff;background:linear-gradient(135deg,#4f46e5,#ec4899);display:flex;justify-content:center;align-items:center;font-size:18px;cursor:pointer;position:relative}
-.cs-mode-tabs{display:flex;gap:20px;font-size:13px;font-weight:900;letter-spacing:.5px}
-.cs-mode-tabs span{color:#64748b;cursor:pointer;transition:.2s}
-.cs-mode-tabs span.active{color:#fff;text-shadow:0 0 8px rgba(255,255,255,.5)}
+.cs-gal-box{width:40px;height:40px;border-radius:11px;border:2px solid #fff;background:linear-gradient(135deg,#4f46e5,#ec4899);display:flex;justify-content:center;align-items:center;font-size:18px;cursor:pointer}
+.cs-mode-tabs{display:flex;gap:20px;font-size:13px;font-weight:900}
+.cs-mode-tabs span{color:#64748b;cursor:pointer}.cs-mode-tabs span.active{color:#fff}
 
-/* PROFIL (WIE BILD 1, OHNE INFINITY, EIGENER STIL) */
+/* PROFIL */
 .light-page{background:#fff;color:#0f172a;min-height:100%;padding-bottom:24px}
 .p-top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;position:sticky;top:0;background:#fff;z-index:30}
 .p-top-right{display:flex;align-items:center;gap:16px;font-size:19px}
@@ -124,7 +122,7 @@ button,input{font-family:inherit;outline:none;border:none}
 .p-btn{background:#f1f5f9;color:#0f172a;padding:9px 8px;border-radius:11px;font-size:11px;font-weight:800;cursor:pointer}
 .p-btn.pri{background:#eef2ff;color:#4f46e5}
 
-/* SEITEN-MENÜ RECHTS */
+/* SEITEN-MENÜ */
 .dr-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:250000;display:none}.dr-bg.open{display:block}
 .drawer{position:fixed;top:0;right:-100%;width:82%;max-width:330px;height:100dvh;background:#fff;color:#0f172a;z-index:260000;transition:.25s;padding:18px 14px;overflow-y:auto;box-shadow:-8px 0 25px rgba(0,0,0,.2)}
 .drawer.open{right:0}
@@ -168,64 +166,49 @@ button,input{font-family:inherit;outline:none;border:none}
 
 <div class="gf-st" id="giftFxStage"></div>
 
-<!-- ================= NEUES "+" KAMERA- & ERSTELLEN-STUDIO (WIE SCREENSHOT, ABGEWANDELT) ================= -->
+<!-- KAMERA- & ERSTELLEN-STUDIO -->
 <div class="cam-studio hide" id="camStudioScreen">
   <div class="cs-viewfinder">
-    <!-- Obere Leiste: X & Sound hinzufügen -->
     <div class="cs-top-row">
       <div class="cs-close" onclick="closeCamStudio()">✕</div>
       <div class="cs-sound-pill" onclick="cycleStudioSound()">🎵 <span id="studioSoundTxt">Sound hinzuf...</span></div>
       <div style="width:36px;display:flex;justify-content:flex-end"><span style="width:12px;height:12px;border-radius:50%;background:#10b981;display:inline-block;box-shadow:0 0 8px #10b981"></span></div>
     </div>
-
-    <!-- Rechte Werkzeug-Leiste -->
     <div class="cs-right-tools">
-      <div class="cs-tool-ico" onclick="flipCamera()" title="Kamera drehen">🔄</div>
-      <div class="cs-tool-ico" onclick="toggleFlashBoost()" id="flashIco" title="Blitz / Licht">⚡</div>
-      <div class="cs-tool-ico" onclick="startCountdownRec()" title="3s Timer">⏱️</div>
-      <div class="cs-tool-ico" onclick="closeCamStudio();openLive()" title="Multi-Grid">⊞</div>
-      <div class="cs-tool-ico" onclick="setStudioFx('makeup')" title="Beauty">✨</div>
-      <div class="cs-tool-ico" onclick="cycleColorFilter()" title="Farbfilter">🎨</div>
+      <div class="cs-tool-ico" onclick="flipCamera()">🔄</div>
+      <div class="cs-tool-ico" onclick="toggleFlashBoost()" id="flashIco">⚡</div>
+      <div class="cs-tool-ico" onclick="startCountdownRec()">⏱️</div>
+      <div class="cs-tool-ico" onclick="closeCamStudio();openLive()">⊞</div>
+      <div class="cs-tool-ico" onclick="setStudioFx('makeup')">✨</div>
+      <div class="cs-tool-ico" onclick="cycleColorFilter()">🎨</div>
     </div>
-
-    <!-- Live Kamera-Canvas mit Gesichts-Morph & Filtern -->
     <canvas id="studioCanvas" width="360" height="640"></canvas>
     <div id="recTimerBadge" style="position:absolute;top:58px;left:50%;transform:translateX(-50%);background:#e11d48;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:900;display:none">🔴 00:00</div>
-
-    <!-- Untere Steuerung im Kamerabild: Zeit-Pills + Effekt-Kreise + Großer roter Auslöser -->
     <div class="cs-bottom-overlay">
       <div class="cs-dur-bar">
-        <span class="cs-dur-pill" onclick="selectCamDur('30m',this)">30 Sek. Max</span>
-        <span class="cs-dur-pill active" onclick="selectCamDur('30s',this)">30 Sek.</span>
-        <span class="cs-dur-pill" onclick="selectCamDur('15s',this)">15 Sek.</span>
+        <span class="cs-dur-pill" onclick="selectCamDur('30m',this)">30m</span>
+        <span class="cs-dur-pill active" onclick="selectCamDur('30s',this)">30s</span>
+        <span class="cs-dur-pill" onclick="selectCamDur('15s',this)">15s</span>
         <span class="cs-dur-pill" onclick="selectCamDur('foto',this)">FOTO</span>
         <span class="cs-dur-pill" onclick="createTextPost()">TEXT</span>
       </div>
-
       <div class="cs-shutter-row">
         <div class="cs-fx-orb" id="orb-alien" onclick="setStudioFx('alien')">⚡<span>Blitz</span></div>
         <div class="cs-fx-orb" id="orb-makeup" onclick="setStudioFx('makeup')">🌹<span>Rosen</span></div>
         <div class="cs-fx-orb" id="orb-fox" onclick="setStudioFx('fox')">🐱<span>Katze</span></div>
-
-        <!-- Großer roter Aufnahme-Button in der Mitte -->
-        <div class="cs-shutter-btn" id="studioShutterBtn" onclick="triggerStudioShutter()">
-          <div class="cs-shutter-inner"></div>
-        </div>
-
+        <div class="cs-shutter-btn" id="studioShutterBtn" onclick="triggerStudioShutter()"><div class="cs-shutter-inner"></div></div>
         <div class="cs-fx-orb" id="orb-clown" onclick="setStudioFx('clown')">🤡<span>Clown</span></div>
         <div class="cs-fx-orb" id="orb-none" onclick="setStudioFx('none')">😎<span>Clean</span></div>
         <div class="cs-fx-orb" id="orb-frog" onclick="setStudioFx('frog')">🐸<span>Frosch</span></div>
       </div>
     </div>
   </div>
-
-  <!-- Untere Galerie- & Modus-Leiste: Galerie-Vorschau links + KAMERA | ERSTELLEN | LIVE -->
   <div class="cs-footer-nav">
-    <div class="cs-gal-box" onclick="closeCamStudio();toggleScreen('videoUploadModal',true)" title="30s Video aus Galerie hochladen">🖼️</div>
+    <div class="cs-gal-box" onclick="closeCamStudio();$('videoUploadModal').classList.remove('hide')">🖼️</div>
     <div class="cs-mode-tabs">
-      <span class="active" id="cmTab1" onclick="switchStudioMode('cam')">KAMERA</span>
-      <span id="cmTab2" onclick="closeCamStudio();toggleScreen('videoUploadModal',true)">ERSTELLEN</span>
-      <span id="cmTab3" onclick="closeCamStudio();openLive()">LIVE</span>
+      <span class="active" onclick="switchStudioMode('cam')">KAMERA</span>
+      <span onclick="closeCamStudio();$('videoUploadModal').classList.remove('hide')">ERSTELLEN</span>
+      <span onclick="closeCamStudio();openLive()">LIVE</span>
     </div>
     <div style="width:40px"></div>
   </div>
@@ -235,13 +218,13 @@ button,input{font-family:inherit;outline:none;border:none}
 <div class="screen hide" id="friendAutoProfileScreen">
   <div class="card" style="text-align:center">
     <h2 style="color:#38bdf8;margin-bottom:6px">👋 Live-Einladung!</h2>
-    <p style="font-size:12px;color:#cbd5e1;margin-bottom:12px">Gib kurz deinen Namen ein (wird automatisch gespeichert):</p>
+    <p style="font-size:12px;color:#cbd5e1;margin-bottom:12px">Gib kurz deinen Namen ein:</p>
     <input id="autoProfName" class="inp" placeholder="Dein Name *">
     <button class="btn green" onclick="createAutoFriendProfile()">✅ Speichern & Anfragen</button>
   </div>
 </div>
 
-<!-- KOMMENTARE MODAL -->
+<!-- MODALS -->
 <div class="screen hide" id="videoCommentsModal" style="background:rgba(0,0,0,.8);justify-content:flex-end;padding:0">
   <div style="background:#15182e;width:100%;border-radius:20px 20px 0 0;padding:14px">
     <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b id="commentModalTitle">💬 Nachrichten</b><span onclick="toggleScreen('videoCommentsModal',false)">✕</span></div>
@@ -250,10 +233,9 @@ button,input{font-family:inherit;outline:none;border:none}
   </div>
 </div>
 
-<!-- WEITERLEITEN & SUCHE -->
 <div class="screen hide" id="forwardModal" style="background:rgba(0,0,0,.85)">
   <div class="card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b>🚀 Weiterleiten an Kollegen/innen</b><span onclick="toggleScreen('forwardModal',false)">✕</span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b>🚀 Weiterleiten</b><span onclick="toggleScreen('forwardModal',false)">✕</span></div>
     <div id="forwardColleaguesList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px"></div>
     <button class="btn blue" onclick="shareLink();toggleScreen('forwardModal',false)">🔗 Link kopieren</button>
   </div>
@@ -264,49 +246,40 @@ button,input{font-family:inherit;outline:none;border:none}
   <div id="searchResultsBox" style="display:flex;flex-direction:column;gap:8px"></div>
 </div>
 
-<!-- DIREKT-CHAT -->
 <div class="screen hide" id="directChatScreen" style="background:#f8fafc;color:#0f172a">
   <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #e2e8f0;margin-bottom:10px">
-    <button class="p-btn" onclick="toggleScreen('directChatScreen',false)">← Zurück</button>
-    <b id="dmPartnerTitle">Chat</b>
-    <button class="p-btn pri" onclick="toggleScreen('directChatScreen',false);openLive()">🔴 Live</button>
+    <button class="p-btn" onclick="toggleScreen('directChatScreen',false)">← Zurück</button><b id="dmPartnerTitle">Chat</b><button class="p-btn pri" onclick="toggleScreen('directChatScreen',false);openLive()">🔴 Live</button>
   </div>
   <div id="dmMessagesBox" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px"></div>
   <div style="display:flex;gap:6px;margin-top:8px"><input id="dmInput" class="inp-l" style="margin:0;flex:1" placeholder="Nachricht..."><button class="btn blue" style="width:auto;padding:0 14px" onclick="sendDirectMessage()">➤</button></div>
 </div>
 
-<!-- 30s VIDEO UPLOAD & MINI-DUELL -->
 <div class="screen hide" id="videoUploadModal" style="background:rgba(0,0,0,.88)">
   <div class="card">
     <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🎬 Clip hochladen (max. 30s)</b><span onclick="toggleScreen('videoUploadModal',false)">✕</span></div>
-    <button class="btn blue" style="margin-bottom:8px" onclick="$('videoFileInp').click()">📂 Video wählen (≤ 30 Sek.)</button>
+    <button class="btn blue" style="margin-bottom:8px" onclick="$('videoFileInp').click()">📂 Video wählen (≤ 30s)</button>
     <div id="vidUploadStatus" style="font-size:11px;font-weight:800;margin-bottom:6px;display:none"></div>
     <video id="vidUploadPreview" controls playsinline style="width:100%;max-height:160px;border-radius:10px;display:none;margin-bottom:8px"></video>
     <input id="vidUploadCaption" class="inp" placeholder="Beschreibung...">
-    <button class="btn green" id="btnPublishVid" style="display:none" onclick="publishUploadedVideo()">🚀 Jetzt veröffentlichen</button>
+    <button class="btn green" id="btnPublishVid" style="display:none" onclick="publishUploadedVideo()">🚀 Veröffentlichen</button>
   </div>
 </div>
 
 <div class="screen hide" id="miniDuelModal" style="background:rgba(0,0,0,.85)">
   <div class="card" style="text-align:center">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b style="color:#fde047">⚔️ Pausen-Duell (Nebenbei)</b><span onclick="toggleScreen('miniDuelModal',false)">✕</span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b style="color:#fde047">⚔️ Pausen-Duell</b><span onclick="toggleScreen('miniDuelModal',false)">✕</span></div>
     <div style="display:flex;justify-content:space-around;background:#1f2442;padding:10px;border-radius:10px;margin-bottom:10px;font-size:12px;font-weight:800">
       <span>🛡️ Du: <b style="color:#4ade80" id="duelMyLP">2000</b></span><span>👾 Bot: <b style="color:#f87171" id="duelBotLP">2000</b></span>
     </div>
-    <button class="btn gold" onclick="playQuickDuelRound()">⚡ Angreifen (+250 Coins bei Sieg)</button>
+    <button class="btn gold" onclick="playQuickDuelRound()">⚡ Angreifen (+250 Coins)</button>
   </div>
 </div>
 
-<!-- PROFIL BEARBEITEN & BILD GROSS -->
 <div class="screen hide" id="editScreen" style="background:#f8fafc;color:#0f172a">
-  <div style="display:flex;justify-content:space-between;margin-bottom:12px">
-    <button class="p-btn" onclick="toggleScreen('editScreen',false)">← Zurück</button>
-    <b>Profil & Adresse</b>
-    <button class="p-btn pri" onclick="saveProfile()">Speichern</button>
-  </div>
+  <div style="display:flex;justify-content:space-between;margin-bottom:12px"><button class="p-btn" onclick="toggleScreen('editScreen',false)">← Zurück</button><b>Profil & Adresse</b><button class="p-btn pri" onclick="saveProfile()">Speichern</button></div>
   <input id="eDisp" class="inp-l" placeholder="Anzeigename"><input id="eUser" class="inp-l" placeholder="@benutzer">
   <input id="eFullName" class="inp-l" placeholder="Vor- und Nachname"><input id="eAddr" class="inp-l" placeholder="Straße, PLZ & Ort">
-  <input id="eBio" class="inp-l" placeholder="Bio / Spruch (bleibt leer wenn frei)">
+  <input id="eBio" class="inp-l" placeholder="Bio / Spruch">
   <button class="btn" onclick="saveProfile()">✅ Speichern</button>
 </div>
 
@@ -319,67 +292,43 @@ button,input{font-family:inherit;outline:none;border:none}
   </div>
 </div>
 
-<!-- MULTI-USER LIVE-STUDIO -->
 <div class="screen hide" id="liveScreen">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
     <div style="background:#161938;padding:4px 9px;border-radius:10px;font-size:11px"><b id="liveHostName">@host</b> • 🪙 <b id="liveCoinTop" style="color:#fde047">10.000</b> • Code: <b id="myCodeTxt" style="color:#38bdf8">----</b></div>
-    <div style="display:flex;gap:4px">
-      <button class="pill on" id="btnGrid4" onclick="setLayout('grid4')">👥 3er/4er</button>
-      <button class="pill" id="btnBoxes" onclick="setLayout('boxes')">🎛️ 9-Box</button>
-      <button class="pill" style="background:#dc2626" onclick="closeLive()">✕</button>
-    </div>
+    <div style="display:flex;gap:4px"><button class="pill on" id="btnGrid4" onclick="setLayout('grid4')">👥 3er/4er</button><button class="pill" id="btnBoxes" onclick="setLayout('boxes')">🎛️ 9-Box</button><button class="pill" style="background:#dc2626" onclick="closeLive()">✕</button></div>
   </div>
-
   <div class="stage grid4" id="liveStage">
     <div class="cam s-me"><div class="bdg">👑 Du</div><video id="rawVideoMe" autoplay playsinline muted style="display:none"></video><canvas id="faceCanvasMe" width="360" height="480"></canvas><div class="nm" id="nameMe">@ich</div></div>
-    <div class="cam s-r1"><div class="bdg">⚡ Platz 2</div><video id="vidSlot1" autoplay playsinline></video><div id="hintSlot1" style="position:absolute;font-size:10px;color:#64748b">Frei (Platz 2)</div><div class="nm" id="nameSlot1">Wartet...</div></div>
-    <div class="cam"><div class="bdg">⚡ Platz 3</div><video id="vidSlot2" autoplay playsinline></video><div id="hintSlot2" style="position:absolute;font-size:10px;color:#64748b">Frei (Platz 3)</div><div class="nm" id="nameSlot2">Wartet...</div></div>
-    <div class="cam"><div class="bdg">⚡ Platz 4</div><video id="vidSlot3" autoplay playsinline></video><div id="hintSlot3" style="position:absolute;font-size:10px;color:#64748b">Frei (Platz 4)</div><div class="nm" id="nameSlot3">Wartet...</div></div>
-    <div class="cam ex-g"><div class="bdg">🪙 1.8K</div>🐣<div class="nm">Ducky</div></div>
-    <div class="cam ex-g"><div class="bdg">🪙 563</div>🔥<div class="nm">Tomcio</div></div>
-    <div class="cam ex-g"><div class="bdg">🪙 318</div>🌸<div class="nm">rosi</div></div>
-    <div class="cam ex-g"><div class="bdg">🪙 241</div>🎧<div class="nm">DJ</div></div>
+    <div class="cam s-r1"><div class="bdg">⚡ Platz 2</div><video id="vidSlot1" autoplay playsinline></video><div id="hintSlot1" style="position:absolute;font-size:10px;color:#64748b">Frei</div><div class="nm" id="nameSlot1">Wartet...</div></div>
+    <div class="cam"><div class="bdg">⚡ Platz 3</div><video id="vidSlot2" autoplay playsinline></video><div id="hintSlot2" style="position:absolute;font-size:10px;color:#64748b">Frei</div><div class="nm" id="nameSlot2">Wartet...</div></div>
+    <div class="cam"><div class="bdg">⚡ Platz 4</div><video id="vidSlot3" autoplay playsinline></video><div id="hintSlot3" style="position:absolute;font-size:10px;color:#64748b">Frei</div><div class="nm" id="nameSlot3">Wartet...</div></div>
+    <div class="cam ex-g"><div class="bdg">🪙</div>🐣<div class="nm">Ducky</div></div>
+    <div class="cam ex-g"><div class="bdg">🪙</div>🔥<div class="nm">Tomcio</div></div>
+    <div class="cam ex-g"><div class="bdg">🪙</div>🌸<div class="nm">rosi</div></div>
+    <div class="cam ex-g"><div class="bdg">🪙</div>🎧<div class="nm">DJ</div></div>
   </div>
-
-  <div id="liveChat" style="height:60px;overflow-y:auto;background:rgba(0,0,0,.45);border-radius:9px;padding:5px;font-size:11px;margin-bottom:5px">
-    <div>✨ <b>Multi-Live:</b> Gäste fragen unten mit Raum-Code an – der Host genehmigt!</div>
-  </div>
-
+  <div id="liveChat" style="height:60px;overflow-y:auto;background:rgba(0,0,0,.45);border-radius:9px;padding:5px;font-size:11px;margin-bottom:5px"></div>
   <div id="hostApprovalBar" style="background:#311042;border:1px solid #fde047;border-radius:10px;padding:6px 10px;margin-bottom:5px;display:none;justify-content:space-between;align-items:center;font-size:11px">
     <span>🔔 <b id="reqGuestName" style="color:#fde047">Gast</b> möchte rein!</span>
     <div style="display:flex;gap:5px"><button class="pill" style="background:#10b981" onclick="respondToJoinRequest(true)">✅ Ja</button><button class="pill" style="background:#dc2626" onclick="respondToJoinRequest(false)">✕ Nein</button></div>
   </div>
-
   <div style="background:#161936;border-radius:10px;padding:6px 9px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;font-size:11px">
     <span>🔑 Code: <b style="color:#fde047" id="bottomCodeTxt">----</b></span>
-    <div style="display:flex;gap:5px"><button class="pill" style="background:#0284c7" onclick="shareLink()">🔗 Link</button><button class="pill on" onclick="toggleScreen('friendModal',true)">🙋‍♂️ Mit Code anfragen</button></div>
+    <div style="display:flex;gap:5px"><button class="pill" style="background:#0284c7" onclick="shareLink()">🔗 Link</button><button class="pill on" onclick="toggleScreen('friendModal',true)">🙋‍♂️ Anfragen</button></div>
   </div>
-
   <div class="t-row" style="margin-bottom:5px">
-    <button class="pill gf" onclick="toggleScreen('giftModal',true)">🎁 Geschenke</button>
-    <button class="pill on" onclick="toggleScreen('fxModal',true)">🐸 Gesichts-Morph</button>
-    <button class="pill" onclick="flipCamera()">🔄 Kamera</button>
-    <button class="pill" id="btnHideCam" onclick="toggleCoverMode()">🙈 Tarn-Bild</button>
-    <button class="pill" onclick="$('coverFile').click()">🖼️ Cover+</button>
-    <button class="pill" id="btnMic" onclick="toggleMic()">🎙️ Mikro</button>
+    <button class="pill gf" onclick="toggleScreen('giftModal',true)">🎁 Geschenke</button><button class="pill on" onclick="toggleScreen('fxModal',true)">🐸 Effekte</button>
+    <button class="pill" onclick="flipCamera()">🔄 Kamera</button><button class="pill" id="btnHideCam" onclick="toggleCoverMode()">🙈 Tarn</button><button class="pill" id="btnMic" onclick="toggleMic()">🎙️ Mikro</button>
   </div>
-
-  <div style="display:flex;gap:5px">
-    <input id="chatInp" class="inp" style="margin:0;flex:1" placeholder="Nachricht..."><button class="btn blue" style="width:auto;padding:0 14px" onclick="sendChat()">➤</button>
-  </div>
+  <div style="display:flex;gap:5px"><input id="chatInp" class="inp" style="margin:0;flex:1" placeholder="Nachricht..."><button class="btn blue" style="width:auto;padding:0 14px" onclick="sendChat()">➤</button></div>
 </div>
 
-<!-- MODALS: RAUM-CODE, GESCHENKE & MASKEN -->
 <div class="screen hide" id="friendModal" style="background:rgba(0,0,0,.85)">
   <div class="card" style="text-align:center">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🔑 Raum-Code & Anfrage</b><span onclick="toggleScreen('friendModal',false)">✕</span></div>
-    <div style="background:#1f2442;padding:10px;border-radius:11px;margin-bottom:10px">
-      <div style="font-size:11px;color:#94a3b8">Dein Raum-Code:</div>
-      <div style="font-size:22px;font-weight:900;color:#38bdf8" id="shareCodeBig">----</div>
-      <button class="btn blue" style="margin-top:5px" onclick="shareLink()">🔗 Einladungs-Link teilen</button>
-    </div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🔑 Raum-Code</b><span onclick="toggleScreen('friendModal',false)">✕</span></div>
+    <div style="background:#1f2442;padding:10px;border-radius:11px;margin-bottom:10px"><div style="font-size:11px;color:#94a3b8">Dein Code:</div><div style="font-size:22px;font-weight:900;color:#38bdf8" id="shareCodeBig">----</div></div>
     <input id="friendCodeInp" class="inp" placeholder="4-stelliger Host-Code...">
-    <button class="btn green" onclick="sendJoinRequestToHost()">🙋‍♂️ Anfrage an Host senden</button>
+    <button class="btn green" onclick="sendJoinRequestToHost()">🙋‍♂️ Anfrage senden</button>
     <div id="guestWaitNotice" style="font-size:11px;color:#fde047;margin-top:6px"></div>
   </div>
 </div>
@@ -393,94 +342,71 @@ button,input{font-family:inherit;outline:none;border:none}
 
 <div class="screen hide" id="fxModal" style="background:rgba(0,0,0,.85)">
   <div class="card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🐸 Gesichts-Verwandlung</b><span onclick="toggleScreen('fxModal',false)">✕</span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🐸 Effekte</b><span onclick="toggleScreen('fxModal',false)">✕</span></div>
     <div class="grid2">
-      <div class="fx-t" onclick="setFaceMorph('none')">✨ Normal</div><div class="fx-t" onclick="setFaceMorph('frog')">🐸 Frosch-Kopf</div>
+      <div class="fx-t" onclick="setFaceMorph('none')">✨ Normal</div><div class="fx-t" onclick="setFaceMorph('frog')">🐸 Frosch</div>
       <div class="fx-t" onclick="setFaceMorph('clown')">🤡 Clown</div><div class="fx-t" onclick="setFaceMorph('makeup')">💄 Make-up</div>
       <div class="fx-t" onclick="setFaceMorph('fox')">🦊 Fuchs</div><div class="fx-t" onclick="setFaceMorph('alien')">👽 Alien</div>
     </div>
   </div>
 </div>
 
-<!-- VIEW 1: START-FEED -->
-<div class="view" id="vFeed">
+<!-- VIEWS -->
+<div class="view active" id="vFeed">
   <div class="f-top">
     <div class="tv-btn" onclick="openLive()">📺 LIVE</div>
-    <div class="f-tabs">
-      <span id="ftab-nearby" onclick="setFeedFilter('nearby')">In der Nähe</span>
-      <span id="ftab-follow" onclick="setFeedFilter('follow')">Gefolgt</span>
-      <span id="ftab-foryou" class="active" onclick="setFeedFilter('foryou')">Für dich</span>
-    </div>
+    <div class="f-tabs"><span id="ftab-nearby" onclick="setFeedFilter('nearby')">In der Nähe</span><span id="ftab-follow" onclick="setFeedFilter('follow')">Gefolgt</span><span id="ftab-foryou" class="active" onclick="setFeedFilter('foryou')">Für dich</span></div>
     <div class="ico-btn" onclick="openSearchModal()">🔍</div>
   </div>
   <div class="f-scroll" id="feedScroller"></div>
 </div>
 
-<!-- VIEW 2: KOLLEGEN/INNEN -->
 <div class="view" id="vColleagues">
   <div class="light-page" style="padding:14px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <b style="font-size:19px">👥 Kollegen/innen</b>
-      <button class="p-btn pri" onclick="toggleScreen('friendModal',true)">🔑 Raum-Code</button>
-    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><b style="font-size:19px">👥 Kollegen/innen</b><button class="p-btn pri" onclick="toggleScreen('friendModal',true)">🔑 Raum-Code</button></div>
     <div id="colleaguesListBox"></div>
   </div>
 </div>
 
-<!-- VIEW 3: NACHRICHTEN -->
 <div class="view" id="vMessages">
   <div class="light-page" style="padding:14px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <b style="font-size:19px">💬 Nachrichten</b>
-      <button class="p-btn" onclick="shareLink()">➕ Einladen</button>
-    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><b style="font-size:19px">💬 Nachrichten</b><button class="p-btn" onclick="shareLink()">➕ Einladen</button></div>
     <div id="messagesInboxList"></div>
   </div>
 </div>
 
-<!-- VIEW 4: PROFIL -->
-<div class="view active" id="vProf">
+<div class="view" id="vProf">
   <div class="light-page">
     <div class="p-top-bar">
       <span style="font-size:20px;cursor:pointer" onclick="showTab('vColleagues')">👤+</span>
       <div class="p-top-right">
-        <div class="vis-chip" onclick="alert('👀 1 neuer Profilbesucher heute!')"><span>🧑🏽</span><span>1</span></div>
+        <div class="vis-chip" onclick="alert('👀 1 neuer Profilbesucher!')"><span>🧑🏽</span><span>1</span></div>
         <span style="cursor:pointer" onclick="shareLink()">↪️</span>
         <div class="menu-btn-wrap" onclick="toggleDrawer(true)">☰<span class="menu-red-dot">1</span></div>
       </div>
     </div>
-
     <div class="p-hero">
       <div class="p-bubble" id="thoughtBubble" onclick="editThought()">Was geht?</div>
       <div class="p-ava-w" onclick="openPicZoom()">
         <div class="p-ava" id="profAvaBox">😎</div>
         <div class="p-add" onclick="event.stopPropagation();$('avaFile').click()">+</div>
       </div>
-
-      <div class="p-name-line">
-        <b style="font-size:18px" id="profDispName">🍝Nudel King🍝</b>
-        <span class="p-lvl-badge">3</span>
-        <button class="p-edit-pill" onclick="openEdit()">✏️</button>
-      </div>
+      <div class="p-name-line"><b style="font-size:18px" id="profDispName">🍝Nudel King🍝</b><span class="p-lvl-badge">3</span><button class="p-edit-pill" onclick="openEdit()">✏️</button></div>
       <div class="p-handle" id="profHandle">@reckpunkt</div>
-
       <div class="p-stats">
         <div onclick="showTab('vColleagues')" style="cursor:pointer"><b>4783</b><span>Gefolgt</span></div>
-        <div onclick="showTab('vColleagues')" style="cursor:pointer"><b>2889</b><span>Follower*innen</span></div>
-        <div onclick="addFreeCoins()" style="cursor:pointer"><b id="profBalanceStat">14.300</b><span>Likes / Coins</span></div>
+        <div onclick="showTab('vColleagues')" style="cursor:pointer"><b>2889</b><span>Follower</span></div>
+        <div onclick="addFreeCoins()" style="cursor:pointer"><b id="profBalanceStat">14.300</b><span>Likes/Coins</span></div>
       </div>
-
       <div class="p-bio" id="profBioTxt"></div>
-
       <div class="p-quick-row">
-        <div onclick="openCamStudio()"><i>🎬</i> Clip-Studio</div>
-        <div onclick="switchCompactTab('orders',document.querySelectorAll('.p-itab')[2])"><i>🛒</i> Deine Bestellungen</div>
+        <div onclick="openCamStudio()"><i>🎬</i> Studio</div>
+        <div onclick="switchCompactTab('orders',document.querySelectorAll('.p-itab')[2])"><i>🛒</i> Bestellungen</div>
         <div onclick="switchCompactTab('shop',document.querySelectorAll('.p-itab')[1])"><i>🛍️</i> Showcase</div>
         <div onclick="openLive()"><i>📺</i> LIVE</div>
         <div onclick="toggleScreen('giftModal',true)"><i>⭐</i> Abo & Gifts</div>
       </div>
     </div>
-
     <div class="p-icon-bar">
       <div class="p-itab" onclick="switchCompactTab('clips',this)">🎞️</div>
       <div class="p-itab active" onclick="switchCompactTab('shop',this)">🛍️</div>
@@ -488,71 +414,34 @@ button,input{font-family:inherit;outline:none;border:none}
       <div class="p-itab" onclick="switchCompactTab('saved',this)">🔖</div>
       <div class="p-itab" onclick="switchCompactTab('liked',this)">🤍</div>
     </div>
-
-    <div class="shop-header-row" onclick="openCamStudio()">
-      <span>🏪 Creator-Shop & Highlights</span>
-      <span>›</span>
-    </div>
-
+    <div class="shop-header-row" onclick="openCamStudio()"><span>🏪 Creator-Shop & Highlights</span><span>›</span></div>
     <div class="task-banner" onclick="openCamStudio()">
       <div class="task-ico">🎟️</div>
-      <div style="flex:1">
-        <b style="font-size:13px;display:block">Video-Wachstumsaufgabe</b>
-        <span style="font-size:11px;color:#64748b">Veröffentliche 30s-Clips für bis zu 70 € / Bonus-Prämien.</span>
-        <div style="display:flex;gap:6px;margin-top:5px">
-          <span class="task-tag-pink">🎟️ 70 € an Prämien</span>
-          <span class="task-tag-gray">Aktiv bis 31.10.2026</span>
-        </div>
-      </div>
+      <div style="flex:1"><b style="font-size:13px;display:block">Video-Wachstumsaufgabe</b><span style="font-size:11px;color:#64748b">Clips für bis zu 70 € Prämien.</span></div>
       <span style="color:#94a3b8;font-weight:900">›</span>
     </div>
-
     <div class="c-grid" id="profGridContent"></div>
   </div>
 </div>
 
-<!-- SEITEN-MENÜ RECHTS -->
 <div class="dr-bg" id="drawerBg" onclick="toggleDrawer(false)"></div>
 <div class="drawer" id="sideDrawer">
-  <div class="d-cat" style="margin-top:0">Assets</div>
-  <div class="d-row asset-box" onclick="addFreeCoins()">
-    <div class="d-left"><span>👛</span><span>Guthaben (<b id="drawerBalance" style="color:#0284c7">10.000 🪙</b>)</span></div>
-    <div><span class="d-dot"></span><span style="color:#94a3b8">›</span></div>
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:12px"><b>⚙️ Mein Konto</b><span onclick="toggleDrawer(false)">✕</span></div>
+    <div class="d-row asset-box" onclick="addFreeCoins()"><div class="d-left"><span>👛</span><span>Guthaben (<b id="drawerBalance" style="color:#0284c7">10.000 🪙</b>)</span></div><span>›</span></div>
+    <div class="d-row" onclick="toggleDrawer(false);openCamStudio()"><div class="d-left"><span>🎬</span><span>Kamera-Studio</span></div><span>›</span></div>
+    <div class="d-row" onclick="toggleDrawer(false);openEdit()"><div class="d-left"><span>✏️</span><span>Name & Adresse</span></div><span>›</span></div>
+    <div class="d-row" onclick="shareLink()"><div class="d-left"><span>🏁</span><span>QR-Code & Link</span></div><span>›</span></div>
   </div>
-
-  <div class="d-cat">Persönliche Tools</div>
-  <div class="d-row" onclick="alert('🕒 Aktivitätszentrum: Alle neuen Likes & Kommentare.')">
-    <div class="d-left"><span>🕒</span><span>Aktivitätszentrum</span></div><span style="color:#94a3b8">›</span>
-  </div>
-  <div class="d-row" onclick="toggleDrawer(false);switchCompactTab('saved',document.querySelectorAll('.p-itab')[3])">
-    <div class="d-left"><span>☁️</span><span>Offline-Videos</span></div><span style="color:#94a3b8">›</span>
-  </div>
-  <div class="d-row" onclick="shareLink()">
-    <div class="d-left"><span>🏁</span><span>Dein QR-Code & Raum-Link</span></div><span style="color:#94a3b8">›</span>
-  </div>
-
-  <div class="d-cat">Erstellungs- und Business-Tools</div>
-  <div class="d-row" onclick="toggleDrawer(false);openCamStudio()">
-    <div class="d-left"><span>🎬</span><span>Kamera & Studio (+30s Clip)</span></div><span style="color:#94a3b8">›</span>
-  </div>
-  <div class="d-row" onclick="alert('📄 Transparenz-MStV & Community-Richtlinien.')">
-    <div class="d-left"><span>📄</span><span>Transparenz-MStV</span></div><span style="color:#94a3b8">›</span>
-  </div>
-  <div class="d-row" onclick="toggleDrawer(false);openEdit()">
-    <div class="d-left"><span>⚙️</span><span>Einstellungen und Datenschutz</span></div><span style="color:#94a3b8">›</span>
-  </div>
-  <div class="d-row" style="color:#64748b;margin-top:6px" onclick="toggleDrawer(false);toggleScreen('miniDuelModal',true)">
-    <div class="d-left"><span>⚔️</span><span>Mini-Duell (nebenbei)</span></div><span style="color:#94a3b8">›</span>
-  </div>
+  <button class="btn blue" onclick="toggleDrawer(false);openLive()">🔴 LIVE starten</button>
 </div>
 
-<!-- UNTERE 5ER NAVIGATION ("+" ÖFFNET JETZT DAS KAMERA-STUDIO WIE AUF DEM BILD!) -->
 <div class="bot-nav" id="botNav">
-  <div class="n-tab" id="bHome" onclick="showTab('vFeed')"><span style="font-size:18px">🏠</span><span>Start</span></div>
+  <div class="n-tab active" id="bHome" onclick="showTab('vFeed')"><span style="font-size:18px">🏠</span><span>Start</span></div>
   <div class="n-tab" id="bColleagues" onclick="showTab('vColleagues')"><span class="n-bdg">74</span><span style="font-size:18px">👥</span><span>Kollegen/innen</span></div>
   <div onclick="openCamStudio()"><div class="plus-b">+</div></div>
   <div class="n-tab" id="bMessages" onclick="showTab('vMessages')"><span class="n-bdg" id="msgBadge">3</span><span style="font-size:18px">💬</span><span>Nachrichten</span></div>
-  <div class="n-tab active" id="bProf" onclick="showTab('vProf')"><span style="font-size:18px">👤</span><span>Profil</span></div>
+  <div class="n-tab" id="bProf" onclick="showTab('vProf')"><span style="font-size:18px">👤</span><span>Profil</span></div>
 </div>
 
 <input type="file" id="avaFile" accept="image/*" style="display:none" onchange="uploadImg(event,'ava')">
@@ -562,20 +451,18 @@ button,input{font-family:inherit;outline:none;border:none}
 <script>
 const $=id=>document.getElementById(id);
 const inviteRoom=new URLSearchParams(location.search).get('room')||'';
-let user=JSON.parse(localStorage.getItem('sv_u12'))||{dispName:'🍝Nudel King🍝',username:'@reckpunkt',fullName:'',address:'',bio:'',thought:'Was geht?',ava:null,cover:null,ok:false};
-let coins=Number(localStorage.getItem('sv_c12'))||10000;
+let user=JSON.parse(localStorage.getItem('sv_u13'))||{dispName:'🍝Nudel King🍝',username:'@reckpunkt',fullName:'',address:'',bio:'',thought:'Was geht?',ava:null,cover:null,ok:false};
+let coins=Number(localStorage.getItem('sv_c13'))||10000;
 let activeProfTab='shop',currentFeedFilter='foryou',autoScroll=false,myClips=[],curCmtIdx=0,curFwdIdx=0;
 
 const COLLEAGUES=[
-  {name:'Daddyy 😎',ava:'😎',status:'Gerade im 9er Box-Live 🔥',live:true,lay:'boxes'},
-  {name:'ANI & Crew',ava:'👩‍🎤',status:'Gerade im 3er Co-Stream 🎙️',live:true,lay:'grid4'},
-  {name:'Herr Anwalt',ava:'⚖️',status:'Beitrag 406 veröffentlicht',live:false},
-  {name:'Frog King',ava:'🐸',status:'Online • Bereit für Stream',live:false}
+  {name:'Daddyy 😎',ava:'😎',status:'Im Box-Live 🔥',live:true,lay:'boxes'},
+  {name:'ANI & Crew',ava:'👩‍🎤',status:'Im Co-Stream 🎙️',live:true,lay:'grid4'},
+  {name:'Herr Anwalt',ava:'⚖️',status:'Online',live:false}
 ];
 let CHATS={
-  'Daddyy 😎':[{s:'Daddyy 😎',t:'Kommst du mit in den Multi-Stream? 🔥',me:false}],
-  'ANI & Crew':[{s:'ANI & Crew',t:'Danke für das Geschenk eben! 🐉',me:false}],
-  'Herr Anwalt':[{s:'Herr Anwalt',t:'Beitrag 406 ist jetzt auf der Start-Seite online!',me:false}]
+  'Daddyy 😎':[{s:'Daddyy 😎',t:'Kommst du mit in den Stream? 🔥',me:false}],
+  'ANI & Crew':[{s:'ANI & Crew',t:'Danke für das Geschenk! 🐉',me:false}]
 };
 let curChat='Daddyy 😎';
 
@@ -587,8 +474,7 @@ const GIFTS=[
 ];
 
 const FEED_ITEMS=[
-  {id:'f1',kind:'split',cat:['foryou','follow','nearby'],host:'Herr Anwalt',ava:'⚖️',avaImg:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200',sub:'In Paris',neon:'Cogito Ipse!',topImg:'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600',botImg:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600',url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',cap:'Beitrag 406 | In Frankreich, vor allem in Paris, kommt es zu schwere... mehr',pl:'🎞️ Wiedergabeliste • 🌍 Nachrichten',likes:5355,liked:false,cmts:147,cmtList:[{u:'@daddyy',t:'Starkes Video! 🔥'}],saves:261,saved:false,shares:417,fol:false},
-  {id:'f2',kind:'split',cat:['foryou','nearby'],host:'Neon Creator',ava:'🏎️',avaImg:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200',sub:'Night City ⚡',neon:'StreamVerse',topImg:'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600',botImg:'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600',url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',cap:'Beitrag 209 | Neue Highlights aus der Community ⚡ #clips #live',pl:'🎞️ Wiedergabeliste • ⚡ Highlights',likes:2840,liked:false,cmts:84,cmtList:[],saves:140,saved:false,shares:112,fol:true}
+  {id:'f1',kind:'split',cat:['foryou','follow','nearby'],host:'Herr Anwalt',ava:'⚖️',avaImg:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200',sub:'In Paris',neon:'Cogito Ipse!',topImg:'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600',botImg:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600',url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',cap:'Beitrag 406 | In Paris kommt es zu schwere...',pl:'🎞️ Wiedergabeliste',likes:5355,liked:false,cmts:147,cmtList:[{u:'@daddyy',t:'Starkes Video!'}],saves:261,saved:false,shares:417,fol:false}
 ];
 
 let avaImgObj=new Image(),coverImgObj=new Image();
@@ -605,77 +491,6 @@ function initApp(){
   }
 }
 
-/* ================= "+" KAMERA- & ERSTELLEN-STUDIO LOGIK ================= */
-let studioActive=false,studioRec=false,studioSec=0,studioTimer=null,flashBoost=false,colorFilterIdx=0;
-const SOUNDS=['🎵 Cyber Beats 2026','🎵 Neon Phonk Drift','🎵 Summer Vibes Hit','🎵 Originalton - StreamVerse'];
-let soundIdx=0;
-const COLOR_FILTERS=['none','contrast(125%) saturate(140%)','hue-rotate(60deg) saturate(160%)','sepia(45%) contrast(115%)'];
-
-async function openCamStudio(){
-  studioActive=true;
-  $('camStudioScreen').classList.remove('hide');
-  hideCam=false;
-  await startCam();
-  if(!animId)renderFaceCanvas();
-}
-function closeCamStudio(){
-  studioActive=false;
-  if(studioRec)triggerStudioShutter();
-  $('camStudioScreen').classList.add('hide');
-  if($('liveScreen').classList.contains('hide')){
-    if(myStream){myStream.getTracks().forEach(t=>t.stop());myStream=null;}
-    if(animId){cancelAnimationFrame(animId);animId=null;}
-  }
-}
-function cycleStudioSound(){
-  soundIdx=(soundIdx+1)%SOUNDS.length;
-  $('studioSoundTxt').textContent=SOUNDS[soundIdx];
-}
-function toggleFlashBoost(){
-  flashBoost=!flashBoost;
-  $('flashIco').style.color=flashBoost?'#fde047':'#fff';
-}
-function cycleColorFilter(){
-  colorFilterIdx=(colorFilterIdx+1)%COLOR_FILTERS.length;
-  $('studioCanvas').style.filter=COLOR_FILTERS[colorFilterIdx];
-}
-function setStudioFx(m){
-  faceMorph=m;
-  document.querySelectorAll('.cs-fx-orb').forEach(x=>x.classList.remove('active'));
-  if($('orb-'+m))$('orb-'+m).classList.add('active');
-}
-function selectCamDur(mode,el){
-  document.querySelectorAll('.cs-dur-pill').forEach(x=>x.classList.remove('active'));
-  el.classList.add('active');
-}
-function startCountdownRec(){
-  alert('⏱️ 3-Sekunden-Timer gestartet!');
-  setTimeout(()=>{if(studioActive&&!studioRec)triggerStudioShutter();},3000);
-}
-function createTextPost(){
-  const txt=prompt('📝 Dein Text-Clip für den Start-Feed:');
-  if(!txt)return;
-  const c={id:'c_'+Date.now(),kind:'split',cat:['foryou','follow','nearby'],host:user.dispName,ava:'📝',sub:txt.slice(0,18),neon:'Text-Post',topImg:'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600',botImg:'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600',url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',cap:txt,pl:'🎞️ Text-Beitrag',likes:1,liked:false,cmts:0,cmtList:[],saves:0,saved:false,shares:0,fol:true};
-  FEED_ITEMS.unshift(c);closeCamStudio();renderStartFeed();showTab('vFeed');
-}
-function triggerStudioShutter(){
-  const btn=$('studioShutterBtn'),bdg=$('recTimerBadge');
-  if(!studioRec){
-    studioRec=true;studioSec=0;btn.classList.add('rec');bdg.style.display='block';
-    studioTimer=setInterval(()=>{
-      studioSec++;
-      bdg.textContent=`🔴 00:${studioSec<10?'0'+studioSec:studioSec} / 00:30`;
-      if(studioSec>=30)triggerStudioShutter();
-    },1000);
-  }else{
-    studioRec=false;clearInterval(studioTimer);btn.classList.remove('rec');bdg.style.display='none';
-    if(confirm(`🎬 Aufnahme (${Math.max(1,studioSec)} Sek.) fertig! Möchtest du ein Video von deinem Gerät auswählen oder diesen Clip direkt posten?`)){
-      closeCamStudio();toggleScreen('videoUploadModal',true);
-    }
-  }
-}
-
-/* START-FEED */
 function renderStartFeed(){
   const list=FEED_ITEMS.filter(x=>currentFeedFilter==='nearby'?x.cat.includes('nearby'):currentFeedFilter==='follow'?x.fol:true);
   $('feedScroller').innerHTML=list.map((it,idx)=>{
@@ -690,7 +505,7 @@ function renderStartFeed(){
         ${it.kind==='split'?`<div class="split-b"><img src="${it.botImg}"><div class="neon-txt">${it.neon}</div></div>`:''}
       </div>
       <div class="r-rail">
-        <div class="as-box" onclick="autoScroll=!autoScroll;renderStartFeed()"><div class="sw ${autoScroll?'on':''}"><i></i></div><span style="font-size:8px;font-weight:800">Auto-Scrollen</span></div>
+        <div class="as-box" onclick="autoScroll=!autoScroll;renderStartFeed()"><div class="sw ${autoScroll?'on':''}"><i></i></div><span style="font-size:8px;font-weight:800">Auto</span></div>
         <div class="r-ava" onclick="FEED_ITEMS[${rIdx}].fol=!FEED_ITEMS[${rIdx}].fol;renderStartFeed()">${av}<div class="r-plus" style="background:${it.fol?'#10b981':'#ff0050'}">${it.fol?'✓':'+'}</div></div>
         <div class="r-pill ${it.liked?'on-l':''}" onclick="likeIt(${rIdx})"><span style="font-size:19px">${it.liked?'❤️':'🤍'}</span><b>${it.likes}</b></div>
         <div class="r-pill" onclick="openCmts(${rIdx})"><span style="font-size:19px">💬</span><b>${it.cmts}</b></div>
@@ -699,7 +514,7 @@ function renderStartFeed(){
         <div class="disc" onclick="toggleScreen('giftModal',true)">${av}</div>
       </div>
       <div class="f-meta">
-        <div style="font-size:14px;font-weight:900;margin-bottom:2px">${it.host} <span style="background:#38bdf8;color:#000;font-size:9px;padding:1px 4px;border-radius:50%">✓</span></div>
+        <div style="font-size:14px;font-weight:900">${it.host} <span style="background:#38bdf8;color:#000;font-size:9px;padding:1px 4px;border-radius:50%">✓</span></div>
         <div style="font-size:11px;color:#e2e8f0">${it.cap}</div>
       </div>
       <div class="pl-bar" onclick="openCmts(${rIdx})"><span>${it.pl}</span><span>›</span></div>
@@ -727,7 +542,7 @@ function postVideoComment(){
 }
 function openFwd(i){
   curFwdIdx=i;
-  $('forwardColleaguesList').innerHTML=COLLEAGUES.map(c=>`<div style="background:#1f2442;padding:8px 10px;border-radius:10px;display:flex;justify-content:space-between;cursor:pointer" onclick="fwdTo('${c.name}')"><span>${c.ava} <b>${c.name}</b></span><span style="color:#38bdf8;font-weight:800">Senden ↪️</span></div>`).join('');
+  $('forwardColleaguesList').innerHTML=COLLEAGUES.map(c=>`<div style="background:#1f2442;padding:8px;border-radius:10px;display:flex;justify-content:space-between;cursor:pointer" onclick="fwdTo('${c.name}')"><span>${c.ava} <b>${c.name}</b></span><span style="color:#38bdf8;font-weight:800">Senden ↪️</span></div>`).join('');
   toggleScreen('forwardModal',true);
 }
 function fwdTo(n){
@@ -735,7 +550,7 @@ function fwdTo(n){
   if(!CHATS[n])CHATS[n]=[];CHATS[n].push({s:'Ich',t:`↪️ Video von ${x.host} weitergeleitet`,me:true});
   toggleScreen('forwardModal',false);renderStartFeed();renderMessagesPage();alert('An '+n+' gesendet!');
 }
-function openSearchModal(){toggleScreen('searchModal',true);runFeedSearch();}
+function openSearchModal(){toggleScreen('searchModal',true);}
 function runFeedSearch(){
   const q=($('feedSearchInp').value\vert{}\vert{}'').toLowerCase();$('searchResultsBox').innerHTML=FEED_ITEMS.filter(x=>x.host.toLowerCase().includes(q)||x.cap.toLowerCase().includes(q)).map(m=>`<div style="background:#15182e;padding:10px;border-radius:12px;cursor:pointer" onclick="toggleScreen('searchModal',false)"><b>${m.host}</b><div style="font-size:11px;color:#94a3b8">${m.cap}</div></div>`).join('');
 }
@@ -775,7 +590,7 @@ function publishUploadedVideo(){
   myClips.unshift(c);FEED_ITEMS.unshift(c);toggleScreen('videoUploadModal',false);renderStartFeed();updateUI();showTab('vFeed');
 }
 
-/* GESCHENKE & MINI-DUELL */
+/* GESCHENKE */
 function sendGift(id){
   const g=GIFTS.find(x=>x.id===id);if(!g)return;
   if(coins<g.cost)coins+=10000;
@@ -784,7 +599,7 @@ function sendGift(id){
 }
 function triggerGiftEffect(g,sender){
   const st=$('giftFxStage');st.innerHTML=`<div class="gf-ban">🎁 <b>${sender}</b> sendet ${g.icon} ${g.name}!</div><div class="gf-hero">${g.icon}</div>`;
-  for(let i=0;i<24;i++){const p=document.createElement('div');p.className='gf-p';p.textContent=g.icon;p.style.left=(15+Math.random()*70)+'%';p.style.top=(20+Math.random()*60)+'%';p.style.setProperty('--tx',(Math.random()*300-150)+'px');p.style.setProperty('--ty',(Math.random()*-300-50)+'px');st.appendChild(p);}
+  for(let i=0;i<20;i++){const p=document.createElement('div');p.className='gf-p';p.textContent=g.icon;p.style.left=(15+Math.random()*70)+'%';p.style.top=(20+Math.random()*60)+'%';p.style.setProperty('--tx',(Math.random()*300-150)+'px');p.style.setProperty('--ty',(Math.random()*-300-50)+'px');st.appendChild(p);}
   st.classList.add('active');setTimeout(()=>{st.classList.remove('active');st.innerHTML='';},2800);
 }
 let dMy=2000,dBot=2000;
@@ -794,23 +609,23 @@ function playQuickDuelRound(){
   $('duelMyLP').textContent=dMy;$('duelBotLP').textContent=dBot;
 }
 
-/* PROFIL & LIVE WEBRTC (4ER STREAM + HOST GENEHMIGUNG) */
+/* PROFIL & LIVE WEBRTC */
 function createAutoFriendProfile(){
   const n=$('autoProfName').value.trim();if(!n)return alert('Name fehlt!');
   user.dispName=n;user.username='@'+n.toLowerCase().replace(/\s+/g,'');user.ok=true;
-  localStorage.setItem('sv_u12',JSON.stringify(user));toggleScreen('friendAutoProfileScreen',false);updateUI();openLive().then(()=>sendJoinRequestToHost());
+  localStorage.setItem('sv_u13',JSON.stringify(user));toggleScreen('friendAutoProfileScreen',false);updateUI();openLive().then(()=>sendJoinRequestToHost());
 }
 function openEdit(){$('eDisp').value=user.dispName;$('eUser').value=user.username;$('eFullName').value=user.fullName;$('eAddr').value=user.address;$('eBio').value=user.bio;toggleScreen('editScreen',true);}
 function saveProfile(){
   user.dispName=$('eDisp').value.trim()\vert{}\vert{}user.dispName;user.username=$('eUser').value.trim()||user.username;
   user.fullName=$('eFullName').value.trim();user.address=$('eAddr').value.trim();user.bio=$('eBio').value.trim();user.ok=true;
-  localStorage.setItem('sv_u12',JSON.stringify(user));toggleScreen('editScreen',false);updateUI();
+  localStorage.setItem('sv_u13',JSON.stringify(user));toggleScreen('editScreen',false);updateUI();
 }
-function editThought(){const t=prompt('Status:',user.thought);if(t){user.thought=t;localStorage.setItem('sv_u12',JSON.stringify(user));updateUI();}}
+function editThought(){const t=prompt('Status:',user.thought);if(t){user.thought=t;localStorage.setItem('sv_u13',JSON.stringify(user));updateUI();}}
 function openPicZoom(){$('picTitle').textContent=user.username;$('picBigBox').innerHTML=user.ava?`<img src="${user.ava}" style="width:100%;height:100%;object-fit:cover">`:'😎';toggleScreen('picScreen',true);}
 function uploadImg(e,t){
   const f=e.target.files[0];if(!f)return;const r=new FileReader();
-  r.onload=ev=>{if(t==='ava'){user.ava=ev.target.result;avaImgObj.src=user.ava;}else{user.cover=ev.target.result;coverImgObj.src=user.cover;hideCam=true;}localStorage.setItem('sv_u12',JSON.stringify(user));updateUI();};r.readAsDataURL(f);
+  r.onload=ev=>{if(t==='ava'){user.ava=ev.target.result;avaImgObj.src=user.ava;}else{user.cover=ev.target.result;coverImgObj.src=user.cover;hideCam=true;}localStorage.setItem('sv_u13',JSON.stringify(user));updateUI();};r.readAsDataURL(f);
 }
 
 let peer=null,myStream=null,facing='user',hideCam=false,micOn=true,faceMorph='none',maskX=180,maskY=220,audioCtx=null,analyser=null,animId=null;
@@ -855,12 +670,11 @@ function renderFaceCanvas(){
   if(studioActive)drawMorphOnCanvas(stCv.getContext('2d'),360,640,v);
   animId=requestAnimationFrame(renderFaceCanvas);
 }
-function setFaceMorph(m){faceMorph=m;toggleScreen('fxModal',false);}
 
 function initPeer(){
   if(typeof Peer==='undefined')return;
   $('myCodeTxt').textContent=roomCode;$('bottomCodeTxt').textContent=roomCode;$('shareCodeBig').textContent=roomCode;
-  peer=new Peer('sv-m20-'+roomCode);
+  peer=new Peer('sv-m21-'+roomCode);
   peer.on('connection',c=>setupConn(c));
   peer.on('call',call=>{call.answer(getStream());call.on('stream',rem=>assignSlot(call.peer,rem));});
 }
@@ -883,7 +697,7 @@ function respondToJoinRequest(ok){
 }
 function sendJoinRequestToHost(){
   const code=$('friendCodeInp').value.trim();if(!code\vert{}\vert{}!peer)return alert('Code fehlt!');$('guestWaitNotice').textContent='⏳ Sende Anfrage...';
-  const c=peer.connect('sv-m20-'+code);setupConn(c);c.on('open',()=>c.send({type:'join_request',user:user.dispName}));
+  const c=peer.connect('sv-m21-'+code);setupConn(c);c.on('open',()=>c.send({type:'join_request',user:user.dispName}));
 }
 function callNow(id){const cl=peer.call(id,getStream());if(cl)cl.on('stream',r=>assignSlot(id,r));}
 function assignSlot(id,rem){
@@ -913,37 +727,36 @@ function toggleMic(){micOn=!micOn;if(myStream)myStream.getAudioTracks().forEach(
 function setLayout(m){$('liveStage').className='stage '+m;$('btnGrid4').classList.toggle('on',m==='grid4');$('btnBoxes').classList.toggle('on',m==='boxes');}
 function shareLink(){const u=location.origin+location.pathname+'?room='+roomCode;if(navigator.share)navigator.share({title:'Live',url:u}).catch(()=>{});else navigator.clipboard.writeText(u).then(()=>alert('Link kopiert: '+u));}
 function sendChat(){const i=$('chatInp');if(!i.value.trim())return;$('liveChat').innerHTML+=`<div><b>${user.dispName}:</b> ${i.value}</div>`;broadcastData({type:'chat',user:user.dispName,text:i.value});i.value='';}
-function addFreeCoins(){coins+=10000;updateUI();alert('+10.000 Coins aufgeladen!');}
 
-function switchCompactTab(t,el){activeProfTab=t;document.querySelectorAll('.p-itab').forEach(x=>x.classList.remove('active'));if(el)el.classList.add('active');renderProfileTabContent();}
+function switchCompactTab(tab,el){
+  activeProfTab=tab;document.querySelectorAll('.p-itab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');renderProfileTabContent();
+}
 function renderProfileTabContent(){
-  const b=$('profGridContent');
+  const box=$('profGridContent');
   if(activeProfTab==='shop'){
-    b.innerHTML=`
-      <div class="c-card" onclick="alert('🕶️ Rokid AR Glasses ausgewählt!')">
+    box.innerHTML=`
+      <div class="c-card" onclick="alert('🛍️ Rokid AR Glasses')">
         <span class="top1-badge">🎵 TOP 1</span>
         <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400">
         <div class="c-foot"><span>AR Smart Glasses</span><span style="color:#15803d">29,99 €</span></div>
       </div>
-      <div class="c-card" onclick="alert('🖥️ Smart Car Display ausgewählt!')">
-        <div class="warn-banner">⚠️ Ab Baujahr 2016 • Smart Display</div>
+      <div class="c-card" onclick="alert('🖥️ CarPlay Screen')">
+        <div class="warn-banner">⚠️ Ab Bj. 2016</div>
         <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400">
         <div class="c-foot"><span>CarPlay Screen</span><span style="color:#15803d">49,99 €</span></div>
       </div>`;
   }else if(activeProfTab==='clips'){
-    b.innerHTML=`<div class="c-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:175px;background:#eef2ff" onclick="openCamStudio()"><div style="font-size:32px">🎬➕</div><b style="font-size:12px;color:#4f46e5">Kamera / 30s Clip</b></div>`+
-    myClips.map(c=>`<div class="c-card" onclick="showTab('vFeed')"><video src="${c.url}" muted loop playsinline></video><div class="c-foot"><span>${c.cap.slice(0,12)}</span><span>⏱️ ${c.dur}s</span></div></div>`).join('')+
-    `<div class="c-card" onclick="showTab('vFeed')"><img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400"><div class="c-foot"><span>Beitrag 406</span><span>▶️ 5.3K</span></div></div>`;
+    box.innerHTML=`<div class="c-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:175px;background:#eef2ff" onclick="openCamStudio()"><div style="font-size:32px">🎬➕</div><b style="font-size:12px;color:#4f46e5">Kamera / 30s Clip</b></div>`+
+    myClips.map(c=>`<div class="c-card" onclick="showTab('vFeed')"><video src="${c.url}" muted loop playsinline></video><div class="c-foot"><span>${c.cap.slice(0,12)}</span><span>⏱️ ${c.dur}s</span></div></div>`).join('');
   }else if(activeProfTab==='saved'||activeProfTab==='liked'){
     const sv=FEED_ITEMS.filter(x=>activeProfTab==='saved'?x.saved:x.liked);
-    b.innerHTML=sv.length?sv.map(s=>`<div class="c-card" onclick="showTab('vFeed')"><img src="${s.topImg}"><div class="c-foot"><span>${s.host}</span><span>${activeProfTab==='saved'?'🔖':'❤️'}</span></div></div>`).join(''):`<div style="grid-column:span 2;text-align:center;color:#64748b;padding:18px;font-size:12px">Noch keine Einträge in diesem Bereich.</div>`;
+    box.innerHTML=sv.length?sv.map(s=>`<div class="c-card" onclick="showTab('vFeed')"><img src="${s.topImg}"><div class="c-foot"><span>${s.host}</span><span>🔖</span></div></div>`).join(''):`<div style="grid-column:span 2;text-align:center;color:#64748b;padding:16px;font-size:12px">Noch keine Einträge.</div>`;
   }else{
-    b.innerHTML=`<div class="c-card" style="grid-column:span 2;padding:14px;font-size:12px;background:#f8fafc"><b>📦 Deine Lieferadresse & Bestellungen:</b><p style="margin:6px 0;color:#475569">${[user.fullName,user.address].filter(Boolean).join(', ')||'Noch keine Lieferadresse hinterlegt.'}</p><button class="p-btn pri" onclick="openEdit()">✏️ Adresse eintragen</button></div>`;
+    box.innerHTML=`<div class="c-card" style="grid-column:span 2;padding:14px;font-size:12px"><b>📦 Lieferadresse:</b><p style="margin:6px 0;color:#475569">${[user.fullName,user.address].filter(Boolean).join(', ')||'Keine Adresse eingetragen.'}</p><button class="p-btn pri" onclick="openEdit()">✏️ Ändern</button></div>`;
   }
 }
-
 function updateUI(){
-  localStorage.setItem('sv_c12',coins);const c=coins.toLocaleString('de-DE');
+  localStorage.setItem('sv_c13',coins);const c=coins.toLocaleString('de-DE');
   $('drawerBalance').textContent=c+' 🪙';$('profBalanceStat').textContent=c;$('giftModalCoins').textContent=c;$('liveCoinTop').textContent=c;
   $('profDispName').textContent=user.dispName;$('profHandle').textContent=user.username;$('profBioTxt').textContent=user.bio||'';
   $('thoughtBubble').textContent=user.thought\vert{}\vert{}'Was geht?';$('profAvaBox').innerHTML=user.ava?`<img src="${user.ava}">`:'😎';
