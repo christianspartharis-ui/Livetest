@@ -3,628 +3,556 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>StreamVerse - Start, Live & Multi-Stream</title>
+<title>StreamVerse</title>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent;font-family:system-ui,-apple-system,sans-serif}
 body,html{width:100vw;height:100dvh;background:#070812;color:#fff;overflow:hidden}
-button,input{font-family:inherit;outline:none}
-
-.screen{position:fixed;inset:0;width:100vw;height:100dvh;background:#0b0d19;z-index:300000;display:flex;flex-direction:column;padding:16px;overflow-y:auto}
+button,input{font-family:inherit;outline:none;border:none}
+.screen{position:fixed;inset:0;background:#0b0d19;z-index:300000;display:flex;flex-direction:column;padding:14px;overflow-y:auto}
 .screen.hide{display:none}
-.box-card{width:100%;max-width:380px;margin:auto;background:#15182e;border:none;border-radius:22px;padding:18px;box-shadow:0 15px 40px rgba(0,0,0,.85)}
-.inp{width:100%;background:#1f2442;border:none;color:#fff;padding:11px;border-radius:12px;margin-bottom:9px;font-size:13px}
-.inp-light{width:100%;background:#f1f5f9;border:none;color:#0f172a;padding:11px;border-radius:12px;margin-bottom:10px;font-size:13px;font-weight:600}
-.btn{width:100%;background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;border:none;padding:11px;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer}
-.btn.blue{background:linear-gradient(90deg,#0284c7,#2563eb)}
-.btn.green{background:#10b981;color:#fff}
-.btn.dark{background:#262b4d;border:none}
-.btn.gold{background:linear-gradient(90deg,#f59e0b,#eab308);color:#0f172a}
-
+.card{width:100%;max-width:370px;margin:auto;background:#15182e;border-radius:20px;padding:16px;box-shadow:0 12px 35px rgba(0,0,0,.85)}
+.inp{width:100%;background:#1f2442;color:#fff;padding:10px;border-radius:11px;margin-bottom:8px;font-size:13px}
+.inp-l{width:100%;background:#f1f5f9;color:#0f172a;padding:10px;border-radius:11px;margin-bottom:8px;font-size:13px;font-weight:600}
+.btn{width:100%;background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;padding:10px;border-radius:11px;font-weight:800;font-size:13px;cursor:pointer}
+.btn.blue{background:linear-gradient(90deg,#0284c7,#2563eb)}.btn.green{background:#10b981}.btn.dark{background:#262b4d}.btn.gold{background:linear-gradient(90deg,#f59e0b,#eab308);color:#0f172a}
 .view{width:100vw;height:100dvh;padding-bottom:56px;display:none;overflow-y:auto;position:relative}
 .view.active{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 
-/* ================= NEUER START-FEED (EIGENES NEON-KAPSEL DESIGN) ================= */
-.feed-top-bar{position:fixed;top:0;left:0;width:100%;height:54px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;z-index:85;background:linear-gradient(180deg,rgba(0,0,0,.85),transparent)}
-.live-tv-btn{background:linear-gradient(135deg,#ff0050,#7c3aed);color:#fff;padding:6px 10px;border-radius:10px;font-size:11px;font-weight:900;cursor:pointer;display:flex;align-items:center;gap:4px;box-shadow:0 2px 10px rgba(255,0,80,.4)}
-.feed-nav-tabs{display:flex;align-items:center;gap:14px}
-.feed-nav-tabs span{font-size:14px;font-weight:800;color:rgba(255,255,255,.65);cursor:pointer;padding-bottom:5px;position:relative;text-shadow:0 1px 4px #000}
-.feed-nav-tabs span.active{color:#fff;font-weight:900}
-.feed-nav-tabs span.active::after{content:'';position:absolute;bottom:0;left:20%;width:60%;height:3px;background:#38bdf8;border-radius:4px;box-shadow:0 0 8px #38bdf8}
-.search-icon-btn{width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);display:flex;justify-content:center;align-items:center;font-size:16px;cursor:pointer}
+/* START-FEED (HOME) */
+.f-top{position:fixed;top:0;left:0;width:100%;height:52px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;z-index:85;background:linear-gradient(180deg,rgba(0,0,0,.85),transparent)}
+.tv-btn{background:linear-gradient(135deg,#ff0050,#7c3aed);color:#fff;padding:5px 9px;border-radius:9px;font-size:11px;font-weight:900;cursor:pointer}
+.f-tabs{display:flex;gap:14px;font-size:14px;font-weight:800;text-shadow:0 1px 4px #000}
+.f-tabs span{color:rgba(255,255,255,.6);cursor:pointer;padding-bottom:4px;position:relative}
+.f-tabs span.active{color:#fff;font-weight:900}
+.f-tabs span.active::after{content:'';position:absolute;bottom:0;left:20%;width:60%;height:3px;background:#38bdf8;border-radius:4px}
+.ico-btn{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);display:flex;justify-content:center;align-items:center;cursor:pointer}
+.f-scroll{width:100%;height:calc(100dvh - 56px);overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
+.f-scroll::-webkit-scrollbar{display:none}
+.f-slide{width:100vw;height:calc(100dvh - 56px);scroll-snap-align:start;scroll-snap-stop:always;position:relative;background:#090b16;display:flex;flex-direction:column}
+.split-wrap{width:100%;height:calc(100% - 34px);display:flex;flex-direction:column}
+.split-t,.split-b{flex:1;position:relative;overflow:hidden;background:#111}
+.split-t video,.split-b img{width:100%;height:100%;object-fit:cover;display:block}
+.sub-pill{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;font-size:15px;font-weight:900;padding:3px 12px;border-radius:9px;border:1.5px solid #38bdf8;z-index:10}
+.neon-txt{position:absolute;top:16%;right:14%;font-size:15px;font-weight:900;color:#38bdf8;text-shadow:0 0 10px #38bdf8;font-style:italic}
 
-.feed-scroller{width:100%;height:calc(100dvh - 56px);overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
-.feed-scroller::-webkit-scrollbar{display:none}
-.feed-slide{width:100vw;height:calc(100dvh - 56px);scroll-snap-align:start;scroll-snap-stop:always;position:relative;background:#0a0c1b;overflow:hidden;display:flex;flex-direction:column}
+/* RECHTES DOCK IM FEED */
+.r-rail{position:absolute;right:8px;bottom:42px;display:flex;flex-direction:column;align-items:center;gap:8px;z-index:40}
+.as-box{background:rgba(15,23,42,.78);backdrop-filter:blur(8px);padding:4px 6px;border-radius:10px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.sw{width:28px;height:14px;background:#334155;border-radius:10px;position:relative}.sw.on{background:#10b981}
+.sw i{width:10px;height:10px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;transition:.2s}.sw.on i{left:16px}
+.r-ava{position:relative;width:44px;height:44px;border-radius:14px;border:2px solid #38bdf8;background:#1e1b4b;display:flex;justify-content:center;align-items:center;font-size:20px;cursor:pointer;margin-bottom:4px}
+.r-ava img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+.r-plus{position:absolute;bottom:-5px;background:#ff0050;color:#fff;width:18px;height:18px;border-radius:6px;font-size:11px;font-weight:900;display:flex;justify-content:center;align-items:center}
+.r-pill{width:46px;background:rgba(15,23,42,.75);backdrop-filter:blur(8px);border-radius:13px;padding:5px 2px;display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.r-pill.on-l{background:rgba(255,0,80,.3)}.r-pill.on-s{background:rgba(250,204,21,.3)}
+.r-pill b{font-size:10px;margin-top:1px}
+.disc{width:38px;height:38px;border-radius:11px;border:2px solid #fde047;overflow:hidden;display:flex;justify-content:center;align-items:center;animation:sp 6s linear infinite;cursor:pointer}
+.disc img{width:100%;height:100%;object-fit:cover}
+@keyframes sp{to{transform:rotate(360deg)}}
+.f-meta{position:absolute;left:10px;bottom:42px;width:73%;z-index:35;background:linear-gradient(90deg,rgba(7,8,18,.82),rgba(7,8,18,.3));backdrop-filter:blur(5px);border-left:3px solid #38bdf8;padding:7px 10px;border-radius:0 12px 12px 0}
+.pl-bar{width:100%;height:34px;background:#0d1021;padding:0 12px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:800;color:#cbd5e1;cursor:pointer}
 
-/* SPLIT-SCREEN VIDEO BÜHNE (WIE AUF DEM SCREENSHOT, ABER EIGENER LOOK) */
-.split-stage{width:100%;height:calc(100% - 36px);display:flex;flex-direction:column;position:relative}
-.split-top{flex:1;position:relative;overflow:hidden;background:#111}
-.split-top video,.split-top img{width:100%;height:100%;object-fit:cover;display:block}
-.split-subtitles{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;font-size:16px;font-weight:900;padding:4px 14px;border-radius:10px;border:1.5px solid #38bdf8;z-index:20;white-space:nowrap;text-shadow:0 2px 4px #000}
-.split-bottom{flex:1;position:relative;overflow:hidden;background:linear-gradient(135deg,#e11d48,#7c3aed,#1e1b4b);display:flex;justify-content:center;align-items:center}
-.split-bottom img.creator-cam{width:100%;height:100%;object-fit:cover;opacity:.92}
-.neon-wall-sign{position:absolute;top:18%;right:18%;font-size:16px;font-weight:900;color:#38bdf8;text-shadow:0 0 10px #38bdf8,0 0 20px #0284c7;font-style:italic;z-index:5}
+/* ================= NEUES "+" KAMERA- & ERSTELLEN-STUDIO (WIE DEIN BILD, ABGEWANDELT) ================= */
+.cam-studio{position:fixed;inset:0;background:#000;z-index:350000;display:flex;flex-direction:column;justify-content:space-between;padding:12px 10px 14px}
+.cam-studio.hide{display:none}
+.cs-viewfinder{position:relative;width:100%;max-width:420px;height:calc(100dvh - 92px);margin:0 auto;border-radius:26px;overflow:hidden;background:#111426;box-shadow:0 0 30px rgba(0,0,0,.9)}
+.cs-viewfinder canvas{width:100%;height:100%;object-fit:cover;display:block}
+.cs-top-row{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center;z-index:20}
+.cs-close{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);color:#fff;font-size:18px;display:flex;justify-content:center;align-items:center;cursor:pointer}
+.cs-sound-pill{background:rgba(15,23,42,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);padding:7px 16px;border-radius:20px;font-size:12px;font-weight:800;color:#fff;display:flex;align-items:center;gap:6px;cursor:pointer}
+.cs-right-tools{position:absolute;top:64px;right:12px;background:rgba(15,23,42,.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);padding:10px 7px;border-radius:20px;display:flex;flex-direction:column;gap:14px;align-items:center;z-index:20}
+.cs-tool-ico{font-size:19px;cursor:pointer;position:relative;transition:transform .15s}
+.cs-tool-ico:active{transform:scale(.85)}
+.cs-bottom-overlay{position:absolute;bottom:14px;left:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:20}
+.cs-dur-bar{display:flex;gap:8px;align-items:center}
+.cs-dur-pill{padding:5px 12px;border-radius:16px;font-size:12px;font-weight:800;color:rgba(255,255,255,.8);cursor:pointer;transition:.2s}
+.cs-dur-pill.active{background:#fff;color:#0f172a;box-shadow:0 2px 10px rgba(255,255,255,.3)}
+.cs-shutter-row{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;overflow-x:auto;padding:4px 10px;scrollbar-width:none}
+.cs-fx-orb{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:#1e1b4b;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:21px;cursor:pointer;flex-shrink:0;overflow:hidden;position:relative;transition:transform .15s,border-color .2s}
+.cs-fx-orb.active{border-color:#38bdf8;transform:scale(1.1);box-shadow:0 0 12px #38bdf8}
+.cs-fx-orb span{font-size:8px;font-weight:900;background:rgba(0,0,0,.65);width:100%;text-align:center;position:absolute;bottom:0;padding:1px 0}
+.cs-shutter-btn{width:74px;height:74px;border-radius:50%;border:4px solid #fff;padding:4px;display:flex;justify-content:center;align-items:center;cursor:pointer;flex-shrink:0;box-shadow:0 0 20px rgba(244,63,94,.5)}
+.cs-shutter-inner{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#f43f5e,#e11d48);transition:.2s}
+.cs-shutter-btn.rec .cs-shutter-inner{border-radius:12px;transform:scale(.65);background:#ef4444}
+.cs-footer-nav{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;max-width:420px;margin:0 auto;width:100%}
+.cs-gal-box{width:40px;height:40px;border-radius:11px;border:2px solid #fff;background:linear-gradient(135deg,#4f46e5,#ec4899);display:flex;justify-content:center;align-items:center;font-size:18px;cursor:pointer;position:relative}
+.cs-mode-tabs{display:flex;gap:20px;font-size:13px;font-weight:900;letter-spacing:.5px}
+.cs-mode-tabs span{color:#64748b;cursor:pointer;transition:.2s}
+.cs-mode-tabs span.active{color:#fff;text-shadow:0 0 8px rgba(255,255,255,.5)}
 
-/* RECHTE SEITENLEISTE IM EIGENEN STREAMVERSE-DESIGN */
-.right-action-rail{position:absolute;right:8px;bottom:46px;display:flex;flex-direction:column;align-items:center;gap:9px;z-index:40}
-
-.autoscroll-box{background:rgba(15,23,42,.78);backdrop-filter:blur(8px);border:1px solid rgba(56,189,248,.35);padding:5px 7px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
-.sw-track{width:30px;height:15px;background:#334155;border-radius:10px;position:relative;transition:.2s}
-.sw-track.on{background:#10b981}
-.sw-Dot{width:11px;height:11px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;transition:.2s}
-.sw-track.on .sw-Dot{left:17px}
-.sw-lbl{font-size:8px;font-weight:800;color:#e2e8f0}
-
-.rail-ava-wrap{position:relative;width:46px;height:46px;margin-bottom:4px;cursor:pointer}
-.rail-ava-img{width:46px;height:46px;border-radius:14px;border:2px solid #38bdf8;background:#1e1b4b;overflow:hidden;display:flex;justify-content:center;align-items:center;font-size:22px;box-shadow:0 4px 12px rgba(0,0,0,.5)}
-.rail-ava-img img{width:100%;height:100%;object-fit:cover}
-.rail-follow-badge{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);background:#ff0050;color:#fff;width:19px;height:19px;border-radius:6px;font-size:12px;font-weight:900;display:flex;justify-content:center;align-items:center;border:1.5px solid #fff}
-
-/* Eigene Neon-Kapseln für Like, Nachrichten, Speichern, Weiterleiten */
-.rail-pill{width:48px;background:rgba(15,23,42,.75);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .12s,border-color .2s}
-.rail-pill:active{transform:scale(.9)}
-.rail-pill.active-like{border-color:#ff0050;background:rgba(255,0,80,.22)}
-.rail-pill.active-save{border-color:#fde047;background:rgba(250,204,21,.22)}
-.rail-ico{font-size:19px;line-height:1.1}
-.rail-num{font-size:10px;font-weight:900;color:#fff;margin-top:2px}
-
-.sound-disc{width:40px;height:40px;border-radius:12px;border:2px solid #fde047;background:#1e1b4b;display:flex;justify-content:center;align-items:center;font-size:18px;animation:spinSlow 6s linear infinite;cursor:pointer;overflow:hidden}
-.sound-disc img{width:100%;height:100%;object-fit:cover}
-@keyframes spinSlow{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-
-/* UNTERE CREATOR-INFOS & WIEDERGABELISTE-LEISTE */
-.feed-info-overlay{position:absolute;left:10px;bottom:46px;width:73%;z-index:35;background:linear-gradient(90deg,rgba(7,8,18,.82),rgba(7,8,18,.35));backdrop-filter:blur(6px);border-left:3px solid #38bdf8;padding:8px 11px;border-radius:0 14px 14px 0}
-.info-creator-row{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:900;color:#fff;margin-bottom:3px}
-.check-badge{background:#38bdf8;color:#070812;font-size:10px;font-weight:900;width:16px;height:16px;border-radius:50%;display:inline-flex;justify-content:center;align-items:center}
-.info-text{font-size:12px;color:#f1f5f9;line-height:1.35}
-
-.playlist-bottom-bar{width:100%;height:36px;background:#0d1021;border-top:1px solid rgba(255,255,255,.1);padding:0 12px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;color:#e2e8f0;z-index:40;cursor:pointer}
-
-/* LIVE-VORSCHAU IM FEED */
-.feed-live-preview-wrap{width:100%;height:calc(100% - 36px);padding:65px 10px 95px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:radial-gradient(circle at center,#162044 0%,#060814 100%)}
-.preview-box-grid{width:100%;max-width:390px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:130px 68px 68px;gap:5px}
-.preview-box-grid .p-host{grid-column:1/3;grid-row:1/2}
-.preview-box-grid .p-cohost{grid-column:3/5;grid-row:1/2}
-.p-cell{background:#232736;border-radius:10px;position:relative;overflow:hidden;display:flex;justify-content:center;align-items:center}
-.p-cell img{width:100%;height:100%;object-fit:cover}
-.p-cell-ava{width:38px;height:38px;border-radius:50%;background:#0f172a;display:flex;justify-content:center;align-items:center;font-size:18px}
-.p-pts{position:absolute;top:4px;left:4px;background:rgba(0,0,0,.6);padding:1px 5px;border-radius:8px;font-size:9px;font-weight:800;color:#38bdf8}
-.p-usr{position:absolute;bottom:4px;left:4px;font-size:9px;font-weight:800;color:#fff;text-shadow:0 1px 3px #000}
-.tap-live-bar{width:100%;text-align:center;padding:10px 0 2px;font-size:13px;font-weight:900;color:#fff;cursor:pointer}
-.now-live-pill{display:inline-block;background:#ff0050;color:#fff;font-size:10px;font-weight:900;padding:2px 7px;border-radius:5px;margin-right:6px}
-
-/* ================= KOLLEGEN/INNEN & NACHRICHTEN SEITEN ================= */
-.subpage-wrap{background:#f8fafc;color:#0f172a;min-height:100%;padding:16px 14px 28px}
-.subpage-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.subpage-title{font-size:20px;font-weight:900;color:#0f172a}
-.list-card{background:#fff;border-radius:18px;padding:12px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 10px rgba(15,23,42,.04);cursor:pointer}
-.list-ava{width:48px;height:48px;border-radius:16px;background:#eef2ff;display:flex;justify-content:center;align-items:center;font-size:24px;position:relative;flex-shrink:0}
-.online-dot{position:absolute;bottom:-2px;right:-2px;width:13px;height:13px;border-radius:50%;background:#10b981;border:2px solid #fff}
-.live-mini-pill{background:#ff0050;color:#fff;font-size:10px;font-weight:900;padding:4px 9px;border-radius:8px}
-
-/* ================= PROFIL (OHNE RAHMEN / CLEAN DESIGN) ================= */
-.prof-wrap{background:#f8fafc;color:#0f172a;min-height:100%;padding-bottom:24px}
-.prof-banner{height:90px;background:linear-gradient(120deg,#4f46e5,#0ea5e9,#ec4899);display:flex;justify-content:space-between;align-items:flex-start;padding:12px 16px;color:#fff}
-.banner-icon-btn{background:rgba(0,0,0,.3);backdrop-filter:blur(6px);border:none;color:#fff;padding:7px 12px;border-radius:12px;font-size:12px;font-weight:800;cursor:pointer}
-
-.prof-main-card{background:#fff;margin:-34px 14px 10px;border-radius:22px;padding:0 16px 14px;box-shadow:0 4px 14px rgba(15,23,42,.04);text-align:center;position:relative;border:none}
-.prof-ava-holder{position:relative;width:88px;height:88px;margin:-44px auto 8px;cursor:pointer}
-.prof-ava-circle{width:88px;height:88px;border-radius:26px;border:3px solid #fff;background:#1e1b4b;overflow:hidden;display:flex;justify-content:center;align-items:center;font-size:40px;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.prof-ava-circle img{width:100%;height:100%;object-fit:cover}
-.prof-ava-add{position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;border-radius:9px;background:#6366f1;color:#fff;border:2px solid #fff;display:flex;justify-content:center;align-items:center;font-size:15px;font-weight:900}
-.status-pill{display:inline-block;background:#f1f5f9;color:#4f46e5;border:none;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;margin-bottom:6px;cursor:pointer}
-
-.prof-title-row{display:flex;justify-content:center;align-items:center;gap:6px}
-.prof-title-name{font-size:18px;font-weight:900;color:#0f172a}
-.prof-lvl-tag{background:#10b981;color:#fff;font-size:10px;font-weight:900;padding:2px 7px;border-radius:8px}
-.prof-sub-handle{font-size:12px;color:#64748b;font-weight:700;margin-bottom:4px}
-.prof-bio-box{font-size:12px;color:#334155;margin-bottom:6px}
-.prof-bio-box:empty{display:none}
-
-.prof-stats-bar{display:grid;grid-template-columns:repeat(3,1fr);background:transparent;border:none;padding:6px 4px;margin-bottom:10px}
-.stat-num{font-size:16px;font-weight:900;color:#0f172a}
-.stat-lbl{font-size:11px;color:#64748b;font-weight:600}
-
-.prof-action-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.act-pill-btn{background:#f1f5f9;border:none;color:#0f172a;padding:10px 6px;border-radius:12px;font-size:12px;font-weight:800;cursor:pointer}
-.act-pill-btn.primary{background:#eef2ff;color:#4f46e5}
-.act-pill-btn.upload{background:#fdf2f8;color:#db2777}
-.act-pill-btn.gold{background:#fef9c3;color:#b45309}
-
-.compact-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:0 14px 12px}
-.c-tab{padding:9px 2px;text-align:center;font-size:11px;font-weight:800;color:#64748b;border-radius:10px;cursor:pointer}
-.c-tab.active{background:#fff;color:#0f172a;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-
-.compact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px}
-.content-card{background:#fff;border-radius:16px;overflow:hidden;border:none;box-shadow:0 3px 10px rgba(0,0,0,.04);cursor:pointer;position:relative}
-.content-card img,.content-card video{width:100%;height:140px;object-fit:cover;display:block;background:#000}
-.content-card-footer{padding:8px 10px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800}
-.price-tag{background:#dcfce7;color:#15803d;padding:2px 7px;border-radius:6px;font-size:11px}
-.dur-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.75);color:#fff;font-size:10px;font-weight:800;padding:2px 6px;border-radius:6px}
+/* PROFIL (WIE BILD 1, OHNE INFINITY, EIGENER STIL) */
+.light-page{background:#fff;color:#0f172a;min-height:100%;padding-bottom:24px}
+.p-top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;position:sticky;top:0;background:#fff;z-index:30}
+.p-top-right{display:flex;align-items:center;gap:16px;font-size:19px}
+.vis-chip{display:flex;align-items:center;gap:3px;background:#f1f5f9;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:800;cursor:pointer}
+.menu-btn-wrap{position:relative;cursor:pointer;font-size:21px}
+.menu-red-dot{position:absolute;top:-5px;right:-7px;background:#f43f5e;color:#fff;font-size:9px;font-weight:900;width:16px;height:16px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:1.5px solid #fff}
+.p-hero{display:flex;flex-direction:column;align-items:center;padding:2px 14px 10px;text-align:center}
+.p-bubble{background:#f8fafc;box-shadow:0 3px 10px rgba(0,0,0,.07);padding:5px 13px;border-radius:16px;font-size:12px;color:#475569;font-weight:700;margin-bottom:-6px;z-index:5;cursor:pointer}
+.p-ava-w{position:relative;width:92px;height:92px;margin-bottom:8px;cursor:pointer}
+.p-ava{width:92px;height:92px;border-radius:50%;border:3px solid #e11d48;background:#1e1b4b;overflow:hidden;display:flex;justify-content:center;align-items:center;font-size:42px;color:#fff}
+.p-ava img{width:100%;height:100%;object-fit:cover}
+.p-add{position:absolute;bottom:1px;right:1px;width:26px;height:26px;border-radius:50%;background:#06b6d4;color:#fff;border:2.5px solid #fff;font-size:16px;font-weight:900;display:flex;justify-content:center;align-items:center}
+.p-name-line{display:flex;align-items:center;justify-content:center;gap:6px}
+.p-lvl-badge{background:#f43f5e;color:#fff;font-size:11px;font-weight:800;width:20px;height:20px;border-radius:50%;display:inline-flex;justify-content:center;align-items:center}
+.p-edit-pill{background:#f1f5f9;padding:5px 12px;border-radius:16px;font-size:13px;cursor:pointer}
+.p-handle{font-size:13px;color:#64748b;margin:2px 0 10px}
+.p-bio{font-size:12px;color:#0f172a;margin-bottom:10px}.p-bio:empty{display:none}
+.p-stats{display:flex;justify-content:center;gap:28px;margin-bottom:12px}
+.p-stats b{font-size:16px;font-weight:900;color:#0f172a;display:block}
+.p-stats span{font-size:11px;color:#64748b}
+.p-quick-row{display:flex;justify-content:center;flex-wrap:wrap;gap:13px;font-size:12px;font-weight:700;color:#0f172a;padding:2px 8px 12px}
+.p-quick-row div{display:flex;align-items:center;gap:4px;cursor:pointer}
+.p-quick-row i{color:#f43f5e;font-style:normal}
+.p-icon-bar{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #f1f5f9;border-bottom:1px solid #e2e8f0}
+.p-itab{padding:10px 0;text-align:center;font-size:17px;color:#94a3b8;cursor:pointer;border-bottom:2.5px solid transparent}
+.p-itab.active{color:#0f172a;border-bottom-color:#0f172a}
+.shop-header-row{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;font-size:13px;font-weight:800;cursor:pointer}
+.task-banner{margin:4px 12px 12px;padding:12px 14px;background:#fff;border-radius:16px;box-shadow:0 3px 14px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer}
+.task-ico{width:38px;height:38px;border-radius:50%;background:#f43f5e;color:#fff;display:flex;justify-content:center;align-items:center;font-size:18px;flex-shrink:0}
+.task-tag-pink{background:#ffe4e6;color:#e11d48;font-size:10px;font-weight:800;padding:2px 6px;border-radius:5px}
+.task-tag-gray{background:#f1f5f9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:5px}
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 10px}
+.c-card{background:#f8fafc;border-radius:14px;overflow:hidden;cursor:pointer;position:relative}
+.c-card img,.c-card video{width:100%;height:175px;object-fit:cover;display:block;background:#000}
+.c-foot{padding:7px 9px;display:flex;justify-content:space-between;font-size:11px;font-weight:800;background:#fff}
+.top1-badge{position:absolute;top:8px;right:8px;background:#0f172a;color:#fff;font-size:10px;font-weight:900;padding:3px 7px;border-radius:6px}
+.warn-banner{position:absolute;top:0;left:0;width:100%;background:rgba(255,255,255,.92);color:#dc2626;font-size:10px;font-weight:900;padding:4px 6px;text-align:center}
+.l-card{background:#f8fafc;border-radius:16px;padding:11px 13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.p-btn{background:#f1f5f9;color:#0f172a;padding:9px 8px;border-radius:11px;font-size:11px;font-weight:800;cursor:pointer}
+.p-btn.pri{background:#eef2ff;color:#4f46e5}
 
 /* SEITEN-MENÜ RECHTS */
-.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:250000;display:none}
-.drawer-bg.open{display:block}
-.drawer{position:fixed;top:0;right:-100%;width:78%;max-width:310px;height:100dvh;background:#fff;color:#0f172a;z-index:260000;transition:right .25s ease;padding:20px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:-8px 0 25px rgba(0,0,0,.25)}
+.dr-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:250000;display:none}.dr-bg.open{display:block}
+.drawer{position:fixed;top:0;right:-100%;width:82%;max-width:330px;height:100dvh;background:#fff;color:#0f172a;z-index:260000;transition:.25s;padding:18px 14px;overflow-y:auto;box-shadow:-8px 0 25px rgba(0,0,0,.2)}
 .drawer.open{right:0}
-.d-item{display:flex;justify-content:space-between;align-items:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:800;cursor:pointer}
+.d-cat{font-size:11px;color:#94a3b8;font-weight:700;margin:14px 4px 6px}
+.d-row{display:flex;justify-content:space-between;align-items:center;padding:13px 10px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;color:#0f172a}
+.d-row.asset-box{background:#f0f9ff}
+.d-left{display:flex;align-items:center;gap:12px}
+.d-dot{width:7px;height:7px;border-radius:50%;background:#f43f5e;display:inline-block;margin-right:4px}
 
-/* ================= LIVE-STUDIO ================= */
-.live-head{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:8px}
-.stage{flex:1;display:grid;gap:6px;min-height:0;margin-bottom:8px}
+/* LIVE-STUDIO */
+.stage{flex:1;display:grid;gap:6px;min-height:0;margin-bottom:6px}
 .stage.grid4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
 .stage.boxes{grid-template-columns:repeat(4,1fr);grid-template-rows:1.5fr 1fr 1fr}
-.stage.boxes .slot-me{grid-column:1/3;grid-row:1/2}
-.stage.boxes .slot-r1{grid-column:3/5;grid-row:1/2}
-.stage.grid4 .extra-guest{display:none}
+.stage.boxes .s-me{grid-column:1/3}.stage.boxes .s-r1{grid-column:3/5}.stage.grid4 .ex-g{display:none}
+.cam{position:relative;background:#15182e;border-radius:14px;overflow:hidden;display:flex;justify-content:center;align-items:center}
+.cam canvas,.cam video{width:100%;height:100%;object-fit:cover;display:block}
+.bdg{position:absolute;top:5px;left:5px;background:rgba(0,0,0,.7);padding:2px 6px;border-radius:5px;font-size:9px;font-weight:900;color:#38bdf8;z-index:5}
+.nm{position:absolute;bottom:5px;left:5px;background:rgba(0,0,0,.7);padding:2px 6px;border-radius:5px;font-size:9px;font-weight:800;z-index:5}
+.t-row{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.pill{background:#1f2442;color:#fff;padding:6px 9px;border-radius:9px;font-size:11px;font-weight:800;white-space:nowrap;cursor:pointer}
+.pill.on{background:#6366f1}.pill.gf{background:linear-gradient(90deg,#f59e0b,#ec4899)}
+.fx-t{background:#1f2442;border-radius:11px;padding:9px 4px;text-align:center;font-size:11px;font-weight:800;cursor:pointer}
 
-.cam-box{position:relative;background:#15182e;border-radius:16px;overflow:hidden;display:flex;justify-content:center;align-items:center}
-.cam-box canvas,.cam-box video{width:100%;height:100%;object-fit:cover;display:block}
-.box-badge{position:absolute;top:6px;left:6px;background:rgba(0,0,0,.7);padding:2px 7px;border-radius:6px;font-size:10px;font-weight:900;color:#38bdf8;z-index:8}
-.box-name{position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,.7);padding:2px 7px;border-radius:6px;font-size:10px;font-weight:800;z-index:8}
-.empty-slot-hint{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#64748b;font-size:11px;font-weight:700;text-align:center;padding:8px;pointer-events:none}
-
-.tool-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
-.pill{background:#1f2442;border:none;color:#fff;padding:7px 10px;border-radius:10px;font-size:11px;font-weight:800;white-space:nowrap;cursor:pointer}
-.pill.on{background:#6366f1}
-.pill.gift-pill{background:linear-gradient(90deg,#f59e0b,#ec4899);color:#fff}
-.chat-box{height:68px;overflow-y:auto;background:rgba(0,0,0,.45);border-radius:10px;padding:6px;font-size:11px;margin-bottom:6px}
-
-.bottom-join-bar{background:#161936;border-radius:12px;padding:7px 10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px}
-.host-approval-popup{background:linear-gradient(90deg,#1e1b4b,#311042);border-radius:12px;padding:8px 10px;margin-bottom:6px;display:none;align-items:center;justify-content:space-between;gap:8px;font-size:11px}
-.host-approval-popup.active{display:flex}
-
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.fx-tile{background:#1f2442;border:none;border-radius:12px;padding:10px 6px;text-align:center;font-size:11px;font-weight:800;cursor:pointer}
-
-/* VOLLBILD GESCHENKE-EFFEKT-BÜHNE */
-.gift-fx-stage{position:fixed;inset:0;width:100vw;height:100dvh;pointer-events:none;z-index:500000;overflow:hidden;display:none}
-.gift-fx-stage.active{display:block}
-.gift-banner{position:absolute;top:65px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,rgba(15,23,42,.92),rgba(88,28,135,.92));padding:8px 18px;border-radius:30px;font-size:13px;font-weight:900;color:#fff;box-shadow:0 0 25px rgba(250,204,21,.6);white-space:nowrap;animation:popBanner .4s cubic-bezier(.17,.89,.32,1.28)}
-@keyframes popBanner{0%{transform:translate(-50%,-40px) scale(.5);opacity:0}100%{transform:translate(-50%,0) scale(1);opacity:1}}
-
-.gift-center-hero{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:115px;filter:drop-shadow(0 0 35px rgba(255,215,0,.85));z-index:5}
-.anim-zoom{animation:heroZoom 2.8s ease-in-out forwards}
-.anim-drive{animation:heroDrive 2.8s cubic-bezier(.25,.8,.25,1) forwards}
-.anim-rocket{animation:heroRocket 2.8s ease-in forwards}
-.anim-spin{animation:heroSpin 3s ease-in-out forwards}
-
-@keyframes heroZoom{0%{transform:translate(-50%,-50%) scale(0) rotate(-20deg);opacity:0}25%{transform:translate(-50%,-50%) scale(1.25) rotate(8deg);opacity:1}50%{transform:translate(-50%,-50%) scale(1) rotate(-5deg)}80%{transform:translate(-50%,-50%) scale(1.15);opacity:1}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
-@keyframes heroDrive{0%{transform:translate(-180%,20%) scale(.7) skewX(-12deg);opacity:0}25%{transform:translate(-50%,0) scale(1.25);opacity:1}70%{transform:translate(-20%,0) scale(1.25);opacity:1}100%{transform:translate(180%,-20%) scale(.9);opacity:0}}
-@keyframes heroRocket{0%{transform:translate(-50%,160%) scale(.8);opacity:1}35%{transform:translate(-50%,0) scale(1.2)}70%{transform:translate(-50%,-30%) scale(1.3);opacity:1}100%{transform:translate(-50%,-220%) scale(.6);opacity:0}}
-@keyframes heroSpin{0%{transform:translate(-50%,-50%) scale(0) rotate(0deg);opacity:0}30%{transform:translate(-50%,-50%) scale(1.3) rotate(180deg);opacity:1}75%{transform:translate(-50%,-50%) scale(1.1) rotate(360deg);opacity:1}100%{transform:translate(-50%,-50%) scale(2.2) rotate(540deg);opacity:0}}
-
-.gift-particle{position:absolute;font-size:28px;pointer-events:none;animation:particleFly 2.6s ease-out forwards}
-@keyframes particleFly{0%{transform:translate(0,0) scale(.4) rotate(0deg);opacity:1}80%{opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(1.25) rotate(var(--rot));opacity:0}}
-
-.screen-shake{animation:shakeScreen .45s ease-in-out 2}
-@keyframes shakeScreen{0%,100%{transform:translate(0,0)}20%{transform:translate(-7px,5px)}40%{transform:translate(7px,-5px)}60%{transform:translate(-5px,-4px)}80%{transform:translate(5px,4px)}}
-
-/* UNTERE 5ER NAVIGATION */
-.bot-nav{position:fixed;bottom:0;left:0;width:100%;height:56px;background:#fff;border-top:none;box-shadow:0 -2px 12px rgba(0,0,0,.05);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;z-index:100;color:#64748b}
+/* GIFTS & BOT-NAV */
+.gf-st{position:fixed;inset:0;pointer-events:none;z-index:500000;overflow:hidden;display:none}.gf-st.active{display:block}
+.gf-ban{position:absolute;top:60px;left:50%;transform:translateX(-50%);background:#1e1b4b;border:2px solid #fde047;padding:7px 16px;border-radius:25px;font-size:12px;font-weight:900;white-space:nowrap}
+.gf-hero{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:110px;animation:hz 2.8s forwards}
+@keyframes hz{0%{transform:translate(-50%,-50%) scale(0);opacity:0}30%{transform:translate(-50%,-50%) scale(1.25);opacity:1}80%{opacity:1}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
+.gf-p{position:absolute;font-size:26px;animation:pf 2.5s ease-out forwards}
+@keyframes pf{to{transform:translate(var(--tx),var(--ty)) scale(1.2);opacity:0}}
+.bot-nav{position:fixed;bottom:0;left:0;width:100%;height:56px;background:#fff;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;z-index:100;color:#64748b;box-shadow:0 -2px 10px rgba(0,0,0,.05)}
 .bot-nav.dark{background:#090b16;color:#94a3b8}
-.nav-tab{font-size:10px;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:relative}
-.nav-tab.active{color:#0f172a;font-weight:900}
-.bot-nav.dark .nav-tab.active{color:#fff}
-.nav-badge{position:absolute;top:-4px;right:14%;background:#ff0050;color:#fff;font-size:9px;font-weight:900;padding:1px 5px;border-radius:10px;border:1.5px solid #fff}
-.bot-nav.dark .nav-badge{border-color:#090b16}
-.live-plus-btn{width:44px;height:30px;margin:0 auto;border-radius:10px;background:#0f172a;color:#fff;display:flex;justify-content:center;align-items:center;font-size:20px;font-weight:900;box-shadow:-3px 0 0 #00f2fe,3px 0 0 #ff0050;cursor:pointer}
-.bot-nav.dark .live-plus-btn{background:#fff;color:#0f172a}
+.n-tab{font-size:10px;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+.n-tab.active{color:#0f172a;font-weight:900}.bot-nav.dark .n-tab.active{color:#fff}
+.n-bdg{position:absolute;top:-4px;right:14%;background:#ff0050;color:#fff;font-size:9px;font-weight:900;padding:1px 4px;border-radius:8px}
+.plus-b{width:42px;height:28px;margin:0 auto;border-radius:9px;background:#0f172a;color:#fff;display:flex;justify-content:center;align-items:center;font-size:19px;font-weight:900;box-shadow:-3px 0 0 #00f2fe,3px 0 0 #ff0050;cursor:pointer}
+.bot-nav.dark .plus-b{background:#fff;color:#0f172a}
 </style>
 </head>
 <body>
 
-<div class="gift-fx-stage" id="giftFxStage"></div>
+<div class="gf-st" id="giftFxStage"></div>
 
-<!-- AUTOMATISCHES PROFIL BEI FREUNDES-LINK -->
-<div class="screen hide" id="friendAutoProfileScreen" style="background:rgba(6,8,18,.96);justify-content:center;z-index:450000">
-  <div class="box-card" style="text-align:center">
-    <div style="font-size:44px;margin-bottom:6px">👋🎙️</div>
-    <h2 style="color:#38bdf8;margin-bottom:6px">Einladung zum Live-Raum!</h2>
-    <p style="font-size:12px;color:#cbd5e1;margin-bottom:14px">Erstelle kurz dein Profil, damit der Host deine Beitritts-Anfrage sehen und genehmigen kann:</p>
-    <input id="autoProfName" class="inp" placeholder="Dein Name / Spitzname (Pflicht) *">
-    <input id="autoProfBio" class="inp" placeholder="Kurzer Spruch (optional)">
-    <button class="btn green" onclick="createAutoFriendProfile()">✅ Profil speichern & Raum anfragen</button>
+<!-- ================= NEUES "+" KAMERA- & ERSTELLEN-STUDIO (WIE SCREENSHOT, ABGEWANDELT) ================= -->
+<div class="cam-studio hide" id="camStudioScreen">
+  <div class="cs-viewfinder">
+    <!-- Obere Leiste: X & Sound hinzufügen -->
+    <div class="cs-top-row">
+      <div class="cs-close" onclick="closeCamStudio()">✕</div>
+      <div class="cs-sound-pill" onclick="cycleStudioSound()">🎵 <span id="studioSoundTxt">Sound hinzuf...</span></div>
+      <div style="width:36px;display:flex;justify-content:flex-end"><span style="width:12px;height:12px;border-radius:50%;background:#10b981;display:inline-block;box-shadow:0 0 8px #10b981"></span></div>
+    </div>
+
+    <!-- Rechte Werkzeug-Leiste -->
+    <div class="cs-right-tools">
+      <div class="cs-tool-ico" onclick="flipCamera()" title="Kamera drehen">🔄</div>
+      <div class="cs-tool-ico" onclick="toggleFlashBoost()" id="flashIco" title="Blitz / Licht">⚡</div>
+      <div class="cs-tool-ico" onclick="startCountdownRec()" title="3s Timer">⏱️</div>
+      <div class="cs-tool-ico" onclick="closeCamStudio();openLive()" title="Multi-Grid">⊞</div>
+      <div class="cs-tool-ico" onclick="setStudioFx('makeup')" title="Beauty">✨</div>
+      <div class="cs-tool-ico" onclick="cycleColorFilter()" title="Farbfilter">🎨</div>
+    </div>
+
+    <!-- Live Kamera-Canvas mit Gesichts-Morph & Filtern -->
+    <canvas id="studioCanvas" width="360" height="640"></canvas>
+    <div id="recTimerBadge" style="position:absolute;top:58px;left:50%;transform:translateX(-50%);background:#e11d48;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:900;display:none">🔴 00:00</div>
+
+    <!-- Untere Steuerung im Kamerabild: Zeit-Pills + Effekt-Kreise + Großer roter Auslöser -->
+    <div class="cs-bottom-overlay">
+      <div class="cs-dur-bar">
+        <span class="cs-dur-pill" onclick="selectCamDur('30m',this)">30 Sek. Max</span>
+        <span class="cs-dur-pill active" onclick="selectCamDur('30s',this)">30 Sek.</span>
+        <span class="cs-dur-pill" onclick="selectCamDur('15s',this)">15 Sek.</span>
+        <span class="cs-dur-pill" onclick="selectCamDur('foto',this)">FOTO</span>
+        <span class="cs-dur-pill" onclick="createTextPost()">TEXT</span>
+      </div>
+
+      <div class="cs-shutter-row">
+        <div class="cs-fx-orb" id="orb-alien" onclick="setStudioFx('alien')">⚡<span>Blitz</span></div>
+        <div class="cs-fx-orb" id="orb-makeup" onclick="setStudioFx('makeup')">🌹<span>Rosen</span></div>
+        <div class="cs-fx-orb" id="orb-fox" onclick="setStudioFx('fox')">🐱<span>Katze</span></div>
+
+        <!-- Großer roter Aufnahme-Button in der Mitte -->
+        <div class="cs-shutter-btn" id="studioShutterBtn" onclick="triggerStudioShutter()">
+          <div class="cs-shutter-inner"></div>
+        </div>
+
+        <div class="cs-fx-orb" id="orb-clown" onclick="setStudioFx('clown')">🤡<span>Clown</span></div>
+        <div class="cs-fx-orb" id="orb-none" onclick="setStudioFx('none')">😎<span>Clean</span></div>
+        <div class="cs-fx-orb" id="orb-frog" onclick="setStudioFx('frog')">🐸<span>Frosch</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Untere Galerie- & Modus-Leiste: Galerie-Vorschau links + KAMERA | ERSTELLEN | LIVE -->
+  <div class="cs-footer-nav">
+    <div class="cs-gal-box" onclick="closeCamStudio();toggleScreen('videoUploadModal',true)" title="30s Video aus Galerie hochladen">🖼️</div>
+    <div class="cs-mode-tabs">
+      <span class="active" id="cmTab1" onclick="switchStudioMode('cam')">KAMERA</span>
+      <span id="cmTab2" onclick="closeCamStudio();toggleScreen('videoUploadModal',true)">ERSTELLEN</span>
+      <span id="cmTab3" onclick="closeCamStudio();openLive()">LIVE</span>
+    </div>
+    <div style="width:40px"></div>
   </div>
 </div>
 
-<!-- KOMMENTARE & NACHRICHTEN ZUM VIDEO -->
-<div class="screen hide" id="videoCommentsModal" style="background:rgba(6,8,18,.85);justify-content:flex-end;padding:0;z-index:440000">
-  <div style="background:#15182e;width:100%;max-height:72dvh;border-radius:24px 24px 0 0;padding:16px;display:flex;flex-direction:column">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <b style="font-size:14px" id="commentModalTitle">💬 147 Nachrichten zum Video</b>
-      <span style="cursor:pointer;font-size:18px" onclick="toggleScreen('videoCommentsModal',false)">✕</span>
-    </div>
-    <div id="videoCommentsList" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:12px;max-height:45dvh"></div>
-    <div style="display:flex;gap:8px">
-      <input id="newVideoCommentInp" class="inp" style="margin:0;flex:1" placeholder="Nachricht / Kommentar schreiben...">
-      <button class="btn blue" style="width:auto;padding:0 16px" onclick="postVideoComment()">Senden</button>
-    </div>
+<!-- AUTO-PROFIL BEI FREUNDES-LINK -->
+<div class="screen hide" id="friendAutoProfileScreen">
+  <div class="card" style="text-align:center">
+    <h2 style="color:#38bdf8;margin-bottom:6px">👋 Live-Einladung!</h2>
+    <p style="font-size:12px;color:#cbd5e1;margin-bottom:12px">Gib kurz deinen Namen ein (wird automatisch gespeichert):</p>
+    <input id="autoProfName" class="inp" placeholder="Dein Name *">
+    <button class="btn green" onclick="createAutoFriendProfile()">✅ Speichern & Anfragen</button>
   </div>
 </div>
 
-<!-- WEITERLEITEN MODAL -->
-<div class="screen hide" id="forwardModal" style="background:rgba(6,8,18,.88);justify-content:center;z-index:440000">
-  <div class="box-card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <b>🚀 Video weiterleiten</b>
-      <span style="cursor:pointer;font-size:18px" onclick="toggleScreen('forwardModal',false)">✕</span>
-    </div>
-    <p style="font-size:11px;color:#94a3b8;margin-bottom:10px">Sende das Video direkt an Kollegen/innen oder teile den Link:</p>
-    <div id="forwardColleaguesList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px"></div>
-    <button class="btn blue" onclick="shareLink();toggleScreen('forwardModal',false)">🔗 Link kopieren / extern teilen</button>
+<!-- KOMMENTARE MODAL -->
+<div class="screen hide" id="videoCommentsModal" style="background:rgba(0,0,0,.8);justify-content:flex-end;padding:0">
+  <div style="background:#15182e;width:100%;border-radius:20px 20px 0 0;padding:14px">
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b id="commentModalTitle">💬 Nachrichten</b><span onclick="toggleScreen('videoCommentsModal',false)">✕</span></div>
+    <div id="videoCommentsList" style="max-height:40dvh;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
+    <div style="display:flex;gap:6px"><input id="newVideoCommentInp" class="inp" style="margin:0;flex:1" placeholder="Kommentar..."><button class="btn blue" style="width:auto;padding:0 14px" onclick="postVideoComment()">➤</button></div>
   </div>
 </div>
 
-<!-- SUCHE MODAL -->
-<div class="screen hide" id="searchModal" style="background:rgba(6,8,18,.94);z-index:440000">
-  <div style="display:flex;gap:8px;align-items:center;margin-bottom:14px">
-    <input id="feedSearchInp" class="inp" style="margin:0;flex:1" placeholder="🔍 Videos, Creator oder Themen suchen..." oninput="runFeedSearch()">
-    <button class="btn dark" style="width:auto;padding:10px 14px" onclick="toggleScreen('searchModal',false)">Schließen</button>
+<!-- WEITERLEITEN & SUCHE -->
+<div class="screen hide" id="forwardModal" style="background:rgba(0,0,0,.85)">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b>🚀 Weiterleiten an Kollegen/innen</b><span onclick="toggleScreen('forwardModal',false)">✕</span></div>
+    <div id="forwardColleaguesList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px"></div>
+    <button class="btn blue" onclick="shareLink();toggleScreen('forwardModal',false)">🔗 Link kopieren</button>
   </div>
+</div>
+
+<div class="screen hide" id="searchModal">
+  <div style="display:flex;gap:6px;margin-bottom:12px"><input id="feedSearchInp" class="inp" style="margin:0;flex:1" placeholder="🔍 Suchen..." oninput="runFeedSearch()"><button class="btn dark" style="width:auto;padding:0 12px" onclick="toggleScreen('searchModal',false)">✕</button></div>
   <div id="searchResultsBox" style="display:flex;flex-direction:column;gap:8px"></div>
 </div>
 
-<!-- DIREKT-CHAT FENSTER FÜR NACHRICHTEN -->
-<div class="screen hide" id="directChatScreen" style="background:#f8fafc;color:#0f172a;z-index:430000">
-  <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #e2e8f0;margin-bottom:12px">
-    <button class="act-pill-btn" style="padding:7px 12px" onclick="toggleScreen('directChatScreen',false)">← Zurück</button>
-    <b style="font-size:15px" id="dmPartnerTitle">Chat mit Kollege</b>
-    <button class="act-pill-btn primary" style="padding:7px 12px" onclick="toggleScreen('directChatScreen',false);openLive()">🔴 Live</button>
+<!-- DIREKT-CHAT -->
+<div class="screen hide" id="directChatScreen" style="background:#f8fafc;color:#0f172a">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #e2e8f0;margin-bottom:10px">
+    <button class="p-btn" onclick="toggleScreen('directChatScreen',false)">← Zurück</button>
+    <b id="dmPartnerTitle">Chat</b>
+    <button class="p-btn pri" onclick="toggleScreen('directChatScreen',false);openLive()">🔴 Live</button>
   </div>
-  <div id="dmMessagesBox" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:8px 0"></div>
-  <div style="display:flex;gap:8px;margin-top:10px">
-    <input id="dmInput" class="inp-light" style="margin:0;flex:1" placeholder="Nachricht schreiben...">
-    <button class="btn blue" style="width:auto;padding:0 18px" onclick="sendDirectMessage()">Senden</button>
+  <div id="dmMessagesBox" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px"></div>
+  <div style="display:flex;gap:6px;margin-top:8px"><input id="dmInput" class="inp-l" style="margin:0;flex:1" placeholder="Nachricht..."><button class="btn blue" style="width:auto;padding:0 14px" onclick="sendDirectMessage()">➤</button></div>
+</div>
+
+<!-- 30s VIDEO UPLOAD & MINI-DUELL -->
+<div class="screen hide" id="videoUploadModal" style="background:rgba(0,0,0,.88)">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🎬 Clip hochladen (max. 30s)</b><span onclick="toggleScreen('videoUploadModal',false)">✕</span></div>
+    <button class="btn blue" style="margin-bottom:8px" onclick="$('videoFileInp').click()">📂 Video wählen (≤ 30 Sek.)</button>
+    <div id="vidUploadStatus" style="font-size:11px;font-weight:800;margin-bottom:6px;display:none"></div>
+    <video id="vidUploadPreview" controls playsinline style="width:100%;max-height:160px;border-radius:10px;display:none;margin-bottom:8px"></video>
+    <input id="vidUploadCaption" class="inp" placeholder="Beschreibung...">
+    <button class="btn green" id="btnPublishVid" style="display:none" onclick="publishUploadedVideo()">🚀 Jetzt veröffentlichen</button>
   </div>
 </div>
 
-<!-- VIDEO-UPLOAD (MAX 30s) -->
-<div class="screen hide" id="videoUploadModal" style="background:rgba(6,8,18,.92);justify-content:center;z-index:420000">
-  <div class="box-card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <b>🎬 Clip hochladen (max. 30 Sek.)</b>
-      <span style="cursor:pointer;font-size:18px" onclick="toggleScreen('videoUploadModal',false)">✕</span>
+<div class="screen hide" id="miniDuelModal" style="background:rgba(0,0,0,.85)">
+  <div class="card" style="text-align:center">
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b style="color:#fde047">⚔️ Pausen-Duell (Nebenbei)</b><span onclick="toggleScreen('miniDuelModal',false)">✕</span></div>
+    <div style="display:flex;justify-content:space-around;background:#1f2442;padding:10px;border-radius:10px;margin-bottom:10px;font-size:12px;font-weight:800">
+      <span>🛡️ Du: <b style="color:#4ade80" id="duelMyLP">2000</b></span><span>👾 Bot: <b style="color:#f87171" id="duelBotLP">2000</b></span>
     </div>
-    <p style="font-size:11px;color:#94a3b8;margin-bottom:10px">Wähle ein Video von deinem Gerät. Es wird automatisch geprüft, dass es höchstens <b>30,0 Sekunden</b> lang ist.</p>
-    <button class="btn blue" style="margin-bottom:10px" onclick="document.getElementById('videoFileInp').click()">📂 Video-Datei auswählen (≤ 30s)</button>
-    <div id="vidUploadStatus" style="font-size:12px;font-weight:800;margin-bottom:8px;display:none"></div>
-    <video id="vidUploadPreview" controls playsinline style="width:100%;max-height:190px;border-radius:12px;background:#000;display:none;margin-bottom:10px"></video>
-    <input id="vidUploadCaption" class="inp" placeholder="Beschreibung / Hashtags zum Video...">
-    <button class="btn green" id="btnPublishVid" style="display:none" onclick="publishUploadedVideo()">🚀 Jetzt posten</button>
+    <button class="btn gold" onclick="playQuickDuelRound()">⚡ Angreifen (+250 Coins bei Sieg)</button>
   </div>
 </div>
 
-<!-- MINI-DUELL (NEBENBEI) -->
-<div class="screen hide" id="miniDuelModal" style="background:rgba(6,8,18,.88);justify-content:center;z-index:410000">
-  <div class="box-card" style="text-align:center">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <b style="color:#fde047">⚔️ Kleines Pausen-Duell (Nebenbei)</b>
-      <span style="cursor:pointer;font-size:18px" onclick="toggleScreen('miniDuelModal',false)">✕</span>
-    </div>
-    <p style="font-size:11px;color:#94a3b8;margin-bottom:10px">Schnelles Mini-Game für zwischendurch (+250 Coins bei Sieg):</p>
-    <div style="display:flex;justify-content:space-around;background:#1f2442;padding:10px;border-radius:12px;margin-bottom:10px;font-size:12px;font-weight:800">
-      <span>🛡️ Du: <b style="color:#4ade80" id="duelMyLP">2000</b> LP</span>
-      <span>👾 Bot: <b style="color:#f87171" id="duelBotLP">2000</b> LP</span>
-    </div>
-    <button class="btn gold" onclick="playQuickDuelRound()">⚡ Schnell-Angriff ausführen</button>
-  </div>
-</div>
-
-<!-- PROFIL BEARBEITEN -->
+<!-- PROFIL BEARBEITEN & BILD GROSS -->
 <div class="screen hide" id="editScreen" style="background:#f8fafc;color:#0f172a">
-  <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;margin-bottom:14px">
-    <button class="act-pill-btn" style="padding:7px 12px" onclick="toggleScreen('editScreen',false)">← Zurück</button>
-    <b style="font-size:15px">Profil & Adresse bearbeiten</b>
-    <button class="act-pill-btn primary" style="padding:7px 12px" onclick="saveProfile()">Speichern</button>
+  <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+    <button class="p-btn" onclick="toggleScreen('editScreen',false)">← Zurück</button>
+    <b>Profil & Adresse</b>
+    <button class="p-btn pri" onclick="saveProfile()">Speichern</button>
   </div>
-  <label style="font-size:11px;font-weight:800;color:#475569">Anzeigename</label>
-  <input id="eDisp" class="inp-light" placeholder="Dein Name">
-  <label style="font-size:11px;font-weight:800;color:#475569">Benutzername (@Handle)</label>
-  <input id="eUser" class="inp-light" placeholder="@benutzer">
-  <label style="font-size:11px;font-weight:800;color:#475569">Vor- und Nachname</label>
-  <input id="eFullName" class="inp-light" placeholder="Max Mustermann">
-  <label style="font-size:11px;font-weight:800;color:#475569">Lieferadresse (Straße, Hausnr., PLZ & Ort)</label>
-  <input id="eAddr" class="inp-light" placeholder="Musterstraße 1, 12345 Ort">
-  <label style="font-size:11px;font-weight:800;color:#475569">Bio / Über mich</label>
-  <input id="eBio" class="inp-light" placeholder="Dein Spruch im Profil">
-  <button class="btn" style="margin-top:6px" onclick="saveProfile()">✅ Alle Angaben speichern</button>
+  <input id="eDisp" class="inp-l" placeholder="Anzeigename"><input id="eUser" class="inp-l" placeholder="@benutzer">
+  <input id="eFullName" class="inp-l" placeholder="Vor- und Nachname"><input id="eAddr" class="inp-l" placeholder="Straße, PLZ & Ort">
+  <input id="eBio" class="inp-l" placeholder="Bio / Spruch (bleibt leer wenn frei)">
+  <button class="btn" onclick="saveProfile()">✅ Speichern</button>
 </div>
 
-<!-- GROSSANSICHT PROFILBILD -->
 <div class="screen hide" id="picScreen" style="text-align:center;justify-content:center;background:rgba(8,10,20,.95)">
-  <h3 id="picTitle" style="margin-bottom:14px;color:#38bdf8">@user</h3>
-  <div id="picBigBox" style="width:260px;height:260px;border-radius:50%;margin:0 auto 20px;overflow:hidden;display:flex;justify-content:center;align-items:center;font-size:96px;background:#1e1b4b">😎</div>
-  <div style="max-width:280px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:10px">
-    <button class="btn blue" onclick="document.getElementById('avaFile').click()">📷 Anderes Bild hochladen</button>
+  <h3 id="picTitle" style="margin-bottom:12px;color:#38bdf8">@user</h3>
+  <div id="picBigBox" style="width:240px;height:240px;border-radius:50%;margin:0 auto 16px;overflow:hidden;display:flex;justify-content:center;align-items:center;font-size:90px;background:#1e1b4b">😎</div>
+  <div style="max-width:260px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:8px">
+    <button class="btn blue" onclick="$('avaFile').click()">📷 Bild ändern</button>
     <button class="btn dark" onclick="toggleScreen('picScreen',false)">✕ Schließen</button>
   </div>
 </div>
 
 <!-- MULTI-USER LIVE-STUDIO -->
 <div class="screen hide" id="liveScreen">
-  <div class="live-head">
-    <div style="display:flex;align-items:center;gap:6px;background:#161938;padding:4px 10px;border-radius:12px">
-      <span id="liveHostName" style="font-size:11px;font-weight:900">@host</span>
-      <span style="font-size:11px;color:#fde047">• 🪙 <b id="liveCoinTop">10.000</b> • Raum-Code: <b id="myCodeTxt">----</b></span>
-    </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+    <div style="background:#161938;padding:4px 9px;border-radius:10px;font-size:11px"><b id="liveHostName">@host</b> • 🪙 <b id="liveCoinTop" style="color:#fde047">10.000</b> • Code: <b id="myCodeTxt" style="color:#38bdf8">----</b></div>
     <div style="display:flex;gap:4px">
-      <button class="pill on" id="btnGrid4" onclick="setLayout('grid4')">👥 3er/4er Live</button>
-      <button class="pill" id="btnBoxes" onclick="setLayout('boxes')">🎛️ 9-Boxen</button>
+      <button class="pill on" id="btnGrid4" onclick="setLayout('grid4')">👥 3er/4er</button>
+      <button class="pill" id="btnBoxes" onclick="setLayout('boxes')">🎛️ 9-Box</button>
+      <button class="pill" style="background:#dc2626" onclick="closeLive()">✕</button>
     </div>
-    <button class="btn" style="width:32px;padding:6px;background:#dc2626" onclick="closeLive()">✕</button>
   </div>
 
   <div class="stage grid4" id="liveStage">
-    <div class="cam-box slot-me">
-      <div class="box-badge">👑 Du (Maske verschiebbar)</div>
-      <video id="rawVideoMe" autoplay playsinline muted style="display:none"></video>
-      <canvas id="faceCanvasMe" width="360" height="480"></canvas>
-      <div class="box-name" id="nameMe">@ich</div>
-    </div>
-    <div class="cam-box slot-r1">
-      <div class="box-badge">⚡ Platz 2</div>
-      <video id="vidSlot1" autoplay playsinline></video>
-      <div class="empty-slot-hint" id="hintSlot1">Freier Co-Host Platz 2</div>
-      <div class="box-name" id="nameSlot1">Wartet...</div>
-    </div>
-    <div class="cam-box">
-      <div class="box-badge">⚡ Platz 3</div>
-      <video id="vidSlot2" autoplay playsinline></video>
-      <div class="empty-slot-hint" id="hintSlot2">Freier Co-Host Platz 3</div>
-      <div class="box-name" id="nameSlot2">Wartet...</div>
-    </div>
-    <div class="cam-box">
-      <div class="box-badge">⚡ Platz 4</div>
-      <video id="vidSlot3" autoplay playsinline></video>
-      <div class="empty-slot-hint" id="hintSlot3">Freier Co-Host Platz 4</div>
-      <div class="box-name" id="nameSlot3">Wartet...</div>
-    </div>
-    <div class="cam-box extra-guest"><div class="box-badge">🪙 1.8K</div><div style="font-size:24px">🐣</div><div class="box-name">Ducky</div></div>
-    <div class="cam-box extra-guest"><div class="box-badge">🪙 563</div><div style="font-size:24px">🔥</div><div class="box-name">Tomcio</div></div>
-    <div class="cam-box extra-guest"><div class="box-badge">🪙 318</div><div style="font-size:24px">🌸</div><div class="box-name">rosi</div></div>
-    <div class="cam-box extra-guest"><div class="box-badge">🪙 241</div><div style="font-size:24px">🎧</div><div class="box-name">DJ...</div></div>
+    <div class="cam s-me"><div class="bdg">👑 Du</div><video id="rawVideoMe" autoplay playsinline muted style="display:none"></video><canvas id="faceCanvasMe" width="360" height="480"></canvas><div class="nm" id="nameMe">@ich</div></div>
+    <div class="cam s-r1"><div class="bdg">⚡ Platz 2</div><video id="vidSlot1" autoplay playsinline></video><div id="hintSlot1" style="position:absolute;font-size:10px;color:#64748b">Frei (Platz 2)</div><div class="nm" id="nameSlot1">Wartet...</div></div>
+    <div class="cam"><div class="bdg">⚡ Platz 3</div><video id="vidSlot2" autoplay playsinline></video><div id="hintSlot2" style="position:absolute;font-size:10px;color:#64748b">Frei (Platz 3)</div><div class="nm" id="nameSlot2">Wartet...</div></div>
+    <div class="cam"><div class="bdg">⚡ Platz 4</div><video id="vidSlot3" autoplay playsinline></video><div id="hintSlot3" style="position:absolute;font-size:10px;color:#64748b">Frei (Platz 4)</div><div class="nm" id="nameSlot3">Wartet...</div></div>
+    <div class="cam ex-g"><div class="bdg">🪙 1.8K</div>🐣<div class="nm">Ducky</div></div>
+    <div class="cam ex-g"><div class="bdg">🪙 563</div>🔥<div class="nm">Tomcio</div></div>
+    <div class="cam ex-g"><div class="bdg">🪙 318</div>🌸<div class="nm">rosi</div></div>
+    <div class="cam ex-g"><div class="bdg">🪙 241</div>🎧<div class="nm">DJ</div></div>
   </div>
 
-  <div class="chat-box" id="liveChat">
-    <div>✨ <b>Multi-Live:</b> Gäste können unten mit dem Raum-Code anfragen. Der Host genehmigt den Beitritt!</div>
+  <div id="liveChat" style="height:60px;overflow-y:auto;background:rgba(0,0,0,.45);border-radius:9px;padding:5px;font-size:11px;margin-bottom:5px">
+    <div>✨ <b>Multi-Live:</b> Gäste fragen unten mit Raum-Code an – der Host genehmigt!</div>
   </div>
 
-  <div class="host-approval-popup" id="hostApprovalBar">
-    <div>🔔 <b id="reqGuestName" style="color:#fde047">Gast</b> möchte beitreten!</div>
-    <div style="display:flex;gap:6px">
-      <button class="pill" style="background:#10b981" onclick="respondToJoinRequest(true)">✅ Genehmigen</button>
-      <button class="pill" style="background:#dc2626" onclick="respondToJoinRequest(false)">✕ Ablehnen</button>
-    </div>
+  <div id="hostApprovalBar" style="background:#311042;border:1px solid #fde047;border-radius:10px;padding:6px 10px;margin-bottom:5px;display:none;justify-content:space-between;align-items:center;font-size:11px">
+    <span>🔔 <b id="reqGuestName" style="color:#fde047">Gast</b> möchte rein!</span>
+    <div style="display:flex;gap:5px"><button class="pill" style="background:#10b981" onclick="respondToJoinRequest(true)">✅ Ja</button><button class="pill" style="background:#dc2626" onclick="respondToJoinRequest(false)">✕ Nein</button></div>
   </div>
 
-  <div class="bottom-join-bar">
-    <div>🔑 <b>Raum-Code:</b> <span style="color:#fde047;font-weight:900" id="bottomCodeTxt">----</span></div>
-    <div style="display:flex;gap:6px">
-      <button class="pill" style="padding:5px 9px;background:#0284c7" onclick="shareLink()">🔗 Einladungs-Link</button>
-      <button class="pill on" style="padding:5px 9px" onclick="toggleScreen('friendModal',true)">🙋‍♂️ Mit Code anfragen</button>
-    </div>
+  <div style="background:#161936;border-radius:10px;padding:6px 9px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;font-size:11px">
+    <span>🔑 Code: <b style="color:#fde047" id="bottomCodeTxt">----</b></span>
+    <div style="display:flex;gap:5px"><button class="pill" style="background:#0284c7" onclick="shareLink()">🔗 Link</button><button class="pill on" onclick="toggleScreen('friendModal',true)">🙋‍♂️ Mit Code anfragen</button></div>
   </div>
 
-  <div class="tool-row" style="margin-bottom:6px">
-    <button class="pill gift-pill" onclick="toggleScreen('giftModal',true)">🎁 Geschenke (12)</button>
-    <button class="pill on" onclick="toggleScreen('fxModal',true)">🐸 Gesichts-Effekte</button>
+  <div class="t-row" style="margin-bottom:5px">
+    <button class="pill gf" onclick="toggleScreen('giftModal',true)">🎁 Geschenke</button>
+    <button class="pill on" onclick="toggleScreen('fxModal',true)">🐸 Gesichts-Morph</button>
     <button class="pill" onclick="flipCamera()">🔄 Kamera</button>
-    <button class="pill" id="btnHideCam" onclick="toggleCoverMode()">🙈 Tarn-Bild: AUS</button>
-    <button class="pill" onclick="document.getElementById('coverFile').click()">🖼️ Tarn-Bild wählen</button>
-    <button class="pill" id="btnMic" onclick="toggleMic()">🎙️ Mikro AN</button>
-    <button class="pill" onclick="toggleScreen('miniDuelModal',true)">⚔️ Mini-Duell</button>
+    <button class="pill" id="btnHideCam" onclick="toggleCoverMode()">🙈 Tarn-Bild</button>
+    <button class="pill" onclick="$('coverFile').click()">🖼️ Cover+</button>
+    <button class="pill" id="btnMic" onclick="toggleMic()">🎙️ Mikro</button>
   </div>
 
-  <div style="display:flex;gap:6px">
-    <input id="chatInp" class="inp" style="margin:0;flex:1" placeholder="Nachricht schreiben...">
-    <button class="btn blue" style="width:auto;padding:0 14px" onclick="sendChat()">➤</button>
-    <button class="btn gold" style="width:auto;padding:0 14px" onclick="toggleScreen('giftModal',true)">🎁</button>
+  <div style="display:flex;gap:5px">
+    <input id="chatInp" class="inp" style="margin:0;flex:1" placeholder="Nachricht..."><button class="btn blue" style="width:auto;padding:0 14px" onclick="sendChat()">➤</button>
   </div>
 </div>
 
-<!-- MODAL: MIT RAUM-CODE ANFRAGEN -->
-<div class="screen hide" id="friendModal" style="background:rgba(0,0,0,.85);justify-content:center">
-  <div class="box-card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b>🔑 Raum-Code & Beitritts-Anfrage</b><span style="cursor:pointer" onclick="toggleScreen('friendModal',false)">✕</span></div>
-    <div style="background:#1f2442;padding:12px;border-radius:12px;margin-bottom:12px;text-align:center">
-      <div style="font-size:11px;color:#94a3b8">Dein eigener Raum-Code:</div>
-      <div style="font-size:24px;font-weight:900;color:#38bdf8;margin:4px 0" id="shareCodeBig">----</div>
-      <button class="btn blue" onclick="shareLink()">🔗 Link teilen</button>
+<!-- MODALS: RAUM-CODE, GESCHENKE & MASKEN -->
+<div class="screen hide" id="friendModal" style="background:rgba(0,0,0,.85)">
+  <div class="card" style="text-align:center">
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🔑 Raum-Code & Anfrage</b><span onclick="toggleScreen('friendModal',false)">✕</span></div>
+    <div style="background:#1f2442;padding:10px;border-radius:11px;margin-bottom:10px">
+      <div style="font-size:11px;color:#94a3b8">Dein Raum-Code:</div>
+      <div style="font-size:22px;font-weight:900;color:#38bdf8" id="shareCodeBig">----</div>
+      <button class="btn blue" style="margin-top:5px" onclick="shareLink()">🔗 Einladungs-Link teilen</button>
     </div>
-    <input id="friendCodeInp" class="inp" placeholder="4-stelliger Code vom Host...">
-    <button class="btn green" onclick="sendJoinRequestToHost()">🙋‍♂️ Beitritts-Anfrage an Host senden</button>
-    <div id="guestWaitNotice" style="font-size:11px;color:#fde047;margin-top:8px;text-align:center"></div>
+    <input id="friendCodeInp" class="inp" placeholder="4-stelliger Host-Code...">
+    <button class="btn green" onclick="sendJoinRequestToHost()">🙋‍♂️ Anfrage an Host senden</button>
+    <div id="guestWaitNotice" style="font-size:11px;color:#fde047;margin-top:6px"></div>
   </div>
 </div>
 
-<!-- MODAL: GESCHENKE -->
-<div class="screen hide" id="giftModal" style="background:rgba(0,0,0,.85);justify-content:center">
-  <div class="box-card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <b>🎁 Live-Geschenke</b>
-      <span style="cursor:pointer;font-size:18px" onclick="toggleScreen('giftModal',false)">✕</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;background:#1f2442;padding:7px 12px;border-radius:10px;margin-bottom:10px;font-size:12px">
-      <span>Coins: <b style="color:#fde047" id="giftModalCoins">10.000 🪙</b></span>
-      <span style="color:#38bdf8;font-weight:900;cursor:pointer" onclick="addFreeCoins()">+10.000 gratis</span>
-    </div>
+<div class="screen hide" id="giftModal" style="background:rgba(0,0,0,.85)">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🎁 Geschenke (<span id="giftModalCoins" style="color:#fde047">10.000</span> 🪙)</b><span onclick="toggleScreen('giftModal',false)">✕</span></div>
     <div class="grid3" id="giftGridBox"></div>
   </div>
 </div>
 
-<!-- MODAL: GESICHTS-EFFEKTE -->
-<div class="screen hide" id="fxModal" style="background:rgba(0,0,0,.85);justify-content:center">
-  <div class="box-card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b>🐸 Gesichts-Verwandlung (Sprach-aktiv)</b><span style="cursor:pointer" onclick="toggleScreen('fxModal',false)">✕</span></div>
+<div class="screen hide" id="fxModal" style="background:rgba(0,0,0,.85)">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🐸 Gesichts-Verwandlung</b><span onclick="toggleScreen('fxModal',false)">✕</span></div>
     <div class="grid2">
-      <div class="fx-tile" onclick="setFaceMorph('none')">✨ Normal<br><small>Echtes Bild</small></div>
-      <div class="fx-tile" onclick="setFaceMorph('frog')">🐸 Frosch-Kopf<br><small>Mit Zunge beim Reden</small></div>
-      <div class="fx-tile" onclick="setFaceMorph('clown')">🤡 Clown-Gesicht<br><small>Schminke & rote Nase</small></div>
-      <div class="fx-tile" onclick="setFaceMorph('makeup')">💄 Glamour Make-up<br><small>Wimpern & Lippen</small></div>
-      <div class="fx-tile" onclick="setFaceMorph('fox')">🦊 Fuchs-Gesicht<br><small>Ohren & Schnauze</small></div>
-      <div class="fx-tile" onclick="setFaceMorph('alien')">👽 Alien-Kopf<br><small>Grüner Sci-Fi Kopf</small></div>
+      <div class="fx-t" onclick="setFaceMorph('none')">✨ Normal</div><div class="fx-t" onclick="setFaceMorph('frog')">🐸 Frosch-Kopf</div>
+      <div class="fx-t" onclick="setFaceMorph('clown')">🤡 Clown</div><div class="fx-t" onclick="setFaceMorph('makeup')">💄 Make-up</div>
+      <div class="fx-t" onclick="setFaceMorph('fox')">🦊 Fuchs</div><div class="fx-t" onclick="setFaceMorph('alien')">👽 Alien</div>
     </div>
   </div>
 </div>
 
-<!-- ================= VIEW 1: START-FEED (JETZT SOFORT AKTIV BEIM START!) ================= -->
-<div class="view active" id="vFeed">
-  <div class="feed-top-bar">
-    <div class="live-tv-btn" onclick="openLive()">📺 LIVE</div>
-    <div class="feed-nav-tabs">
+<!-- VIEW 1: START-FEED -->
+<div class="view" id="vFeed">
+  <div class="f-top">
+    <div class="tv-btn" onclick="openLive()">📺 LIVE</div>
+    <div class="f-tabs">
       <span id="ftab-nearby" onclick="setFeedFilter('nearby')">In der Nähe</span>
       <span id="ftab-follow" onclick="setFeedFilter('follow')">Gefolgt</span>
       <span id="ftab-foryou" class="active" onclick="setFeedFilter('foryou')">Für dich</span>
     </div>
-    <div class="search-icon-btn" onclick="openSearchModal()">🔍</div>
+    <div class="ico-btn" onclick="openSearchModal()">🔍</div>
   </div>
-
-  <div class="feed-scroller" id="feedScroller"></div>
+  <div class="f-scroll" id="feedScroller"></div>
 </div>
 
-<!-- ================= VIEW 2: KOLLEGEN/INNEN ================= -->
+<!-- VIEW 2: KOLLEGEN/INNEN -->
 <div class="view" id="vColleagues">
-  <div class="subpage-wrap">
-    <div class="subpage-head">
-      <span class="subpage-title">👥 Kollegen/innen</span>
-      <button class="act-pill-btn primary" style="padding:8px 12px" onclick="toggleScreen('friendModal',true)">🔑 Raum-Code</button>
+  <div class="light-page" style="padding:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <b style="font-size:19px">👥 Kollegen/innen</b>
+      <button class="p-btn pri" onclick="toggleScreen('friendModal',true)">🔑 Raum-Code</button>
     </div>
-
-    <div style="background:linear-gradient(90deg,#4f46e5,#ec4899);color:#fff;border-radius:18px;padding:14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <b style="font-size:14px">Lade Kollegen/innen in deinen Stream ein!</b>
-        <p style="font-size:11px;opacity:.9;margin-top:2px">Teile deinen Link für 3er- & 4er-Live-Räume</p>
-      </div>
-      <button class="act-pill-btn" style="background:#fff;color:#0f172a;padding:8px 12px" onclick="shareLink()">🔗 Teilen</button>
-    </div>
-
     <div id="colleaguesListBox"></div>
   </div>
 </div>
 
-<!-- ================= VIEW 3: NACHRICHTEN ================= -->
+<!-- VIEW 3: NACHRICHTEN -->
 <div class="view" id="vMessages">
-  <div class="subpage-wrap">
-    <div class="subpage-head">
-      <span class="subpage-title">💬 Nachrichten</span>
-      <button class="act-pill-btn" style="padding:8px 12px" onclick="shareLink()">➕ Neuer Chat</button>
+  <div class="light-page" style="padding:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <b style="font-size:19px">💬 Nachrichten</b>
+      <button class="p-btn" onclick="shareLink()">➕ Einladen</button>
     </div>
-
     <div id="messagesInboxList"></div>
   </div>
 </div>
 
-<!-- ================= VIEW 4: PROFIL ================= -->
-<div class="view" id="vProf">
-  <div class="prof-wrap">
-    <div class="prof-banner">
-      <button class="banner-icon-btn" onclick="shareLink()">🔗 Link teilen</button>
-      <button class="banner-icon-btn" onclick="toggleDrawer(true)">☰ Menü</button>
-    </div>
-
-    <div class="prof-main-card">
-      <div class="prof-ava-holder" onclick="openPicZoom()" title="Tippe zum Vergrößern">
-        <div class="prof-ava-circle" id="profAvaBox">😎</div>
-        <div class="prof-ava-add" onclick="event.stopPropagation();document.getElementById('avaFile').click()">+</div>
-      </div>
-
-      <div class="status-pill" id="thoughtBubble" onclick="editThought()">💭 Was geht?</div>
-
-      <div class="prof-title-row">
-        <span class="prof-title-name" id="profDispName">🍝Nudel King🍝</span>
-        <span class="prof-lvl-tag">VIP</span>
-      </div>
-      <div class="prof-sub-handle" id="profHandle">@reckpunkt</div>
-      <div class="prof-bio-box" id="profBioTxt"></div>
-
-      <div class="prof-stats-bar">
-        <div onclick="showTab('vColleagues')" style="cursor:pointer"><div class="stat-num">4.783</div><div class="stat-lbl">Gefolgt</div></div>
-        <div onclick="showTab('vColleagues')" style="cursor:pointer"><div class="stat-num">2.889</div><div class="stat-lbl">Follower</div></div>
-        <div onclick="addFreeCoins()" style="cursor:pointer"><div class="stat-num" style="color:#d97706" id="profBalanceStat">🪙 10.000</div><div class="stat-lbl">Coins</div></div>
-      </div>
-
-      <div class="prof-action-row">
-        <button class="act-pill-btn primary" onclick="openEdit()">✏️ Profil</button>
-        <button class="act-pill-btn upload" onclick="toggleScreen('videoUploadModal',true)">🎬 +30s Video</button>
-        <button class="act-pill-btn gold" onclick="toggleScreen('giftModal',true)">🎁 Geschenke</button>
+<!-- VIEW 4: PROFIL -->
+<div class="view active" id="vProf">
+  <div class="light-page">
+    <div class="p-top-bar">
+      <span style="font-size:20px;cursor:pointer" onclick="showTab('vColleagues')">👤+</span>
+      <div class="p-top-right">
+        <div class="vis-chip" onclick="alert('👀 1 neuer Profilbesucher heute!')"><span>🧑🏽</span><span>1</span></div>
+        <span style="cursor:pointer" onclick="shareLink()">↪️</span>
+        <div class="menu-btn-wrap" onclick="toggleDrawer(true)">☰<span class="menu-red-dot">1</span></div>
       </div>
     </div>
 
-    <div class="compact-tabs">
-      <div class="c-tab active" onclick="switchCompactTab('clips',this)">🎬 Clips</div>
-      <div class="c-tab" onclick="switchCompactTab('saved',this)">🔖 Gespeichert</div>
-      <div class="c-tab" onclick="switchCompactTab('shop',this)">🛍️ Shop</div>
-      <div class="c-tab" onclick="switchCompactTab('orders',this)">📦 Adresse</div>
+    <div class="p-hero">
+      <div class="p-bubble" id="thoughtBubble" onclick="editThought()">Was geht?</div>
+      <div class="p-ava-w" onclick="openPicZoom()">
+        <div class="p-ava" id="profAvaBox">😎</div>
+        <div class="p-add" onclick="event.stopPropagation();$('avaFile').click()">+</div>
+      </div>
+
+      <div class="p-name-line">
+        <b style="font-size:18px" id="profDispName">🍝Nudel King🍝</b>
+        <span class="p-lvl-badge">3</span>
+        <button class="p-edit-pill" onclick="openEdit()">✏️</button>
+      </div>
+      <div class="p-handle" id="profHandle">@reckpunkt</div>
+
+      <div class="p-stats">
+        <div onclick="showTab('vColleagues')" style="cursor:pointer"><b>4783</b><span>Gefolgt</span></div>
+        <div onclick="showTab('vColleagues')" style="cursor:pointer"><b>2889</b><span>Follower*innen</span></div>
+        <div onclick="addFreeCoins()" style="cursor:pointer"><b id="profBalanceStat">14.300</b><span>Likes / Coins</span></div>
+      </div>
+
+      <div class="p-bio" id="profBioTxt"></div>
+
+      <div class="p-quick-row">
+        <div onclick="openCamStudio()"><i>🎬</i> Clip-Studio</div>
+        <div onclick="switchCompactTab('orders',document.querySelectorAll('.p-itab')[2])"><i>🛒</i> Deine Bestellungen</div>
+        <div onclick="switchCompactTab('shop',document.querySelectorAll('.p-itab')[1])"><i>🛍️</i> Showcase</div>
+        <div onclick="openLive()"><i>📺</i> LIVE</div>
+        <div onclick="toggleScreen('giftModal',true)"><i>⭐</i> Abo & Gifts</div>
+      </div>
     </div>
 
-    <div class="compact-grid" id="profGridContent"></div>
+    <div class="p-icon-bar">
+      <div class="p-itab" onclick="switchCompactTab('clips',this)">🎞️</div>
+      <div class="p-itab active" onclick="switchCompactTab('shop',this)">🛍️</div>
+      <div class="p-itab" onclick="switchCompactTab('orders',this)">📦</div>
+      <div class="p-itab" onclick="switchCompactTab('saved',this)">🔖</div>
+      <div class="p-itab" onclick="switchCompactTab('liked',this)">🤍</div>
+    </div>
+
+    <div class="shop-header-row" onclick="openCamStudio()">
+      <span>🏪 Creator-Shop & Highlights</span>
+      <span>›</span>
+    </div>
+
+    <div class="task-banner" onclick="openCamStudio()">
+      <div class="task-ico">🎟️</div>
+      <div style="flex:1">
+        <b style="font-size:13px;display:block">Video-Wachstumsaufgabe</b>
+        <span style="font-size:11px;color:#64748b">Veröffentliche 30s-Clips für bis zu 70 € / Bonus-Prämien.</span>
+        <div style="display:flex;gap:6px;margin-top:5px">
+          <span class="task-tag-pink">🎟️ 70 € an Prämien</span>
+          <span class="task-tag-gray">Aktiv bis 31.10.2026</span>
+        </div>
+      </div>
+      <span style="color:#94a3b8;font-weight:900">›</span>
+    </div>
+
+    <div class="c-grid" id="profGridContent"></div>
   </div>
 </div>
 
-<!-- SEITEN-MENÜ -->
-<div class="drawer-bg" id="drawerBg" onclick="toggleDrawer(false)"></div>
+<!-- SEITEN-MENÜ RECHTS -->
+<div class="dr-bg" id="drawerBg" onclick="toggleDrawer(false)"></div>
 <div class="drawer" id="sideDrawer">
-  <div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-      <b style="font-size:16px">⚙️ Mein Konto</b>
-      <span style="font-size:18px;cursor:pointer" onclick="toggleDrawer(false)">✕</span>
-    </div>
-
-    <div class="d-item" onclick="addFreeCoins()">
-      <span>🪙 Gratis +10.000 Coins holen</span>
-      <b style="color:#d97706" id="drawerBalance">10.000 🪙</b>
-    </div>
-    <div class="d-item" onclick="toggleDrawer(false);toggleScreen('videoUploadModal',true)">
-      <span>🎬 Video hochladen (max. 30s)</span>
-      <span>›</span>
-    </div>
-    <div class="d-item" onclick="toggleDrawer(false);toggleScreen('giftModal',true)">
-      <span>🎁 Geschenke-Effekte testen</span>
-      <span>›</span>
-    </div>
-    <div class="d-item" onclick="toggleDrawer(false);openEdit()">
-      <span>✏️ Name & Adresse bearbeiten</span>
-      <span>›</span>
-    </div>
-    <div class="d-item" onclick="shareLink()">
-      <span>🔗 Freundes-Link & Code teilen</span>
-      <span>›</span>
-    </div>
-    <div class="d-item" style="color:#64748b" onclick="toggleDrawer(false);toggleScreen('miniDuelModal',true)">
-      <span>⚔️ Mini-Duell (nebenbei spielen)</span>
-      <span>›</span>
-    </div>
+  <div class="d-cat" style="margin-top:0">Assets</div>
+  <div class="d-row asset-box" onclick="addFreeCoins()">
+    <div class="d-left"><span>👛</span><span>Guthaben (<b id="drawerBalance" style="color:#0284c7">10.000 🪙</b>)</span></div>
+    <div><span class="d-dot"></span><span style="color:#94a3b8">›</span></div>
   </div>
 
-  <button class="btn blue" onclick="toggleDrawer(false);openLive()">🔴 Jetzt LIVE gehen</button>
+  <div class="d-cat">Persönliche Tools</div>
+  <div class="d-row" onclick="alert('🕒 Aktivitätszentrum: Alle neuen Likes & Kommentare.')">
+    <div class="d-left"><span>🕒</span><span>Aktivitätszentrum</span></div><span style="color:#94a3b8">›</span>
+  </div>
+  <div class="d-row" onclick="toggleDrawer(false);switchCompactTab('saved',document.querySelectorAll('.p-itab')[3])">
+    <div class="d-left"><span>☁️</span><span>Offline-Videos</span></div><span style="color:#94a3b8">›</span>
+  </div>
+  <div class="d-row" onclick="shareLink()">
+    <div class="d-left"><span>🏁</span><span>Dein QR-Code & Raum-Link</span></div><span style="color:#94a3b8">›</span>
+  </div>
+
+  <div class="d-cat">Erstellungs- und Business-Tools</div>
+  <div class="d-row" onclick="toggleDrawer(false);openCamStudio()">
+    <div class="d-left"><span>🎬</span><span>Kamera & Studio (+30s Clip)</span></div><span style="color:#94a3b8">›</span>
+  </div>
+  <div class="d-row" onclick="alert('📄 Transparenz-MStV & Community-Richtlinien.')">
+    <div class="d-left"><span>📄</span><span>Transparenz-MStV</span></div><span style="color:#94a3b8">›</span>
+  </div>
+  <div class="d-row" onclick="toggleDrawer(false);openEdit()">
+    <div class="d-left"><span>⚙️</span><span>Einstellungen und Datenschutz</span></div><span style="color:#94a3b8">›</span>
+  </div>
+  <div class="d-row" style="color:#64748b;margin-top:6px" onclick="toggleDrawer(false);toggleScreen('miniDuelModal',true)">
+    <div class="d-left"><span>⚔️</span><span>Mini-Duell (nebenbei)</span></div><span style="color:#94a3b8">›</span>
+  </div>
 </div>
 
-<!-- UNTERE 5ER NAVIGATION (START IST AKTIV) -->
-<div class="bot-nav dark" id="botNav">
-  <div class="nav-tab active" id="bHome" onclick="showTab('vFeed')">
-    <span style="font-size:19px">🏠</span>
-    <span>Start</span>
-  </div>
-  <div class="nav-tab" id="bColleagues" onclick="showTab('vColleagues')">
-    <span class="nav-badge" id="colleagueBadge">74</span>
-    <span style="font-size:19px">👥</span>
-    <span>Kollegen/innen</span>
-  </div>
-  <div onclick="openLive()">
-    <div class="live-plus-btn">+</div>
-  </div>
-  <div class="nav-tab" id="bMessages" onclick="showTab('vMessages')">
-    <span class="nav-badge" id="msgBadge">3</span>
-    <span style="font-size:19px">💬</span>
-    <span>Nachrichten</span>
-  </div>
-  <div class="nav-tab" id="bProf" onclick="showTab('vProf')">
-    <span style="font-size:19px">👤</span>
-    <span>Profil</span>
-  </div>
+<!-- UNTERE 5ER NAVIGATION ("+" ÖFFNET JETZT DAS KAMERA-STUDIO WIE AUF DEM BILD!) -->
+<div class="bot-nav" id="botNav">
+  <div class="n-tab" id="bHome" onclick="showTab('vFeed')"><span style="font-size:18px">🏠</span><span>Start</span></div>
+  <div class="n-tab" id="bColleagues" onclick="showTab('vColleagues')"><span class="n-bdg">74</span><span style="font-size:18px">👥</span><span>Kollegen/innen</span></div>
+  <div onclick="openCamStudio()"><div class="plus-b">+</div></div>
+  <div class="n-tab" id="bMessages" onclick="showTab('vMessages')"><span class="n-bdg" id="msgBadge">3</span><span style="font-size:18px">💬</span><span>Nachrichten</span></div>
+  <div class="n-tab active" id="bProf" onclick="showTab('vProf')"><span style="font-size:18px">👤</span><span>Profil</span></div>
 </div>
 
 <input type="file" id="avaFile" accept="image/*" style="display:none" onchange="uploadImg(event,'ava')">
@@ -632,945 +560,401 @@ button,input{font-family:inherit;outline:none}
 <input type="file" id="videoFileInp" accept="video/*" style="display:none" onchange="validate30SecVideo(event)">
 
 <script>
+const $=id=>document.getElementById(id);
 const inviteRoom=new URLSearchParams(location.search).get('room')||'';
-let savedUserJSON=localStorage.getItem('sv_user_v9');
-let user=savedUserJSON?JSON.parse(savedUserJSON):{
-  dispName:'🍝Nudel King🍝',
-  username:'@reckpunkt',
-  fullName:'',
-  address:'',
-  bio:'',
-  thought:'💭 Was geht?',
-  ava:null,
-  cover:null,
-  profileCreated:false
-};
-
-let storedCoins=localStorage.getItem('sv_coins_10k');
-let coins=storedCoins!==null?Number(storedCoins):10000;
-if(isNaN(coins)||coins<100)coins=10000;
-
-let activeProfTab='clips',currentFeedFilter='foryou',autoScrollEnabled=false;
-let myUploadedClips=[];
-let activeCommentItemIdx=0,activeForwardItemIdx=0;
+let user=JSON.parse(localStorage.getItem('sv_u12'))||{dispName:'🍝Nudel King🍝',username:'@reckpunkt',fullName:'',address:'',bio:'',thought:'Was geht?',ava:null,cover:null,ok:false};
+let coins=Number(localStorage.getItem('sv_c12'))||10000;
+let activeProfTab='shop',currentFeedFilter='foryou',autoScroll=false,myClips=[],curCmtIdx=0,curFwdIdx=0;
 
 const COLLEAGUES=[
-  {id:'c1',name:'Daddyy 😎',handle:'@daddyy_live',ava:'😎',status:'Gerade im 9er Box-Live 🔥',isLive:true,layout:'boxes'},
-  {id:'c2',name:'ANI & Crew',handle:'@ani_loko',ava:'👩‍🎤',status:'Gerade im 3er Co-Stream 🎙️',isLive:true,layout:'grid4'},
-  {id:'c3',name:'Studio Talk',handle:'@studio_talk',ava:'🎙️',status:'Neuer Beitrag 406 online',isLive:false},
-  {id:'c4',name:'Frog King',handle:'@frog_king',ava:'🐸',status:'Online • Bereit für Duell',isLive:false},
-  {id:'c5',name:'DJ Snooopy',handle:'@dj_snoopy',ava:'🐶',status:'Hört gerade Musik 🎧',isLive:false}
+  {name:'Daddyy 😎',ava:'😎',status:'Gerade im 9er Box-Live 🔥',live:true,lay:'boxes'},
+  {name:'ANI & Crew',ava:'👩‍🎤',status:'Gerade im 3er Co-Stream 🎙️',live:true,lay:'grid4'},
+  {name:'Herr Anwalt',ava:'⚖️',status:'Beitrag 406 veröffentlicht',live:false},
+  {name:'Frog King',ava:'🐸',status:'Online • Bereit für Stream',live:false}
 ];
-
 let CHATS={
-  'Daddyy 😎':[
-    {sender:'Daddyy 😎',text:'Hey! Kommst du gleich mit in den Multi-Stream? 🔥',me:false},
-    {sender:'Ich',text:'Ja klar, schick mir deinen 4-stelligen Raum-Code!',me:true}
-  ],
-  'ANI & Crew':[
-    {sender:'ANI & Crew',text:'Danke für den Bahamut-Drachen eben im Live! 🐉👑',me:false}
-  ],
-  'Studio Talk':[
-    {sender:'Studio Talk',text:'Danke fürs Speichern und Weiterleiten von Beitrag 406! 🎬',me:false}
-  ]
+  'Daddyy 😎':[{s:'Daddyy 😎',t:'Kommst du mit in den Multi-Stream? 🔥',me:false}],
+  'ANI & Crew':[{s:'ANI & Crew',t:'Danke für das Geschenk eben! 🐉',me:false}],
+  'Herr Anwalt':[{s:'Herr Anwalt',t:'Beitrag 406 ist jetzt auf der Start-Seite online!',me:false}]
 };
-let activeChatPartner='Daddyy 😎';
+let curChat='Daddyy 😎';
 
 const GIFTS=[
-  {id:'rose',icon:'🌹',name:'Neon-Rose',cost:10,anim:'anim-zoom',particles:['🌹','🌸','✨','💖'],shake:false,freq:520},
-  {id:'kiss',icon:'💋',name:'Glamour-Kuss',cost:25,anim:'anim-zoom',particles:['💋','❤️','💕','✨'],shake:false,freq:600},
-  {id:'fire',icon:'🔥',name:'Feuer-Sturm',cost:50,anim:'anim-zoom',particles:['🔥','💥','⚡','🧡'],shake:true,freq:320},
-  {id:'frog',icon:'🐸',name:'Frosch-Party',cost:100,anim:'anim-spin',particles:['🐸','🍀','💚','👑'],shake:false,freq:440},
-  {id:'party',icon:'🎉',name:'Konfetti-Boom',cost:200,anim:'anim-zoom',particles:['🎉','🎊','🎈','🥳','✨'],shake:false,freq:680},
-  {id:'unicorn',icon:'🦄',name:'Stern-Einhorn',cost:350,anim:'anim-drive',particles:['🦄','🌈','⭐','💖','✨'],shake:false,freq:740},
-  {id:'thunder',icon:'⚡',name:'Donner-Blitz',cost:500,anim:'anim-zoom',particles:['⚡','🌩️','💥','💠'],shake:true,freq:260},
-  {id:'lambo',icon:'🏎️',name:'Cyber-Lambo',cost:750,anim:'anim-drive',particles:['🏎️','💨','🔥','⚡','🪙'],shake:true,freq:220},
-  {id:'rocket',icon:'🚀',name:'Galaxie-Rakete',cost:1000,anim:'anim-rocket',particles:['🚀','🪐','🌟','☄️','🔥'],shake:true,freq:380},
-  {id:'crown',icon:'👑',name:'Königs-Thron',cost:1500,anim:'anim-zoom',particles:['👑','🪙','💎','✨','🏆'],shake:true,freq:580},
-  {id:'dragon',icon:'🐉',name:'Bahamut-Drache',cost:2500,anim:'anim-spin',particles:['🐉','🔥','☄️','⚡','👑'],shake:true,freq:180},
-  {id:'universe',icon:'🌌',name:'Supernova',cost:5000,anim:'anim-spin',particles:['🌌','🪐','💎','👑','🚀','✨'],shake:true,freq:480}
+  {id:'rose',icon:'🌹',name:'Rose',cost:10},{id:'kiss',icon:'💋',name:'Kuss',cost:25},{id:'fire',icon:'🔥',name:'Feuer',cost:50},
+  {id:'frog',icon:'🐸',name:'Frosch',cost:100},{id:'party',icon:'🎉',name:'Party',cost:200},{id:'uni',icon:'🦄',name:'Einhorn',cost:350},
+  {id:'bolt',icon:'⚡',name:'Blitz',cost:500},{id:'car',icon:'🏎️',name:'Lambo',cost:750},{id:'rock',icon:'🚀',name:'Rakete',cost:1000},
+  {id:'crown',icon:'👑',name:'Krone',cost:1500},{id:'drag',icon:'🐉',name:'Drache',cost:2500},{id:'uni2',icon:'🌌',name:'Universum',cost:5000}
 ];
 
-/* FEED-EINTRAEGE (INKL. SPLIT-SCREEN CLIP WIE AUF DEINEM BILD) */
 const FEED_ITEMS=[
-  {
-    id:'f_split1',
-    kind:'split_video',
-    category:['foryou','follow','nearby'],
-    host:'Studio Talk',
-    ava:'🎙️',
-    avaImg:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200',
-    dur:24,
-    subtitle:'In Paris ⚡',
-    neonSign:'StreamVerse!',
-    topImg:'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600',
-    bottomImg:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600',
-    videoUrl:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    caption:'Beitrag 406 | In Frankreich, vor allem in Paris, kommt es zu spannenden Szenen... mehr',
-    playlist:'🎞️ Wiedergabeliste • 🌍 Nachrichten',
-    likes:5355,
-    liked:false,
-    commentsCount:147,
-    comments:[
-      {user:'@daddyy_live',text:'Mega spannend zusammengefasst! 🔥'},
-      {user:'@ani_loko',text:'Hab das Video direkt gespeichert 🔖'}
-    ],
-    saves:261,
-    saved:false,
-    shares:417,
-    followed:false
-  },
-  {
-    id:'f_split2',
-    kind:'split_video',
-    category:['foryou','nearby'],
-    host:'Neon Creator',
-    ava:'🏎️',
-    avaImg:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200',
-    dur:19,
-    subtitle:'Night Run 🔥',
-    neonSign:'CyberLive',
-    topImg:'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600',
-    bottomImg:'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600',
-    videoUrl:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    caption:'Beitrag 209 | Live-Reaktion auf die neuen Nacht-Clips aus der Community ⚡ #live #clips',
-    playlist:'🎞️ Wiedergabeliste • ⚡ Community Clips',
-    likes:2840,
-    liked:false,
-    commentsCount:93,
-    comments:[{user:'@frog_king',text:'Richtig starkes Design!'}],
-    saves:184,
-    saved:false,
-    shares:210,
-    followed:true
-  },
-  {
-    id:'f_boxlive',
-    kind:'box_live',
-    category:['foryou','follow'],
-    host:'Daddyy 😎',
-    ava:'😎',
-    avaImg:'https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?w=200',
-    caption:'Box Battle 🔥 Mit Raum-Code beitreten & live mitreden!',
-    playlist:'📺 Live-Arena • 🎛️ 9er Box-Stream',
-    likes:3420,
-    liked:false,
-    commentsCount:312,
-    comments:[{user:'@ani_loko',text:'Bin gleich mit im Raum!'}],
-    saves:98,
-    saved:false,
-    shares:164,
-    followed:true
-  }
+  {id:'f1',kind:'split',cat:['foryou','follow','nearby'],host:'Herr Anwalt',ava:'⚖️',avaImg:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200',sub:'In Paris',neon:'Cogito Ipse!',topImg:'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600',botImg:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600',url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',cap:'Beitrag 406 | In Frankreich, vor allem in Paris, kommt es zu schwere... mehr',pl:'🎞️ Wiedergabeliste • 🌍 Nachrichten',likes:5355,liked:false,cmts:147,cmtList:[{u:'@daddyy',t:'Starkes Video! 🔥'}],saves:261,saved:false,shares:417,fol:false},
+  {id:'f2',kind:'split',cat:['foryou','nearby'],host:'Neon Creator',ava:'🏎️',avaImg:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200',sub:'Night City ⚡',neon:'StreamVerse',topImg:'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600',botImg:'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600',url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',cap:'Beitrag 209 | Neue Highlights aus der Community ⚡ #clips #live',pl:'🎞️ Wiedergabeliste • ⚡ Highlights',likes:2840,liked:false,cmts:84,cmtList:[],saves:140,saved:false,shares:112,fol:true}
 ];
 
 let avaImgObj=new Image(),coverImgObj=new Image();
-function reloadImages(){
-  if(user.ava)avaImgObj.src=user.ava;
-  if(user.cover)coverImgObj.src=user.cover;
-}
-reloadImages();
+function reloadImgs(){if(user.ava)avaImgObj.src=user.ava;if(user.cover)coverImgObj.src=user.cover;}
+reloadImgs();
 
 function initApp(){
-  renderGiftGrid();
-  renderStartFeed();
-  renderColleaguesPage();
-  renderMessagesPage();
-  updateUI();
+  $('giftGridBox').innerHTML=GIFTS.map(g=>`<div class="fx-t" onclick="sendGift('${g.id}')"><div style="font-size:26px">${g.icon}</div><div>${g.name}</div><div style="color:#fde047">🪙 ${g.cost}</div></div>`).join('');
+  renderStartFeed();renderColleaguesPage();renderMessagesPage();updateUI();
   if(inviteRoom){
-    document.getElementById('friendCodeInp').value=inviteRoom;
-    if(!user.profileCreated){
-      toggleScreen('friendAutoProfileScreen',true);
-    }else{
-      setTimeout(()=>openLive().then(()=>toggleScreen('friendModal',true)),400);
+    $('friendCodeInp').value=inviteRoom;
+    if(!user.ok)toggleScreen('friendAutoProfileScreen',true);
+    else setTimeout(()=>openLive().then(()=>toggleScreen('friendModal',true)),400);
+  }
+}
+
+/* ================= "+" KAMERA- & ERSTELLEN-STUDIO LOGIK ================= */
+let studioActive=false,studioRec=false,studioSec=0,studioTimer=null,flashBoost=false,colorFilterIdx=0;
+const SOUNDS=['🎵 Cyber Beats 2026','🎵 Neon Phonk Drift','🎵 Summer Vibes Hit','🎵 Originalton - StreamVerse'];
+let soundIdx=0;
+const COLOR_FILTERS=['none','contrast(125%) saturate(140%)','hue-rotate(60deg) saturate(160%)','sepia(45%) contrast(115%)'];
+
+async function openCamStudio(){
+  studioActive=true;
+  $('camStudioScreen').classList.remove('hide');
+  hideCam=false;
+  await startCam();
+  if(!animId)renderFaceCanvas();
+}
+function closeCamStudio(){
+  studioActive=false;
+  if(studioRec)triggerStudioShutter();
+  $('camStudioScreen').classList.add('hide');
+  if($('liveScreen').classList.contains('hide')){
+    if(myStream){myStream.getTracks().forEach(t=>t.stop());myStream=null;}
+    if(animId){cancelAnimationFrame(animId);animId=null;}
+  }
+}
+function cycleStudioSound(){
+  soundIdx=(soundIdx+1)%SOUNDS.length;
+  $('studioSoundTxt').textContent=SOUNDS[soundIdx];
+}
+function toggleFlashBoost(){
+  flashBoost=!flashBoost;
+  $('flashIco').style.color=flashBoost?'#fde047':'#fff';
+}
+function cycleColorFilter(){
+  colorFilterIdx=(colorFilterIdx+1)%COLOR_FILTERS.length;
+  $('studioCanvas').style.filter=COLOR_FILTERS[colorFilterIdx];
+}
+function setStudioFx(m){
+  faceMorph=m;
+  document.querySelectorAll('.cs-fx-orb').forEach(x=>x.classList.remove('active'));
+  if($('orb-'+m))$('orb-'+m).classList.add('active');
+}
+function selectCamDur(mode,el){
+  document.querySelectorAll('.cs-dur-pill').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+}
+function startCountdownRec(){
+  alert('⏱️ 3-Sekunden-Timer gestartet!');
+  setTimeout(()=>{if(studioActive&&!studioRec)triggerStudioShutter();},3000);
+}
+function createTextPost(){
+  const txt=prompt('📝 Dein Text-Clip für den Start-Feed:');
+  if(!txt)return;
+  const c={id:'c_'+Date.now(),kind:'split',cat:['foryou','follow','nearby'],host:user.dispName,ava:'📝',sub:txt.slice(0,18),neon:'Text-Post',topImg:'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600',botImg:'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600',url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',cap:txt,pl:'🎞️ Text-Beitrag',likes:1,liked:false,cmts:0,cmtList:[],saves:0,saved:false,shares:0,fol:true};
+  FEED_ITEMS.unshift(c);closeCamStudio();renderStartFeed();showTab('vFeed');
+}
+function triggerStudioShutter(){
+  const btn=$('studioShutterBtn'),bdg=$('recTimerBadge');
+  if(!studioRec){
+    studioRec=true;studioSec=0;btn.classList.add('rec');bdg.style.display='block';
+    studioTimer=setInterval(()=>{
+      studioSec++;
+      bdg.textContent=`🔴 00:${studioSec<10?'0'+studioSec:studioSec} / 00:30`;
+      if(studioSec>=30)triggerStudioShutter();
+    },1000);
+  }else{
+    studioRec=false;clearInterval(studioTimer);btn.classList.remove('rec');bdg.style.display='none';
+    if(confirm(`🎬 Aufnahme (${Math.max(1,studioSec)} Sek.) fertig! Möchtest du ein Video von deinem Gerät auswählen oder diesen Clip direkt posten?`)){
+      closeCamStudio();toggleScreen('videoUploadModal',true);
     }
   }
 }
 
-/* ================= START-FEED LOGIK ================= */
+/* START-FEED */
+function renderStartFeed(){
+  const list=FEED_ITEMS.filter(x=>currentFeedFilter==='nearby'?x.cat.includes('nearby'):currentFeedFilter==='follow'?x.fol:true);
+  $('feedScroller').innerHTML=list.map((it,idx)=>{
+    const rIdx=FEED_ITEMS.findIndex(x=>x.id===it.id);
+    const av=it.avaImg?`<img src="${it.avaImg}">`:it.ava;
+    return `<div class="f-slide">
+      <div class="split-wrap" onclick="const v=this.querySelector('video');if(v)v.paused?v.play():v.pause()">
+        <div class="split-t">
+          <video src="${it.url}" poster="${it.topImg||''}" autoplay ${autoScroll?'':'loop'} muted playsinline onended="if(autoScroll){const s=$('feedScroller').children[${idx+1}]||$('feedScroller').children[0];if(s)s.scrollIntoView({behavior:'smooth'})}"></video>
+          ${it.sub?`<div class="sub-pill">${it.sub}</div>`:''}
+        </div>
+        ${it.kind==='split'?`<div class="split-b"><img src="${it.botImg}"><div class="neon-txt">${it.neon}</div></div>`:''}
+      </div>
+      <div class="r-rail">
+        <div class="as-box" onclick="autoScroll=!autoScroll;renderStartFeed()"><div class="sw ${autoScroll?'on':''}"><i></i></div><span style="font-size:8px;font-weight:800">Auto-Scrollen</span></div>
+        <div class="r-ava" onclick="FEED_ITEMS[${rIdx}].fol=!FEED_ITEMS[${rIdx}].fol;renderStartFeed()">${av}<div class="r-plus" style="background:${it.fol?'#10b981':'#ff0050'}">${it.fol?'✓':'+'}</div></div>
+        <div class="r-pill ${it.liked?'on-l':''}" onclick="likeIt(${rIdx})"><span style="font-size:19px">${it.liked?'❤️':'🤍'}</span><b>${it.likes}</b></div>
+        <div class="r-pill" onclick="openCmts(${rIdx})"><span style="font-size:19px">💬</span><b>${it.cmts}</b></div>
+        <div class="r-pill ${it.saved?'on-s':''}" onclick="saveIt(${rIdx})"><span style="font-size:19px">🔖</span><b>${it.saves}</b></div>
+        <div class="r-pill" onclick="openFwd(${rIdx})"><span style="font-size:19px">↪️</span><b>${it.shares}</b></div>
+        <div class="disc" onclick="toggleScreen('giftModal',true)">${av}</div>
+      </div>
+      <div class="f-meta">
+        <div style="font-size:14px;font-weight:900;margin-bottom:2px">${it.host} <span style="background:#38bdf8;color:#000;font-size:9px;padding:1px 4px;border-radius:50%">✓</span></div>
+        <div style="font-size:11px;color:#e2e8f0">${it.cap}</div>
+      </div>
+      <div class="pl-bar" onclick="openCmts(${rIdx})"><span>${it.pl}</span><span>›</span></div>
+    </div>`;
+  }).join('');
+}
+
 function setFeedFilter(f){
   currentFeedFilter=f;
-  document.getElementById('ftab-nearby').classList.toggle('active',f==='nearby');
-  document.getElementById('ftab-follow').classList.toggle('active',f==='follow');
-  document.getElementById('ftab-foryou').classList.toggle('active',f==='foryou');
+  ['nearby','follow','foryou'].forEach(k=>$('ftab-'+k).classList.toggle('active',k===f));
   renderStartFeed();
 }
-
-function toggleAutoScroll(ev){
-  if(ev)ev.stopPropagation();
-  autoScrollEnabled=!autoScrollEnabled;
-  renderStartFeed();
-}
-
-function handleVideoEnded(slideIdx){
-  if(!autoScrollEnabled)return;
-  const scroller=document.getElementById('feedScroller');
-  const slides=scroller.querySelectorAll('.feed-slide');
-  const nextSlide=slides[slideIdx+1]||slides[0];
-  if(nextSlide)nextSlide.scrollIntoView({behavior:'smooth'});
-}
-
-function toggleFollowCreator(idx,ev){
-  if(ev)ev.stopPropagation();
-  FEED_ITEMS[idx].followed=!FEED_ITEMS[idx].followed;
-  renderStartFeed();
-}
-
-function likeFeedItem(idx,ev){
-  if(ev)ev.stopPropagation();
-  const it=FEED_ITEMS[idx];
-  it.liked=!it.liked;
-  it.likes+=it.liked?1:-1;
-  renderStartFeed();
-}
-
-function saveFeedItem(idx,ev){
-  if(ev)ev.stopPropagation();
-  const it=FEED_ITEMS[idx];
-  it.saved=!it.saved;
-  it.saves+=it.saved?1:-1;
-  renderStartFeed();
-  if(activeProfTab==='saved')renderProfileTabContent();
-}
-
-function openCommentsModal(idx,ev){
-  if(ev)ev.stopPropagation();
-  activeCommentItemIdx=idx;
-  const it=FEED_ITEMS[idx];
-  document.getElementById('commentModalTitle').textContent=`💬 ${it.commentsCount} Nachrichten zu ${it.host}`;
-  const list=document.getElementById('videoCommentsList');
-  list.innerHTML=(it.comments||[]).map(c=>`
-    <div style="background:#1f2442;padding:9px 12px;border-radius:12px;font-size:12px">
-      <b style="color:#38bdf8">${c.user}:</b> <span style="color:#f1f5f9">${c.text}</span>
-    </div>
-  `).join('')||'<div style="color:#64748b;font-size:12px">Noch keine Nachrichten. Schreib die erste!</div>';
+function likeIt(i){const x=FEED_ITEMS[i];x.liked=!x.liked;x.likes+=x.liked?1:-1;renderStartFeed();updateUI();}
+function saveIt(i){const x=FEED_ITEMS[i];x.saved=!x.saved;x.saves+=x.saved?1:-1;renderStartFeed();updateUI();}
+function openCmts(i){
+  curCmtIdx=i;const x=FEED_ITEMS[i];
+  $('commentModalTitle').textContent=`💬 ${x.cmts} Nachrichten`;
+  $('videoCommentsList').innerHTML=x.cmtList.map(c=>`<div style="background:#1f2442;padding:8px;border-radius:10px;font-size:12px"><b style="color:#38bdf8">${c.u}:</b> ${c.t}</div>`).join('')||'Noch keine Kommentare.';
   toggleScreen('videoCommentsModal',true);
 }
-
 function postVideoComment(){
-  const inp=document.getElementById('newVideoCommentInp');
-  const txt=inp.value.trim();
-  if(!txt)return;
-  const it=FEED_ITEMS[activeCommentItemIdx];
-  if(!it.comments)it.comments=[];
-  it.comments.push({user:user.username,text:txt});
-  it.commentsCount++;
-  inp.value='';
-  openCommentsModal(activeCommentItemIdx);
-  renderStartFeed();
+  const v=$('newVideoCommentInp').value.trim();if(!v)return;
+  FEED_ITEMS[curCmtIdx].cmtList.push({u:user.username,t:v});FEED_ITEMS[curCmtIdx].cmts++;
+  $('newVideoCommentInp').value='';openCmts(curCmtIdx);renderStartFeed();
 }
-
-function openForwardModal(idx,ev){
-  if(ev)ev.stopPropagation();
-  activeForwardItemIdx=idx;
-  const box=document.getElementById('forwardColleaguesList');
-  box.innerHTML=COLLEAGUES.map(c=>`
-    <div style="background:#1f2442;padding:9px 12px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="forwardVideoToColleague('${c.name}')">
-      <span>${c.ava} <b>${c.name}</b></span>
-      <span style="background:#6366f1;padding:4px 10px;border-radius:8px;font-size:11px;font-weight:800">Weiterleiten 🚀</span>
-    </div>
-  `).join('');
+function openFwd(i){
+  curFwdIdx=i;
+  $('forwardColleaguesList').innerHTML=COLLEAGUES.map(c=>`<div style="background:#1f2442;padding:8px 10px;border-radius:10px;display:flex;justify-content:space-between;cursor:pointer" onclick="fwdTo('${c.name}')"><span>${c.ava} <b>${c.name}</b></span><span style="color:#38bdf8;font-weight:800">Senden ↪️</span></div>`).join('');
   toggleScreen('forwardModal',true);
 }
-
-function forwardVideoToColleague(colName){
-  const it=FEED_ITEMS[activeForwardItemIdx];
-  it.shares++;
-  if(!CHATS[colName])CHATS[colName]=[];
-  CHATS[colName].push({sender:'Ich',text:`🚀 Video weitergeleitet von ${it.host}: „${it.caption.slice(0,35)}...“`,me:true});
-  toggleScreen('forwardModal',false);
-  renderStartFeed();
-  renderMessagesPage();
-  alert(`✅ Video wurde an ${colName} weitergeleitet!`);
+function fwdTo(n){
+  const x=FEED_ITEMS[curFwdIdx];x.shares++;
+  if(!CHATS[n])CHATS[n]=[];CHATS[n].push({s:'Ich',t:`↪️ Video von ${x.host} weitergeleitet`,me:true});
+  toggleScreen('forwardModal',false);renderStartFeed();renderMessagesPage();alert('An '+n+' gesendet!');
 }
-
-function openSearchModal(){
-  toggleScreen('searchModal',true);
-  runFeedSearch();
-}
-
+function openSearchModal(){toggleScreen('searchModal',true);runFeedSearch();}
 function runFeedSearch(){
-  const q=(document.getElementById('feedSearchInp').value||'').toLowerCase();
-  const box=document.getElementById('searchResultsBox');
-  const matches=FEED_ITEMS.filter(x=>x.host.toLowerCase().includes(q)||x.caption.toLowerCase().includes(q));
-  box.innerHTML=matches.map(m=>`
-    <div style="background:#15182e;padding:12px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="toggleScreen('searchModal',false);setFeedFilter('foryou')">
-      <div>
-        <b style="font-size:13px;color:#38bdf8">${m.host}</b>
-        <div style="font-size:11px;color:#cbd5e1;margin-top:2px">${m.caption.slice(0,48)}...</div>
-      </div>
-      <span style="font-size:18px">▶️</span>
-    </div>
-  `).join('');
+  const q=($('feedSearchInp').value\vert{}\vert{}'').toLowerCase();$('searchResultsBox').innerHTML=FEED_ITEMS.filter(x=>x.host.toLowerCase().includes(q)||x.cap.toLowerCase().includes(q)).map(m=>`<div style="background:#15182e;padding:10px;border-radius:12px;cursor:pointer" onclick="toggleScreen('searchModal',false)"><b>${m.host}</b><div style="font-size:11px;color:#94a3b8">${m.cap}</div></div>`).join('');
 }
 
-function renderStartFeed(){
-  const scroller=document.getElementById('feedScroller');
-  const list=FEED_ITEMS.filter(item=>{
-    if(currentFeedFilter==='nearby')return item.category.includes('nearby');
-    if(currentFeedFilter==='follow')return item.followed;
-    return true;
-  });
-
-  scroller.innerHTML=list.map((item,slideIdx)=>{
-    const realIdx=FEED_ITEMS.findIndex(x=>x.id===item.id);
-    const avaContent=item.avaImg?`<img src="${item.avaImg}">`:`<span>${item.ava||'😎'}</span>`;
-
-    const rightRail=`
-      <div class="right-action-rail">
-        <div class="autoscroll-box" onclick="toggleAutoScroll(event)">
-          <div class="sw-track ${autoScrollEnabled?'on':''}"><div class="sw-Dot"></div></div>
-          <span class="sw-lbl">Auto-Scrollen</span>
-        </div>
-
-        <div class="rail-ava-wrap" onclick="toggleFollowCreator(${realIdx},event)">
-          <div class="rail-ava-img">${avaContent}</div>
-          <div class="rail-follow-badge" style="background:${item.followed?'#10b981':'#ff0050'}">${item.followed?'✓':'+'}</div>
-        </div>
-
-        <div class="rail-pill ${item.liked?'active-like':''}" onclick="likeFeedItem(${realIdx},event)">
-          <span class="rail-ico">${item.liked?'❤️':'🤍'}</span>
-          <span class="rail-num">${item.likes}</span>
-        </div>
-
-        <div class="rail-pill" onclick="openCommentsModal(${realIdx},event)">
-          <span class="rail-ico">💬</span>
-          <span class="rail-num">${item.commentsCount}</span>
-        </div>
-
-        <div class="rail-pill ${item.saved?'active-save':''}" onclick="saveFeedItem(${realIdx},event)">
-          <span class="rail-ico">🔖</span>
-          <span class="rail-num">${item.saves}</span>
-        </div>
-
-        <div class="rail-pill" onclick="openForwardModal(${realIdx},event)">
-          <span class="rail-ico">🚀</span>
-          <span class="rail-num">${item.shares}</span>
-        </div>
-
-        <div class="sound-disc" onclick="toggleScreen('giftModal',true)" title="Geschenk senden">
-          ${avaContent}
-        </div>
-      </div>`;
-
-    const bottomInfoAndBar=`
-      <div class="feed-info-overlay">
-        <div class="info-creator-row">
-          <span>${item.host}</span>
-          <span class="check-badge">✓</span>
-        </div>
-        <div class="info-text">${item.caption}</div>
-      </div>
-      <div class="playlist-bottom-bar" onclick="openCommentsModal(${realIdx},event)">
-        <span>${item.playlist||'🎞️ Wiedergabeliste • 🌍 Nachrichten'}</span>
-        <span>›</span>
-      </div>`;
-
-    if(item.kind==='split_video'){
-      return `
-      <div class="feed-slide">
-        <div class="split-stage" onclick="const v=this.querySelector('video');if(v){v.paused?v.play():v.pause()}">
-          <div class="split-top">
-            <video src="${item.videoUrl}" poster="${item.topImg}" autoplay ${autoScrollEnabled?'':'loop'} muted playsinline onended="handleVideoEnded(${slideIdx})"></video>
-            <div class="split-subtitles">${item.subtitle||'Live Clip'}</div>
-          </div>
-          <div class="split-bottom">
-            <img class="creator-cam" src="${item.bottomImg}">
-            <div class="neon-wall-sign">${item.neonSign||'StreamVerse'}</div>
-          </div>
-        </div>
-        ${rightRail}
-        ${bottomInfoAndBar}
-      </div>`;
-    }
-
-    if(item.kind==='box_live'){
-      return `
-      <div class="feed-slide">
-        <div class="feed-live-preview-wrap" onclick="openLiveWithLayout('boxes')">
-          <div class="preview-box-grid">
-            <div class="p-cell p-host"><img src="https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?w=500"><span class="p-pts" style="background:rgba(0,0,0,.7)">Host</span><span class="p-usr">Daddyy</span></div>
-            <div class="p-cell p-cohost"><div class="p-cell-ava">👻</div><span class="p-pts">🪙 2.4K</span><span class="p-usr">Ash</span></div>
-            <div class="p-cell"><div class="p-cell-ava">🐶</div><span class="p-pts">🪙 2.2K</span><span class="p-usr">Snoopy</span></div>
-            <div class="p-cell"><div class="p-cell-ava">☕</div><span class="p-pts">🪙 1.8K</span><span class="p-usr">Ducky</span></div>
-          </div>
-          <div class="tap-live-bar"><span class="now-live-pill">LIVE</span>📊 Tippe zum LIVE Anschauen</div>
-        </div>
-        ${rightRail}
-        ${bottomInfoAndBar}
-      </div>`;
-    }
-
-    return `
-      <div class="feed-slide">
-        <div class="split-stage">
-          <video src="${item.videoUrl}" style="width:100%;height:100%;object-fit:cover" autoplay ${autoScrollEnabled?'':'loop'} muted playsinline onended="handleVideoEnded(${slideIdx})" onclick="this.paused?this.play():this.pause()"></video>
-        </div>
-        ${rightRail}
-        ${bottomInfoAndBar}
-      </div>`;
-  }).join('');
-}
-
-/* KOLLEGEN/INNEN & NACHRICHTEN RENDERN */
+/* KOLLEGEN & NACHRICHTEN */
 function renderColleaguesPage(){
-  const box=document.getElementById('colleaguesListBox');
-  box.innerHTML=COLLEAGUES.map(c=>`
-    <div class="list-card" onclick="${c.isLive?`openLiveWithLayout('${c.layout}')`:`openDirectChat('${c.name}')`}">
-      <div style="display:flex;align-items:center;gap:12px">
-        <div class="list-ava">${c.ava}<span class="online-dot"></span></div>
-        <div>
-          <div style="font-size:14px;font-weight:900;color:#0f172a">${c.name}</div>
-          <div style="font-size:11px;color:#64748b;margin-top:2px">${c.status}</div>
-        </div>
-      </div>
-      <div>
-        ${c.isLive
-          ? `<span class="live-mini-pill">🔴 LIVE</span>`
-          : `<button class="act-pill-btn primary" style="padding:7px 12px" onclick="event.stopPropagation();openDirectChat('${c.name}')">💬 Chat</button>`
-        }
-      </div>
-    </div>
-  `).join('');
+  $('colleaguesListBox').innerHTML=COLLEAGUES.map(c=>`<div class="l-card" onclick="${c.live?`openLive();setLayout('${c.lay}')`:`openDirectChat('${c.name}')`}"><div style="display:flex;align-items:center;gap:10px"><div style="font-size:24px">${c.ava}</div><div><b style="font-size:14px">${c.name}</b><div style="font-size:11px;color:#64748b">${c.status}</div></div></div>${c.live?'<span style="background:#ff0050;color:#fff;font-size:10px;font-weight:900;padding:4px 8px;border-radius:7px">🔴 LIVE</span>':'<span style="color:#4f46e5;font-weight:800;font-size:12px">💬 Chat</span>'}</div>`).join('');
 }
-
 function renderMessagesPage(){
-  const box=document.getElementById('messagesInboxList');
-  box.innerHTML=Object.keys(CHATS).map(name=>{
-    const arr=CHATS[name];
-    const last=arr[arr.length-1];
-    const col=COLLEAGUES.find(x=>x.name===name)||{ava:'💬'};
-    return `
-      <div class="list-card" onclick="openDirectChat('${name}')">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="list-ava">${col.ava}<span class="online-dot"></span></div>
-          <div>
-            <div style="font-size:14px;font-weight:900;color:#0f172a">${name}</div>
-            <div style="font-size:12px;color:#475569;margin-top:2px">${last?last.text:''}</div>
-          </div>
-        </div>
-        <span style="font-size:11px;color:#6366f1;font-weight:800">Öffnen ›</span>
-      </div>
-    `;
-  }).join('');
+  $('messagesInboxList').innerHTML=Object.keys(CHATS).map(n=>{const l=CHATS[n][CHATS[n].length-1];return `<div class="l-card" onclick="openDirectChat('${n}')"><div><b style="font-size:14px">${n}</b><div style="font-size:12px;color:#64748b">${l?l.t:''}</div></div><span style="color:#6366f1;font-weight:800;font-size:11px">Öffnen ›</span></div>`;}).join('');
 }
-
-function openDirectChat(name){
-  activeChatPartner=name;
-  if(!CHATS[name])CHATS[name]=[{sender:name,text:'Hey! Schön, dass wir vernetzt sind 👋',me:false}];
-  document.getElementById('dmPartnerTitle').textContent='💬 '+name;
-  renderDirectChatMessages();
-  toggleScreen('directChatScreen',true);
-  document.getElementById('msgBadge').style.display='none';
+function openDirectChat(n){
+  curChat=n;if(!CHATS[n])CHATS[n]=[];$('dmPartnerTitle').textContent='💬 '+n;
+  $('dmMessagesBox').innerHTML=CHATS[n].map(m=>`<div style="align-self:${m.me?'flex-end':'flex-start'};background:${m.me?'#6366f1':'#e2e8f0'};color:${m.me?'#fff':'#0f172a'};padding:8px 12px;border-radius:14px;font-size:12px;font-weight:600">${m.t}</div>`).join('');
+  toggleScreen('directChatScreen',true);$('msgBadge').style.display='none';
 }
-
-function renderDirectChatMessages(){
-  const box=document.getElementById('dmMessagesBox');
-  const list=CHATS[activeChatPartner]||[];
-  box.innerHTML=list.map(m=>`
-    <div style="align-self:${m.me?'flex-end':'flex-start'};background:${m.me?'#6366f1':'#e2e8f0'};color:${m.me?'#fff':'#0f172a'};padding:10px 14px;border-radius:16px;max-width:78%;font-size:13px;font-weight:600">
-      ${m.text}
-    </div>
-  `).join('');
-  box.scrollTop=box.scrollHeight;
-}
-
 function sendDirectMessage(){
-  const inp=document.getElementById('dmInput');
-  const txt=inp.value.trim();
-  if(!txt)return;
-  if(!CHATS[activeChatPartner])CHATS[activeChatPartner]=[];
-  CHATS[activeChatPartner].push({sender:'Ich',text:txt,me:true});
-  inp.value='';
-  renderDirectChatMessages();
-  renderMessagesPage();
+  const v=$('dmInput').value.trim();if(!v)return;
+  CHATS[curChat].push({s:'Ich',t:v,me:true});$('dmInput').value='';openDirectChat(curChat);renderMessagesPage();
 }
 
-function createAutoFriendProfile(){
-  const name=document.getElementById('autoProfName').value.trim();
-  const bio=document.getElementById('autoProfBio').value.trim();
-  if(!name)return alert('Bitte Namen eintragen!');
-  user.dispName=name;
-  user.username='@'+name.toLowerCase().replace(/[^a-z0-9_]/g,'');
-  if(bio)user.bio=bio;
-  user.profileCreated=true;
-  localStorage.setItem('sv_user_v9',JSON.stringify(user));
-  toggleScreen('friendAutoProfileScreen',false);
-  updateUI();
-  openLive().then(()=>sendJoinRequestToHost());
-}
-
-/* 30s VIDEO PRÜFUNG */
-let pendingVideoUrl=null,pendingVideoDuration=0;
+/* 30s VIDEO UPLOAD */
+let pVidUrl=null,pVidDur=0;
 function validate30SecVideo(e){
-  const file=e.target.files[0];if(!file)return;
-  const statusEl=document.getElementById('vidUploadStatus');
-  const prevEl=document.getElementById('vidUploadPreview');
-  const pubBtn=document.getElementById('btnPublishVid');
-
-  statusEl.style.display='block';statusEl.style.color='#38bdf8';statusEl.textContent='⏳ Prüfe Videolänge...';
-  const objUrl=URL.createObjectURL(file);
-  const tempVid=document.createElement('video');tempVid.preload='metadata';
-  tempVid.onloadedmetadata=()=>{
-    const dur=tempVid.duration;
-    if(dur>30.5){
-      URL.revokeObjectURL(objUrl);pendingVideoUrl=null;prevEl.style.display='none';pubBtn.style.display='none';
-      statusEl.style.color='#f87171';statusEl.textContent=`❌ Video ist ${dur.toFixed(1)}s lang! Max. 30 Sekunden erlaubt.`;
-      alert(`⚠️ Video ist ${dur.toFixed(1)}s lang. Bitte wähle ein Video mit maximal 30 Sekunden!`);
-    }else{
-      pendingVideoUrl=objUrl;pendingVideoDuration=Math.max(1,Math.round(dur));
-      prevEl.src=objUrl;prevEl.style.display='block';pubBtn.style.display='block';
-      statusEl.style.color='#4ade80';statusEl.textContent=`✅ Gültig! Länge: ${pendingVideoDuration}s (≤ 30s).`;
-    }
-  };
-  tempVid.src=objUrl;
+  const f=e.target.files[0];if(!f)return;
+  const st=$('vidUploadStatus'),pr=$('vidUploadPreview'),bt=$('btnPublishVid');
+  st.style.display='block';st.textContent='⏳ Prüfe Länge...';
+  const u=URL.createObjectURL(f),tv=document.createElement('video');tv.preload='metadata';
+  tv.onloadedmetadata=()=>{
+    if(tv.duration>30.5){URL.revokeObjectURL(u);st.style.color='#f87171';st.textContent='❌ Zu lang! Max. 30s erlaubt.';alert('Maximal 30 Sekunden erlaubt!');}
+    else{pVidUrl=u;pVidDur=Math.max(1,Math.round(tv.duration));pr.src=u;pr.style.display='block';bt.style.display='block';st.style.color='#4ade80';st.textContent=`✅ OK (${pVidDur}s)`;}
+  };tv.src=u;
 }
-
 function publishUploadedVideo(){
-  if(!pendingVideoUrl)return;
-  const cap=document.getElementById('vidUploadCaption').value.trim()||'Mein neuer 30s Clip 🔥';
-  const newClip={
-    id:'clip_'+Date.now(),
-    kind:'video',
-    category:['foryou','follow','nearby'],
-    host:user.dispName||user.username,
-    ava:'🎬',
-    dur:pendingVideoDuration,
-    caption:cap,
-    playlist:'🎞️ Eigene Clips • 🎬 Max. 30s',
-    videoUrl:pendingVideoUrl,
-    likes:1,
-    liked:false,
-    commentsCount:0,
-    comments:[],
-    saves:1,
-    saved:true,
-    shares:0,
-    followed:true
-  };
-  myUploadedClips.unshift(newClip);FEED_ITEMS.unshift(newClip);
-  document.getElementById('vidUploadCaption').value='';
-  document.getElementById('vidUploadPreview').style.display='none';
-  document.getElementById('btnPublishVid').style.display='none';
-  document.getElementById('vidUploadStatus').style.display='none';
-  toggleScreen('videoUploadModal',false);renderStartFeed();updateUI();
-  showTab('vFeed');
-  alert('🎬 Dein Video ist jetzt live auf der Start-Seite!');
+  if(!pVidUrl)return;
+  const c={id:'c_'+Date.now(),kind:'video',cat:['foryou','follow','nearby'],host:user.dispName,ava:'🎬',dur:pVidDur,cap:$('vidUploadCaption').value.trim()||'Mein 30s Clip 🔥',pl:'🎞️ Eigene Clips',url:pVidUrl,likes:1,liked:false,cmts:0,cmtList:[],saves:1,saved:true,shares:0,fol:true};
+  myClips.unshift(c);FEED_ITEMS.unshift(c);toggleScreen('videoUploadModal',false);renderStartFeed();updateUI();showTab('vFeed');
 }
 
-let duelMy=2000,duelBot=2000;
-function playQuickDuelRound(){
-  const dmg=Math.floor(400+Math.random()*500),botDmg=Math.floor(250+Math.random()*450);
-  duelBot=Math.max(0,duelBot-dmg);duelMy=Math.max(0,duelMy-botDmg);
-  if(duelBot<=0){coins+=250;duelMy=2000;duelBot=2000;updateUI();alert('🏆 Duell gewonnen! +250 Coins.');}
-  else if(duelMy<=0){duelMy=2000;duelBot=2000;alert('💥 Unentschieden!');}
-  document.getElementById('duelMyLP').textContent=duelMy;document.getElementById('duelBotLP').textContent=duelBot;
-}
-
-function openLiveWithLayout(m){openLive().then(()=>setLayout(m));}
-function addFreeCoins(){coins+=10000;updateUI();alert('🎉 +10.000 Coins!');}
-
-/* GESCHENKE */
-function renderGiftGrid(){
-  document.getElementById('giftGridBox').innerHTML=GIFTS.map(g=>`
-    <div class="fx-tile" onclick="sendGift('${g.id}')">
-      <div style="font-size:30px;margin-bottom:4px">${g.icon}</div>
-      <div style="font-size:11px;color:#fff">${g.name}</div>
-      <div style="font-size:11px;color:#fde047;margin-top:2px">🪙 ${g.cost.toLocaleString('de-DE')}</div>
-    </div>
-  `).join('');
-}
-
+/* GESCHENKE & MINI-DUELL */
 function sendGift(id){
   const g=GIFTS.find(x=>x.id===id);if(!g)return;
-  if(coins<g.cost){if(confirm('Nicht genug Coins! +10.000 Gratis holen?')){coins+=10000;updateUI();}else return;}
+  if(coins<g.cost)coins+=10000;
   coins-=g.cost;updateUI();toggleScreen('giftModal',false);
-  const sender=user.dispName||user.username;
-  triggerGiftEffect(g,sender);
-  broadcastData({type:'gift',giftId:g.id,user:sender});
+  triggerGiftEffect(g,user.dispName);broadcastData({type:'gift',giftId:g.id,user:user.dispName});
 }
-
-function playGiftSound(freq){
-  try{
-    const ctx=new (window.AudioContext||window.webkitAudioContext)();
-    [freq,freq*1.25,freq*1.5].forEach((f,i)=>{
-      const osc=ctx.createOscillator(),gain=ctx.createGain();
-      osc.type='triangle';osc.frequency.value=f;
-      gain.gain.setValueAtTime(0.12,ctx.currentTime+i*0.09);
-      gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.09+0.55);
-      osc.connect(gain);gain.connect(ctx.destination);
-      osc.start(ctx.currentTime+i*0.09);osc.stop(ctx.currentTime+i*0.09+0.55);
-    });
-  }catch(e){}
-}
-
 function triggerGiftEffect(g,sender){
-  playGiftSound(g.freq||440);
-  const stage=document.getElementById('giftFxStage');stage.innerHTML='';stage.classList.add('active');
-  if(g.shake){document.body.classList.remove('screen-shake');void document.body.offsetWidth;document.body.classList.add('screen-shake');}
-  const banner=document.createElement('div');banner.className='gift-banner';banner.innerHTML=`🎁 <b>${sender}</b> sendet ${g.icon} ${g.name}!`;stage.appendChild(banner);
-  const hero=document.createElement('div');hero.className='gift-center-hero '+g.anim;hero.textContent=g.icon;stage.appendChild(hero);
-  for(let i=0;i<30;i++){
-    const p=document.createElement('div');p.className='gift-particle';p.textContent=g.particles[i%g.particles.length];
-    p.style.left=(10+Math.random()*80)+'%';p.style.top=(15+Math.random()*70)+'%';
-    p.style.setProperty('--tx',(Math.random()*360-180)+'px');p.style.setProperty('--ty',(Math.random()*-360-60)+'px');
-    p.style.setProperty('--rot',(Math.random()*540-270)+'deg');stage.appendChild(p);
-  }
-  clearTimeout(window.giftTimer);
-  window.giftTimer=setTimeout(()=>{stage.classList.remove('active');stage.innerHTML='';},3000);
+  const st=$('giftFxStage');st.innerHTML=`<div class="gf-ban">🎁 <b>${sender}</b> sendet ${g.icon} ${g.name}!</div><div class="gf-hero">${g.icon}</div>`;
+  for(let i=0;i<24;i++){const p=document.createElement('div');p.className='gf-p';p.textContent=g.icon;p.style.left=(15+Math.random()*70)+'%';p.style.top=(20+Math.random()*60)+'%';p.style.setProperty('--tx',(Math.random()*300-150)+'px');p.style.setProperty('--ty',(Math.random()*-300-50)+'px');st.appendChild(p);}
+  st.classList.add('active');setTimeout(()=>{st.classList.remove('active');st.innerHTML='';},2800);
+}
+let dMy=2000,dBot=2000;
+function playQuickDuelRound(){
+  dBot=Math.max(0,dBot-600);dMy=Math.max(0,dMy-400);
+  if(dBot<=0){coins+=250;dMy=2000;dBot=2000;updateUI();alert('🏆 +250 Coins gewonnen!');}
+  $('duelMyLP').textContent=dMy;$('duelBotLP').textContent=dBot;
 }
 
-/* PROFIL BEARBEITEN */
-function openEdit(){
-  document.getElementById('eDisp').value=user.dispName||'';
-  document.getElementById('eUser').value=user.username||'';
-  document.getElementById('eFullName').value=user.fullName||'';
-  document.getElementById('eAddr').value=user.address||'';
-  document.getElementById('eBio').value=user.bio||'';
-  toggleScreen('editScreen',true);
+/* PROFIL & LIVE WEBRTC (4ER STREAM + HOST GENEHMIGUNG) */
+function createAutoFriendProfile(){
+  const n=$('autoProfName').value.trim();if(!n)return alert('Name fehlt!');
+  user.dispName=n;user.username='@'+n.toLowerCase().replace(/\s+/g,'');user.ok=true;
+  localStorage.setItem('sv_u12',JSON.stringify(user));toggleScreen('friendAutoProfileScreen',false);updateUI();openLive().then(()=>sendJoinRequestToHost());
 }
-
+function openEdit(){$('eDisp').value=user.dispName;$('eUser').value=user.username;$('eFullName').value=user.fullName;$('eAddr').value=user.address;$('eBio').value=user.bio;toggleScreen('editScreen',true);}
 function saveProfile(){
-  user.dispName=document.getElementById('eDisp').value.trim()||user.dispName;
-  let u=document.getElementById('eUser').value.trim();if(u)user.username=u.startsWith('@')?u:'@'+u;
-  user.fullName=document.getElementById('eFullName').value.trim();
-  user.address=document.getElementById('eAddr').value.trim();
-  user.bio=document.getElementById('eBio').value.trim();
-  user.profileCreated=true;
-  localStorage.setItem('sv_user_v9',JSON.stringify(user));
-  toggleScreen('editScreen',false);updateUI();
+  user.dispName=$('eDisp').value.trim()\vert{}\vert{}user.dispName;user.username=$('eUser').value.trim()||user.username;
+  user.fullName=$('eFullName').value.trim();user.address=$('eAddr').value.trim();user.bio=$('eBio').value.trim();user.ok=true;
+  localStorage.setItem('sv_u12',JSON.stringify(user));toggleScreen('editScreen',false);updateUI();
+}
+function editThought(){const t=prompt('Status:',user.thought);if(t){user.thought=t;localStorage.setItem('sv_u12',JSON.stringify(user));updateUI();}}
+function openPicZoom(){$('picTitle').textContent=user.username;$('picBigBox').innerHTML=user.ava?`<img src="${user.ava}" style="width:100%;height:100%;object-fit:cover">`:'😎';toggleScreen('picScreen',true);}
+function uploadImg(e,t){
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=ev=>{if(t==='ava'){user.ava=ev.target.result;avaImgObj.src=user.ava;}else{user.cover=ev.target.result;coverImgObj.src=user.cover;hideCam=true;}localStorage.setItem('sv_u12',JSON.stringify(user));updateUI();};r.readAsDataURL(f);
 }
 
-function editThought(){
-  const t=prompt('Dein Status:',user.thought||'Was geht?');
-  if(t){user.thought='💭 '+t;localStorage.setItem('sv_user_v9',JSON.stringify(user));updateUI();}
+let peer=null,myStream=null,facing='user',hideCam=false,micOn=true,faceMorph='none',maskX=180,maskY=220,audioCtx=null,analyser=null,animId=null;
+let roomCode=String(Math.floor(1000+Math.random()*9000)),dataConns={},peerNames={},remoteSlotMap={},pendingReqConn=null;
+const cvEl=$('faceCanvasMe'),stCv=$('studioCanvas');
+cvEl.addEventListener('pointermove',e=>{if(e.buttons>0){const r=cvEl.getBoundingClientRect();maskX=((e.clientX-r.left)/r.width)*360;maskY=((e.clientY-r.top)/r.height)*480;}});
+
+function getTalk(){
+  if(!analyser||!micOn)return 0;const a=new Uint8Array(analyser.frequencyBinCount);analyser.getByteFrequencyData(a);
+  let s=0;for(let i=2;i<18;i++)s+=a[i];return Math.min(1,(s/16)/90);
 }
-
-function openPicZoom(){
-  document.getElementById('picTitle').textContent=user.username;
-  document.getElementById('picBigBox').innerHTML=avaHTML(user.ava);
-  toggleScreen('picScreen',true);
-}
-function avaHTML(s){return s?`<img src="${s}">`:'😎'}
-
-function uploadImg(e,type){
-  const f=e.target.files[0];if(!f)return;
-  const r=new FileReader();
-  r.onload=ev=>{
-    if(type==='ava'){user.ava=ev.target.result;avaImgObj.src=user.ava;document.getElementById('picBigBox').innerHTML=avaHTML(user.ava);}
-    else{user.cover=ev.target.result;coverImgObj.src=user.cover;hideCam=true;updateCoverBtn();}
-    user.profileCreated=true;localStorage.setItem('sv_user_v9',JSON.stringify(user));updateUI();
-  };
-  r.readAsDataURL(f);
-}
-
-/* LIVE & ECHTE GESICHTS-VERWANDLUNG */
-let peer=null,myStream=null,facing='user',hideCam=false,micOn=true,faceMorph='none';
-let maskX=180,maskY=220,talkLevel=0,audioCtx=null,analyser=null,animId=null;
-let roomCode=String(Math.floor(1000+Math.random()*9000));
-const cvEl=document.getElementById('faceCanvasMe');
-
-cvEl.addEventListener('pointermove',e=>{
-  if(e.buttons>0){
-    const r=cvEl.getBoundingClientRect();
-    maskX=((e.clientX-r.left)/r.width)*360;
-    maskY=((e.clientY-r.top)/r.height)*480;
-  }
-});
-
-function setupAudioMouthTracker(stream){
-  try{
-    audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-    const src=audioCtx.createMediaStreamSource(stream);
-    analyser=audioCtx.createAnalyser();analyser.fftSize=128;
-    src.connect(analyser);
-  }catch(e){}
-}
-
-function getMouthOpenValue(){
-  if(!analyser||!micOn)return 0;
-  const arr=new Uint8Array(analyser.frequencyBinCount);
-  analyser.getByteFrequencyData(arr);
-  let sum=0;for(let i=2;i<20;i++)sum+=arr[i];
-  return Math.min(1,(sum/18)/95);
-}
-
-function renderFaceCanvas(){
-  const ctx=cvEl.getContext('2d'),vid=document.getElementById('rawVideoMe');
-  ctx.clearRect(0,0,360,480);
-  if(hideCam){
-    ctx.fillStyle='#15182e';ctx.fillRect(0,0,360,480);
-    const imgToDraw=user.cover?coverImgObj:(user.ava?avaImgObj:null);
-    if(imgToDraw&&imgToDraw.complete&&imgToDraw.naturalWidth>0)ctx.drawImage(imgToDraw,0,0,360,480);
-    else{ctx.fillStyle='#38bdf8';ctx.font='bold 24px sans-serif';ctx.textAlign='center';ctx.fillText(user.dispName||user.username,180,240);}
-  }else if(vid.readyState>=2){
-    ctx.save();if(facing==='user'){ctx.translate(360,0);ctx.scale(-1,1)}
-    ctx.drawImage(vid,0,0,360,480);ctx.restore();
-  }else{ctx.fillStyle='#15182e';ctx.fillRect(0,0,360,480);}
-
-  talkLevel=getMouthOpenValue();
-  const blink=(Date.now()%3500)<160;
-  const x=maskX,y=maskY;
-
-  ctx.save();
+function drawMorphOnCanvas(ctx,w,h,v){
+  ctx.clearRect(0,0,w,h);
+  if(hideCam){ctx.fillStyle='#15182e';ctx.fillRect(0,0,w,h);const im=user.cover?coverImgObj:avaImgObj;if(im&&im.complete&&im.naturalWidth)ctx.drawImage(im,0,0,w,h);}
+  else if(v.readyState>=2){ctx.save();if(facing==='user'){ctx.translate(w,0);ctx.scale(-1,1);}ctx.drawImage(v,0,0,w,h);ctx.restore();}
+  else{ctx.fillStyle='#15182e';ctx.fillRect(0,0,w,h);}
+  if(flashBoost){ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(0,0,w,h);}
+  const tk=getTalk(),x=maskX,y=h>500?280:maskY;ctx.save();
   if(faceMorph==='frog'){
-    ctx.fillStyle='rgba(34, 197, 94, 0.94)';ctx.beginPath();ctx.ellipse(x,y+10,115,98,0,0,Math.PI*2);ctx.fill();
-    [-62,62].forEach(dx=>{
-      ctx.fillStyle='#22c55e';ctx.beginPath();ctx.arc(x+dx,y-75,42,0,Math.PI*2);ctx.fill();
-      ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x+dx,y-75,30,0,Math.PI*2);ctx.fill();
-      if(blink){ctx.fillStyle='#16a34a';ctx.fillRect(x+dx-30,y-80,60,12);}
-      else{ctx.fillStyle='#000';ctx.beginPath();ctx.ellipse(x+dx,y-75,12,18,0,0,Math.PI*2);ctx.fill();}
-    });
-    const openH=10+talkLevel*55;
-    ctx.fillStyle='#7f1d1d';ctx.beginPath();ctx.ellipse(x,y+38,78,openH,0,0,Math.PI*2);ctx.fill();
-    if(talkLevel>0.08){ctx.fillStyle='#fb7185';ctx.beginPath();ctx.ellipse(x,y+45+talkLevel*25,26,18+talkLevel*22,0,0,Math.PI*2);ctx.fill();}
+    ctx.fillStyle='rgba(34,197,94,.94)';ctx.beginPath();ctx.ellipse(x,y+10,110,92,0,0,Math.PI*2);ctx.fill();
+    [-58,58].forEach(d=>{ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x+d,y-70,28,0,Math.PI*2);ctx.fill();ctx.fillStyle='#000';ctx.beginPath();ctx.arc(x+d,y-70,12,0,Math.PI*2);ctx.fill();});
+    ctx.fillStyle='#7f1d1d';ctx.beginPath();ctx.ellipse(x,y+35,72,10+tk*50,0,0,Math.PI*2);ctx.fill();
+    if(tk>0.08){ctx.fillStyle='#fb7185';ctx.beginPath();ctx.ellipse(x,y+42+tk*20,24,16+tk*20,0,0,Math.PI*2);ctx.fill();}
   }else if(faceMorph==='clown'){
-    ctx.fillStyle='rgba(255,255,255,0.9)';ctx.beginPath();ctx.ellipse(x,y,98,118,0,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#dc2626';ctx.beginPath();ctx.arc(x,y+5,28,0,Math.PI*2);ctx.fill();
-    ctx.beginPath();ctx.ellipse(x,y+58,58,18+talkLevel*35,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.9)';ctx.beginPath();ctx.ellipse(x,y,95,112,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#dc2626';ctx.beginPath();ctx.arc(x,y+5,26,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(x,y+55,54,15+tk*35,0,0,Math.PI*2);ctx.fill();
   }else if(faceMorph==='makeup'){
-    ctx.fillStyle='rgba(244,114,182,0.35)';ctx.beginPath();ctx.ellipse(x-58,y+10,28,18,0,0,Math.PI*2);ctx.ellipse(x+58,y+10,28,18,0,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#e11d48';ctx.beginPath();ctx.ellipse(x,y+52,38,12+talkLevel*24,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='rgba(244,114,182,.35)';ctx.beginPath();ctx.ellipse(x-55,y+10,26,16,0,0,Math.PI*2);ctx.ellipse(x+55,y+10,26,16,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#e11d48';ctx.beginPath();ctx.ellipse(x,y+50,36,10+tk*22,0,0,Math.PI*2);ctx.fill();
   }else if(faceMorph==='fox'){
-    ctx.fillStyle='#ea580c';ctx.beginPath();ctx.ellipse(x,y,95,88,0,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#991b1b';ctx.beginPath();ctx.ellipse(x,y+48,28,6+talkLevel*25,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#ea580c';ctx.beginPath();ctx.ellipse(x,y,92,84,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#991b1b';ctx.beginPath();ctx.ellipse(x,y+45,26,6+tk*24,0,0,Math.PI*2);ctx.fill();
   }else if(faceMorph==='alien'){
-    ctx.fillStyle='rgba(74,222,128,0.92)';ctx.beginPath();ctx.ellipse(x,y-15,105,125,0,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#000';ctx.beginPath();ctx.ellipse(x-44,y-20,28,44,-0.25,0,Math.PI*2);ctx.ellipse(x+44,y-20,28,44,0.25,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='rgba(74,222,128,.92)';ctx.beginPath();ctx.ellipse(x,y-12,100,120,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#000';ctx.beginPath();ctx.ellipse(x-42,y-18,26,40,-.2,0,Math.PI*2);ctx.ellipse(x+42,y-18,26,40,.2,0,Math.PI*2);ctx.fill();
   }
   ctx.restore();
+}
+function renderFaceCanvas(){
+  const v=$('rawVideoMe');
+  drawMorphOnCanvas(cvEl.getContext('2d'),360,480,v);
+  if(studioActive)drawMorphOnCanvas(stCv.getContext('2d'),360,640,v);
   animId=requestAnimationFrame(renderFaceCanvas);
 }
 function setFaceMorph(m){faceMorph=m;toggleScreen('fxModal',false);}
 
-let dataConns={},peerNames={},remoteSlotMap={},pendingReqConn=null;
 function initPeer(){
   if(typeof Peer==='undefined')return;
-  document.getElementById('myCodeTxt').textContent=roomCode;
-  document.getElementById('bottomCodeTxt').textContent=roomCode;
-  document.getElementById('shareCodeBig').textContent=roomCode;
-
-  peer=new Peer('sv-multi-v17-'+roomCode);
-  peer.on('connection',c=>setupDataConn(c));
-  peer.on('call',call=>{
-    call.answer(getCanvasStreamWithAudio());
-    call.on('stream',rem=>assignStreamToSlot(call.peer,rem));
-  });
+  $('myCodeTxt').textContent=roomCode;$('bottomCodeTxt').textContent=roomCode;$('shareCodeBig').textContent=roomCode;
+  peer=new Peer('sv-m20-'+roomCode);
+  peer.on('connection',c=>setupConn(c));
+  peer.on('call',call=>{call.answer(getStream());call.on('stream',rem=>assignSlot(call.peer,rem));});
 }
-
-function getCanvasStreamWithAudio(){
-  const cvStream=cvEl.captureStream(25);
-  if(myStream)myStream.getAudioTracks().forEach(t=>cvStream.addTrack(t));
-  return cvStream;
-}
-
-function setupDataConn(conn){
-  conn.on('open',()=>{dataConns[conn.peer]=conn;conn.send({type:'hello',user:user.dispName||user.username});});
-  conn.on('data',d=>{
-    if(d.type==='hello'){peerNames[conn.peer]=d.user;}
-    if(d.type==='join_request'){
-      peerNames[conn.peer]=d.user;pendingReqConn=conn;
-      document.getElementById('reqGuestName').textContent=d.user;
-      document.getElementById('hostApprovalBar').classList.add('active');
-    }
-    if(d.type==='join_approved'){
-      document.getElementById('guestWaitNotice').textContent='✅ Genehmigt! Verbinde...';
-      toggleScreen('friendModal',false);
-      callPeerNow(conn.peer);
-      if(Array.isArray(d.existingPeers)){d.existingPeers.forEach(id=>{if(id!==peer.id)connectAndCallPeer(id);});}
-    }
-    if(d.type==='join_rejected'){document.getElementById('guestWaitNotice').textContent='❌ Abgelehnt.';}
-    if(d.type==='chat')document.getElementById('liveChat').innerHTML+=`<div><b>${d.user}:</b> ${d.text}</div>`;
+function getStream(){const s=cvEl.captureStream(25);if(myStream)myStream.getAudioTracks().forEach(t=>s.addTrack(t));return s;}
+function setupConn(c){
+  c.on('open',()=>{dataConns[c.peer]=c;c.send({type:'hello',user:user.dispName});});
+  c.on('data',d=>{
+    if(d.type==='hello')peerNames[c.peer]=d.user;
+    if(d.type==='join_request'){peerNames[c.peer]=d.user;pendingReqConn=c;$('reqGuestName').textContent=d.user;$('hostApprovalBar').style.display='flex';}
+    if(d.type==='join_approved'){toggleScreen('friendModal',false);callNow(c.peer);(d.peers||[]).forEach(p=>{if(p!==peer.id){setupConn(peer.connect(p));callNow(p);}});}
+    if(d.type==='join_rejected')$('guestWaitNotice').textContent='❌ Abgelehnt.';
+    if(d.type==='chat')$('liveChat').innerHTML+=`<div><b>${d.user}:</b> ${d.text}</div>`;
     if(d.type==='gift')triggerGiftEffect(GIFTS.find(x=>x.id===d.giftId)||GIFTS[0],d.user);
   });
 }
-
-function respondToJoinRequest(app){
-  document.getElementById('hostApprovalBar').classList.remove('active');
-  if(!pendingReqConn)return;
-  if(app){
-    pendingReqConn.send({type:'join_approved',existingPeers:Object.keys(remoteSlotMap)});
-    callPeerNow(pendingReqConn.peer);
-  }else{pendingReqConn.send({type:'join_rejected'});}
-  pendingReqConn=null;
+function respondToJoinRequest(ok){
+  $('hostApprovalBar').style.display='none';if(!pendingReqConn)return;
+  if(ok){pendingReqConn.send({type:'join_approved',peers:Object.keys(remoteSlotMap)});callNow(pendingReqConn.peer);}
+  else pendingReqConn.send({type:'join_rejected'});pendingReqConn=null;
 }
-
 function sendJoinRequestToHost(){
-  const code=document.getElementById('friendCodeInp').value.trim();
-  if(!code||!peer)return alert('Bitte Raum-Code eingeben!');
-  document.getElementById('guestWaitNotice').textContent='⏳ Anfrage gesendet...';
-  const conn=peer.connect('sv-multi-v17-'+code);setupDataConn(conn);
-  conn.on('open',()=>conn.send({type:'join_request',user:user.dispName||user.username}));
+  const code=$('friendCodeInp').value.trim();if(!code\vert{}\vert{}!peer)return alert('Code fehlt!');$('guestWaitNotice').textContent='⏳ Sende Anfrage...';
+  const c=peer.connect('sv-m20-'+code);setupConn(c);c.on('open',()=>c.send({type:'join_request',user:user.dispName}));
 }
-
-function connectAndCallPeer(id){if(!dataConns[id]){const c=peer.connect(id);setupDataConn(c);}callPeerNow(id);}
-function callPeerNow(id){const call=peer.call(id,getCanvasStreamWithAudio());if(call)call.on('stream',rem=>assignStreamToSlot(id,rem));}
-
-function assignStreamToSlot(peerId,remStream){
-  let slot=remoteSlotMap[peerId];
-  if(!slot){
-    const used=Object.values(remoteSlotMap);
-    for(let s=1;s<=3;s++){if(!used.includes(s)){slot=s;break;}}
-    if(!slot)slot=1;
-    remoteSlotMap[peerId]=slot;
-  }
-  const vid=document.getElementById('vidSlot'+slot),hint=document.getElementById('hintSlot'+slot);
-  if(vid){vid.srcObject=remStream;vid.muted=false;vid.play().catch(()=>{});}
-  if(hint)hint.style.display='none';
-  document.getElementById('nameSlot'+slot).textContent=peerNames[peerId]||'Co-Host';
+function callNow(id){const cl=peer.call(id,getStream());if(cl)cl.on('stream',r=>assignSlot(id,r));}
+function assignSlot(id,rem){
+  let s=remoteSlotMap[id];if(!s){const u=Object.values(remoteSlotMap);s=[1,2,3].find(x=>!u.includes(x))||1;remoteSlotMap[id]=s;}
+  const v=$('vidSlot'+s),h=$('hintSlot'+s);if(v){v.srcObject=rem;v.muted=false;v.play().catch(()=>{});}
+  if(h)h.style.display='none';$('nameSlot'+s).textContent=peerNames[id]||'Co-Host';
 }
-
 function broadcastData(p){Object.values(dataConns).forEach(c=>{if(c&&c.open)c.send(p);});}
 
 async function openLive(){
-  toggleScreen('liveScreen',true);
-  document.getElementById('liveHostName').textContent=user.dispName||user.username;
-  document.getElementById('nameMe').textContent=user.dispName||user.username;
-  if(!animId)renderFaceCanvas();
-  await startCam();
+  toggleScreen('liveScreen',true);$('liveHostName').textContent=user.dispName;$('nameMe').textContent=user.dispName;
+  if(!animId)renderFaceCanvas();await startCam();
 }
-
-function closeLive(){
-  if(myStream){myStream.getTracks().forEach(t=>t.stop());myStream=null;}
-  if(animId){cancelAnimationFrame(animId);animId=null;}
-  toggleScreen('liveScreen',false);
-}
-
+function closeLive(){if(myStream){myStream.getTracks().forEach(t=>t.stop());myStream=null;}if(animId){cancelAnimationFrame(animId);animId=null;}toggleScreen('liveScreen',false);}
 async function startCam(){
-  if(hideCam){
-    if(myStream){myStream.getTracks().forEach(t=>t.stop());myStream=null;}
-    updateCoverBtn();return;
-  }
+  if(hideCam){if(myStream){myStream.getTracks().forEach(t=>t.stop());myStream=null;}return;}
   try{
     if(myStream)myStream.getTracks().forEach(t=>t.stop());
     myStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:facing}},audio:true});
-    const v=document.getElementById('rawVideoMe');v.srcObject=myStream;v.muted=true;await v.play().catch(()=>{});
-    setupAudioMouthTracker(myStream);
-    updateCoverBtn();
-  }catch(e){hideCam=true;updateCoverBtn();}
-}
-
-function updateCoverBtn(){
-  const b=document.getElementById('btnHideCam');
-  b.textContent=hideCam?'🙈 Tarn-Bild: AN':'🙈 Tarn-Bild: AUS';
-  b.classList.toggle('on',hideCam);
+    const v=$('rawVideoMe');v.srcObject=myStream;v.muted=true;await v.play().catch(()=>{});
+    audioCtx=new (window.AudioContext||window.webkitAudioContext)();analyser=audioCtx.createAnalyser();analyser.fftSize=128;audioCtx.createMediaStreamSource(myStream).connect(analyser);
+  }catch(e){hideCam=true;}
 }
 function toggleCoverMode(){hideCam=!hideCam;startCam();}
 function flipCamera(){facing=facing==='user'?'environment':'user';hideCam=false;startCam();}
-function toggleMic(){micOn=!micOn;if(myStream)myStream.getAudioTracks().forEach(t=>t.enabled=micOn);document.getElementById('btnMic').textContent=micOn?'🎙️ Mikro AN':'🔇 Mute';}
-function setLayout(m){document.getElementById('liveStage').className='stage '+m;document.getElementById('btnGrid4').classList.toggle('on',m==='grid4');document.getElementById('btnBoxes').classList.toggle('on',m==='boxes');}
+function toggleMic(){micOn=!micOn;if(myStream)myStream.getAudioTracks().forEach(t=>t.enabled=micOn);$('btnMic').textContent=micOn?'🎙️ Mikro':'🔇 Mute';}
+function setLayout(m){$('liveStage').className='stage '+m;$('btnGrid4').classList.toggle('on',m==='grid4');$('btnBoxes').classList.toggle('on',m==='boxes');}
+function shareLink(){const u=location.origin+location.pathname+'?room='+roomCode;if(navigator.share)navigator.share({title:'Live',url:u}).catch(()=>{});else navigator.clipboard.writeText(u).then(()=>alert('Link kopiert: '+u));}
+function sendChat(){const i=$('chatInp');if(!i.value.trim())return;$('liveChat').innerHTML+=`<div><b>${user.dispName}:</b> ${i.value}</div>`;broadcastData({type:'chat',user:user.dispName,text:i.value});i.value='';}
+function addFreeCoins(){coins+=10000;updateUI();alert('+10.000 Coins aufgeladen!');}
 
-function shareLink(){
-  const u=location.origin+location.pathname+'?room='+roomCode;
-  if(navigator.share)navigator.share({title:'Live Beitritt',url:u}).catch(()=>{});
-  else navigator.clipboard.writeText(u).then(()=>alert('🔗 Einladungs-Link kopiert!'));
-}
-
-function sendChat(){
-  const i=document.getElementById('chatInp');if(!i.value.trim())return;
-  document.getElementById('liveChat').innerHTML+=`<div><b>${user.dispName||user.username}:</b> ${i.value}</div>`;
-  broadcastData({type:'chat',user:user.dispName||user.username,text:i.value});i.value='';
-}
-
-/* PROFIL TABS */
-function switchCompactTab(tab,el){
-  activeProfTab=tab;
-  document.querySelectorAll('.c-tab').forEach(t=>t.classList.remove('active'));
-  if(el)el.classList.add('active');
-  renderProfileTabContent();
-}
-
+function switchCompactTab(t,el){activeProfTab=t;document.querySelectorAll('.p-itab').forEach(x=>x.classList.remove('active'));if(el)el.classList.add('active');renderProfileTabContent();}
 function renderProfileTabContent(){
-  const box=document.getElementById('profGridContent');
-  if(activeProfTab==='clips'){
-    const clipsHTML=myUploadedClips.map(c=>`
-      <div class="content-card" onclick="showTab('vFeed');setFeedFilter('foryou')">
-        <span class="dur-badge">⏱️ ${c.dur}s</span>
-        <video src="${c.videoUrl}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-        <div class="content-card-footer"><span>${c.caption.slice(0,14)}...</span><span>▶️ Neu</span></div>
+  const b=$('profGridContent');
+  if(activeProfTab==='shop'){
+    b.innerHTML=`
+      <div class="c-card" onclick="alert('🕶️ Rokid AR Glasses ausgewählt!')">
+        <span class="top1-badge">🎵 TOP 1</span>
+        <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400">
+        <div class="c-foot"><span>AR Smart Glasses</span><span style="color:#15803d">29,99 €</span></div>
       </div>
-    `).join('');
-
-    box.innerHTML=`
-      <div class="content-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:176px;background:#eef2ff" onclick="toggleScreen('videoUploadModal',true)">
-        <div style="font-size:34px;margin-bottom:6px">🎬➕</div>
-        <b style="font-size:12px;color:#4f46e5">Video hochladen</b>
-        <span style="font-size:10px;color:#64748b">Max. 30 Sekunden</span>
-      </div>
-      ${clipsHTML}
-      <div class="content-card" onclick="showTab('vFeed');setFeedFilter('foryou')">
-        <span class="dur-badge">⏱️ 24s</span>
-        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500">
-        <div class="content-card-footer"><span>🎬 Beitrag 406</span><span>▶️ 5.3K</span></div>
+      <div class="c-card" onclick="alert('🖥️ Smart Car Display ausgewählt!')">
+        <div class="warn-banner">⚠️ Ab Baujahr 2016 • Smart Display</div>
+        <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400">
+        <div class="c-foot"><span>CarPlay Screen</span><span style="color:#15803d">49,99 €</span></div>
       </div>`;
-  }else if(activeProfTab==='saved'){
-    const savedList=FEED_ITEMS.filter(x=>x.saved);
-    if(!savedList.length){
-      box.innerHTML=`<div class="content-card" style="grid-column:span 2;padding:16px;text-align:center;color:#64748b;font-size:12px">Noch keine Videos über 🔖 auf der Start-Seite gespeichert.</div>`;
-    }else{
-      box.innerHTML=savedList.map(s=>`
-        <div class="content-card" onclick="showTab('vFeed')">
-          <span class="dur-badge">🔖 Gespeichert</span>
-          <img src="${s.topImg||'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500'}">
-          <div class="content-card-footer"><span>${s.host}</span><span>❤️ ${s.likes}</span></div>
-        </div>
-      `).join('');
-    }
-  }else if(activeProfTab==='shop'){
-    box.innerHTML=`
-      <div class="content-card">
-        <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500">
-        <div class="content-card-footer"><span>Smart Glasses</span><span class="price-tag">29,99 €</span></div>
-      </div>
-      <div class="content-card">
-        <img src="https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=500">
-        <div class="content-card-footer"><span>LED Beanie</span><span class="price-tag">14,99 €</span></div>
-      </div>`;
+  }else if(activeProfTab==='clips'){
+    b.innerHTML=`<div class="c-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:175px;background:#eef2ff" onclick="openCamStudio()"><div style="font-size:32px">🎬➕</div><b style="font-size:12px;color:#4f46e5">Kamera / 30s Clip</b></div>`+
+    myClips.map(c=>`<div class="c-card" onclick="showTab('vFeed')"><video src="${c.url}" muted loop playsinline></video><div class="c-foot"><span>${c.cap.slice(0,12)}</span><span>⏱️ ${c.dur}s</span></div></div>`).join('')+
+    `<div class="c-card" onclick="showTab('vFeed')"><img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400"><div class="c-foot"><span>Beitrag 406</span><span>▶️ 5.3K</span></div></div>`;
+  }else if(activeProfTab==='saved'||activeProfTab==='liked'){
+    const sv=FEED_ITEMS.filter(x=>activeProfTab==='saved'?x.saved:x.liked);
+    b.innerHTML=sv.length?sv.map(s=>`<div class="c-card" onclick="showTab('vFeed')"><img src="${s.topImg}"><div class="c-foot"><span>${s.host}</span><span>${activeProfTab==='saved'?'🔖':'❤️'}</span></div></div>`).join(''):`<div style="grid-column:span 2;text-align:center;color:#64748b;padding:18px;font-size:12px">Noch keine Einträge in diesem Bereich.</div>`;
   }else{
-    box.innerHTML=`
-      <div class="content-card" style="grid-column:span 2;padding:14px">
-        <b style="font-size:13px">📦 Lieferadresse:</b>
-        <p style="font-size:12px;color:#475569;margin:6px 0">${[user.fullName,user.address].filter(Boolean).join(', ')||'Noch keine Adresse eingetragen.'}</p>
-        <button class="act-pill-btn primary" style="margin-top:6px;padding:7px 12px" onclick="openEdit()">✏️ Adresse ändern</button>
-      </div>`;
+    b.innerHTML=`<div class="c-card" style="grid-column:span 2;padding:14px;font-size:12px;background:#f8fafc"><b>📦 Deine Lieferadresse & Bestellungen:</b><p style="margin:6px 0;color:#475569">${[user.fullName,user.address].filter(Boolean).join(', ')||'Noch keine Lieferadresse hinterlegt.'}</p><button class="p-btn pri" onclick="openEdit()">✏️ Adresse eintragen</button></div>`;
   }
 }
 
 function updateUI(){
-  localStorage.setItem('sv_coins_10k',coins);
-  const cStr=coins.toLocaleString('de-DE');
-  document.getElementById('drawerBalance').textContent=cStr+' 🪙';
-  document.getElementById('profBalanceStat').textContent='🪙 '+cStr;
-  document.getElementById('giftModalCoins').textContent=cStr+' 🪙';
-  document.getElementById('liveCoinTop').textContent=cStr;
-  document.getElementById('profDispName').textContent=user.dispName||user.username;
-  document.getElementById('profHandle').textContent=user.username;
-  document.getElementById('profBioTxt').textContent=user.bio||'';
-  document.getElementById('thoughtBubble').textContent=user.thought||'💭 Was geht?';
-  document.getElementById('profAvaBox').innerHTML=user.ava?`<img src="${user.ava}">`:'😎';
+  localStorage.setItem('sv_c12',coins);const c=coins.toLocaleString('de-DE');
+  $('drawerBalance').textContent=c+' 🪙';$('profBalanceStat').textContent=c;$('giftModalCoins').textContent=c;$('liveCoinTop').textContent=c;
+  $('profDispName').textContent=user.dispName;$('profHandle').textContent=user.username;$('profBioTxt').textContent=user.bio||'';
+  $('thoughtBubble').textContent=user.thought\vert{}\vert{}'Was geht?';$('profAvaBox').innerHTML=user.ava?`<img src="${user.ava}">`:'😎';
   renderProfileTabContent();
 }
-
-function toggleDrawer(open){
-  document.getElementById('sideDrawer').classList.toggle('open',open);
-  document.getElementById('drawerBg').classList.toggle('open',open);
-}
-
+function toggleDrawer(o){$('sideDrawer').classList.toggle('open',o);$('drawerBg').classList.toggle('open',o);}
 function showTab(id){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.getElementById('bHome').classList.toggle('active',id==='vFeed');
-  document.getElementById('bColleagues').classList.toggle('active',id==='vColleagues');
-  document.getElementById('bMessages').classList.toggle('active',id==='vMessages');
-  document.getElementById('bProf').classList.toggle('active',id==='vProf');
-  document.getElementById('botNav').classList.toggle('dark',id==='vFeed');
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));$(id).classList.add('active');$('bHome').classList.toggle('active',id==='vFeed');$('bColleagues').classList.toggle('active',id==='vColleagues');$('bMessages').classList.toggle('active',id==='vMessages');$('bProf').classList.toggle('active',id==='vProf');$('botNav').classList.toggle('dark',id==='vFeed');
 }
-
-function toggleScreen(id,show){document.getElementById(id).classList.toggle('hide',!show);}
-
-initApp();
-window.addEventListener('load',initPeer);
+function toggleScreen(id,s){$(id).classList.toggle('hide',!s);}
+initApp();window.addEventListener('load',initPeer);
 </script>
 </body>
 </html>
- 
