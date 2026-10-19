@@ -17,367 +17,281 @@
   --text:#f8fafc;
   --muted:#8e8ea0;
 }
-*{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent;font-family:system-ui,-apple-system,sans-serif}
 body,html{width:100vw;height:100dvh;background:var(--bg);color:var(--text);overflow:hidden}
 button,input{font-family:inherit;outline:none;border:none;background:none;color:inherit}
 
-/* HAUPT-SHELL MIT VIOLETTEM GLOW */
 .vybe-shell{
   width:100vw;height:100dvh;display:flex;flex-direction:column;
   background:radial-gradient(ellipse 65% 45% at 52% 18%, rgba(109,40,217,0.26) 0%, rgba(9,9,15,0) 70%), var(--bg);
 }
 
-/* ================= OBERE HEADER-LEISTE ================= */
+/* HEADER OBEN */
 .vybe-header{
-  height:70px;width:100%;display:flex;align-items:center;justify-content:space-between;
-  padding:0 22px;background:rgba(10,10,16,0.92);border-bottom:1px solid var(--border);z-index:100;flex-shrink:0;
+  height:68px;width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px;background:rgba(10,10,16,0.92);border-bottom:1px solid var(--border);z-index:100;flex-shrink:0;
 }
-.brand-wrap{display:flex;align-items:center;gap:12px;cursor:pointer}
+.brand-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
 .brand-icon{
-  width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#c2ff4d 0%,#8ce619 100%);
-  box-shadow:0 0 18px rgba(180,255,57,0.35);display:flex;align-items:center;justify-content:center;color:#09090f;
+  width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#c2ff4d 0%,#8ce619 100%);
+  box-shadow:0 0 16px rgba(180,255,57,0.35);display:flex;align-items:center;justify-content:center;color:#09090f;
 }
-.brand-title{font-size:20px;font-weight:900;letter-spacing:0.6px;line-height:1.05;color:#fff}
-.brand-sub{font-size:9px;font-weight:700;letter-spacing:1.9px;color:var(--muted);margin-top:2px}
+.brand-title{font-size:19px;font-weight:900;letter-spacing:0.6px;color:#fff}
+.brand-sub{font-size:8.5px;font-weight:700;letter-spacing:1.8px;color:var(--muted)}
 
-.search-wrap{flex:1;max-width:410px;margin:0 24px;position:relative}
+.search-wrap{flex:1;max-width:390px;margin:0 16px;position:relative}
 .search-box{
-  width:100%;height:42px;background:#151522;border:1px solid var(--border);
-  border-radius:14px;padding:0 16px 0 40px;font-size:13.5px;color:#fff;transition:.2s;
+  width:100%;height:40px;background:#151522;border:1px solid var(--border);
+  border-radius:13px;padding:0 14px 0 36px;font-size:13px;color:#fff;
 }
-.search-box::placeholder{color:#7c7c90}
-.search-box:focus{border-color:var(--lime);box-shadow:0 0 12px rgba(180,255,57,0.18)}
-.search-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#8e8ea0;pointer-events:none}
+.search-box:focus{border-color:var(--lime)}
+.search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#8e8ea0;pointer-events:none}
 
-.header-right{display:flex;align-items:center;gap:10px}
+.header-right{display:flex;align-items:center;gap:8px}
 .top-sq-btn{
-  width:42px;height:42px;border-radius:14px;background:#171726;border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;color:#e4e4ef;transition:.2s;
+  width:40px;height:40px;border-radius:13px;background:#171726;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;color:#e4e4ef;
 }
-.top-sq-btn:hover{border-color:var(--lime);color:var(--lime)}
-.pink-dot{position:absolute;top:8px;right:8px;width:7px;height:7px;border-radius:50%;background:#f43f5e;box-shadow:0 0 6px #f43f5e}
+.pink-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:#f43f5e;box-shadow:0 0 6px #f43f5e}
 .top-ava-btn{
   width:42px;height:42px;border-radius:50%;padding:2px;background:var(--lime);
-  box-shadow:0 0 12px rgba(180,255,57,0.35);cursor:pointer;margin-left:2px;transition:transform .15s;
+  box-shadow:0 0 12px rgba(180,255,57,0.4);cursor:pointer;flex-shrink:0;
 }
-.top-ava-btn:hover{transform:scale(1.06)}
-.top-ava-btn img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.top-ava-btn img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;pointer-events:none}
 
-/* ================= HAUPTBEREICH (SIDEBAR + CONTENT) ================= */
+/* BODY & SIDEBAR LINKS */
 .vybe-body{flex:1;display:flex;min-height:0;position:relative}
 .vybe-sidebar{
-  width:82px;height:100%;display:flex;flex-direction:column;justify-content:space-between;
-  align-items:center;padding:18px 0 22px;flex-shrink:0;z-index:80;
+  width:74px;height:100%;display:flex;flex-direction:column;justify-content:space-between;
+  align-items:center;padding:16px 0 20px;flex-shrink:0;z-index:80;
 }
-.side-top-group{display:flex;flex-direction:column;align-items:center;gap:14px}
+.side-top-group{display:flex;flex-direction:column;align-items:center;gap:12px}
 .side-btn{
-  width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;
-  color:#a1a1b5;cursor:pointer;position:relative;transition:.2s;
+  width:46px;height:46px;border-radius:15px;display:flex;align-items:center;justify-content:center;
+  color:#a1a1b5;cursor:pointer;position:relative;transition:.18s;
 }
-.side-btn:hover{color:#fff;background:rgba(255,255,255,0.04)}
 .side-btn.active{
   background:#171726;color:#fff;border:1px solid var(--border);
   box-shadow:-3px 0 0 var(--lime), -6px 0 14px rgba(180,255,57,0.35);
 }
 
 .vybe-stage{flex:1;height:100%;overflow:hidden;position:relative;display:flex;flex-direction:column}
-.view-pane{width:100%;height:100%;display:none;overflow-y:auto;padding:10px 24px 24px 8px;scrollbar-width:none}
+.view-pane{width:100%;height:100%;display:none;overflow-y:auto;padding:10px 20px 22px 6px;scrollbar-width:none}
 .view-pane::-webkit-scrollbar{display:none}
 .view-pane.active{display:flex;flex-direction:column}
 
-/* SUB-HEADER ÜBER DER VIDEO-KARTE */
-.feed-bar{width:100%;max-width:760px;margin:0 auto 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.feed-tabs{display:flex;align-items:center;gap:22px}
-.f-tab{font-size:15px;font-weight:800;color:#7c7c90;cursor:pointer;padding-bottom:7px;position:relative;transition:.2s}
+/* FEED-LEISTE & VIDEO-KARTE */
+.feed-bar{width:100%;max-width:740px;margin:0 auto 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.feed-tabs{display:flex;align-items:center;gap:20px}
+.f-tab{font-size:15px;font-weight:800;color:#7c7c90;cursor:pointer;padding-bottom:6px;position:relative}
 .f-tab.active{color:#fff}
 .f-tab.active::after{content:'';position:absolute;bottom:0;left:2px;width:24px;height:3px;background:var(--lime);border-radius:4px;box-shadow:0 0 8px var(--lime)}
 .daily-mix-pill{
-  background:#161624;border:1px solid rgba(255,255,255,0.09);border-radius:20px;
-  padding:6px 14px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:0.8px;color:#d4d4e3;cursor:pointer;
+  background:#161624;border:1px solid var(--border);border-radius:20px;
+  padding:6px 13px;display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800;color:#d4d4e3;cursor:pointer;
 }
 .daily-dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime)}
 
-/* ================= DIE VYBE VIDEO-KARTE ================= */
-.cards-scroller{width:100%;max-width:760px;margin:0 auto;flex:1;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none;border-radius:24px}
+.cards-scroller{width:100%;max-width:740px;margin:0 auto;flex:1;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none;border-radius:24px}
 .cards-scroller::-webkit-scrollbar{display:none}
 .vybe-card{
-  width:100%;height:100%;min-height:470px;border-radius:24px;position:relative;overflow:hidden;
-  scroll-snap-align:start;scroll-snap-stop:always;background:#101018;border:1px solid var(--border);margin-bottom:18px;
+  width:100%;height:100%;min-height:460px;border-radius:24px;position:relative;overflow:hidden;
+  scroll-snap-align:start;scroll-snap-stop:always;background:#101018;border:1px solid var(--border);margin-bottom:16px;
 }
 .vybe-card-media{width:100%;height:100%;object-fit:cover;display:block}
-.vybe-card-shade{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 35%, rgba(6,6,10,0.55) 72%, rgba(5,5,9,0.94) 100%);pointer-events:none}
+.vybe-card-shade{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 35%, rgba(6,6,10,0.55) 72%, rgba(5,5,9,0.94) 100%);pointer-events:none}
 .card-pill-left{
-  position:absolute;top:16px;left:16px;background:rgba(28,28,40,0.76);backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:7px 13px;display:flex;align-items:center;gap:7px;font-size:11px;font-weight:900;letter-spacing:0.8px;color:#f4f4f8;z-index:10;
+  position:absolute;top:15px;left:15px;background:rgba(28,28,40,0.78);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:6px 12px;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:900;color:#f4f4f8;z-index:10;
 }
-.star-lime{color:var(--lime);font-size:13px;line-height:1}
 .card-pill-right{
-  position:absolute;top:16px;right:16px;background:rgba(28,28,40,0.76);backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:7px 14px;font-size:11.5px;font-weight:700;color:#f4f4f8;z-index:10;cursor:pointer;
+  position:absolute;top:15px;right:15px;background:rgba(28,28,40,0.78);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:6px 13px;font-size:11px;font-weight:700;color:#f4f4f8;z-index:10;cursor:pointer;
 }
-.card-actions-right{position:absolute;right:16px;bottom:20px;display:flex;flex-direction:column;align-items:center;gap:14px;z-index:20}
-.c-act{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+.card-actions-right{position:absolute;right:15px;bottom:18px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:20}
+.c-act{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
 .c-act-circle{
-  width:44px;height:44px;border-radius:50%;background:rgba(22,22,34,0.78);backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:#fff;transition:.18s;
+  width:42px;height:42px;border-radius:50%;background:rgba(22,22,34,0.8);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:#fff;
 }
-.c-act:hover .c-act-circle{border-color:var(--lime);transform:scale(1.06)}
-.c-act.liked .c-act-circle{background:rgba(244,63,94,0.28);border-color:#f43f5e;color:#f43f5e}
+.c-act.liked .c-act-circle{background:rgba(244,63,94,0.3);border-color:#f43f5e;color:#f43f5e}
 .c-act.saved .c-act-circle{background:var(--lime-soft);border-color:var(--lime);color:var(--lime)}
-.c-act-lbl{font-size:11px;font-weight:800;color:#f1f5f9;text-shadow:0 1px 4px rgba(0,0,0,0.9)}
+.c-act-lbl{font-size:11px;font-weight:800;color:#f1f5f9}
 
-.card-bottom-info{position:absolute;left:20px;bottom:20px;right:84px;z-index:20}
-.creator-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.creator-ava{width:40px;height:40px;border-radius:50%;padding:2px;background:var(--lime);cursor:pointer;flex-shrink:0}
-.creator-ava img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
-.creator-name{font-size:14.5px;font-weight:900;color:#fff;line-height:1.15}
-.creator-handle{font-size:12px;color:#a1a1b5}
+.card-bottom-info{position:absolute;left:18px;bottom:18px;right:80px;z-index:20}
+.creator-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.creator-ava{width:38px;height:38px;border-radius:50%;padding:2px;background:var(--lime);cursor:pointer;flex-shrink:0}
+.creator-ava img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;pointer-events:none}
+.creator-name{font-size:14px;font-weight:900;color:#fff}
+.creator-handle{font-size:11.5px;color:#a1a1b5}
 .sub-badge-btn{
-  margin-left:4px;background:rgba(180,255,57,0.12);border:1.5px solid var(--lime);
-  color:#d9f99d;padding:4px 11px;border-radius:10px;font-size:11.5px;font-weight:800;cursor:pointer;transition:.2s;
+  margin-left:4px;background:rgba(180,255,57,0.14);border:1.5px solid var(--lime);
+  color:#d9f99d;padding:4px 10px;border-radius:10px;font-size:11px;font-weight:800;cursor:pointer;
 }
-.sub-badge-btn.unsub{background:var(--lime);color:#09090f}
-.clip-headline{font-size:18px;font-weight:900;color:#fff;margin-bottom:6px;line-height:1.25}
-.clip-subline{font-size:13px;color:#d4d4e3;margin-bottom:10px;line-height:1.35}
-.clip-hashtags{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;font-weight:800;color:var(--lime)}
+.clip-headline{font-size:17px;font-weight:900;color:#fff;margin-bottom:5px;line-height:1.25}
+.clip-subline{font-size:12.5px;color:#d4d4e3;margin-bottom:8px}
+.clip-hashtags{display:flex;flex-wrap:wrap;gap:9px;font-size:12.5px;font-weight:800;color:var(--lime)}
 
-/* ================= EXTRA SEITE: VYBE PROFIL (EIGENE VOLLBILD-SEITE IM GLEICHEN LOOK) ================= */
+/* ================= EXTRA SEITE: VYBE PROFIL (VOLLBILD IM VYBE LOOK) ================= */
 .vybe-extra-page{
-  position:fixed;inset:0;width:100vw;height:100dvh;z-index:250000;
-  background:radial-gradient(ellipse 70% 40% at 50% 8%, rgba(124,58,237,0.32) 0%, rgba(9,9,15,0) 65%), var(--bg);
-  display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:none;animation:pageIn .22s ease-out;
+  position:fixed;inset:0;width:100vw;height:100dvh;z-index:350000;
+  background:radial-gradient(ellipse 70% 40% at 50% 8%, rgba(124,58,237,0.34) 0%, rgba(9,9,15,0) 65%), var(--bg);
+  display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:none;
 }
 .vybe-extra-page::-webkit-scrollbar{display:none}
-.vybe-extra-page.hide{display:none}
-@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.vybe-extra-page.hide{display:none!important}
 
 .prof-page-topbar{
-  height:68px;width:100%;max-width:880px;margin:0 auto;padding:0 20px;
+  height:66px;width:100%;max-width:860px;margin:0 auto;padding:0 18px;
   display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;
-  background:rgba(9,9,15,0.85);backdrop-filter:blur(12px);z-index:40;border-bottom:1px solid var(--border);
+  background:rgba(9,9,15,0.9);backdrop-filter:blur(12px);z-index:40;border-bottom:1px solid var(--border);flex-shrink:0;
 }
 .back-vybe-btn{
-  background:#161625;border:1px solid var(--border);padding:8px 14px;border-radius:13px;
-  font-size:13px;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px;cursor:pointer;transition:.2s;
+  background:#171726;border:1px solid rgba(180,255,57,0.35);padding:8px 14px;border-radius:12px;
+  font-size:12.5px;font-weight:800;color:var(--lime);display:flex;align-items:center;gap:6px;cursor:pointer;
 }
-.back-vybe-btn:hover{border-color:var(--lime);color:var(--lime)}
+.prof-page-container{width:100%;max-width:820px;margin:0 auto;padding:18px 18px 60px}
 
-.prof-top-actions{display:flex;align-items:center;gap:10px}
-.vis-pill{
-  background:#161625;border:1px solid var(--border);padding:6px 11px;border-radius:20px;
-  display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--lime);cursor:pointer;
-}
-.menu-burger-btn{
-  width:40px;height:40px;border-radius:13px;background:#161625;border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;position:relative;
-}
-.menu-badge{
-  position:absolute;top:-4px;right:-4px;background:#f43f5e;color:#fff;font-size:9px;
-  font-weight:900;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-}
-
-.prof-page-container{width:100%;max-width:820px;margin:0 auto;padding:18px 20px 60px}
-
-/* Profil Hero im VYBE Look */
 .prof-hero-card{
-  background:linear-gradient(180deg, rgba(24,24,40,0.75) 0%, rgba(19,19,31,0.92) 100%);
-  border:1px solid var(--border);border-radius:26px;padding:24px 20px 20px;text-align:center;
-  position:relative;box-shadow:0 18px 45px rgba(0,0,0,0.6);margin-bottom:18px;
+  background:linear-gradient(180deg, rgba(24,24,40,0.82) 0%, rgba(18,18,30,0.95) 100%);
+  border:1px solid var(--border);border-radius:24px;padding:22px 18px 18px;text-align:center;
+  box-shadow:0 16px 40px rgba(0,0,0,0.65);margin-bottom:16px;
 }
 .vybe-thought-bubble{
-  display:inline-block;background:#1d1d30;border:1px solid rgba(180,255,57,0.35);
-  color:var(--lime);font-size:12px;font-weight:800;padding:5px 14px;border-radius:18px;
-  margin-bottom:-8px;position:relative;z-index:5;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4);
+  display:inline-block;background:#1d1d30;border:1px solid rgba(180,255,57,0.4);
+  color:var(--lime);font-size:11.5px;font-weight:800;padding:4px 13px;border-radius:16px;
+  margin-bottom:-6px;position:relative;z-index:5;cursor:pointer;
 }
-.prof-ava-main-wrap{position:relative;width:104px;height:104px;margin:0 auto 12px;cursor:pointer}
+.prof-ava-main-wrap{position:relative;width:100px;height:100px;margin:0 auto 10px;cursor:pointer}
 .prof-ava-main{
-  width:104px;height:104px;border-radius:50%;padding:3px;
-  background:linear-gradient(135deg,var(--lime),var(--violet));
-  box-shadow:0 0 24px rgba(180,255,57,0.3);
+  width:100px;height:100px;border-radius:50%;padding:3px;
+  background:linear-gradient(135deg,var(--lime),var(--violet));box-shadow:0 0 22px rgba(180,255,57,0.3);
 }
 .prof-ava-main img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:#111}
 .prof-ava-plus{
-  position:absolute;bottom:2px;right:2px;width:28px;height:28px;border-radius:50%;
+  position:absolute;bottom:2px;right:2px;width:27px;height:27px;border-radius:50%;
   background:var(--lime);color:#09090f;border:2.5px solid #13131f;
-  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;
 }
-
 .prof-name-bar{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px}
-.prof-disp-title{font-size:21px;font-weight:900;color:#fff}
-.prof-lvl-pill{
-  background:var(--lime-soft);border:1px solid var(--lime);color:var(--lime);
-  font-size:11px;font-weight:900;padding:2px 8px;border-radius:10px;
-}
-.prof-edit-icon-btn{
-  background:#222236;border:1px solid var(--border);color:#fff;padding:5px 12px;
-  border-radius:14px;font-size:13px;cursor:pointer;transition:.2s;
-}
-.prof-edit-icon-btn:hover{border-color:var(--lime);color:var(--lime)}
-.prof-handle-sub{font-size:13px;color:var(--muted);margin:3px 0 12px;font-weight:600}
-.prof-bio-text{font-size:13.5px;color:#e2e8f0;max-width:460px;margin:0 auto 14px;line-height:1.4}
+.prof-disp-title{font-size:20px;font-weight:900;color:#fff}
+.prof-lvl-pill{background:var(--lime-soft);border:1px solid var(--lime);color:var(--lime);font-size:10.5px;font-weight:900;padding:2px 8px;border-radius:9px}
+.prof-edit-icon-btn{background:#222236;border:1px solid var(--border);color:#fff;padding:5px 11px;border-radius:12px;font-size:12.5px;cursor:pointer}
+.prof-handle-sub{font-size:12.5px;color:var(--muted);margin:3px 0 10px;font-weight:600}
+.prof-bio-text{font-size:13px;color:#e2e8f0;max-width:440px;margin:0 auto 12px}
 .prof-bio-text:empty{display:none}
 
-/* Rahmenlose Statistik-Zahlen */
-.prof-stats-row{display:flex;justify-content:center;gap:38px;margin-bottom:18px;padding:6px 0}
+.prof-stats-row{display:flex;justify-content:center;gap:34px;margin-bottom:16px;padding:4px 0}
 .p-stat-item{cursor:pointer}
-.p-stat-item b{font-size:18px;font-weight:900;color:#fff;display:block}
-.p-stat-item span{font-size:11.5px;color:var(--muted);font-weight:600}
+.p-stat-item b{font-size:17px;font-weight:900;color:#fff;display:block}
+.p-stat-item span{font-size:11px;color:var(--muted);font-weight:600}
 
-/* Schnellzugriffs-Pills ohne harte Rahmen */
-.prof-quick-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
-.q-pill{
-  background:#1c1c2e;padding:9px 15px;border-radius:13px;font-size:12px;font-weight:800;
-  color:#e4e4ef;display:flex;align-items:center;gap:6px;cursor:pointer;transition:.2s;
-}
-.q-pill:hover{background:#25253d;color:var(--lime)}
+.prof-quick-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+.q-pill{background:#1c1c2e;padding:9px 13px;border-radius:12px;font-size:11.5px;font-weight:800;color:#e4e4ef;cursor:pointer}
 .q-pill.lime{background:var(--lime);color:#09090f}
 .q-pill.violet{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff}
 
-/* VYBE Prämien- & Wachstumsaufgabe im Dark-Lime Look */
 .vybe-growth-card{
   background:linear-gradient(90deg, rgba(24,24,40,0.95) 0%, rgba(35,24,62,0.85) 100%);
-  border:1px solid rgba(180,255,57,0.25);border-radius:20px;padding:15px 18px;
-  display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;cursor:pointer;
+  border:1px solid rgba(180,255,57,0.28);border-radius:18px;padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;cursor:pointer;
 }
-.growth-icon{
-  width:44px;height:44px;border-radius:14px;background:var(--lime-soft);border:1px solid var(--lime);
-  color:var(--lime);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
-}
-.growth-badge-lime{background:var(--lime-soft);color:var(--lime);font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:6px}
-.growth-badge-dark{background:rgba(255,255,255,0.07);color:#cbd5e1;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:6px}
+.growth-icon{width:42px;height:42px;border-radius:13px;background:var(--lime-soft);border:1px solid var(--lime);color:var(--lime);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
 
-/* Profil-Tabs & Grid */
-.prof-tabs-bar{
-  display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);margin-bottom:16px;
-}
-.ptab-btn{
-  padding:12px 4px;text-align:center;font-size:13px;font-weight:800;color:var(--muted);
-  cursor:pointer;position:relative;transition:.2s;
-}
+.prof-tabs-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);margin-bottom:14px}
+.ptab-btn{padding:11px 4px;text-align:center;font-size:12.5px;font-weight:800;color:var(--muted);cursor:pointer;position:relative}
 .ptab-btn.active{color:#fff}
-.ptab-btn.active::after{
-  content:'';position:absolute;bottom:-1px;left:25%;width:50%;height:3px;
-  background:var(--lime);border-radius:4px;box-shadow:0 0 8px var(--lime);
-}
+.ptab-btn.active::after{content:'';position:absolute;bottom:-1px;left:25%;width:50%;height:3px;background:var(--lime);border-radius:4px;box-shadow:0 0 8px var(--lime)}
 
-.prof-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.p-grid-card{
-  background:#141422;border:1px solid var(--border);border-radius:18px;overflow:hidden;
-  cursor:pointer;position:relative;transition:transform .18s,border-color .18s;
-}
-.p-grid-card:hover{transform:translateY(-3px);border-color:var(--lime)}
-.p-grid-card img,.p-grid-card video{width:100%;height:210px;object-fit:cover;display:block;background:#000}
-.p-grid-foot{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800}
-.tag-top1{position:absolute;top:10px;right:10px;background:var(--lime);color:#09090f;font-size:10px;font-weight:900;padding:3px 8px;border-radius:7px}
+.prof-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.p-grid-card{background:#141422;border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;position:relative}
+.p-grid-card img,.p-grid-card video{width:100%;height:190px;object-fit:cover;display:block;background:#000}
+.p-grid-foot{padding:9px 11px;display:flex;justify-content:space-between;align-items:center;font-size:11.5px;font-weight:800}
+.tag-top1{position:absolute;top:8px;right:8px;background:var(--lime);color:#09090f;font-size:9.5px;font-weight:900;padding:3px 7px;border-radius:6px}
 
-/* VYBE SEITEN-DRAWER RECHTS (DARK MODE) */
-.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(4px);z-index:300000;display:none}
+/* SEITEN-DRAWER RECHTS */
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:410000;display:none}
 .drawer-backdrop.open{display:block}
 .vybe-drawer{
-  position:fixed;top:0;right:-100%;width:84%;max-width:340px;height:100dvh;
-  background:#11111c;border-left:1px solid var(--border);z-index:310000;
-  transition:right .25s ease;padding:22px 18px;overflow-y:auto;box-shadow:-15px 0 40px rgba(0,0,0,0.8);
+  position:fixed;top:0;right:-100%;width:82%;max-width:320px;height:100dvh;
+  background:#11111c;border-left:1px solid var(--border);z-index:420000;transition:right .25s ease;padding:20px 16px;overflow-y:auto;
 }
 .vybe-drawer.open{right:0}
-.dr-sec-lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:18px 6px 8px}
-.dr-item{
-  display:flex;justify-content:space-between;align-items:center;padding:13px 12px;
-  border-radius:14px;font-size:13.5px;font-weight:700;color:#f1f5f9;cursor:pointer;transition:.15s;
-}
-.dr-item:hover{background:#1a1a2b;color:var(--lime)}
+.dr-sec-lbl{font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:16px 6px 6px}
+.dr-item{display:flex;justify-content:space-between;align-items:center;padding:12px 10px;border-radius:12px;font-size:13px;font-weight:700;color:#f1f5f9;cursor:pointer}
 .dr-item.highlight{background:rgba(180,255,57,0.1);border:1px solid rgba(180,255,57,0.3)}
 
-/* WEITERE VIEWS & MODALS */
-.vybe-box{width:100%;max-width:760px;margin:0 auto;background:var(--panel);border:1px solid var(--border);border-radius:22px;padding:20px;margin-bottom:14px}
-.person-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--panel-2);border:1px solid var(--border);border-radius:16px;margin-bottom:10px;cursor:pointer}
-.lime-btn{background:var(--lime);color:#09090f;padding:8px 14px;border-radius:11px;font-size:12px;font-weight:900;cursor:pointer}
-.violet-btn{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;padding:8px 14px;border-radius:11px;font-size:12px;font-weight:800;cursor:pointer}
+/* WEITERE ELEMENTE & MODALS */
+.vybe-box{width:100%;max-width:740px;margin:0 auto;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:18px;margin-bottom:14px}
+.person-row{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;background:var(--panel-2);border:1px solid var(--border);border-radius:15px;margin-bottom:9px;cursor:pointer}
+.lime-btn{background:var(--lime);color:#09090f;padding:8px 13px;border-radius:10px;font-size:11.5px;font-weight:900;cursor:pointer}
+.violet-btn{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;padding:8px 13px;border-radius:10px;font-size:11.5px;font-weight:800;cursor:pointer}
 
-.modal-overlay{position:fixed;inset:0;background:rgba(5,5,10,0.86);backdrop-filter:blur(8px);z-index:400000;display:flex;align-items:center;justify-content:center;padding:16px}
-.modal-overlay.hide{display:none}
-.modal-card{width:100%;max-width:420px;background:#141422;border:1px solid rgba(180,255,57,0.3);border-radius:24px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.9)}
-.v-inp{width:100%;background:#1c1c2e;border:1px solid rgba(255,255,255,0.1);color:#fff;padding:11px 14px;border-radius:12px;font-size:13px;margin-bottom:10px}
-.gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-.gift-item{background:#1c1c2e;border:1px solid var(--border);border-radius:14px;padding:10px 6px;text-align:center;cursor:pointer;transition:.15s}
-.gift-item:hover{border-color:var(--lime);transform:translateY(-2px)}
+.modal-overlay{position:fixed;inset:0;background:rgba(5,5,10,0.86);backdrop-filter:blur(8px);z-index:450000;display:flex;align-items:center;justify-content:center;padding:14px}
+.modal-overlay.hide{display:none!important}
+.modal-card{width:100%;max-width:400px;background:#141422;border:1px solid rgba(180,255,57,0.35);border-radius:22px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,0.9)}
+.v-inp{width:100%;background:#1c1c2e;border:1px solid rgba(255,255,255,0.1);color:#fff;padding:10px 13px;border-radius:11px;font-size:13px;margin-bottom:9px}
+.gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.gift-item{background:#1c1c2e;border:1px solid var(--border);border-radius:13px;padding:9px 4px;text-align:center;cursor:pointer}
 
 .fx-stage{position:fixed;inset:0;pointer-events:none;z-index:500000;display:none;overflow:hidden}
 .fx-stage.active{display:block}
-.fx-banner{position:absolute;top:80px;left:50%;transform:translateX(-50%);background:#141422;border:2px solid var(--lime);padding:8px 18px;border-radius:30px;font-size:13px;font-weight:900;color:#fff;box-shadow:0 0 25px rgba(180,255,57,0.4)}
-.fx-hero{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:110px;animation:popHero 2.6s forwards}
+.fx-banner{position:absolute;top:75px;left:50%;transform:translateX(-50%);background:#141422;border:2px solid var(--lime);padding:7px 16px;border-radius:25px;font-size:12.5px;font-weight:900;color:#fff}
+.fx-hero{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:105px;animation:popHero 2.5s forwards}
 @keyframes popHero{0%{transform:translate(-50%,-50%) scale(0);opacity:0}30%{transform:translate(-50%,-50%) scale(1.25);opacity:1}80%{opacity:1}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
 
-.live-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;flex:1;min-height:360px;margin-bottom:10px}
-.live-slot{background:#151525;border:1px solid rgba(180,255,57,0.25);border-radius:18px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.live-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;flex:1;min-height:340px;margin-bottom:10px}
+.live-slot{background:#151525;border:1px solid rgba(180,255,57,0.25);border-radius:16px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .live-slot video,.live-slot canvas{width:100%;height:100%;object-fit:cover}
-.slot-tag{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.75);padding:3px 9px;border-radius:8px;font-size:11px;font-weight:800;color:var(--lime)}
+.slot-tag{position:absolute;bottom:7px;left:7px;background:rgba(0,0,0,0.75);padding:3px 8px;border-radius:7px;font-size:10.5px;font-weight:800;color:var(--lime)}
 </style>
 </head>
 <body>
 
 <div class="fx-stage" id="giftFxStage"></div>
 
-<!-- ================= EXTRA SEITE 1: VYBE PROFIL (ÖFFNET SICH BEIM KLICK AUFS PROFIL) ================= -->
+<!-- ================= EXTRA SEITE 1: VYBE PROFIL (VOLLBILD-SEITE IM GLEICHEN LOOK) ================= -->
 <div class="vybe-extra-page hide" id="vybeProfilePage">
-  <!-- Obere Leiste der Extra-Profilseite -->
   <div class="prof-page-topbar">
-    <div style="display:flex;align-items:center;gap:10px">
+    <div style="display:flex;align-items:center;gap:8px">
       <button class="back-vybe-btn" onclick="closeProfilePage()">← Zurück zu VYBE</button>
-      <button class="top-sq-btn" onclick="closeProfilePage();switchView('vClub',$('sBtnClub'))" title="Freunde finden">👤+</button>
+      <button class="top-sq-btn" onclick="closeProfilePage();switchView('vClub',$('sBtnClub'))">👤+</button>
     </div>
-
-    <div style="display:flex;align-items:center;gap:7px;font-size:12px;font-weight:900;letter-spacing:1px;color:var(--lime)">
+    <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:900;color:var(--lime)">
       <span class="daily-dot"></span> VYBE PROFIL
     </div>
-
-    <div class="prof-top-actions">
-      <div class="vis-pill" onclick="alert('👀 1 neuer Profilbesucher heute!')">
-        <span>👀</span><span>1</span>
-      </div>
-      <button class="top-sq-btn" onclick="shareInviteLink()" title="Profil & Raum teilen">↪️</button>
-      <button class="menu-burger-btn" onclick="toggleVybeDrawer(true)" title="Menü öffnen">
-        ☰<span class="menu-badge">1</span>
-      </button>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="top-sq-btn" onclick="alert('👀 1 neuer Besucher heute!')" style="width:auto;padding:0 10px;font-size:11.5px;font-weight:800;color:var(--lime)">👀 1</button>
+      <button class="top-sq-btn" onclick="shareInviteLink()">↪️</button>
+      <button class="top-sq-btn" onclick="toggleVybeDrawer(true)">☰</button>
     </div>
   </div>
 
-  <!-- Hauptinhalt der Extra-Profilseite -->
   <div class="prof-page-container">
     <div class="prof-hero-card">
       <div class="vybe-thought-bubble" id="profThoughtTxt" onclick="editThoughtStatus()">Was geht?</div>
 
-      <!-- Klick aufs Profilbild öffnet Großansicht (Lightbox) -->
-      <div class="prof-ava-main-wrap" onclick="toggleScreen('avaZoomModal',true)" title="Klicken zum Vergrößern">
+      <div class="prof-ava-main-wrap" onclick="toggleScreen('avaZoomModal',true)">
         <div class="prof-ava-main">
           <img id="profPageAva" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80" alt="Avatar">
         </div>
-        <div class="prof-ava-plus" onclick="event.stopPropagation();$('avaInput').click()" title="Neues Bild hochladen">+</div>
+        <div class="prof-ava-plus" onclick="event.stopPropagation();$('avaInput').click()">+</div>
       </div>
 
       <div class="prof-name-bar">
         <span class="prof-disp-title" id="pNameDisp">🍝Nudel King🍝</span>
         <span class="prof-lvl-pill">LVL 3</span>
-        <button class="prof-edit-icon-btn" onclick="openEditPage()" title="Profil & Adresse bearbeiten">✏️</button>
+        <button class="prof-edit-icon-btn" onclick="openEditPage()">✏️</button>
       </div>
       <div class="prof-handle-sub" id="pHandleDisp">@reckpunkt</div>
-
-      <!-- Bio ist standardmäßig leer (kein Infinity-Spruch), bis man im Profil selbst etwas einträgt -->
       <div class="prof-bio-text" id="pBioDisp"></div>
 
-      <!-- Rahmenlose Statistik-Leiste -->
       <div class="prof-stats-row">
-        <div class="p-stat-item" onclick="closeProfilePage();switchView('vClub',$('sBtnClub'))">
-          <b>4.783</b><span>Gefolgt</span>
-        </div>
-        <div class="p-stat-item" onclick="closeProfilePage();switchView('vClub',$('sBtnClub'))">
-          <b>2.889</b><span>Follower*innen</span>
-        </div>
-        <div class="p-stat-item" onclick="addCoins()">
-          <b style="color:var(--lime)" id="pCoinsDisp">10.000 🪙</b><span>Likes & Coins</span>
-        </div>
+        <div class="p-stat-item" onclick="closeProfilePage();switchView('vClub',$('sBtnClub'))"><b>4.783</b><span>Gefolgt</span></div>
+        <div class="p-stat-item" onclick="closeProfilePage();switchView('vClub',$('sBtnClub'))"><b>2.889</b><span>Follower*innen</span></div>
+        <div class="p-stat-item" onclick="addCoins()"><b style="color:var(--lime)" id="pCoinsDisp">10.000 🪙</b><span>Likes & Coins</span></div>
       </div>
 
-      <!-- Schnell-Buttons im VYBE Design -->
       <div class="prof-quick-pills">
         <button class="q-pill lime" onclick="toggleScreen('uploadModal',true)">🎬 +30s Clip Studio</button>
         <button class="q-pill" onclick="switchProfTab('orders',document.querySelectorAll('.ptab-btn')[3])">🛒 Deine Bestellungen</button>
@@ -387,108 +301,78 @@ button,input{font-family:inherit;outline:none;border:none;background:none;color:
       </div>
     </div>
 
-    <!-- VYBE Video-Wachstumsaufgabe im Dark-Lime Look -->
     <div class="vybe-growth-card" onclick="toggleScreen('uploadModal',true)">
       <div class="growth-icon">🎟️</div>
       <div style="flex:1">
-        <div style="font-size:14px;font-weight:900;color:#fff;margin-bottom:3px">Video-Wachstumsaufgabe</div>
-        <div style="font-size:12px;color:#a1a1b5;margin-bottom:7px">Veröffentliche qualifizierte 30s-Clips im Club für bis zu 70 € an Gesamtprämien.</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <span class="growth-badge-lime">🎟️ 70 € an Prämien</span>
-          <span class="growth-badge-dark">Aktiv bis 31.10.2026</span>
-        </div>
+        <div style="font-size:13.5px;font-weight:900;color:#fff;margin-bottom:2px">Video-Wachstumsaufgabe</div>
+        <div style="font-size:11.5px;color:#a1a1b5">Veröffentliche 30s-Clips im VYBE Club für bis zu 70 € an Prämien.</div>
       </div>
       <span style="color:var(--lime);font-size:18px;font-weight:900">›</span>
     </div>
 
-    <!-- Reiter im Profil -->
     <div class="prof-tabs-bar">
-      <div class="ptab-btn active" onclick="switchProfTab('clips',this)">🎬 Clips (max. 30s)</div>
-      <div class="ptab-btn" onclick="switchProfTab('shop',this)">🛍️ Showcase Shop</div>
+      <div class="ptab-btn active" onclick="switchProfTab('clips',this)">🎬 Clips (30s)</div>
+      <div class="ptab-btn" onclick="switchProfTab('shop',this)">🛍️ Showcase</div>
       <div class="ptab-btn" onclick="switchProfTab('saved',this)">🔖 Gemerkt</div>
-      <div class="ptab-btn" onclick="switchProfTab('orders',this)">📦 Bestellungen</div>
+      <div class="ptab-btn" onclick="switchProfTab('orders',this)">📦 Adresse</div>
     </div>
 
-    <!-- Dynamischer Inhalt der Profil-Reiter -->
     <div class="prof-cards-grid" id="profTabGrid"></div>
   </div>
 </div>
 
-<!-- ================= EXTRA SEITE 2: PROFIL & ADRESSE BEARBEITEN (IM VYBE LOOK) ================= -->
-<div class="vybe-extra-page hide" id="vybeEditPage" style="z-index:280000">
+<!-- ================= EXTRA SEITE 2: PROFIL & ADRESSE BEARBEITEN ================= -->
+<div class="vybe-extra-page hide" id="vybeEditPage" style="z-index:380000">
   <div class="prof-page-topbar">
-    <button class="back-vybe-btn" onclick="toggleScreen('vybeEditPage',false)">← Zurück zum Profil</button>
-    <b style="font-size:15px;color:var(--lime)">✏️ Profil & Adresse bearbeiten</b>
+    <button class="back-vybe-btn" onclick="toggleScreen('vybeEditPage',false)">← Zurück</button>
+    <b style="font-size:14px;color:var(--lime)">✏️ Profil & Adresse bearbeiten</b>
     <button class="lime-btn" onclick="saveProfileEdit()">Speichern</button>
   </div>
-  <div class="prof-page-container" style="max-width:540px">
+  <div class="prof-page-container" style="max-width:520px">
     <div class="prof-hero-card" style="text-align:left">
-      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:5px">ANZEIGENAME</label>
+      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">ANZEIGENAME</label>
       <input id="editNameInp" class="v-inp" placeholder="Dein Anzeigename">
-
-      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:5px">BENUTZERNAME (@HANDLE)</label>
+      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">BENUTZERNAME (@HANDLE)</label>
       <input id="editHandleInp" class="v-inp" placeholder="@handle">
-
-      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:5px">VOR- UND NACHNAME (FÜR BESTELLUNGEN)</label>
+      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">VOR- UND NACHNAME</label>
       <input id="editFullNameInp" class="v-inp" placeholder="Max Mustermann">
-
-      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:5px">LIEFERADRESSE (STRASSE, PLZ & ORT)</label>
-      <input id="editAddrInp" class="v-inp" placeholder="Musterstraße 1, 12345 Stadt">
-
-      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:5px">BIO / ÜBER MICH (BLEIBT LEER WENN FREI)</label>
+      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">LIEFERADRESSE</label>
+      <input id="editAddrInp" class="v-inp" placeholder="Straße, Hausnummer, PLZ & Ort">
+      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">BIO / SPRUCH (BLEIBT LEER WENN FREI)</label>
       <input id="editBioInp" class="v-inp" placeholder="Dein Spruch im Profil...">
-
-      <button class="lime-btn" style="width:100%;padding:12px;margin-top:8px;font-size:13.5px" onclick="saveProfileEdit()">✅ Alle Änderungen speichern</button>
+      <button class="lime-btn" style="width:100%;padding:11px;margin-top:6px" onclick="saveProfileEdit()">✅ Änderungen speichern</button>
     </div>
   </div>
 </div>
 
-<!-- ================= VYBE SEITEN-MENÜ RECHTS (DARK MODE DRAWER) ================= -->
+<!-- SEITEN-MENÜ RECHTS -->
 <div class="drawer-backdrop" id="vybeDrawerBg" onclick="toggleVybeDrawer(false)"></div>
 <aside class="vybe-drawer" id="vybeDrawer">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-    <b style="font-size:16px;color:var(--lime)">⚡ VYBE Club Menü</b>
-    <button style="font-size:18px;cursor:pointer;color:var(--muted)" onclick="toggleVybeDrawer(false)">✕</button>
+    <b style="font-size:15px;color:var(--lime)">⚡ VYBE Club Menü</b>
+    <button style="font-size:18px;cursor:pointer" onclick="toggleVybeDrawer(false)">✕</button>
   </div>
-
   <div class="dr-sec-lbl">Assets</div>
   <div class="dr-item highlight" onclick="addCoins()">
-    <div style="display:flex;align-items:center;gap:12px"><span>👛</span><span>Guthaben (<b id="drawerCoinsTxt" style="color:var(--lime)">10.000 🪙</b>)</span></div>
-    <span style="color:var(--lime)">+Aufladen ›</span>
+    <span>👛 Guthaben (<b id="drawerCoinsTxt" style="color:var(--lime)">10.000 🪙</b>)</span>
+    <span style="color:var(--lime)">+10k ›</span>
   </div>
-
   <div class="dr-sec-lbl">Persönliche Tools</div>
-  <div class="dr-item" onclick="alert('🕒 Aktivitätszentrum: 25 Tsd. Likes & alle neuen Kommentare.')">
-    <div style="display:flex;align-items:center;gap:12px"><span>🕒</span><span>Aktivitätszentrum</span></div><span>›</span>
-  </div>
-  <div class="dr-item" onclick="toggleVybeDrawer(false);switchProfTab('saved',document.querySelectorAll('.ptab-btn')[2])">
-    <div style="display:flex;align-items:center;gap:12px"><span>☁️</span><span>Gemerkt & Offline-Videos</span></div><span>›</span>
-  </div>
-  <div class="dr-item" onclick="shareInviteLink()">
-    <div style="display:flex;align-items:center;gap:12px"><span>🏁</span><span>Dein QR-Code & Raum-Link</span></div><span>›</span>
-  </div>
-
-  <div class="dr-sec-lbl">Erstellungs- & Club-Tools</div>
-  <div class="dr-item" onclick="toggleVybeDrawer(false);toggleScreen('uploadModal',true)">
-    <div style="display:flex;align-items:center;gap:12px"><span>🎬</span><span>VYBE Studio (+30s Video)</span></div><span>›</span>
-  </div>
-  <div class="dr-item" onclick="alert('📄 Transparenz-MStV & Club-Richtlinien')">
-    <div style="display:flex;align-items:center;gap:12px"><span>📄</span><span>Transparenz-MStV</span></div><span>›</span>
-  </div>
-  <div class="dr-item" onclick="toggleVybeDrawer(false);openEditPage()">
-    <div style="display:flex;align-items:center;gap:12px"><span>⚙️</span><span>Einstellungen und Datenschutz</span></div><span>›</span>
-  </div>
-  <div class="dr-item" style="color:var(--muted);margin-top:8px" onclick="toggleVybeDrawer(false);toggleScreen('duelModal',true)">
-    <div style="display:flex;align-items:center;gap:12px"><span>⚔️</span><span>Mini-Duell (nebenbei spielen)</span></div><span>›</span>
-  </div>
+  <div class="dr-item" onclick="alert('🕒 Aktivitätszentrum: 25 Tsd. Likes & Kommentare.')"><span>🕒 Aktivitätszentrum</span><span>›</span></div>
+  <div class="dr-item" onclick="toggleVybeDrawer(false);switchProfTab('saved',document.querySelectorAll('.ptab-btn')[2])"><span>☁️ Offline & Gemerkt</span><span>›</span></div>
+  <div class="dr-item" onclick="shareInviteLink()"><span>🏁 Dein QR-Code & Link</span><span>›</span></div>
+  <div class="dr-sec-lbl">Erstellungs-Tools</div>
+  <div class="dr-item" onclick="toggleVybeDrawer(false);toggleScreen('uploadModal',true)"><span>🎬 VYBE Studio (+30s Clip)</span><span>›</span></div>
+  <div class="dr-item" onclick="toggleVybeDrawer(false);openEditPage()"><span>⚙️ Einstellungen & Adresse</span><span>›</span></div>
+  <div class="dr-item" style="color:var(--muted)" onclick="toggleVybeDrawer(false);toggleScreen('duelModal',true)"><span>⚔️ Mini-Duell (nebenbei)</span><span>›</span></div>
 </aside>
 
-<!-- ================= HAUPT-APP (STARTET AUF DEM VYBE HOME-FEED) ================= -->
+<!-- ================= HAUPT-APP ================= -->
 <div class="vybe-shell">
   <header class="vybe-header">
     <div class="brand-wrap" onclick="closeProfilePage();switchView('vFeed',$('sBtnHome'))">
       <div class="brand-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#09090f" stroke-width="2.6" stroke-linecap="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#09090f" stroke-width="2.6" stroke-linecap="round">
           <line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/>
           <line x1="5.6" y1="5.6" x2="18.4" y2="18.4"/><line x1="18.4" y1="5.6" x2="5.6" y2="18.4"/>
         </svg>
@@ -500,82 +384,46 @@ button,input{font-family:inherit;outline:none;border:none;background:none;color:
     </div>
 
     <div class="search-wrap">
-      <svg class="search-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="search-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
         <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
       </svg>
       <input class="search-box" id="topSearchInp" placeholder="Creator, Sounds oder Trends suchen..." oninput="filterFeedBySearch(this.value)">
     </div>
 
     <div class="header-right">
-      <button class="top-sq-btn" onclick="switchView('vClub',$('sBtnClub'))" title="Kollegen/innen & Club">
-        <span class="pink-dot"></span>
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4A4 4 0 1 1 17 17H7a4 4 0 1 1 3-6.6A4 4 0 0 1 12 3z"/>
-          <line x1="12" y1="17" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/>
-        </svg>
+      <button class="top-sq-btn" onclick="switchView('vClub',$('sBtnClub'))" title="Kollegen/innen">
+        <span class="pink-dot"></span>♣️
       </button>
-
-      <button class="top-sq-btn" onclick="toggleScreen('giftModal',true)" title="Sounds & Geschenke">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
-        </svg>
+      <button class="top-sq-btn" onclick="toggleScreen('giftModal',true)" title="Geschenke">♫</button>
+      <!-- KLICK AUFS PROFILBILD OBEN RECHTS ÖFFNET SOFORT DIE EXTRA-PROFILSEITE -->
+      <button class="top-ava-btn" onclick="openProfilePage()" title="Profil öffnen">
+        <img id="topAvaImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80" alt="Profil">
       </button>
-
-      <!-- KLICK HIER ÖFFNET DIE EIGENE EXTRA PROFIL-SEITE -->
-      <div class="top-ava-btn" onclick="openProfilePage()" title="Deine Extra-Profilseite öffnen">
-        <img id="topAvaImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80" alt="Profile">
-      </div>
     </div>
   </header>
 
   <div class="vybe-body">
-    <!-- LINKE SIDEBAR -->
     <aside class="vybe-sidebar">
       <div class="side-top-group">
-        <button class="side-btn active" id="sBtnHome" onclick="closeProfilePage();switchView('vFeed',this)" title="Für dich">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 10.5L12 3l9 7.5v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9z"/><path d="M9 21V13h6v8"/>
-          </svg>
+        <button class="side-btn active" id="sBtnHome" onclick="closeProfilePage();switchView('vFeed',this)" title="Home">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M3 10.5L12 3l9 7.5v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9z"/><path d="M9 21V13h6v8"/></svg>
         </button>
-
-        <button class="side-btn" id="sBtnSearch" onclick="closeProfilePage();switchView('vFeed',$('sBtnHome'));$('topSearchInp').focus()" title="Suche">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16" y2="16"/>
-          </svg>
+        <button class="side-btn" id="sBtnSearch" onclick="$('topSearchInp').focus()" title="Suche">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16" y2="16"/></svg>
         </button>
-
-        <button class="side-btn" id="sBtnPlus" onclick="toggleScreen('uploadModal',true)" title="30s Video hochladen">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
+        <button class="side-btn" id="sBtnPlus" onclick="toggleScreen('uploadModal',true)" title="+30s Video">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </button>
-
-        <button class="side-btn" id="sBtnClub" onclick="closeProfilePage();switchView('vClub',this)" title="Kollegen/innen & Nachrichten">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4A4 4 0 1 1 17 17H7a4 4 0 1 1 3-6.6A4 4 0 0 1 12 3z"/>
-            <line x1="12" y1="17" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/>
-          </svg>
-        </button>
-
-        <button class="side-btn" id="sBtnLive" onclick="closeProfilePage();switchView('vLive',this);startVybeLive()" title="Multi-Live Studio">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/>
-          </svg>
-        </button>
+        <button class="side-btn" id="sBtnClub" onclick="closeProfilePage();switchView('vClub',this)" title="Kollegen/innen">♣️</button>
+        <button class="side-btn" id="sBtnLive" onclick="closeProfilePage();switchView('vLive',this);startVybeLive()" title="Live">🔴</button>
+        <!--DIREKTER PROFIL-BUTTON IN DER SEITENLEISTE -->
+        <button class="side-btn" id="sBtnProfSide" onclick="openProfilePage()" title="Profil Extra-Seite">👤</button>
       </div>
-
-      <!-- KLICK AUFS ZAHNRAD UNTEN ÖFFNET EBENFALLS DIE EXTRA PROFIL-SEITE -->
-      <button class="side-btn" id="sBtnSettings" onclick="openProfilePage()" title="Deine Extra-Profilseite">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-        </svg>
-      </button>
+      <button class="side-btn" onclick="openProfilePage()" title="Profil & Einstellungen">⚙️</button>
     </aside>
 
-    <!-- HAUPT-STAGE -->
     <main class="vybe-stage">
-      <!-- VIEW 1: VYBE HOME-FEED -->
+      <!-- VIEW 1: VYBE HOME-FEED (MIT FEST EINGEBAUTER START-KARTE DAMIT SIE SOFORT DA IST) -->
       <section class="view-pane active" id="vFeed">
         <div class="feed-bar">
           <div class="feed-tabs">
@@ -586,7 +434,35 @@ button,input{font-family:inherit;outline:none;border:none;background:none;color:
             <span class="daily-dot"></span><span>DEIN DAILY MIX</span>
           </div>
         </div>
-        <div class="cards-scroller" id="cardsScroller"></div>
+
+        <div class="cards-scroller" id="cardsScroller">
+          <!-- Statische Erst-Karte als Sofort-Anzeige -->
+          <article class="vybe-card">
+            <img class="vybe-card-media" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=85" alt="Mila Moves">
+            <div class="vybe-card-shade"></div>
+            <div class="card-pill-left"><span style="color:var(--lime)">✦</span><span>MORNING RESET</span></div>
+            <div class="card-pill-right">♫ Originalton · mila.moves</div>
+            <div class="card-actions-right">
+              <div class="c-act" onclick="toggleLike(0)"><div class="c-act-circle">♥</div><span class="c-act-lbl">25 Tsd.</span></div>
+              <div class="c-act" onclick="openComments(0)"><div class="c-act-circle">□</div><span class="c-act-lbl">382</span></div>
+              <div class="c-act" onclick="toggleSave(0)"><div class="c-act-circle">⚑</div><span class="c-act-lbl">Merken</span></div>
+              <div class="c-act" onclick="shareClip(0)"><div class="c-act-circle">↗</div><span class="c-act-lbl">126</span></div>
+            </div>
+            <div class="card-bottom-info">
+              <div class="creator-row">
+                <div class="creator-ava" onclick="openProfilePage()"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80"></div>
+                <div onclick="openProfilePage()" style="cursor:pointer">
+                  <div class="creator-name">Mila Moves</div>
+                  <div class="creator-handle">@mila.moves</div>
+                </div>
+                <button class="sub-badge-btn" onclick="toggleSub(0)">✓ Abonniert</button>
+              </div>
+              <div class="clip-headline">Kleiner Reminder: Du musst nicht jeden Tag alles</div>
+              <div class="clip-subline">Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿</div>
+              <div class="clip-hashtags"><span>#minivlog</span><span>#slowmorning</span><span>#mindset</span></div>
+            </div>
+          </article>
+        </div>
       </section>
 
       <!-- VIEW 2: KOLLEGEN/INNEN & NACHRICHTEN -->
@@ -594,8 +470,8 @@ button,input{font-family:inherit;outline:none;border:none;background:none;color:
         <div class="vybe-box">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
             <div>
-              <h2 style="font-size:19px;font-weight:900">♣️ Kollegen/innen & Nachrichten</h2>
-              <p style="font-size:12px;color:var(--muted)">Direkt-Chats & aktive Multi-Live-Streams deiner Crew</p>
+              <h2 style="font-size:18px;font-weight:900">♣️ Kollegen/innen & Nachrichten</h2>
+              <p style="font-size:12px;color:var(--muted)">Direkt-Chats & aktive Multi-Live-Räume</p>
             </div>
             <button class="lime-btn" onclick="toggleScreen('codeModal',true)">🔑 Raum-Code</button>
           </div>
@@ -607,15 +483,14 @@ button,input{font-family:inherit;outline:none;border:none;background:none;color:
       <section class="view-pane" id="vLive">
         <div class="vybe-box" style="flex:1;display:flex;flex-direction:column">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-            <div style="display:flex;align-items:center;gap:10px">
-              <span style="background:#f43f5e;color:#fff;font-size:11px;font-weight:900;padding:4px 9px;border-radius:8px">🔴 LIVE</span>
-              <span style="font-size:13px;font-weight:800">Raum-Code: <b style="color:var(--lime)" id="liveRoomCodeTxt">----</b></span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="background:#f43f5e;color:#fff;font-size:11px;font-weight:900;padding:4px 8px;border-radius:7px">🔴 LIVE</span>
+              <span style="font-size:12.5px;font-weight:800">Code: <b style="color:var(--lime)" id="liveRoomCodeTxt">----</b></span>
               <span style="font-size:12px;color:var(--lime)">• 🪙 <b id="liveCoinsTxt">10.000</b></span>
             </div>
             <div style="display:flex;gap:6px">
               <button class="violet-btn" onclick="cycleFaceMorph()">🐸 Maske: <span id="morphNameTxt">Normal</span></button>
               <button class="lime-btn" onclick="toggleScreen('giftModal',true)">🎁 Geschenke</button>
-              <button class="top-sq-btn" style="width:34px;height:34px" onclick="shareInviteLink()">🔗</button>
             </div>
           </div>
 
@@ -630,16 +505,16 @@ button,input{font-family:inherit;outline:none;border:none;background:none;color:
             <div class="live-slot"><video id="remVid3" autoplay playsinline></video><span class="slot-tag" id="remTag3">⚡ Co-Host 4 (Frei)</span></div>
           </div>
 
-          <div id="hostApproveBanner" style="display:none;background:#1e1b4b;border:1.5px solid var(--lime);padding:9px 14px;border-radius:12px;margin-bottom:8px;justify-content:space-between;align-items:center;font-size:12px">
-            <span>🔔 <b id="reqNameSpan" style="color:var(--lime)">Gast</b> möchte deinem Live-Stream beitreten!</span>
+          <div id="hostApproveBanner" style="display:none;background:#1e1b4b;border:1.5px solid var(--lime);padding:8px 12px;border-radius:11px;margin-bottom:8px;justify-content:space-between;align-items:center;font-size:12px">
+            <span>🔔 <b id="reqNameSpan" style="color:var(--lime)">Gast</b> möchte beitreten!</span>
             <div style="display:flex;gap:6px">
               <button class="lime-btn" onclick="answerJoinRequest(true)">✅ Genehmigen</button>
               <button class="violet-btn" style="background:#dc2626" onclick="answerJoinRequest(false)">✕ Ablehnen</button>
             </div>
           </div>
 
-          <div style="display:flex;gap:8px">
-            <input id="liveChatInp" class="v-inp" style="margin:0;flex:1" placeholder="In den Live-Chat schreiben...">
+          <div style="display:flex;gap:6px">
+            <input id="liveChatInp" class="v-inp" style="margin:0;flex:1" placeholder="Nachricht schreiben...">
             <button class="lime-btn" onclick="sendLiveChat()">Senden</button>
             <button class="violet-btn" onclick="toggleScreen('codeModal',true)">🙋‍♂️ Mit Code anfragen</button>
           </div>
@@ -649,78 +524,64 @@ button,input{font-family:inherit;outline:none;border:none;background:none;color:
   </div>
 </div>
 
-<!-- MODAL: PROFILBILD IN GROSS ANSCHAUEN (LIGHTBOX) -->
+<!-- MODALS -->
 <div class="modal-overlay hide" id="avaZoomModal">
   <div class="modal-card" style="text-align:center">
-    <h3 id="zoomHandleTxt" style="color:var(--lime);margin-bottom:14px">@reckpunkt</h3>
-    <div style="width:240px;height:240px;border-radius:50%;padding:4px;background:linear-gradient(135deg,var(--lime),var(--violet));margin:0 auto 18px">
-      <img id="zoomAvaImg" src="" style="width:100%;height:100%;border-radius:50%;object-fit:cover;background:#111">
+    <h3 id="zoomHandleTxt" style="color:var(--lime);margin-bottom:12px">@reckpunkt</h3>
+    <div style="width:230px;height:230px;border-radius:50%;padding:4px;background:linear-gradient(135deg,var(--lime),var(--violet));margin:0 auto 16px">
+      <img id="zoomAvaImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80" style="width:100%;height:100%;border-radius:50%;object-fit:cover">
     </div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <button class="lime-btn" style="padding:11px" onclick="$('avaInput').click()">📷 Anderes Bild hochladen</button>
+      <button class="lime-btn" style="padding:11px" onclick="$('avaInput').click()">📷 Anderes Bild wählen</button>
       <button class="back-vybe-btn" style="justify-content:center" onclick="toggleScreen('avaZoomModal',false)">✕ Schließen</button>
     </div>
   </div>
 </div>
 
-<!-- MODAL: KOMMENTARE -->
 <div class="modal-overlay hide" id="cmtModal">
   <div class="modal-card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:12px"><b id="cmtTitle">💬 Kommentare</b><button onclick="toggleScreen('cmtModal',false)">✕</button></div>
-    <div id="cmtList" style="max-height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:12px"></div>
-    <div style="display:flex;gap:8px">
-      <input id="cmtInp" class="v-inp" style="margin:0;flex:1" placeholder="Kommentar schreiben...">
-      <button class="lime-btn" onclick="addComment()">Senden</button>
-    </div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b id="cmtTitle">💬 Kommentare</b><button onclick="toggleScreen('cmtModal',false)">✕</button></div>
+    <div id="cmtList" style="max-height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
+    <div style="display:flex;gap:6px"><input id="cmtInp" class="v-inp" style="margin:0;flex:1" placeholder="Kommentar..."><button class="lime-btn" onclick="addComment()">Senden</button></div>
   </div>
 </div>
 
-<!-- MODAL: 30s VIDEO HOCHLADEN -->
 <div class="modal-overlay hide" id="uploadModal">
   <div class="modal-card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b>🎬 Short Video hochladen (max. 30s)</b><button onclick="toggleScreen('uploadModal',false)">✕</button></div>
-    <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Wähle einen Clip bis maximal 30 Sekunden für den VYBE Club:</p>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🎬 Short Video hochladen (max. 30s)</b><button onclick="toggleScreen('uploadModal',false)">✕</button></div>
     <button class="violet-btn" style="width:100%;margin-bottom:10px;padding:11px" onclick="$('vidInput').click()">📂 Video auswählen (≤ 30 Sek.)</button>
     <div id="upNotice" style="font-size:12px;font-weight:800;margin-bottom:8px;display:none"></div>
-    <input id="upTagInp" class="v-inp" placeholder="Badge oben links (z. B. MORNING RESET)">
+    <input id="upTagInp" class="v-inp" placeholder="Badge (z. B. MORNING RESET)">
     <input id="upTitleInp" class="v-inp" placeholder="Titelzeile...">
     <input id="upTagsInp" class="v-inp" placeholder="#minivlog #slowmorning #mindset">
-    <button class="lime-btn" id="pubVidBtn" style="width:100%;padding:11px;display:none" onclick="publishClip()">🚀 Jetzt in Profil & Feed posten</button>
+    <button class="lime-btn" id="pubVidBtn" style="width:100%;padding:11px;display:none" onclick="publishClip()">🚀 Veröffentlichen</button>
   </div>
 </div>
 
-<!-- MODAL: GESCHENKE -->
 <div class="modal-overlay hide" id="giftModal">
   <div class="modal-card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-      <b>🎁 VYBE Club Geschenke (<span id="gModalCoins" style="color:var(--lime)">10.000</span> 🪙)</b>
-      <button onclick="toggleScreen('giftModal',false)">✕</button>
-    </div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🎁 Geschenke (<span id="gModalCoins" style="color:var(--lime)">10.000</span> 🪙)</b><button onclick="toggleScreen('giftModal',false)">✕</button></div>
     <div class="gift-grid" id="giftGrid"></div>
   </div>
 </div>
 
-<!-- MODAL: RAUM-CODE & ANFRAGE -->
 <div class="modal-overlay hide" id="codeModal">
   <div class="modal-card" style="text-align:center">
-    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b>🔑 Live Raum-Code</b><button onclick="toggleScreen('codeModal',false)">✕</button></div>
-    <p style="font-size:12px;color:var(--muted)">Dein Code zum Teilen mit bis zu 3 Freunden:</p>
-    <div style="font-size:28px;font-weight:900;color:var(--lime);margin:6px 0 12px" id="modalMyCode">----</div>
-    <input id="joinCodeInp" class="v-inp" placeholder="4-stelligen Code vom Host eingeben...">
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🔑 Live Raum-Code</b><button onclick="toggleScreen('codeModal',false)">✕</button></div>
+    <div style="font-size:26px;font-weight:900;color:var(--lime);margin:6px 0 12px" id="modalMyCode">----</div>
+    <input id="joinCodeInp" class="v-inp" placeholder="4-stelliger Host-Code...">
     <button class="lime-btn" style="width:100%;padding:11px" onclick="sendJoinRequest()">🙋‍♂️ Beim Host anfragen</button>
     <div id="joinStatusTxt" style="font-size:12px;color:var(--lime);margin-top:8px"></div>
   </div>
 </div>
 
-<!-- MODAL: MINI-DUELL (NEBENBEI) -->
 <div class="modal-overlay hide" id="duelModal">
   <div class="modal-card" style="text-align:center">
-    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b style="color:var(--lime)">⚔️ Kleines Pausen-Duell</b><button onclick="toggleScreen('duelModal',false)">✕</button></div>
-    <div style="display:flex;justify-content:space-around;background:#1c1c2e;padding:12px;border-radius:14px;margin-bottom:12px;font-weight:800">
-      <span>🛡️ Du: <b style="color:var(--lime)" id="duelMyLP">2000</b></span>
-      <span>👾 Bot: <b style="color:#f43f5e" id="duelBotLP">2000</b></span>
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b style="color:var(--lime)">⚔️ Pausen-Duell</b><button onclick="toggleScreen('duelModal',false)">✕</button></div>
+    <div style="display:flex;justify-content:space-around;background:#1c1c2e;padding:12px;border-radius:12px;margin-bottom:12px;font-weight:800">
+      <span>🛡️ Du: <b style="color:var(--lime)" id="duelMyLP">2000</b></span><span>👾 Bot: <b style="color:#f43f5e" id="duelBotLP">2000</b></span>
     </div>
-    <button class="lime-btn" style="width:100%;padding:11px" onclick="playDuel()">⚡ Schnell-Angriff (+250 Coins bei Sieg)</button>
+    <button class="lime-btn" style="width:100%;padding:11px" onclick="playDuel()">⚡ Angriff (+250 Coins)</button>
   </div>
 </div>
 
@@ -730,7 +591,18 @@ button,input{font-family:inherit;outline:none;border:none;background:none;color:
 <script>
 const $=id=>document.getElementById(id);
 
-let user=JSON.parse(localStorage.getItem('vybe_u2'))||{
+/* ABSTURZSICHERER SPEICHER (FÜR CONTENT:// UND FILE:// AUF ANDROID) */
+const memStore={};
+function safeGet(k,fallback){
+  try{const v=localStorage.getItem(k);return v!==null?JSON.parse(v):fallback;}
+  catch(e){return memStore[k]!==undefined?memStore[k]:fallback;}
+}
+function safeSet(k,val){
+  memStore[k]=val;
+  try{localStorage.setItem(k,JSON.stringify(val));}catch(e){}
+}
+
+let user=safeGet('vybe_u3',{
   name:'🍝Nudel King🍝',
   handle:'@reckpunkt',
   fullName:'',
@@ -738,80 +610,39 @@ let user=JSON.parse(localStorage.getItem('vybe_u2'))||{
   bio:'',
   thought:'Was geht?',
   ava:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80'
-};
-let coins=Number(localStorage.getItem('vybe_c2'))||10000;
+});
+let coins=Number(safeGet('vybe_c3',10000))||10000;
 let feedTab='foryou',profTab='clips',searchQuery='',activeCmtIdx=0,myUploadedClips=[];
 
 const VIDEOS=[
   {
-    id:'v1',
-    creator:'Mila Moves',
-    handle:'@mila.moves',
+    id:'v1',creator:'Mila Moves',handle:'@mila.moves',
     ava:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80',
-    Subscribed:true,
-    badgeLeft:'MORNING RESET',
-    soundRight:'♫ Originalton · mila.moves',
+    Subscribed:true,badgeLeft:'MORNING RESET',soundRight:'♫ Originalton · mila.moves',
     title:'Kleiner Reminder: Du musst nicht jeden Tag alles',
     desc:'Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿',
     tags:['#minivlog','#slowmorning','#mindset'],
     img:'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=85',
-    videoUrl:'',
-    likes:'25 Tsd.',
-    liked:false,
-    commentsCount:382,
-    comments:[
-      {u:'@noah.vance',t:'Genau diesen Reminder habe ich heute gebraucht! 🌿'},
-      {u:'@lara.vibes',t:'Die Farben und die Ruhe sind unglaublich schön ✨'}
-    ],
-    saved:false,
-    shares:126
+    videoUrl:'',likes:'25 Tsd.',liked:false,commentsCount:382,
+    comments:[{u:'@noah.vance',t:'Genau diesen Reminder habe ich heute gebraucht! 🌿'}],
+    saved:false,shares:126
   },
   {
-    id:'v2',
-    creator:'Noah Vance',
-    handle:'@noah.vance',
+    id:'v2',creator:'Noah Vance',handle:'@noah.vance',
     ava:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=240&q=80',
-    Subscribed:true,
-    badgeLeft:'NIGHT DRIVE',
-    soundRight:'♫ Late Night Synth · noah.vance',
+    Subscribed:true,badgeLeft:'NIGHT DRIVE',soundRight:'♫ Late Night Synth · noah.vance',
     title:'Wenn die Stadt schläft, fängt der beste Vibe erst an',
     desc:'Kurzer 20s Run durch die Neon-Straßen heute Nacht ⚡',
     tags:['#nightvibes','#vybeclub','#aesthetic'],
     img:'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1200&q=85',
     videoUrl:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    likes:'14,2 Tsd.',
-    liked:false,
-    commentsCount:194,
-    comments:[{u:'@mila.moves',t:'Mega Aufnahme! 🔥'}],
-    saved:false,
-    shares:88
-  },
-  {
-    id:'v3',
-    creator:'Lina & Crew',
-    handle:'@lina.studio',
-    ava:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=240&q=80',
-    Subscribed:false,
-    badgeLeft:'STUDIO SESSION',
-    soundRight:'♫ Originalton · lina.studio',
-    title:'Neuer Beat im VYBE Short Video Club ist fertig!',
-    desc:'Kommt gleich mit in unseren 4er-Live-Stream 🎧💚',
-    tags:['#musicclub','#producer','#vybe'],
-    img:'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=85',
-    videoUrl:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    likes:'9.840',
-    liked:false,
-    commentsCount:112,
-    comments:[],
-    saved:false,
-    shares:64
+    likes:'14,2 Tsd.',liked:false,commentsCount:194,comments:[],saved:false,shares:88
   }
 ];
 
 const COLLEAGUES=[
   {name:'Mila Moves',handle:'@mila.moves',ava:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',status:'Online • Morning Reset gepostet 🌿',live:false},
   {name:'Noah Vance',handle:'@noah.vance',ava:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',status:'Gerade im Multi-Live aktiv 🔴',live:true},
-  {name:'Lina & Crew',handle:'@lina.studio',ava:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',status:'Im Studio • Bereit für Co-Stream 🎧',live:true},
   {name:'Daddyy 😎',handle:'@daddyy.vybe',ava:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',status:'Box-Battle Host 🔥',live:true}
 ];
 
@@ -821,7 +652,7 @@ const GIFTS=[
   {id:'rock',icon:'🚀',name:'Rakete',cost:1000},{id:'crown',icon:'👑',name:'Krone',cost:1500},{id:'drag',icon:'🐉',name:'Drache',cost:2500}
 ];
 
-/* ================= EXTRA PROFIL-SEITE ÖFFNEN / SCHLIESSEN & TABS ================= */
+/* EXTRA PROFIL-SEITE ÖFFNEN & SCHLIESSEN */
 function openProfilePage(){
   updateUI();
   renderProfileTabGrid();
@@ -844,20 +675,20 @@ function switchProfTab(tab,el){
 
 function renderProfileTabGrid(){
   const box=$('profTabGrid');
+  if(!box)return;
   if(profTab==='clips'){
     const myHTML=myUploadedClips.map(c=>`
       <div class="p-grid-card" onclick="closeProfilePage();switchView('vFeed',$('sBtnHome'))">
         <span class="tag-top1">⏱️ 30s</span>
-        <video src="${c.videoUrl}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-        <div class="p-grid-foot"><span>${c.title.slice(0,18)}...</span><span style="color:var(--lime)">▶️ Neu</span></div>
+        <video src="${c.videoUrl}" muted loop playsinline></video>
+        <div class="p-grid-foot"><span>${c.title.slice(0,16)}</span><span style="color:var(--lime)">▶️ Neu</span></div>
       </div>
     `).join('');
-
     box.innerHTML=`
-      <div class="p-grid-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:248px;background:rgba(180,255,57,0.06);border:1.5px dashed var(--lime)" onclick="toggleScreen('uploadModal',true)">
-        <div style="font-size:36px;margin-bottom:8px">🎬➕</div>
-        <b style="font-size:13px;color:var(--lime)">Short Video hochladen</b>
-        <span style="font-size:11px;color:var(--muted);margin-top:4px">Maximal 30 Sekunden</span>
+      <div class="p-grid-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:225px;background:rgba(180,255,57,0.06);border:1.5px dashed var(--lime)" onclick="toggleScreen('uploadModal',true)">
+        <div style="font-size:32px;margin-bottom:6px">🎬➕</div>
+        <b style="font-size:12.5px;color:var(--lime)">Short Video hochladen</b>
+        <span style="font-size:11px;color:var(--muted);margin-top:3px">Maximal 30 Sekunden</span>
       </div>
       ${myHTML}
       <div class="p-grid-card" onclick="closeProfilePage();switchView('vFeed',$('sBtnHome'))">
@@ -867,12 +698,12 @@ function renderProfileTabGrid(){
       </div>`;
   }else if(profTab==='shop'){
     box.innerHTML=`
-      <div class="p-grid-card" onclick="alert('🕶️ Rokid AR Glasses im VYBE Showcase ausgewählt!')">
+      <div class="p-grid-card" onclick="alert('🕶️ Rokid AR Glasses ausgewählt!')">
         <span class="tag-top1">🎵 TOP 1</span>
         <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80">
         <div class="p-grid-foot"><span>Rokid AR Glasses</span><span style="color:var(--lime)">29,99 €</span></div>
       </div>
-      <div class="p-grid-card" onclick="alert('🖥️ Smart CarPlay Display ausgewählt!')">
+      <div class="p-grid-card" onclick="alert('🖥️ Smart Display ausgewählt!')">
         <span class="tag-top1" style="background:#7c3aed;color:#fff">TOP PICK</span>
         <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80">
         <div class="p-grid-foot"><span>Smart Display</span><span style="color:var(--lime)">49,99 €</span></div>
@@ -885,29 +716,27 @@ function renderProfileTabGrid(){
         <img src="${s.img}">
         <div class="p-grid-foot"><span>${s.creator}</span><span style="color:var(--lime)">${s.likes}</span></div>
       </div>
-    `).join(''):`<div style="grid-column:1/-1;text-align:center;padding:28px;color:var(--muted);font-size:13px">Noch keine Videos über „Merken“ gespeichert.</div>`;
+    `).join(''):`<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--muted);font-size:12.5px">Noch keine Videos über „Merken“ gespeichert.</div>`;
   }else{
     box.innerHTML=`
-      <div class="p-grid-card" style="grid-column:1/-1;padding:20px">
-        <b style="font-size:14px;color:var(--lime)">📦 Deine hinterlegte Lieferadresse & Bestellungen:</b>
-        <p style="font-size:13px;color:#cbd5e1;margin:8px 0 14px">${[user.fullName,user.address].filter(Boolean).join(' • ')||'Noch keine Lieferadresse eingetragen.'}</p>
+      <div class="p-grid-card" style="grid-column:1/-1;padding:18px">
+        <b style="font-size:13.5px;color:var(--lime)">📦 Deine Lieferadresse & Bestellungen:</b>
+        <p style="font-size:12.5px;color:#cbd5e1;margin:8px 0 12px">${[user.fullName,user.address].filter(Boolean).join(' • ')||'Noch keine Lieferadresse eingetragen.'}</p>
         <button class="lime-btn" onclick="openEditPage()">✏️ Adresse bearbeiten</button>
       </div>`;
   }
 }
 
 function editThoughtStatus(){
-  const t=prompt('Dein kurzer Status über dem Profilbild:',user.thought||'Was geht?');
-  if(t){user.thought=t;localStorage.setItem('vybe_u2',JSON.stringify(user));updateUI();}
+  const t=prompt('Dein kurzer Status:',user.thought||'Was geht?');
+  if(t){user.thought=t;safeSet('vybe_u3',user);updateUI();}
 }
-
 function openEditPage(){
   $('editNameInp').value=user.name||'';
   $('editHandleInp').value=user.handle\vert{}\vert{}'';$('editFullNameInp').value=user.fullName||'';
   $('editAddrInp').value=user.address\vert{}\vert{}'';$('editBioInp').value=user.bio||'';
   toggleScreen('vybeEditPage',true);
 }
-
 function saveProfileEdit(){
   user.name=$('editNameInp').value.trim()||user.name;
   let h=$('editHandleInp').value.trim();
@@ -915,13 +744,11 @@ function saveProfileEdit(){
   user.fullName=$('editFullNameInp').value.trim();
   user.address=$('editAddrInp').value.trim();
   user.bio=$('editBioInp').value.trim();
-  localStorage.setItem('vybe_u2',JSON.stringify(user));
+  safeSet('vybe_u3',user);
   toggleScreen('vybeEditPage',false);
-  updateUI();
-  renderProfileTabGrid();
+  updateUI();renderProfileTabGrid();
 }
 
-/* ================= HOME-FEED RENDERN ================= */
 function renderFeed(){
   const box=$('cardsScroller');
   const list=VIDEOS.filter(v=>{
@@ -943,60 +770,22 @@ function renderFeed(){
     <article class="vybe-card">
       ${mediaHTML}
       <div class="vybe-card-shade"></div>
-
-      <div class="card-pill-left">
-        <span class="star-lime">✦</span><span>${v.badgeLeft}</span>
-      </div>
+      <div class="card-pill-left"><span style="color:var(--lime)">✦</span><span>${v.badgeLeft}</span></div>
       <div class="card-pill-right" onclick="alert('🎵 Sound: ${v.soundRight}')">${v.soundRight}</div>
-
       <div class="card-actions-right">
-        <div class="c-act ${v.liked?'liked':''}" onclick="toggleLike(${realIdx})">
-          <div class="c-act-circle">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-          </div>
-          <span class="c-act-lbl">${v.likes}</span>
-        </div>
-
-        <div class="c-act" onclick="openComments(${realIdx})">
-          <div class="c-act-circle">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="4" y="4" width="16" height="16" rx="4"/>
-            </svg>
-          </div>
-          <span class="c-act-lbl">${v.commentsCount}</span>
-        </div>
-
-        <div class="c-act ${v.saved?'saved':''}" onclick="toggleSave(${realIdx})">
-          <div class="c-act-circle">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M5 3h14a1 1 0 0 1 1 1v17l-8-4-8 4V4a1 1 0 0 1 1-1z"/>
-            </svg>
-          </div>
-          <span class="c-act-lbl">${v.saved?'Gemerkt':'Merken'}</span>
-        </div>
-
-        <div class="c-act" onclick="shareClip(${realIdx})">
-          <div class="c-act-circle">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-            </svg>
-          </div>
-          <span class="c-act-lbl">${v.shares}</span>
-        </div>
+        <div class="c-act ${v.liked?'liked':''}" onclick="toggleLike(${realIdx})"><div class="c-act-circle">♥</div><span class="c-act-lbl">${v.likes}</span></div>
+        <div class="c-act" onclick="openComments(${realIdx})"><div class="c-act-circle">□</div><span class="c-act-lbl">${v.commentsCount}</span></div>
+        <div class="c-act ${v.saved?'saved':''}" onclick="toggleSave(${realIdx})"><div class="c-act-circle">⚑</div><span class="c-act-lbl">${v.saved?'Gemerkt':'Merken'}</span></div>
+        <div class="c-act" onclick="shareClip(${realIdx})"><div class="c-act-circle">↗</div><span class="c-act-lbl">${v.shares}</span></div>
       </div>
-
       <div class="card-bottom-info">
         <div class="creator-row">
-          <div class="creator-ava" onclick="openProfilePage()"><img src="${v.ava}" alt="${v.creator}"></div>
+          <div class="creator-ava" onclick="openProfilePage()"><img src="${v.ava}"></div>
           <div onclick="openProfilePage()" style="cursor:pointer">
             <div class="creator-name">${v.creator}</div>
             <div class="creator-handle">${v.handle}</div>
           </div>
-          <button class="sub-badge-btn ${v.Subscribed?'':'unsub'}" onclick="toggleSub(${realIdx})">
-            ${v.Subscribed?'✓ Abonniert':'+ Abonnieren'}
-          </button>
+          <button class="sub-badge-btn" onclick="toggleSub(${realIdx})">${v.Subscribed?'✓ Abonniert':'+ Abonnieren'}</button>
         </div>
         <div class="clip-headline">${v.title}</div>
         <div class="clip-subline">${v.desc}</div>
@@ -1020,12 +809,8 @@ function shareClip(i){VIDEOS[i].shares++;renderFeed();shareInviteLink();}
 
 function openComments(i){
   activeCmtIdx=i;const v=VIDEOS[i];
-  $('cmtTitle').textContent=`💬 ${v.commentsCount} Kommentare zu ${v.creator}`;
-  $('cmtList').innerHTML=v.comments.map(c=>`
-    <div style="background:#1c1c2e;padding:9px 12px;border-radius:12px;font-size:12.5px">
-      <b style="color:var(--lime)">${c.u}:</b> <span>${c.t}</span>
-    </div>
-  `).join('')||'<div style="color:var(--muted);font-size:12px">Noch keine Kommentare.</div>';
+  $('cmtTitle').textContent=`💬 ${v.commentsCount} Kommentare`;
+  $('cmtList').innerHTML=v.comments.map(c=>`<div style="background:#1c1c2e;padding:8px 11px;border-radius:10px;font-size:12px"><b style="color:var(--lime)">${c.u}:</b> ${c.t}</div>`).join('')||'Noch keine Kommentare.';
   toggleScreen('cmtModal',true);
 }
 function addComment(){
@@ -1037,20 +822,16 @@ function addComment(){
 
 function renderColleagues(){
   $('colleaguesList').innerHTML=COLLEAGUES.map(c=>`
-    <div class="person-row" onclick="${c.live?`switchView('vLive',$('sBtnLive'));startVybeLive()`:`alert('💬 Direkt-Chat mit ${c.name} geöffnet!')`}">
-      <div style="display:flex;align-items:center;gap:12px">
+    <div class="person-row" onclick="${c.live?`switchView('vLive',$('sBtnLive'));startVybeLive()`:`alert('💬 Chat mit ${c.name} geöffnet!')`}">
+      <div style="display:flex;align-items:center;gap:10px">
         <div class="creator-ava"><img src="${c.ava}"></div>
-        <div>
-          <b style="font-size:14px">${c.name}</b> <span style="font-size:11px;color:var(--muted)">${c.handle}</span>
-          <div style="font-size:12px;color:#cbd5e1;margin-top:2px">${c.status}</div>
-        </div>
+        <div><b style="font-size:13.5px">${c.name}</b><div style="font-size:11.5px;color:#cbd5e1">${c.status}</div></div>
       </div>
-      ${c.live?`<span class="lime-btn">🔴 Live beitreten</span>`:`<span class="violet-btn">💬 Nachricht</span>`}
+      ${c.live?`<span class="lime-btn">🔴 Live</span>`:`<span class="violet-btn">💬 Chat</span>`}
     </div>
   `).join('');
 }
 
-/* 30s VIDEO UPLOAD */
 let tempVidUrl='';
 function handleVidSelect(e){
   const f=e.target.files[0];if(!f)return;
@@ -1059,46 +840,36 @@ function handleVidSelect(e){
   tv.onloadedmetadata=()=>{
     const n=$('upNotice');n.style.display='block';
     if(tv.duration>30.5){
-      URL.revokeObjectURL(u);
-      n.style.color='#f43f5e';
-      n.textContent=`❌ Video ist ${tv.duration.toFixed(1)}s lang! Maximal 30 Sekunden erlaubt.`;
+      URL.revokeObjectURL(u);n.style.color='#f43f5e';n.textContent=`❌ Zu lang (${tv.duration.toFixed(1)}s)! Max. 30s erlaubt.`;
     }else{
-      tempVidUrl=u;
-      n.style.color='var(--lime)';
-      n.textContent=`✅ Perfekt! Länge: ${Math.round(tv.duration)} Sek. (≤ 30s).`;
-      $('pubVidBtn').style.display='block';
+      tempVidUrl=u;n.style.color='var(--lime)';n.textContent=`✅ OK (${Math.round(tv.duration)}s)`;$('pubVidBtn').style.display='block';
     }
   };
   tv.src=u;
 }
 function publishClip(){
   if(!tempVidUrl)return;
-  const badge=($('upTagInp').value.trim()||'NEW VYBE').toUpperCase();
-  const title=$('upTitleInp').value.trim()||'Mein neuer 30s Club Clip ✨';
-  const tags=($('upTagsInp').value.trim()||'#vybe #shortvideoclub').split(/\s+/);
   const newObj={
     id:'v_'+Date.now(),creator:user.name,handle:user.handle,ava:user.ava,Subscribed:true,
-    badgeLeft:badge,soundRight:'♫ Originalton · '+user.handle.replace('@',''),
-    title:title,desc:title+' 🌿',tags:tags,
+    badgeLeft:($('upTagInp').value.trim()||'NEW VYBE').toUpperCase(),
+    soundRight:'♫ Originalton · '+user.handle.replace('@',''),
+    title:$('upTitleInp').value.trim()||'Mein neuer 30s Club Clip ✨',
+    desc:'Neuer Clip im VYBE Short Video Club 🌿',
+    tags:($('upTagsInp').value.trim()||'#vybe #shortvideoclub').split(/\s+/),
     img:'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=85',
     videoUrl:tempVidUrl,likes:'1',liked:true,commentsCount:0,comments:[],saved:true,shares:0
   };
-  myUploadedClips.unshift(newObj);
-  VIDEOS.unshift(newObj);
-  toggleScreen('uploadModal',false);
-  renderFeed();renderProfileTabGrid();
+  myUploadedClips.unshift(newObj);VIDEOS.unshift(newObj);
+  toggleScreen('uploadModal',false);renderFeed();renderProfileTabGrid();
 }
 
-/* MULTI-LIVE, FROSCH-GESICHT & GESCHENKE */
 let peer=null,myStream=null,animId=null,morphMode='none',talkVal=0,analyser=null;
 const MORPHS=['none','frog','clown','alien'];
 let morphIdx=0,roomCode=String(Math.floor(1000+Math.random()*9000)),conns={},slotMap={},pendingConn=null;
 
 function cycleFaceMorph(){
-  morphIdx=(morphIdx+1)%MORPHS.length;
-  morphMode=MORPHS[morphIdx];
-  const names={none:'Normal',frog:'Frosch 🐸',clown:'Clown 🤡',alien:'Alien 👽'};
-  $('morphNameTxt').textContent=names[morphMode];
+  morphIdx=(morphIdx+1)%MORPHS.length;morphMode=MORPHS[morphIdx];
+  $('morphNameTxt').textContent={none:'Normal',frog:'Frosch 🐸',clown:'Clown 🤡',alien:'Alien 👽'}[morphMode];
 }
 async function startVybeLive(){
   $('myLiveTag').textContent='👑 '+user.name;
@@ -1107,8 +878,7 @@ async function startVybeLive(){
       myStream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});
       $('rawCamMe').srcObject=myStream;await$('rawCamMe').play().catch(()=>{});
       const actx=new (window.AudioContext||window.webkitAudioContext)();
-      analyser=actx.createAnalyser();analyser.fftSize=128;
-      actx.createMediaStreamSource(myStream).connect(analyser);
+      analyser=actx.createAnalyser();analyser.fftSize=128;actx.createMediaStreamSource(myStream).connect(analyser);
     }
   }catch(e){}
   if(!animId)drawLiveCanvas();
@@ -1127,7 +897,6 @@ function drawLiveCanvas(){
     ctx.fillStyle='rgba(163,230,53,0.92)';ctx.beginPath();ctx.ellipse(x,y+10,105,88,0,0,Math.PI*2);ctx.fill();
     [-55,55].forEach(dx=>{ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x+dx,y-65,26,0,Math.PI*2);ctx.fill();ctx.fillStyle='#09090f';ctx.beginPath();ctx.arc(x+dx,y-65,11,0,Math.PI*2);ctx.fill();});
     ctx.fillStyle='#7f1d1d';ctx.beginPath();ctx.ellipse(x,y+34,68,10+talkVal*48,0,0,Math.PI*2);ctx.fill();
-    if(talkVal>0.08){ctx.fillStyle='#fb7185';ctx.beginPath();ctx.ellipse(x,y+42+talkVal*18,22,14+talkVal*18,0,0,Math.PI*2);ctx.fill();}
   }else if(morphMode==='clown'){
     ctx.fillStyle='rgba(255,255,255,0.9)';ctx.beginPath();ctx.ellipse(x,y,92,108,0,0,Math.PI*2);ctx.fill();
     ctx.fillStyle='#f43f5e';ctx.beginPath();ctx.arc(x,y+4,25,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(x,y+52,50,14+talkVal*32,0,0,Math.PI*2);ctx.fill();
@@ -1141,13 +910,15 @@ function drawLiveCanvas(){
 function initPeer(){
   if(typeof Peer==='undefined')return;
   $('liveRoomCodeTxt').textContent=roomCode;$('modalMyCode').textContent=roomCode;
-  peer=new Peer('vybe-r2-'+roomCode);
-  peer.on('connection',c=>bindConn(c));
-  peer.on('call',call=>{
-    const s=$('liveCanvasMe').captureStream(25);
-    if(myStream)myStream.getAudioTracks().forEach(t=>s.addTrack(t));
-    call.answer(s);call.on('stream',rem=>mountRemoteStream(call.peer,rem));
-  });
+  try{
+    peer=new Peer('vybe-r3-'+roomCode);
+    peer.on('connection',c=>bindConn(c));
+    peer.on('call',call=>{
+      const s=$('liveCanvasMe').captureStream(25);
+      if(myStream)myStream.getAudioTracks().forEach(t=>s.addTrack(t));
+      call.answer(s);call.on('stream',rem=>mountRemoteStream(call.peer,rem));
+    });
+  }catch(e){}
 }
 function bindConn(c){
   c.on('open',()=>{conns[c.peer]=c;});
@@ -1158,8 +929,8 @@ function bindConn(c){
   });
 }
 function sendJoinRequest(){
-  const code=$('joinCodeInp').value.trim();if(!code\vert{}\vert{}!peer)return alert('Bitte 4-stelligen Raum-Code eingeben!');$('joinStatusTxt').textContent='⏳ Anfrage an Host gesendet...';
-  const c=peer.connect('vybe-r2-'+code);bindConn(c);c.on('open',()=>c.send({type:'req',user:user.name}));
+  const code=$('joinCodeInp').value.trim();if(!code\vert{}\vert{}!peer)return alert('Bitte 4-stelligen Raum-Code eingeben!');$('joinStatusTxt').textContent='⏳ Anfrage gesendet...';
+  const c=peer.connect('vybe-r3-'+code);bindConn(c);c.on('open',()=>c.send({type:'req',user:user.name}));
 }
 function answerJoinRequest(ok){
   $('hostApproveBanner').style.display='none';if(!pendingConn)return;
@@ -1207,13 +978,14 @@ function addCoins(){coins+=10000;updateUI();alert('🪙 +10.000 Coins kostenlos 
 function handleAvaUpload(e){
   const f=e.target.files[0];if(!f)return;
   const r=new FileReader();
-  r.onload=ev=>{user.ava=ev.target.result;localStorage.setItem('vybe_u2',JSON.stringify(user));updateUI();};
+  r.onload=ev=>{user.ava=ev.target.result;safeSet('vybe_u3',user);updateUI();};
   r.readAsDataURL(f);
 }
 function shareInviteLink(){
   const u=location.origin+location.pathname+'?room='+roomCode;
   if(navigator.share)navigator.share({title:'VYBE Short Video Club',url:u}).catch(()=>{});
-  else navigator.clipboard.writeText(u).then(()=>alert('🔗 VYBE Link kopiert: '+u));
+  else if(navigator.clipboard)navigator.clipboard.writeText(u).then(()=>alert('🔗 Link kopiert: '+u));
+  else alert('🔗 Raum-Code: '+roomCode);
 }
 function sendLiveChat(){
   const inp=$('liveChatInp');if(!inp.value.trim())return;
@@ -1221,7 +993,7 @@ function sendLiveChat(){
 }
 
 function updateUI(){
-  localStorage.setItem('vybe_c2',coins);
+  safeSet('vybe_c3',coins);
   const cStr=coins.toLocaleString('de-DE');
   $('liveCoinsTxt').textContent=cStr;
   $('pCoinsDisp').textContent=cStr+' 🪙';
@@ -1239,8 +1011,8 @@ function updateUI(){
 function init(){
   $('giftGrid').innerHTML=GIFTS.map(g=>`
     <div class="gift-item" onclick="sendGift('${g.id}')">
-      <div style="font-size:28px">${g.icon}</div>
-      <div style="font-size:11px;font-weight:800;margin-top:3px">${g.name}</div>
+      <div style="font-size:26px">${g.icon}</div>
+      <div style="font-size:11px;font-weight:800;margin-top:2px">${g.name}</div>
       <div style="font-size:11px;color:var(--lime);font-weight:800">🪙 ${g.cost}</div>
     </div>
   `).join('');
