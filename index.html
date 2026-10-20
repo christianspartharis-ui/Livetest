@@ -25,57 +25,80 @@ body,html{width:100vw;height:100dvh;background:var(--bg);color:var(--text);overf
 button,input,label{font-family:inherit;outline:none;border:none;background:none;color:inherit}
 label{cursor:pointer}
 
-/* ================= GANZSEITIGER STIMMUNGS-FARBWECHSEL (ÜBER DIE KOMPLETTE SEITE!) ================= */
+/* ================= 10 GANZSEITIGE STIMMUNGS-FARBWELTEN (ÜBER DIE KOMPLETTE SEITE!) ================= */
+/* 1. Night */
 #moodNight:checked ~ *{
-  --bg:#09090f;
-  --header-bg:rgba(12,10,22,0.94);
-  --panel:#131320;
-  --panel-2:#1a182c;
-  --border:rgba(180,255,57,0.16);
-  --lime:#b4ff39;
-  --lime-soft:rgba(180,255,57,0.16);
-  --violet:#7c3aed;
-  --glow-color:rgba(124,58,237,0.42);
+  --bg:#09090f;--header-bg:rgba(12,10,22,0.94);--panel:#131320;--panel-2:#1a182c;
+  --border:rgba(180,255,57,0.18);--lime:#b4ff39;--lime-soft:rgba(180,255,57,0.16);
+  --violet:#7c3aed;--glow-color:rgba(124,58,237,0.42);--aura-grad:linear-gradient(135deg,#b4ff39,#7c3aed);
 }
+/* 2. Chill */
 #moodChill:checked ~ *{
-  --bg:#041712;
-  --header-bg:rgba(4,26,20,0.94);
-  --panel:#092920;
-  --panel-2:#0f382c;
-  --border:rgba(52,211,153,0.25);
-  --lime:#34d399;
-  --lime-soft:rgba(52,211,153,0.2);
-  --violet:#059669;
-  --glow-color:rgba(16,185,129,0.5);
+  --bg:#041712;--header-bg:rgba(4,26,20,0.94);--panel:#092920;--panel-2:#0f382c;
+  --border:rgba(52,211,153,0.25);--lime:#34d399;--lime-soft:rgba(52,211,153,0.2);
+  --violet:#059669;--glow-color:rgba(16,185,129,0.5);--aura-grad:linear-gradient(135deg,#34d399,#059669);
 }
+/* 3. Hype */
 #moodHype:checked ~ *{
-  --bg:#1a050d;
-  --header-bg:rgba(30,6,15,0.94);
-  --panel:#2b0917;
-  --panel-2:#3d0e21;
-  --border:rgba(255,59,127,0.28);
-  --lime:#ff3b7f;
-  --lime-soft:rgba(255,59,127,0.22);
-  --violet:#e11d48;
-  --glow-color:rgba(244,63,94,0.52);
+  --bg:#1a050d;--header-bg:rgba(30,6,15,0.94);--panel:#2b0917;--panel-2:#3d0e21;
+  --border:rgba(255,59,127,0.28);--lime:#ff3b7f;--lime-soft:rgba(255,59,127,0.22);
+  --violet:#e11d48;--glow-color:rgba(244,63,94,0.52);--aura-grad:linear-gradient(135deg,#ff3b7f,#f97316);
 }
+/* 4. Cyber */
 #moodCyber:checked ~ *{
-  --bg:#041020;
-  --header-bg:rgba(5,18,36,0.94);
-  --panel:#081f38;
-  --panel-2:#0d2c4e;
-  --border:rgba(0,242,254,0.26);
-  --lime:#00f2fe;
-  --lime-soft:rgba(0,242,254,0.2);
-  --violet:#0284c7;
-  --glow-color:rgba(0,242,254,0.48);
+  --bg:#041020;--header-bg:rgba(5,18,36,0.94);--panel:#081f38;--panel-2:#0d2c4e;
+  --border:rgba(0,242,254,0.26);--lime:#00f2fe;--lime-soft:rgba(0,242,254,0.2);
+  --violet:#0284c7;--glow-color:rgba(0,242,254,0.48);--aura-grad:linear-gradient(135deg,#00f2fe,#4f46e5);
+}
+/* 5. Sunset */
+#moodSunset:checked ~ *{
+  --bg:#16071c;--header-bg:rgba(28,9,36,0.94);--panel:#260d30;--panel-2:#371345;
+  --border:rgba(255,158,0,0.28);--lime:#ff9e00;--lime-soft:rgba(255,158,0,0.2);
+  --violet:#c026d3;--glow-color:rgba(249,115,22,0.5);--aura-grad:linear-gradient(135deg,#ff9e00,#ec4899);
+}
+/* 6. Lava */
+#moodLava:checked ~ *{
+  --bg:#180603;--header-bg:rgba(28,8,4,0.94);--panel:#290c06;--panel-2:#3b130a;
+  --border:rgba(255,84,0,0.3);--lime:#ff5400;--lime-soft:rgba(255,84,0,0.22);
+  --violet:#dc2626;--glow-color:rgba(239,68,68,0.52);--aura-grad:linear-gradient(135deg,#ff5400,#fde047);
+}
+/* 7. Arctic */
+#moodArctic:checked ~ *{
+  --bg:#051324;--header-bg:rgba(7,22,40,0.94);--panel:#0c233d;--panel-2:#133254;
+  --border:rgba(125,211,252,0.28);--lime:#7dd3fc;--lime-soft:rgba(125,211,252,0.2);
+  --violet:#2563eb;--glow-color:rgba(56,189,248,0.48);--aura-grad:linear-gradient(135deg,#7dd3fc,#c084fc);
+}
+/* 8. Sakura */
+#moodSakura:checked ~ *{
+  --bg:#17091b;--header-bg:rgba(28,11,33,0.94);--panel:#25102b;--panel-2:#34173d;
+  --border:rgba(255,133,192,0.28);--lime:#ff85c0;--lime-soft:rgba(255,133,192,0.2);
+  --violet:#9333ea;--glow-color:rgba(236,72,153,0.48);--aura-grad:linear-gradient(135deg,#ff85c0,#a855f7);
+}
+/* 9. Royal Gold */
+#moodGold:checked ~ *{
+  --bg:#120f04;--header-bg:rgba(24,19,5,0.94);--panel:#211b08;--panel-2:#30270c;
+  --border:rgba(253,224,71,0.28);--lime:#fde047;--lime-soft:rgba(253,224,71,0.2);
+  --violet:#ca8a04;--glow-color:rgba(234,179,8,0.46);--aura-grad:linear-gradient(135deg,#fde047,#f97316);
+}
+/* 10. Galaxy */
+#moodGalaxy:checked ~ *{
+  --bg:#0b041d;--header-bg:rgba(15,6,34,0.94);--panel:#160930;--panel-2:#220f47;
+  --border:rgba(192,132,252,0.3);--lime:#c084fc;--lime-soft:rgba(192,132,252,0.22);
+  --violet:#6366f1;--glow-color:rgba(168,85,247,0.54);--aura-grad:linear-gradient(135deg,#c084fc,#38bdf8);
 }
 
-#moodNight:checked ~ .vybe-shell label[for="moodNight"],
-#moodChill:checked ~ .vybe-shell label[for="moodChill"],
-#moodHype:checked ~ .vybe-shell label[for="moodHype"],
-#moodCyber:checked ~ .vybe-shell label[for="moodCyber"]{
-  background:var(--lime);color:#09090f;border-color:var(--lime);box-shadow:0 0 14px var(--lime);
+/* Aktiver Button-Glanz für alle 10 Stimmungen */
+#moodNight:checked ~ * label[for="moodNight"],
+#moodChill:checked ~ * label[for="moodChill"],
+#moodHype:checked ~ * label[for="moodHype"],
+#moodCyber:checked ~ * label[for="moodCyber"],
+#moodSunset:checked ~ * label[for="moodSunset"],
+#moodLava:checked ~ * label[for="moodLava"],
+#moodArctic:checked ~ * label[for="moodArctic"],
+#moodSakura:checked ~ * label[for="moodSakura"],
+#moodGold:checked ~ * label[for="moodGold"],
+#moodGalaxy:checked ~ * label[for="moodGalaxy"]{
+  background:var(--lime);color:#09090f;border-color:var(--lime);box-shadow:0 0 14px var(--lime);font-weight:900;
 }
 
 /* ================= CSS-SCHALTER FÜR ALLE SEITEN & FENSTER ================= */
@@ -105,7 +128,7 @@ label{cursor:pointer}
 #mCam:checked ~ #vybeLiveStudio .cam-mode-ui{display:flex!important}
 #mLive:checked ~ #vybeLiveStudio .live-mode-ui{display:flex!important}
 
-/* Wenn "Jetzt LIVE gehen" (#chkLiveOnAir) aktiv ist: Pre-Live ausblenden, Live-HUD & Chat zeigen */
+/* Wenn "Jetzt LIVE gehen" (#chkLiveOnAir) aktiv ist */
 #chkLiveOnAir:checked ~ #vybeLiveStudio .pre-live-setup-card,
 #chkLiveOnAir:checked ~ #vybeLiveStudio .pre-live-bottom-panel{display:none!important}
 #chkLiveOnAir:checked ~ #vybeLiveStudio .on-air-hud,
@@ -230,10 +253,8 @@ label{cursor:pointer}
 .cam-viewport-inner::before{content:'';position:absolute;inset:0;backdrop-filter:blur(12px);background:rgba(10,10,18,0.32)}
 .cam-viewport-inner canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
 
-/* ================= NEU: VYBE LIVE-SETUP ANSICHT (OHNE HANDYSPIELE & OHNE TIKTOK STUDIO!) ================= */
+/* VYBE LIVE-SETUP ANSICHT (OHNE HANDYSPIELE & OHNE TIKTOK STUDIO!) */
 .cam-mode-ui,.live-mode-ui{display:none}
-
-/* Obere VYBE Pre-Live Karte (Titel, Cover, Kategorie, Aktive Follower) */
 .pre-live-setup-card{
   position:absolute;top:16px;left:14px;right:14px;z-index:35;
   background:var(--header-bg);backdrop-filter:blur(14px);
@@ -265,7 +286,6 @@ label{cursor:pointer}
   border-radius:10px;font-size:10.5px;font-weight:800;color:#cbd5e1;white-space:nowrap;transition:.18s;
 }
 
-/* Untere VYBE Pre-Live Steuerung (Nur Kamera/Co-Host/Masken + Großer VYBE Live-Button, KEINE Handyspiele!) */
 .pre-live-bottom-panel{
   position:absolute;bottom:14px;left:14px;right:14px;z-index:35;
   display:flex;flex-direction:column;gap:10px;
@@ -290,7 +310,6 @@ label{cursor:pointer}
 }
 .go-live-vybe-btn:active{transform:scale(0.97)}
 
-/* AKTIVER ON-AIR STREAM HUD & LIVE-CHAT */
 .on-air-hud{
   position:absolute;top:16px;left:14px;right:14px;z-index:35;display:none;
   justify-content:space-between;align-items:center;background:var(--header-bg);
@@ -328,7 +347,6 @@ label{cursor:pointer}
 }
 @keyframes bobMask{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.04)}}
 
-/* KAMERA-MODUS STEUERUNG UNTEN */
 .studio-bottom-controls{
   position:absolute;bottom:14px;left:0;width:100%;z-index:35;
   flex-direction:column;align-items:center;gap:14px;
@@ -426,22 +444,28 @@ label{cursor:pointer}
 .view-pane{width:100%;height:100%;display:none;overflow-y:auto;padding:10px 20px 22px 6px;scrollbar-width:none;flex-direction:column}
 .view-pane::-webkit-scrollbar{display:none}
 
-/* FEED-LEISTE & STIMMUNGS-WECHSLER */
-.feed-bar{width:100%;max-width:740px;margin:0 auto 10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;flex-shrink:0}
+/* FEED-LEISTE & SCROLLBARER 10ER STIMMUNGS-WECHSLER */
+.feed-bar{width:100%;max-width:740px;margin:0 auto 10px;display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+.feed-bar-top{display:flex;align-items:center;justify-content:space-between;width:100%}
 .feed-tabs{display:flex;align-items:center;gap:20px}
 .f-tab{font-size:15px;font-weight:800;color:var(--muted);cursor:pointer;padding-bottom:6px;position:relative}
 
-.mood-tuner-strip{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.mood-chip{
-  background:var(--panel);border:1px solid var(--border);padding:5px 12px;border-radius:16px;
-  font-size:11px;font-weight:800;color:#fff;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:4px;
+.mood-tuner-strip{
+  display:flex;align-items:center;gap:7px;overflow-x:auto;width:100%;
+  padding:3px 2px 6px;scrollbar-width:none;
 }
-.mood-chip:hover{border-color:var(--lime)}
+.mood-tuner-strip::-webkit-scrollbar{display:none}
+.mood-chip{
+  background:var(--panel);border:1px solid var(--border);padding:6px 13px;border-radius:16px;
+  font-size:11.5px;font-weight:800;color:#fff;cursor:pointer;transition:.2s;
+  display:flex;align-items:center;gap:5px;white-space:nowrap;flex-shrink:0;
+}
+.mood-chip:hover{border-color:var(--lime);transform:translateY(-1px)}
 
 .cards-scroller{width:100%;max-width:740px;margin:0 auto;flex:1;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none;border-radius:24px}
 .cards-scroller::-webkit-scrollbar{display:none}
 .vybe-card{
-  width:100%;height:100%;min-height:460px;border-radius:24px;position:relative;overflow:hidden;
+  width:100%;height:100%;min-height:450px;border-radius:24px;position:relative;overflow:hidden;
   scroll-snap-align:start;scroll-snap-stop:always;background:var(--panel);
   border:1.5px solid var(--border);box-shadow:0 0 30px var(--glow-color);margin-bottom:16px;transition:all .35s ease;
 }
@@ -623,11 +647,17 @@ label{cursor:pointer}
 <input type="radio" name="mainNav" id="navFeed" checked hidden>
 <input type="radio" name="mainNav" id="navClub" hidden>
 
-<!-- GANZSEITIGER STIMMUNGS-FARBWECHSLER -->
+<!-- 10 GANZSEITIGE STIMMUNGS-FARBWELTEN -->
 <input type="radio" name="vybeMood" id="moodNight" checked hidden>
 <input type="radio" name="vybeMood" id="moodChill" hidden>
 <input type="radio" name="vybeMood" id="moodHype" hidden>
 <input type="radio" name="vybeMood" id="moodCyber" hidden>
+<input type="radio" name="vybeMood" id="moodSunset" hidden>
+<input type="radio" name="vybeMood" id="moodLava" hidden>
+<input type="radio" name="vybeMood" id="moodArctic" hidden>
+<input type="radio" name="vybeMood" id="moodSakura" hidden>
+<input type="radio" name="vybeMood" id="moodGold" hidden>
+<input type="radio" name="vybeMood" id="moodGalaxy" hidden>
 
 <input type="checkbox" id="chkProfile" hidden>
 <input type="checkbox" id="chkSettings" hidden>
@@ -644,19 +674,19 @@ label{cursor:pointer}
 <input type="checkbox" id="chkDuel" hidden>
 <input type="checkbox" id="chkVault" hidden>
 
-<!-- Live-Themen Auswahl im Pre-Live Setup -->
+<!-- Live-Themen Auswahl -->
 <input type="radio" name="liveTopicRad" id="ltop1" checked hidden>
 <input type="radio" name="liveTopicRad" id="ltop2" hidden>
 <input type="radio" name="liveTopicRad" id="ltop3" hidden>
 
-<!-- Radio-Schalter für Dauer-Kapseln im Kamera-Modus -->
+<!-- Dauer-Kapseln im Kamera-Modus -->
 <input type="radio" name="durRad" id="dur1" hidden>
 <input type="radio" name="durRad" id="dur2" checked hidden>
 <input type="radio" name="durRad" id="dur3" hidden>
 <input type="radio" name="durRad" id="dur4" hidden>
 <input type="radio" name="durRad" id="dur5" hidden>
 
-<!-- Radio-Schalter für Effekt-Kreise -->
+<!-- Effekt-Kreise -->
 <input type="radio" name="fxOrbRad" id="fxOrb0" checked hidden>
 <input type="radio" name="fxOrbRad" id="fxOrb1" hidden>
 <input type="radio" name="fxOrbRad" id="fxOrb2" hidden>
@@ -665,7 +695,7 @@ label{cursor:pointer}
 <input type="radio" name="fxOrbRad" id="fxOrb5" hidden>
 <input type="radio" name="fxOrbRad" id="fxOrb6" hidden>
 
-<!-- Radio-Schalter für KAMERA | ERSTELLEN | LIVE unten (Startet auf LIVE wenn man Live klickt) -->
+<!-- KAMERA | ERSTELLEN | LIVE unten -->
 <input type="radio" name="stModeRad" id="mCam" hidden>
 <input type="radio" name="stModeRad" id="mCreate" hidden>
 <input type="radio" name="stModeRad" id="mLive" checked hidden>
@@ -677,7 +707,6 @@ label{cursor:pointer}
   <div class="cam-green-dot"></div>
   <label for="chkLiveStudio" class="studio-close-x" onclick="stopVybeLive()">✕</label>
 
-  <!-- Rechte VYBE Werkzeug-Leiste -->
   <div class="studio-right-rail">
     <div class="st-rail-btn" onclick="flipStudioCam()" title="Kamera wechseln">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -711,7 +740,6 @@ label{cursor:pointer}
     </label>
   </div>
 
-  <!-- Mittleres abgerundetes VYBE Kamerafenster -->
   <div class="cam-viewport">
     <div class="cam-viewport-inner" id="camViewportInner">
       <video id="rawCamMe" autoplay playsinline muted style="display:none"></video>
@@ -738,7 +766,6 @@ label{cursor:pointer}
       <span style="background:rgba(0,0,0,0.75);color:#f43f5e;font-size:11px;font-weight:900;padding:3px 10px;border-radius:10px;margin-top:10px">🤡 Clown-Verwandlung aktiv</span>
     </div>
 
-    <!-- 4er Co-Stream Raster -->
     <div class="cam-multi-overlay">
       <div class="co-box"><span style="font-size:28px">👑</span><span class="co-tag">Du (Host)</span></div>
       <div class="co-box"><video id="remVid1" autoplay playsinline></video><span style="font-size:24px">⚡</span><span class="co-tag" id="remTag1">Co-Host 2 (Frei)</span></div>
@@ -746,8 +773,7 @@ label{cursor:pointer}
       <label for="chkCode" class="co-box" style="border-style:dashed"><span style="font-size:22px;color:var(--lime)">＋</span><span class="co-tag">Code-Anfrage</span></label>
     </div>
 
-    <!-- ================= MODUS A: VYBE LIVE-MODUS (OHNE HANDYSPIELE & OHNE TIKTOK STUDIO!) ================= -->
-    <!-- 1. Vorbereitungs-Karte oben (Titel, Cover, Themen) -->
+    <!-- VYBE LIVE-MODUS (OHNE HANDYSPIELE & OHNE TIKTOK STUDIO) -->
     <div class="pre-live-setup-card live-mode-ui">
       <div class="pre-live-top-row">
         <label for="avaInput" class="pre-live-cover-box" title="Cover ändern">
@@ -769,7 +795,6 @@ label{cursor:pointer}
       </div>
     </div>
 
-    <!-- 2. Untere Live-Vorbereitungs-Steuerung (Nur VYBE Kamera-Tools + Jetzt LIVE gehen Button) -->
     <div class="pre-live-bottom-panel live-mode-ui">
       <div class="vybe-live-tools-bar">
         <div class="v-ltool" onclick="flipStudioCam()">
@@ -794,13 +819,12 @@ label{cursor:pointer}
         </label>
       </div>
 
-      <!-- Großer leuchtender VYBE Live-Startbutton (Ohne Handyspiele / Studio darunter!) -->
       <label for="chkLiveOnAir" class="go-live-vybe-btn" onclick="startVybeLive()">
         <span>🔴 Jetzt LIVE gehen</span>
       </label>
     </div>
 
-    <!-- 3. AKTIVER ON-AIR STREAM HUD (Erscheint sobald man auf "Jetzt LIVE gehen" drückt) -->
+    <!-- AKTIVER ON-AIR STREAM HUD -->
     <div class="on-air-hud">
       <div>🔴 <b>LIVE</b> • 👁️ 184 • Code: <b style="color:var(--lime)" id="liveRoomCodeTxt">4820</b></div>
       <div style="display:flex;gap:6px;align-items:center">
@@ -822,7 +846,7 @@ label{cursor:pointer}
       </div>
     </div>
 
-    <!-- ================= MODUS B: KAMERA-MODUS (10 Min / 60 Sek / 15 Sek / Foto / Text + Effekt-Kreise) ================= -->
+    <!-- KAMERA-MODUS -->
     <div class="studio-bottom-controls cam-mode-ui">
       <div class="dur-selector-row">
         <label for="dur1" class="dur-pill">10 Min.</label>
@@ -861,7 +885,6 @@ label{cursor:pointer}
     </div>
   </div>
 
-  <!-- Untere Fußleiste: Galerie links + KAMERA | ERSTELLEN | LIVE -->
   <div class="studio-footer-bar">
     <label for="chkUpload" class="gallery-stack-btn" title="Video aus Galerie wählen">
       <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=120&q=80" alt="Galerie">
@@ -993,7 +1016,7 @@ label{cursor:pointer}
   </div>
 </div>
 
-<!-- ================= EXTRA SEITE 2: EINSTELLUNGEN (BEIM KLICK AUFS ZAHNRAD ⚙️) ================= -->
+<!-- ================= EXTRA SEITE 2: EINSTELLUNGEN (MIT ALLEN 10 FARBWELTEN) ================= -->
 <div class="vybe-extra-page" id="vybeSettingsPage" style="z-index:370000">
   <div class="prof-page-topbar">
     <label for="chkSettings" class="back-vybe-btn">← Zurück zu VYBE</label>
@@ -1005,12 +1028,18 @@ label{cursor:pointer}
 
   <div class="prof-page-container" style="max-width:680px">
     <div class="settings-group-card">
-      <div class="settings-group-title">🎨 Ganzseitige App-Stimmung (Farb-Design)</div>
+      <div class="settings-group-title">🎨 Alle 10 Ganzseitigen App-Stimmungen</div>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:4px 0">
         <label for="moodNight" class="mood-chip" style="justify-content:center;padding:10px">🌙 Night (Violett & Lime)</label>
         <label for="moodChill" class="mood-chip" style="justify-content:center;padding:10px">🌿 Chill (Smaragd & Mint)</label>
         <label for="moodHype" class="mood-chip" style="justify-content:center;padding:10px">⚡ Hype (Rubin & Neon-Pink)</label>
         <label for="moodCyber" class="mood-chip" style="justify-content:center;padding:10px">🔮 Cyber (Ozean & Cyan)</label>
+        <label for="moodSunset" class="mood-chip" style="justify-content:center;padding:10px">🌅 Sunset (Gold & Purpur)</label>
+        <label for="moodLava" class="mood-chip" style="justify-content:center;padding:10px">🔥 Lava (Magma & Glut)</label>
+        <label for="moodArctic" class="mood-chip" style="justify-content:center;padding:10px">❄️ Arctic (Eisblau & Polar)</label>
+        <label for="moodSakura" class="mood-chip" style="justify-content:center;padding:10px">🌸 Sakura (Pflaume & Kirsch)</label>
+        <label for="moodGold" class="mood-chip" style="justify-content:center;padding:10px">👑 Royal Gold (Onyx & Gold)</label>
+        <label for="moodGalaxy" class="mood-chip" style="justify-content:center;padding:10px">🌌 Galaxy (Kosmos & Ultra)</label>
       </div>
     </div>
 
@@ -1108,7 +1137,7 @@ label{cursor:pointer}
   <label for="chkCode" onclick="$('chkDrawer').checked=false" class="dr-item"><span>🏁 Dein QR-Code & Raum-Link</span><span>›</span></label>
   <div class="dr-sec-lbl">System & Live</div>
   <label for="chkLiveStudio" onclick="$('chkDrawer').checked=false;$('mLive').checked=true;startVybeLive()" class="dr-item"><span>🔴 Jetzt LIVE gehen</span><span>›</span></label>
-  <label for="chkSettings" onclick="$('chkDrawer').checked=false" class="dr-item"><span>⚙️ Einstellungen & Datenschutz</span><span>›</span></label>
+  <label for="chkSettings" onclick="$('chkDrawer').checked=false" class="dr-item"><span>⚙️ Einstellungen & 10 Farb-Stimmungen</span><span>›</span></label>
   <label for="chkDuel" onclick="$('chkDrawer').checked=false" class="dr-item" style="color:var(--muted)"><span>⚔️ Mini-Duell (nebenbei)</span><span>›</span></label>
 </aside>
 
@@ -1157,12 +1186,10 @@ label{cursor:pointer}
         <label for="navClub" class="side-btn" title="Suche & Kollegen">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16" y2="16"/></svg>
         </label>
-        <!-- + ÖFFNET DEN KAMERA-MODUS -->
         <label for="chkLiveStudio" onclick="$('mCam').checked=true;startVybeLive()" class="side-btn" title="Kamera & Clips">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </label>
         <label for="navClub" class="side-btn" id="sBtnClub" title="Kollegen/innen">♣️</label>
-        <!-- LIVE-BUTTON ÖFFNET DIREKT DEN NEUEN VYBE LIVE-MODUS (OHNE HANDYSPIELE/STUDIO) -->
         <label for="chkLiveStudio" onclick="$('mLive').checked=true;startVybeLive()" class="side-btn" title="LIVE gehen">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg>
         </label>
@@ -1177,22 +1204,32 @@ label{cursor:pointer}
     </aside>
 
     <main class="vybe-stage">
-      <!-- VIEW 1: VYBE HOME-FEED MIT GANZSEITIGEM MOOD-TUNER & VYBE-BOOST -->
+      <!-- VIEW 1: VYBE HOME-FEED MIT 10ER STIMMUNGS-LEISTE -->
       <section class="view-pane" id="vFeed">
         <input type="radio" name="feedSubTab" id="ftab1" checked hidden>
         <input type="radio" name="feedSubTab" id="ftab2" hidden>
 
         <div class="feed-bar">
-          <div class="feed-tabs">
-            <label for="ftab1" class="f-tab" id="lblFtab1">Für dich</label>
-            <label for="ftab2" class="f-tab" id="lblFtab2">Abonniert</label>
+          <div class="feed-bar-top">
+            <div class="feed-tabs">
+              <label for="ftab1" class="f-tab" id="lblFtab1">Für dich</label>
+              <label for="ftab2" class="f-tab" id="lblFtab2">Abonniert</label>
+            </div>
+            <label for="chkSettings" style="font-size:11px;font-weight:800;color:var(--lime)">🎨 10 Stimmungen ›</label>
           </div>
 
+          <!-- 10 STIMMUNGEN ZUM DURCHWISCHEN (ÄNDERN DIE KOMPLETTE SEITE!) -->
           <div class="mood-tuner-strip">
             <label for="moodNight" class="mood-chip">🌙 Night</label>
             <label for="moodChill" class="mood-chip">🌿 Chill</label>
             <label for="moodHype" class="mood-chip">⚡ Hype</label>
             <label for="moodCyber" class="mood-chip">🔮 Cyber</label>
+            <label for="moodSunset" class="mood-chip">🌅 Sunset</label>
+            <label for="moodLava" class="mood-chip">🔥 Lava</label>
+            <label for="moodArctic" class="mood-chip">❄️ Arctic</label>
+            <label for="moodSakura" class="mood-chip">🌸 Sakura</label>
+            <label for="moodGold" class="mood-chip">👑 Gold</label>
+            <label for="moodGalaxy" class="mood-chip">🌌 Galaxy</label>
           </div>
         </div>
 
@@ -1419,11 +1456,11 @@ const memStore={};
 function safeGet(k,fb){try{const v=localStorage.getItem(k);return v!==null?JSON.parse(v):fb;}catch(e){return memStore[k]!==undefined?memStore[k]:fb;}}
 function safeSet(k,val){memStore[k]=val;try{localStorage.setItem(k,JSON.stringify(val));}catch(e){}}
 
-let user=safeGet('vybe_u9',{
+let user=safeGet('vybe_u10',{
   name:'🍝Nudel King🍝',handle:'@reckpunkt',fullName:'',address:'',bio:'',thought:'Was geht?',
   ava:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80'
 });
-let coins=Number(safeGet('vybe_c9',10000))||10000;
+let coins=Number(safeGet('vybe_c10',10000))||10000;
 
 const GIFTS=[
   {id:'rose',icon:'🌹',name:'Neon-Rose',cost:10},{id:'fire',icon:'🔥',name:'Flame',cost:50},{id:'frog',icon:'🐸',name:'Frosch',cost:100},
@@ -1455,7 +1492,7 @@ function saveProfileEdit(){
   user.fullName=$('editFullNameInp').value.trim();
   user.address=$('editAddrInp').value.trim();
   user.bio=$('editBioInp').value.trim();
-  safeSet('vybe_u9',user);updateUI();
+  safeSet('vybe_u10',user);updateUI();
 }
 
 function addCoins(){coins+=10000;updateUI();alert('🪙 +10.000 VYBE Coins aufgeladen!');}
@@ -1463,7 +1500,7 @@ function addCoins(){coins+=10000;updateUI();alert('🪙 +10.000 VYBE Coins aufge
 function handleAvaUpload(e){
   const f=e.target.files[0];if(!f)return;
   const r=new FileReader();
-  r.onload=ev=>{user.ava=ev.target.result;safeSet('vybe_u9',user);updateUI();$('chkZoom').checked=false;};
+  r.onload=ev=>{user.ava=ev.target.result;safeSet('vybe_u10',user);updateUI();$('chkZoom').checked=false;};
   r.readAsDataURL(f);
 }
 
@@ -1563,7 +1600,7 @@ function sendJoinRequest(){
 }
 
 function updateUI(){
-  safeSet('vybe_c9',coins);const cStr=coins.toLocaleString('de-DE');
+  safeSet('vybe_c10',coins);const cStr=coins.toLocaleString('de-DE');
   $('pCoinsDisp').textContent=cStr+' 🪙';
   $('settingsCoinsTxt').textContent=cStr+' 🪙';
   $('drawerCoinsTxt').textContent=cStr+' 🪙';$('gModalCoins').textContent=cStr;
