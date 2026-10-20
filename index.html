@@ -3,112 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="VYBE">
 <title>VYBE – Short Video Club</title>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <style>
 :root{
-  --bg:#09090f;
-  --header-bg:rgba(10,10,18,0.94);
-  --panel:#13131f;
-  --panel-2:#181828;
-  --border:rgba(255,255,255,0.09);
-  --lime:#b4ff39;
-  --lime-soft:rgba(180,255,57,0.16);
-  --violet:#7c3aed;
-  --glow-color:rgba(124,58,237,0.38);
-  --aura-grad:linear-gradient(135deg,#b4ff39,#7c3aed);
-  --text:#f8fafc;
-  --muted:#9494a8;
+  --bg:#09090f;--header-bg:rgba(10,10,18,0.94);--panel:#13131f;--panel-2:#181828;
+  --border:rgba(255,255,255,0.09);--lime:#b4ff39;--lime-soft:rgba(180,255,57,0.16);
+  --violet:#7c3aed;--glow-color:rgba(124,58,237,0.38);
+  --aura-grad:linear-gradient(135deg,#b4ff39,#7c3aed);--text:#f8fafc;--muted:#9494a8;
 }
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent;font-family:system-ui,-apple-system,sans-serif}
 body,html{width:100vw;height:100dvh;background:var(--bg);color:var(--text);overflow:hidden}
 button,input,label{font-family:inherit;outline:none;border:none;background:none;color:inherit}
 label{cursor:pointer}
 
-/* GANZSEITIGER STIMMUNGS-FARBWECHSEL */
-#moodNight:checked ~ *{--bg:#09090f;--header-bg:rgba(12,10,22,0.94);--panel:#131320;--panel-2:#1a182c;--border:rgba(180,255,57,0.18);--lime:#b4ff39;--lime-soft:rgba(180,255,57,0.16);--violet:#7c3aed;--glow-color:rgba(124,58,237,0.42);--aura-grad:linear-gradient(135deg,#b4ff39,#7c3aed);}
-#moodChill:checked ~ *{--bg:#041712;--header-bg:rgba(4,26,20,0.94);--panel:#092920;--panel-2:#0f382c;--border:rgba(52,211,153,0.25);--lime:#34d399;--lime-soft:rgba(52,211,153,0.2);--violet:#059669;--glow-color:rgba(16,185,129,0.5);--aura-grad:linear-gradient(135deg,#34d399,#059669);}
-#moodHype:checked ~ *{--bg:#1a050d;--header-bg:rgba(30,6,15,0.94);--panel:#2b0917;--panel-2:#3d0e21;--border:rgba(255,59,127,0.28);--lime:#ff3b7f;--lime-soft:rgba(255,59,127,0.22);--violet:#e11d48;--glow-color:rgba(244,63,94,0.52);--aura-grad:linear-gradient(135deg,#ff3b7f,#f97316);}
-#moodCyber:checked ~ *{--bg:#041020;--header-bg:rgba(5,18,36,0.94);--panel:#081f38;--panel-2:#0d2c4e;--border:rgba(0,242,254,0.26);--lime:#00f2fe;--lime-soft:rgba(0,242,254,0.2);--violet:#0284c7;--glow-color:rgba(0,242,254,0.48);--aura-grad:linear-gradient(135deg,#00f2fe,#4f46e5);}
+/* ================= 10 GANZSEITIGE STIMMUNGS-FARBWELTEN ================= */
+#moodNight:checked ~ *{--bg:#09090f;--header-bg:rgba(12,10,22,0.94);--panel:#131320;--panel-2:#1a182c;--border:rgba(180,255,57,0.18);--lime:#b4ff39;--lime-soft:rgba(180,255,57,0.16);--violet:#7c3aed;--glow-color:rgba(124,58,237,0.42);--aura-grad:linear-gradient(135deg,#b4ff39,#7c3aed)}
+#moodChill:checked ~ *{--bg:#041712;--header-bg:rgba(4,26,20,0.94);--panel:#092920;--panel-2:#0f382c;--border:rgba(52,211,153,0.25);--lime:#34d399;--lime-soft:rgba(52,211,153,0.2);--violet:#059669;--glow-color:rgba(16,185,129,0.5);--aura-grad:linear-gradient(135deg,#34d399,#059669)}
+#moodHype:checked ~ *{--bg:#1a050d;--header-bg:rgba(30,6,15,0.94);--panel:#2b0917;--panel-2:#3d0e21;--border:rgba(255,59,127,0.28);--lime:#ff3b7f;--lime-soft:rgba(255,59,127,0.22);--violet:#e11d48;--glow-color:rgba(244,63,94,0.52);--aura-grad:linear-gradient(135deg,#ff3b7f,#f97316)}
+#moodCyber:checked ~ *{--bg:#041020;--header-bg:rgba(5,18,36,0.94);--panel:#081f38;--panel-2:#0d2c4e;--border:rgba(0,242,254,0.26);--lime:#00f2fe;--lime-soft:rgba(0,242,254,0.2);--violet:#0284c7;--glow-color:rgba(0,242,254,0.48);--aura-grad:linear-gradient(135deg,#00f2fe,#4f46e5)}
+#moodSunset:checked ~ *{--bg:#16071c;--header-bg:rgba(28,9,36,0.94);--panel:#260d30;--panel-2:#371345;--border:rgba(255,158,0,0.28);--lime:#ff9e00;--lime-soft:rgba(255,158,0,0.2);--violet:#c026d3;--glow-color:rgba(249,115,22,0.5);--aura-grad:linear-gradient(135deg,#ff9e00,#ec4899)}
+#moodLava:checked ~ *{--bg:#180603;--header-bg:rgba(28,8,4,0.94);--panel:#290c06;--panel-2:#3b130a;--border:rgba(255,84,0,0.3);--lime:#ff5400;--lime-soft:rgba(255,84,0,0.22);--violet:#dc2626;--glow-color:rgba(239,68,68,0.52);--aura-grad:linear-gradient(135deg,#ff5400,#fde047)}
+#moodArctic:checked ~ *{--bg:#051324;--header-bg:rgba(7,22,40,0.94);--panel:#0c233d;--panel-2:#133254;--border:rgba(125,211,252,0.28);--lime:#7dd3fc;--lime-soft:rgba(125,211,252,0.2);--violet:#2563eb;--glow-color:rgba(56,189,248,0.48);--aura-grad:linear-gradient(135deg,#7dd3fc,#c084fc)}
+#moodSakura:checked ~ *{--bg:#17091b;--header-bg:rgba(28,11,33,0.94);--panel:#25102b;--panel-2:#34173d;--border:rgba(255,133,192,0.28);--lime:#ff85c0;--lime-soft:rgba(255,133,192,0.2);--violet:#9333ea;--glow-color:rgba(236,72,153,0.48);--aura-grad:linear-gradient(135deg,#ff85c0,#a855f7)}
+#moodGold:checked ~ *{--bg:#120f04;--header-bg:rgba(24,19,5,0.94);--panel:#211b08;--panel-2:#30270c;--border:rgba(253,224,71,0.28);--lime:#fde047;--lime-soft:rgba(253,224,71,0.2);--violet:#ca8a04;--glow-color:rgba(234,179,8,0.46);--aura-grad:linear-gradient(135deg,#fde047,#f97316)}
+#moodGalaxy:checked ~ *{--bg:#0b041d;--header-bg:rgba(15,6,34,0.94);--panel:#160930;--panel-2:#220f47;--border:rgba(192,132,252,0.3);--lime:#c084fc;--lime-soft:rgba(192,132,252,0.22);--violet:#6366f1;--glow-color:rgba(168,85,247,0.54);--aura-grad:linear-gradient(135deg,#c084fc,#38bdf8)}
 
-/* CSS-SCHALTER FÜR SEITEN & MODALS */
-#chkProfile:checked ~ #vybeProfilePage{display:flex!important}
-#chkSettings:checked ~ #vybeSettingsPage{display:flex!important}
-#chkEdit:checked ~ #vybeEditPage{display:flex!important}
-#chkLiveStudio:checked ~ #vybeLiveStudio{display:flex!important}
-#chkMultiGrid:checked ~ #vybeLiveStudio .cam-multi-overlay{display:grid!important}
-#chkLiveOnAir:checked ~ #vybeLiveStudio .on-air-hud{display:flex!important}
+#moodNight:checked ~ * label[for="moodNight"],#moodChill:checked ~ * label[for="moodChill"],#moodHype:checked ~ * label[for="moodHype"],#moodCyber:checked ~ * label[for="moodCyber"],#moodSunset:checked ~ * label[for="moodSunset"],#moodLava:checked ~ * label[for="moodLava"],#moodArctic:checked ~ * label[for="moodArctic"],#moodSakura:checked ~ * label[for="moodSakura"],#moodGold:checked ~ * label[for="moodGold"],#moodGalaxy:checked ~ * label[for="moodGalaxy"]{
+  background:var(--lime);color:#09090f;border-color:var(--lime);box-shadow:0 0 14px var(--lime);font-weight:900;
+}
+
+/* ================= CSS-SCHALTER ================= */
+#chkProfile:checked ~ #vybeProfilePage,#chkSettings:checked ~ #vybeSettingsPage,#chkEdit:checked ~ #vybeEditPage,#chkLiveStudio:checked ~ #vybeLiveStudio,#chkZoom:checked ~ #avaZoomModal,#chkUpload:checked ~ #uploadModal,#chkGift:checked ~ #giftModal,#chkCode:checked ~ #codeModal,#chkCmt:checked ~ #cmtModal,#chkDuel:checked ~ #duelModal,#chkVault:checked ~ #vaultModal,#chkCardAlbum:checked ~ #cardAlbumModal{display:flex!important}
 #chkDrawer:checked ~ #vybeDrawerBg{display:block!important}
 #chkDrawer:checked ~ #vybeDrawer{right:0!important}
-#chkZoom:checked ~ #avaZoomModal{display:flex!important}
-#chkUpload:checked ~ #uploadModal{display:flex!important}
-#chkGift:checked ~ #giftModal{display:flex!important}
-#chkCode:checked ~ #codeModal{display:flex!important}
-#chkCmt:checked ~ #cmtModal{display:flex!important}
-#chkDuel:checked ~ #duelModal{display:flex!important}
-#chkVault:checked ~ #vaultModal{display:flex!important}
-#chkCardAlbum:checked ~ #cardAlbumModal{display:flex!important}
+#chkMultiGrid:checked ~ #vybeLiveStudio .cam-multi-overlay{display:grid!important}
 
-#navFeed:checked ~ .vybe-shell #vFeed{display:flex!important}
-#navClub:checked ~ .vybe-shell #vClub{display:flex!important}
-#navFeed:checked ~ .vybe-shell #sBtnHome,
-#navClub:checked ~ .vybe-shell #sBtnClub{
-  background:var(--panel-2);color:#fff;border:1px solid var(--border);
-  box-shadow:-3px 0 0 var(--lime), -6px 0 14px var(--glow-color);
+/* STRIKTE TRENNUNG: KAMERA vs. LIVE (KEINE ÜBERLAPPUNG!) */
+#mCam:checked ~ #vybeLiveStudio label[for="mCam"],#mLive:checked ~ #vybeLiveStudio label[for="mLive"]{color:var(--lime);font-weight:900;text-shadow:0 0 10px var(--lime)}
+#mCam:not(:checked) ~ #vybeLiveStudio .cam-mode-ui{display:none!important}
+#mLive:not(:checked) ~ #vybeLiveStudio .live-mode-ui{display:none!important}
+#mCam:checked ~ #vybeLiveStudio .cam-mode-ui{display:flex!important}
+#mLive:checked ~ #vybeLiveStudio .live-mode-ui{display:flex!important}
+
+#chkLiveOnAir:checked ~ #vybeLiveStudio .pre-live-setup-card,#chkLiveOnAir:checked ~ #vybeLiveStudio .pre-live-bottom-panel,#chkLiveOnAir:checked ~ #vybeLiveStudio .cam-mode-ui{display:none!important}
+#chkLiveOnAir:checked ~ #vybeLiveStudio .on-air-hud,#chkLiveOnAir:checked ~ #vybeLiveStudio .on-air-bottom-chat{display:flex!important}
+
+#ltop1:checked ~ #vybeLiveStudio label[for="ltop1"],#ltop2:checked ~ #vybeLiveStudio label[for="ltop2"],#ltop3:checked ~ #vybeLiveStudio label[for="ltop3"],
+#dur1:checked ~ #vybeLiveStudio label[for="dur1"],#dur2:checked ~ #vybeLiveStudio label[for="dur2"],#dur3:checked ~ #vybeLiveStudio label[for="dur3"],#dur4:checked ~ #vybeLiveStudio label[for="dur4"],#dur5:checked ~ #vybeLiveStudio label[for="dur5"]{
+  background:var(--lime);color:#09090f;border-color:var(--lime);font-weight:900;box-shadow:0 0 12px var(--lime);
 }
 
-/* LIVE STUDIO */
-.live-studio-screen{
-  position:fixed;inset:0;width:100vw;height:100dvh;
-  background:radial-gradient(circle at 50% 10%, var(--glow-color) 0%, transparent 65%), var(--bg);
-  z-index:390000;display:none;flex-direction:column;justify-content:space-between;padding:8px 0 10px;overflow:hidden;
+#fxOrb1:checked ~ #vybeLiveStudio .cam-viewport-inner{filter:contrast(125%) saturate(160%) hue-rotate(-15deg)}
+#fxOrb2:checked ~ #vybeLiveStudio .cam-viewport-inner{filter:saturate(180%) sepia(20%) contrast(110%)}
+#fxOrb3:checked ~ #vybeLiveStudio .cam-viewport-inner{filter:brightness(112%) saturate(140%)}
+#fxOrb5:checked ~ #vybeLiveStudio .cam-viewport-inner{filter:grayscale(100%) contrast(125%)}
+#fxOrb4:checked ~ #vybeLiveStudio #cssClownMask,#fxOrb6:checked ~ #vybeLiveStudio #cssFrogMask{display:flex!important}
+#fxOrb1:checked ~ #vybeLiveStudio label[for="fxOrb1"],#fxOrb2:checked ~ #vybeLiveStudio label[for="fxOrb2"],#fxOrb3:checked ~ #vybeLiveStudio label[for="fxOrb3"],#fxOrb4:checked ~ #vybeLiveStudio label[for="fxOrb4"],#fxOrb5:checked ~ #vybeLiveStudio label[for="fxOrb5"],#fxOrb6:checked ~ #vybeLiveStudio label[for="fxOrb6"]{border-color:var(--lime);transform:scale(1.1);box-shadow:0 0 14px var(--lime)}
+
+#navFeed:checked ~ .vybe-shell #vFeed,#navClub:checked ~ .vybe-shell #vClub{display:flex!important}
+#navFeed:checked ~ .vybe-shell #sBtnHome,#navClub:checked ~ .vybe-shell #sBtnClub{background:var(--panel-2);color:#fff;border:1px solid var(--border);box-shadow:-3px 0 0 var(--lime),-6px 0 14px var(--glow-color)}
+
+#ftab1:checked ~ .feed-bar #lblFtab1,#ftab2:checked ~ .feed-bar #lblFtab2,#ptab1:checked ~ .prof-tabs-bar label[for="ptab1"],#ptab2:checked ~ .prof-tabs-bar label[for="ptab2"],#ptab3:checked ~ .prof-tabs-bar label[for="ptab3"],#ptab4:checked ~ .prof-tabs-bar label[for="ptab4"]{color:#fff}
+#ftab1:checked ~ .feed-bar #lblFtab1::after,#ftab2:checked ~ .feed-bar #lblFtab2::after,#ptab1:checked ~ .prof-tabs-bar label[for="ptab1"]::after,#ptab2:checked ~ .prof-tabs-bar label[for="ptab2"]::after,#ptab3:checked ~ .prof-tabs-bar label[for="ptab3"]::after,#ptab4:checked ~ .prof-tabs-bar label[for="ptab4"]::after{content:'';position:absolute;bottom:0;left:20%;width:60%;height:3px;background:var(--lime);border-radius:4px;box-shadow:0 0 8px var(--lime)}
+#ptab1:checked ~ .prof-grids-box #pgridClips,#ptab2:checked ~ .prof-grids-box #pgridCards,#ptab3:checked ~ .prof-grids-box #pgridShop,#ptab4:checked ~ .prof-grids-box #pgridOrders{display:grid!important}
+
+/* ================= HOLO-SAMMLERKARTEN DESIGN ================= */
+.holo-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;width:100%}
+.holo-card{
+  position:relative;border-radius:18px;padding:12px;background:linear-gradient(135deg,var(--panel-2) 0%,#090912 50%,var(--panel) 100%);
+  border:2px solid var(--lime);box-shadow:0 8px 25px rgba(0,0,0,0.7),0 0 18px var(--lime-soft);
+  overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;text-align:center;
 }
+.holo-card:hover,.holo-card:active{transform:translateY(-4px) scale(1.03);box-shadow:0 12px 30px var(--glow-color),0 0 25px var(--lime)}
+.holo-card::before{
+  content:'';position:absolute;inset:-60%;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,0.18) 45%,var(--lime-soft) 50%,transparent 65%);
+  transform:rotate(25deg);animation:holoShine 4s infinite linear;pointer-events:none;
+}
+@keyframes holoShine{0%{transform:translateX(-80%) rotate(25deg)}100%{transform:translateX(80%) rotate(25deg)}}
+.hc-rarity{display:inline-block;background:var(--aura-grad);color:#09090f;font-size:9px;font-weight:900;padding:2px 8px;border-radius:8px;letter-spacing:0.8px;margin-bottom:8px;text-transform:uppercase}
+.hc-ava{width:68px;height:68px;border-radius:50%;margin:0 auto 8px;padding:2.5px;background:var(--aura-grad);box-shadow:0 0 15px var(--lime-soft)}
+.hc-ava img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:#111}
+.hc-name{font-size:13.5px;font-weight:900;color:#fff;margin-bottom:2px}
+.hc-role{font-size:10px;color:var(--lime);font-weight:800;margin-bottom:8px}
+.hc-stats{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(0,0,0,0.45);padding:6px;border-radius:10px;border:1px solid var(--border);font-size:10px;font-weight:800}
+.hc-stats b{color:var(--lime);display:block;font-size:11.5px}
+
+/* ================= LIVE- & KAMERA-STUDIO ================= */
+.live-studio-screen{position:fixed;inset:0;width:100vw;height:100dvh;background:radial-gradient(circle at 50% 10%,var(--glow-color) 0%,transparent 65%),var(--bg);z-index:390000;display:none;flex-direction:column;justify-content:space-between;padding:8px 0 10px;overflow:hidden}
 .cam-green-dot{position:absolute;top:14px;right:16px;width:24px;height:24px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;z-index:60;box-shadow:0 0 12px var(--lime)}
 .cam-green-dot::after{content:'';width:10px;height:8px;border:1.8px solid #09090f;border-radius:2px;background:#09090f}
-.studio-close-x{position:absolute;top:42px;left:18px;font-size:24px;color:#ffffff;z-index:60;width:38px;height:38px;border-radius:12px;background:var(--panel);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
-.studio-right-rail{position:absolute;top:52px;right:14px;z-index:60;display:flex;flex-direction:column;align-items:center;gap:16px;background:var(--header-bg);border:1px solid var(--border);padding:12px 6px;border-radius:20px}
-.st-rail-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:#ffffff;cursor:pointer}
+.studio-close-x{position:absolute;top:42px;left:18px;font-size:24px;color:#fff;z-index:60;width:38px;height:38px;border-radius:12px;background:var(--panel);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.studio-right-rail{position:absolute;top:52px;right:14px;z-index:60;display:flex;flex-direction:column;align-items:center;gap:15px;background:var(--header-bg);border:1px solid var(--border);padding:12px 6px;border-radius:20px}
+.st-rail-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:#fff;position:relative;cursor:pointer}
+.st-rail-divider{width:22px;height:1px;background:var(--border)}
 .pink-check-badge{position:absolute;bottom:0;right:0;width:15px;height:15px;border-radius:50%;background:var(--lime);color:#09090f;font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center;border:1.5px solid #000}
 
 .cam-viewport{position:relative;width:calc(100vw - 110px);max-width:460px;height:calc(100dvh - 74px);margin:0 auto;border-radius:26px;overflow:hidden;background:var(--panel);border:1.5px solid var(--border);box-shadow:0 0 35px var(--glow-color)}
+@media (max-width:520px){.cam-viewport{width:calc(100vw - 76px);margin-left:12px}}
 .cam-viewport-inner{width:100%;height:100%;position:relative;background:url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80') center/cover no-repeat}
-.cam-viewport-inner::before{content:'';position:absolute;inset:0;backdrop-filter:blur(14px);background:rgba(10,10,18,0.32)}
+.cam-viewport-inner::before{content:'';position:absolute;inset:0;backdrop-filter:blur(12px);background:rgba(10,10,18,0.32)}
 .cam-viewport-inner canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
 
-.pre-live-setup-card{position:absolute;top:14px;left:14px;right:14px;z-index:35;background:var(--header-bg);backdrop-filter:blur(14px);border:1.5px solid var(--border);border-radius:20px;padding:12px;display:flex;flex-direction:column;gap:9px;box-shadow:0 12px 30px rgba(0,0,0,0.65)}
+.pre-live-setup-card{position:absolute;top:14px;left:14px;right:14px;z-index:35;background:var(--header-bg);backdrop-filter:blur(14px);border:1.5px solid var(--border);border-radius:20px;padding:12px;flex-direction:column;gap:9px;box-shadow:0 12px 30px rgba(0,0,0,0.65)}
 .pre-live-top-row{display:flex;gap:12px;align-items:center}
 .pre-live-cover-box{width:52px;height:52px;border-radius:14px;padding:2px;background:var(--aura-grad);position:relative;flex-shrink:0;cursor:pointer;overflow:hidden}
 .pre-live-cover-box img{width:100%;height:100%;border-radius:12px;object-fit:cover;display:block}
 .pre-live-cover-lbl{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.75);font-size:8px;font-weight:900;text-align:center;padding:2px 0;color:var(--lime)}
-.pre-live-title-inp{width:100%;background:var(--panel-2);border:1px solid var(--border);padding:7px 11px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff}
-.pre-live-bottom-panel{position:absolute;bottom:18px;left:18px;right:18px;z-index:35;display:flex;flex-direction:column;gap:10px}
-.vybe-live-tools-bar{background:var(--header-bg);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:18px;padding:10px 8px;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;text-align:center}
-.v-ltool{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;font-weight:800;color:#e2e8f0;cursor:pointer}
-.v-ltool-ico{width:38px;height:38px;border-radius:12px;background:var(--panel-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:17px}
-.go-live-vybe-btn{width:100%;padding:14px;border-radius:20px;background:linear-gradient(90deg,var(--lime),var(--violet));color:#09090f;font-size:15px;font-weight:900;text-align:center;box-shadow:0 0 20px var(--lime-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.pre-live-title-inp{width:100%;background:var(--panel-2);border:1px solid var(--border);padding:7px 11px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;margin-bottom:4px}
+.pre-live-online-Followers{font-size:10.5px;font-weight:800;color:var(--lime);display:flex;align-items:center;gap:5px}
+.pre-live-topics{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.l-topic-pill{background:var(--panel-2);border:1px solid var(--border);padding:5px 10px;border-radius:10px;font-size:10.5px;font-weight:800;color:#cbd5e1;white-space:nowrap}
+
+.pre-live-bottom-panel{position:absolute;bottom:18px;left:18px;right:18px;z-index:35;flex-direction:column}
+.go-live-vybe-btn{width:100%;padding:14px;border-radius:20px;background:linear-gradient(90deg,var(--lime),var(--violet));color:#09090f;font-size:15px;font-weight:900;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,0.6),0 0 20px var(--lime-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 
 .on-air-hud{position:absolute;top:16px;left:14px;right:14px;z-index:35;display:none;justify-content:space-between;align-items:center;background:var(--header-bg);backdrop-filter:blur(10px);border:1.5px solid var(--lime);padding:8px 12px;border-radius:16px;font-size:11.5px}
 .on-air-bottom-chat{position:absolute;bottom:14px;left:14px;right:14px;z-index:35;display:none;flex-direction:column;gap:8px}
-.live-chat-messages{max-height:110px;overflow-y:auto;display:flex;flex-direction:column;gap:5px;padding:8px 10px;background:rgba(9,9,15,0.68);border-radius:14px;border:1px solid var(--border);font-size:11.5px}
-.cam-multi-overlay{position:absolute;inset:75px 12px 145px 12px;z-index:25;display:none;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px}
+.live-chat-messages{max-height:110px;overflow-y:auto;display:flex;flex-direction:column;gap:5px;padding:8px 10px;background:rgba(9,9,15,0.68);backdrop-filter:blur(8px);border-radius:14px;border:1px solid var(--border);font-size:11.5px}
+
+.cam-multi-overlay{position:absolute;inset:135px 12px 90px 12px;z-index:25;display:none;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px}
 .co-box{background:rgba(18,18,30,0.88);border:1.5px solid var(--lime);border-radius:14px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .co-box video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .co-tag{position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,0.75);padding:2px 7px;border-radius:6px;font-size:10px;font-weight:800;color:var(--lime);z-index:5}
 
-.studio-footer-bar{height:52px;width:100%;max-width:480px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;z-index:60}
-.gallery-stack-btn{width:38px;height:38px;border-radius:10px;border:2px solid var(--lime);overflow:hidden;cursor:pointer;background:var(--panel)}
-.gallery-stack-btn img{width:100%;height:100%;object-fit:cover;display:block}
-.studio-modes-row{display:flex;align-items:center;gap:22px;font-size:13px;font-weight:800;color:rgba(255,255,255,0.5)}
+.css-face-mask{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);z-index:20;display:none;flex-direction:column;align-items:center;pointer-events:none}
+.frog-head-css{width:165px;height:140px;background:rgba(132,204,22,0.92);border:3px solid #3f6212;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,0.6);animation:bobMask 2s infinite ease-in-out}
+@keyframes bobMask{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.04)}}
 
-/* ================= HAUPT-APP ================= */
-.vybe-shell{width:100vw;height:100dvh;display:flex;flex-direction:column;transition:all .35s ease;background:radial-gradient(circle at 50% 0%, var(--glow-color) 0%, transparent 65%), var(--bg)}
+.studio-bottom-controls{position:absolute;bottom:14px;left:0;width:100%;z-index:35;flex-direction:column;align-items:center;gap:12px}
+.dur-selector-row{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(9,9,15,0.65);backdrop-filter:blur(8px);padding:4px 10px;border-radius:20px;border:1px solid var(--border);font-size:12px;font-weight:800;color:rgba(255,255,255,0.85)}
+.dur-pill{padding:4px 10px;border-radius:14px}
+.shutter-carousel-row{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:0 8px}
+.fx-circle-thumb{width:46px;height:46px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,0.4);background:var(--panel-2);flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.6)}
+.fx-circle-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.fx-ai-tag{position:absolute;bottom:1px;font-size:8.5px;font-weight:900;color:#fff;text-shadow:0 1px 3px #000}
+.red-shutter-ring{width:72px;height:72px;border-radius:50%;border:4px solid var(--lime);padding:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 20px var(--lime-soft);cursor:pointer}
+.shutter-inner{width:100%;height:100%;border-radius:50%;background:#f43f5e;transition:.2s}
+
+.studio-footer-bar{height:52px;width:100%;max-width:460px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;z-index:60}
+.gallery-stack-btn{width:38px;height:38px;border-radius:10px;border:2px solid var(--lime);overflow:hidden;position:relative;box-shadow:3px -3px 0 var(--lime-soft);cursor:pointer;background:var(--panel)}
+.gallery-stack-btn img{width:100%;height:100%;object-fit:cover;display:block}
+.studio-modes-row{display:flex;align-items:center;gap:24px;font-size:13px;font-weight:800;letter-spacing:0.6px;color:rgba(255,255,255,0.5)}
+
+/* ================= HAUPT-APP LAYOUT ================= */
+.vybe-shell{width:100vw;height:100dvh;display:flex;flex-direction:column;transition:all .35s ease;background:radial-gradient(circle at 50% 0%,var(--glow-color) 0%,transparent 65%),radial-gradient(circle at 0% 100%,var(--lime-soft) 0%,transparent 55%),var(--bg)}
 .vybe-header{height:68px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:var(--header-bg);border-bottom:1px solid var(--border);z-index:100;flex-shrink:0}
 .brand-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
 .brand-icon{width:38px;height:38px;border-radius:12px;background:var(--lime);box-shadow:0 0 18px var(--lime);display:flex;align-items:center;justify-content:center;color:#09090f}
 .brand-title{font-size:19px;font-weight:900;letter-spacing:0.6px;color:#fff}
 .brand-sub{font-size:8.5px;font-weight:700;letter-spacing:1.8px;color:var(--lime)}
 
-.search-wrap{flex:1;max-width:360px;margin:0 12px;position:relative}
+.search-wrap{flex:1;max-width:340px;margin:0 12px;position:relative}
 .search-box{width:100%;height:40px;background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:0 14px 0 36px;font-size:13px;color:#fff}
 .search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--lime);pointer-events:none}
 
@@ -124,7 +175,6 @@ label{cursor:pointer}
 .vybe-sidebar{width:74px;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:16px 0 20px;flex-shrink:0;z-index:80;background:var(--header-bg);border-right:1px solid var(--border)}
 .side-top-group{display:flex;flex-direction:column;align-items:center;gap:12px}
 .side-btn{width:46px;height:46px;border-radius:15px;display:flex;align-items:center;justify-content:center;color:#a1a1b5;cursor:pointer;position:relative}
-.side-btn:hover{color:#fff;background:var(--panel)}
 
 .vybe-stage{flex:1;height:100%;overflow:hidden;position:relative;display:flex;flex-direction:column}
 .view-pane{width:100%;height:100%;display:none;overflow-y:auto;padding:10px 20px 22px 6px;scrollbar-width:none;flex-direction:column}
@@ -137,23 +187,23 @@ label{cursor:pointer}
 
 .mood-tuner-strip{display:flex;align-items:center;gap:7px;overflow-x:auto;width:100%;padding:3px 2px 6px;scrollbar-width:none}
 .mood-tuner-strip::-webkit-scrollbar{display:none}
-.mood-chip{background:var(--panel);border:1px solid var(--border);padding:6px 13px;border-radius:16px;font-size:11.5px;font-weight:800;color:#fff;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.mood-chip{background:var(--panel);border:1px solid var(--border);padding:6px 13px;border-radius:16px;font-size:11.5px;font-weight:800;color:#fff;cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;flex-shrink:0}
 
 .cards-scroller{width:100%;max-width:740px;margin:0 auto;flex:1;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none;border-radius:24px}
 .cards-scroller::-webkit-scrollbar{display:none}
 .vybe-card{width:100%;height:100%;min-height:450px;border-radius:24px;position:relative;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;background:var(--panel);border:1.5px solid var(--border);box-shadow:0 0 30px var(--glow-color);margin-bottom:16px}
 .vybe-card-media{width:100%;height:100%;object-fit:cover;display:block}
-.vybe-card-shade{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 35%, rgba(6,6,10,0.55) 72%, var(--bg) 100%);pointer-events:none}
+.vybe-card-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 35%,rgba(6,6,10,0.55) 72%,var(--bg) 100%);pointer-events:none}
 .card-pill-left{position:absolute;top:15px;left:15px;background:var(--header-bg);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:6px 12px;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:900;color:#f4f4f8;z-index:10}
 
 .vybe-meter-badge{position:absolute;top:15px;right:15px;background:var(--header-bg);backdrop-filter:blur(8px);border:1px solid var(--lime);border-radius:12px;padding:6px 12px;z-index:10;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:900;color:var(--lime);cursor:pointer}
 .vybe-meter-bar{width:54px;height:6px;background:rgba(255,255,255,0.12);border-radius:6px;overflow:hidden}
 .vybe-meter-fill{height:100%;width:92%;background:linear-gradient(90deg,var(--violet),var(--lime))}
-.shockwave-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:320px;height:320px;border-radius:50%;border:4px solid var(--lime);box-shadow:0 0 40px var(--lime);pointer-events:none;z-index:25;opacity:0}
+.shockwave-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:320px;height:320px;border-radius:50%;border:4px solid var(--lime);box-shadow:0 0 40px var(--lime),inset 0 0 30px var(--lime);pointer-events:none;z-index:25;opacity:0}
 .shockwave-ring.boom{animation:shockBoom .75s ease-out forwards}
 @keyframes shockBoom{0%{transform:translate(-50%,-50%) scale(0.1);opacity:1}100%{transform:translate(-50%,-50%) scale(2.4);opacity:0}}
 
-.card-actions-right{position:absolute;right:15px;bottom:18px;display:flex;flex-direction:column;align-items:center;gap:11px;z-index:20}
+.card-actions-right{position:absolute;right:15px;bottom:18px;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:20}
 .c-act{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
 .c-act-circle{width:42px;height:42px;border-radius:50%;background:var(--header-bg);backdrop-filter:blur(10px);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:#fff}
 .c-act.liked .c-act-circle{background:rgba(244,63,94,0.3);border-color:#f43f5e;color:#f43f5e}
@@ -172,8 +222,8 @@ label{cursor:pointer}
 .clip-subline{font-size:12.5px;color:#e2e8f0;margin-bottom:8px}
 .clip-hashtags{display:flex;flex-wrap:wrap;gap:9px;font-size:12.5px;font-weight:800;color:var(--lime)}
 
-/* PROFIL SEITE */
-.vybe-extra-page{position:fixed;inset:0;width:100vw;height:100dvh;z-index:350000;background:radial-gradient(ellipse 75% 45% at 50% 8%, var(--glow-color) 0%, transparent 68%), var(--bg);display:none;flex-direction:column;overflow-y:auto;scrollbar-width:none}
+/* ================= EXTRA SEITEN: PROFIL & EINSTELLUNGEN ================= */
+.vybe-extra-page{position:fixed;inset:0;width:100vw;height:100dvh;z-index:350000;background:radial-gradient(ellipse 75% 45% at 50% 8%,var(--glow-color) 0%,transparent 68%),var(--bg);display:none;flex-direction:column;overflow-y:auto;scrollbar-width:none}
 .vybe-extra-page::-webkit-scrollbar{display:none}
 .prof-page-topbar{height:66px;width:100%;max-width:860px;margin:0 auto;padding:0 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--header-bg);backdrop-filter:blur(12px);z-index:40;border-bottom:1px solid var(--border);flex-shrink:0}
 .back-vybe-btn{background:var(--panel);border:1px solid var(--lime);padding:8px 14px;border-radius:12px;font-size:12.5px;font-weight:800;color:var(--lime);display:flex;align-items:center;gap:6px;cursor:pointer}
@@ -204,6 +254,7 @@ label{cursor:pointer}
 
 .vybe-growth-card{background:var(--panel-2);border:1px solid var(--border);border-radius:18px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;cursor:pointer}
 .growth-icon{width:42px;height:42px;border-radius:13px;background:var(--lime-soft);border:1px solid var(--lime);color:var(--lime);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.daily-dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime);display:inline-block}
 
 .prof-tabs-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);margin-bottom:14px}
 .ptab-btn{padding:11px 4px;text-align:center;font-size:12.5px;font-weight:800;color:var(--muted);cursor:pointer;position:relative}
@@ -213,7 +264,6 @@ label{cursor:pointer}
 .p-grid-foot{padding:9px 11px;display:flex;justify-content:space-between;align-items:center;font-size:11.5px;font-weight:800}
 .tag-top1{position:absolute;top:8px;right:8px;background:var(--lime);color:#09090f;font-size:9.5px;font-weight:900;padding:3px 7px;border-radius:6px}
 
-/* EINSTELLUNGEN & DRAWER */
 .settings-group-card{background:var(--panel);border:1px solid var(--border);border-radius:22px;padding:18px;margin-bottom:16px;box-shadow:0 12px 30px rgba(0,0,0,0.5)}
 .settings-group-title{font-size:11.5px;font-weight:900;color:var(--lime);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .set-row{display:flex;align-items:center;justify-content:space-between;padding:13px 10px;border-bottom:1px solid var(--border);font-size:13.5px;font-weight:700;cursor:pointer}
@@ -237,7 +287,7 @@ label{cursor:pointer}
 .violet-btn{background:var(--violet);color:#fff;padding:8px 13px;border-radius:10px;font-size:11.5px;font-weight:800;cursor:pointer;display:inline-block;text-align:center}
 
 .modal-overlay{position:fixed;inset:0;background:rgba(5,5,10,0.86);backdrop-filter:blur(8px);z-index:450000;display:none;align-items:center;justify-content:center;padding:14px}
-.modal-card{width:100%;max-width:410px;background:var(--panel);border:1px solid var(--lime);border-radius:22px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,0.9)}
+.modal-card{width:100%;max-width:440px;background:var(--panel);border:1px solid var(--lime);border-radius:22px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,0.9);max-height:90dvh;overflow-y:auto}
 .v-inp{width:100%;background:var(--panel-2);border:1px solid var(--border);color:#fff;padding:10px 13px;border-radius:11px;font-size:13px;margin-bottom:9px}
 .gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
 .gift-item{background:var(--panel-2);border:1px solid var(--border);border-radius:13px;padding:9px 4px;text-align:center;cursor:pointer}
@@ -251,11 +301,11 @@ label{cursor:pointer}
 </head>
 <body>
 
-<!-- UNSICHTBARE CSS-STATUS-SCHALTER -->
+<!-- STATUS-SCHALTER -->
 <input type="radio" name="mainNav" id="navFeed" checked hidden>
 <input type="radio" name="mainNav" id="navClub" hidden>
 
-<!-- 10 GANZSEITIGE STIMMUNGS-FARBWELTEN -->
+<!-- 10 STIMMUNGS-FARBWELTEN -->
 <input type="radio" name="vybeMood" id="moodNight" checked hidden>
 <input type="radio" name="vybeMood" id="moodChill" hidden>
 <input type="radio" name="vybeMood" id="moodHype" hidden>
@@ -281,30 +331,46 @@ label{cursor:pointer}
 <input type="checkbox" id="chkCmt" hidden>
 <input type="checkbox" id="chkDuel" hidden>
 <input type="checkbox" id="chkVault" hidden>
+<input type="checkbox" id="chkCardAlbum" hidden>
+
+<input type="radio" name="liveTopicRad" id="ltop1" checked hidden>
+<input type="radio" name="liveTopicRad" id="ltop2" hidden>
+<input type="radio" name="liveTopicRad" id="ltop3" hidden>
+
+<input type="radio" name="durRad" id="dur1" hidden>
+<input type="radio" name="durRad" id="dur2" checked hidden>
+<input type="radio" name="durRad" id="dur3" hidden>
+<input type="radio" name="durRad" id="dur4" hidden>
+<input type="radio" name="durRad" id="dur5" hidden>
+
+<input type="radio" name="fxOrbRad" id="fxOrb0" checked hidden>
+<input type="radio" name="fxOrbRad" id="fxOrb1" hidden>
+<input type="radio" name="fxOrbRad" id="fxOrb2" hidden>
+<input type="radio" name="fxOrbRad" id="fxOrb3" hidden>
+<input type="radio" name="fxOrbRad" id="fxOrb4" hidden>
+<input type="radio" name="fxOrbRad" id="fxOrb5" hidden>
+<input type="radio" name="fxOrbRad" id="fxOrb6" hidden>
+
+<input type="radio" name="stModeRad" id="mCam" hidden>
+<input type="radio" name="stModeRad" id="mCreate" hidden>
+<input type="radio" name="stModeRad" id="mLive" checked hidden>
 
 <div class="fx-stage" id="giftFxStage"></div>
 
-<!-- ================= VOLLBILD LIVE- & KAMERA-STUDIO (SAUBER AUFGERÄUMT) ================= -->
+<!-- ================= VOLLBILD LIVE- & KAMERA-STUDIO (SAUBER AUFGERÄUMT OHNE ÜBERLAPPUNG) ================= -->
 <div class="live-studio-screen" id="vybeLiveStudio">
   <div class="cam-green-dot"></div>
   <label for="chkLiveStudio" class="studio-close-x" onclick="stopVybeLive()">✕</label>
 
   <div class="studio-right-rail">
-    <div class="st-rail-btn" onclick="flipStudioCam()" title="Kamera wechseln">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
-        <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/>
-      </svg>
-    </div>
+    <div class="st-rail-btn" onclick="flipStudioCam()" title="Kamera wechseln">🔄</div>
+    <div class="st-rail-btn" onclick="toggleFlashEffect()" title="Licht-Boost">⚡</div>
     <div class="st-rail-divider"></div>
-    <label for="chkMultiGrid" class="st-rail-btn" title="3er/4er Multi-Live Raster">
-      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="3"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="12" y1="12" x2="21" y2="12"/>
-      </svg>
-    </label>
-    <label for="chkCode" class="st-rail-btn" title="Raum-Code">
-      <span style="font-size:18px">🔑</span>
-    </label>
+    <label for="chkMultiGrid" class="st-rail-btn" title="3er/4er Multi-Live Raster">⊞</label>
+    <label for="fxOrb6" class="st-rail-btn" onclick="cycleFaceMorph()" title="Frosch-Verwandlung">🐸<span class="pink-check-badge">✓</span></label>
+    <label for="fxOrb4" class="st-rail-btn" onclick="setMorph('clown')" title="Clown-Verwandlung">🤡</label>
+    <label for="fxOrb0" class="st-rail-btn" onclick="setMorph('none')" title="Maske aus">✨</label>
+    <label for="chkCode" class="st-rail-btn" title="Raum-Code">🔑</label>
   </div>
 
   <div class="cam-viewport">
@@ -313,41 +379,58 @@ label{cursor:pointer}
       <canvas id="liveCanvasMe" width="360" height="640"></canvas>
     </div>
 
-    <!-- 4er Co-Stream Raster -->
+    <!-- Gesichts-Masken -->
+    <div class="css-face-mask" id="cssFrogMask">
+      <div class="frog-head-css">
+        <div style="position:absolute;top:-28px;left:18px;width:48px;height:48px;background:#84cc16;border:3px solid #3f6212;border-radius:50%;display:flex;align-items:center;justify-content:center"><div style="width:18px;height:18px;background:#000;border-radius:50%"></div></div>
+        <div style="position:absolute;top:-28px;right:18px;width:48px;height:48px;background:#84cc16;border:3px solid #3f6212;border-radius:50%;display:flex;align-items:center;justify-content:center"><div style="width:18px;height:18px;background:#000;border-radius:50%"></div></div>
+        <div style="margin-top:34px;width:110px;height:42px;background:#7f1d1d;border-radius:50%;border:2px solid #3f6212;display:flex;justify-content:center;align-items:flex-end"><div style="width:40px;height:26px;background:#fb7185;border-radius:50%;margin-bottom:-10px"></div></div>
+      </div>
+      <span style="background:rgba(0,0,0,0.75);color:var(--lime);font-size:11px;font-weight:900;padding:3px 10px;border-radius:10px;margin-top:10px">🐸 Frosch-Verwandlung aktiv</span>
+    </div>
+
+    <div class="css-face-mask" id="cssClownMask">
+      <div class="frog-head-css" style="background:rgba(255,255,255,0.92);border-color:#f43f5e">
+        <div style="position:absolute;top:-15px;left:-18px;font-size:42px">🎈</div>
+        <div style="position:absolute;top:-15px;right:-18px;font-size:42px">🎪</div>
+        <div style="width:44px;height:44px;background:#dc2626;border-radius:50%"></div>
+        <div style="position:absolute;bottom:18px;width:95px;height:30px;border-bottom:8px solid #dc2626;border-radius:50%"></div>
+      </div>
+      <span style="background:rgba(0,0,0,0.75);color:#f43f5e;font-size:11px;font-weight:900;padding:3px 10px;border-radius:10px;margin-top:10px">🤡 Clown-Verwandlung aktiv</span>
+    </div>
+
     <div class="cam-multi-overlay">
       <div class="co-box"><span style="font-size:28px">👑</span><span class="co-tag">Du (Host)</span></div>
-      <div class="co-box"><video id="remVid1" autoplay playsinline></video><span style="font-size:24px">⚡</span><span class="co-tag" id="remTag1">Co-Host 2 (Frei)</span></div>
-      <div class="co-box"><video id="remVid2" autoplay playsinline></video><span style="font-size:24px">⚡</span><span class="co-tag" id="remTag2">Co-Host 3 (Frei)</span></div>
+      <div class="co-box"><video id="remVid1" autoplay playsinline></video><span style="font-size:24px">⚡</span><span class="co-tag">Co-Host 2</span></div>
+      <div class="co-box"><video id="remVid2" autoplay playsinline></video><span style="font-size:24px">⚡</span><span class="co-tag">Co-Host 3</span></div>
       <label for="chkCode" class="co-box" style="border-style:dashed"><span style="font-size:22px;color:var(--lime)">＋</span><span class="co-tag">Code-Anfrage</span></label>
     </div>
 
-    <!-- VYBE LIVE-SETUP ANSICHT (KEINE HANDYSPIELE & KEIN TIKTOK STUDIO) -->
-    <div class="pre-live-setup-card">
+    <!-- MODUS 1: LIVE-MODUS -->
+    <div class="pre-live-setup-card live-mode-ui">
       <div class="pre-live-top-row">
         <label for="avaInput" class="pre-live-cover-box" title="Cover ändern">
           <img id="liveSetupCoverImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80" alt="Cover">
           <span class="pre-live-cover-lbl">Cover</span>
         </label>
         <div style="flex:1">
-          <input id="liveTitleInp" class="pre-live-title-inp" value="Live im VYBE Club ⚡ Komm rein!" placeholder="Titel hinzufügen...">
-          <div class="pre-live-online-Followers">
-            <span class="daily-dot"></span>
-            <span>184 Follower sind gerade aktiv</span>
-          </div>
+          <input id="liveTitleInp" class="pre-live-title-inp" value="Live im VYBE Club ⚡ Komm rein!" placeholder="Füge einen Titel hinzu...">
+          <div class="pre-live-online-Followers"><span class="daily-dot"></span><span>184 Follower sind gerade aktiv</span></div>
         </div>
+      </div>
+      <div class="pre-live-topics">
+        <label for="ltop1" class="l-topic-pill">💬 Talk & Chill</label>
+        <label for="ltop2" class="l-topic-pill" onclick="$('chkMultiGrid').checked=true">👥 3er/4er Co-Stream</label>
+        <label for="ltop3" class="l-topic-pill">🃏 Karten-Tausch</label>
       </div>
     </div>
 
-    <!-- Sauberer Startbutton unten im Live-Setup -->
-    <div class="pre-live-bottom-panel">
-      <label for="chkLiveOnAir" class="go-live-vybe-btn" onclick="startVybeLive()">
-        <span>🔴 Jetzt LIVE gehen</span>
-      </label>
+    <div class="pre-live-bottom-panel live-mode-ui">
+      <label for="chkLiveOnAir" class="go-live-vybe-btn" onclick="startVybeLive()"><span>🔴 Jetzt LIVE gehen</span></label>
     </div>
 
-    <!-- AKTIVER ON-AIR STREAM HUD -->
     <div class="on-air-hud">
-      <div>🔴 <b>LIVE</b> • Code: <b style="color:var(--lime)" id="liveRoomCodeTxt">4820</b></div>
+      <div>🔴 <b>LIVE</b> • 👁️ 184 • Code: <b style="color:var(--lime)">4820</b></div>
       <div style="display:flex;gap:6px;align-items:center">
         <label for="chkMultiGrid" style="background:var(--panel-2);padding:4px 8px;border-radius:8px;color:#fff;font-weight:800">👥 4er</label>
         <label for="chkCode" style="background:var(--panel-2);padding:4px 8px;border-radius:8px;color:var(--lime);font-weight:800">🔑 Gast+</label>
@@ -358,7 +441,7 @@ label{cursor:pointer}
     <div class="on-air-bottom-chat">
       <div class="live-chat-messages" id="liveStreamChatBox">
         <div><b style="color:var(--lime)">✨ System:</b> Dein VYBE Live-Stream läuft! Teile Raum-Code <b>4820</b>.</div>
-        <div><b style="color:#38bdf8">@mila.moves:</b> Mega Vibe heute! 🌿🔥</div>
+        <div><b style="color:#38bdf8">@mila.moves:</b> Hab gerade deine Holo-Sammlerkarte gezogen! 🃏🔥</div>
       </div>
       <div style="display:flex;gap:6px">
         <input id="liveStreamChatInp" class="v-inp" style="margin:0;flex:1;padding:9px 12px" placeholder="In den Live-Chat schreiben...">
@@ -366,10 +449,37 @@ label{cursor:pointer}
         <label for="chkGift" class="violet-btn">🎁 Gift</label>
       </div>
     </div>
+
+    <!-- MODUS 2: KAMERA-MODUS (Kein Überlappen mit Live!) -->
+    <div class="studio-bottom-controls cam-mode-ui">
+      <div class="dur-selector-row">
+        <label for="dur1" class="dur-pill">10 Min.</label>
+        <label for="dur2" class="dur-pill">60 Sek.</label>
+        <label for="dur3" class="dur-pill">15 Sek.</label>
+        <label for="dur4" class="dur-pill">FOTO</label>
+        <label for="dur5" class="dur-pill" onclick="$('chkCmt').checked=true">TEXT</label>
+      </div>
+
+      <div class="shutter-carousel-row">
+        <label for="fxOrb1" class="fx-circle-thumb" onclick="setMorph('none')"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"></label>
+        <label for="fxOrb2" class="fx-circle-thumb" onclick="setMorph('none')"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=150&q=80"></label>
+        <label for="fxOrb3" class="fx-circle-thumb" onclick="setMorph('none')"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=150&q=80"></label>
+        <label for="chkLiveOnAir" class="red-shutter-ring" onclick="startVybeLive()"><div class="shutter-inner"></div></label>
+        <label for="fxOrb4" class="fx-circle-thumb" onclick="setMorph('clown')" style="background:#111"><span style="font-size:26px">🤡</span></label>
+        <label for="fxOrb5" class="fx-circle-thumb" onclick="setMorph('none')"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" style="filter:grayscale(100%) contrast(130%)"></label>
+        <label for="fxOrb6" class="fx-circle-thumb" onclick="setMorph('frog')"><img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=150&q=80"><span class="fx-ai-tag">AI 🐸</span></label>
+      </div>
+    </div>
   </div>
 
-  <div class="studio-footer-bar" style="justify-content:center">
-    <span style="font-size:12px;font-weight:900;color:var(--lime)">VYBE MULTI-LIVE CLUB STREAM</span>
+  <div class="studio-footer-bar">
+    <label for="chkUpload" class="gallery-stack-btn"><img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=120&q=80"></label>
+    <div class="studio-modes-row">
+      <label for="mCam" onclick="$('chkLiveOnAir').checked=false;startVybeLive()">KAMERA</label>
+      <label for="chkUpload">ERSTELLEN</label>
+      <label for="mLive" onclick="$('chkLiveOnAir').checked=false;startVybeLive()">LIVE</label>
+    </div>
+    <div style="width:38px"></div>
   </div>
 </div>
 
@@ -380,11 +490,9 @@ label{cursor:pointer}
       <label for="chkProfile" class="back-vybe-btn">← Zurück zu VYBE</label>
       <label for="navClub" onclick="$('chkProfile').checked=false" class="top-sq-btn">👤+</label>
     </div>
-    <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:900;color:var(--lime)">
-      <span class="daily-dot"></span> VYBE PROFIL
-    </div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:900;color:var(--lime)"><span class="daily-dot"></span> VYBE PROFIL</div>
     <div style="display:flex;align-items:center;gap:8px">
-      <div class="top-sq-btn" style="width:auto;padding:0 10px;font-size:11.5px;font-weight:800;color:var(--lime)">👀 1</div>
+      <label for="chkCardAlbum" class="top-sq-btn" title="Holo-Sammlerkarten">🃏</label>
       <label for="chkVault" class="top-sq-btn" title="Profil-Aura & Tresor">💎</label>
       <label for="chkDrawer" class="top-sq-btn">☰</label>
     </div>
@@ -398,18 +506,15 @@ label{cursor:pointer}
 
     <div class="prof-hero-card">
       <label for="chkEdit" class="vybe-thought-bubble" id="profThoughtTxt">Was geht?</label>
-
-      <label for="chkZoom" class="prof-ava-main-wrap" title="Tippen zum Vergrößern">
-        <div class="prof-ava-main">
-          <img id="profPageAva" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80" alt="Avatar">
-        </div>
+      <label for="chkZoom" class="prof-ava-main-wrap">
+        <div class="prof-ava-main"><img id="profPageAva" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80"></div>
         <div class="prof-ava-plus">+</div>
       </label>
 
       <div class="prof-name-bar">
         <span class="prof-disp-title" id="pNameDisp">🍝Nudel King🍝</span>
         <span class="prof-lvl-pill" id="profAuraBadge">LVL 3 • VIP</span>
-        <label for="chkEdit" class="prof-edit-icon-btn" title="Profil bearbeiten">✏️</label>
+        <label for="chkEdit" class="prof-edit-icon-btn">✏️</label>
       </div>
       <div class="prof-handle-sub" id="pHandleDisp">@reckpunkt</div>
       <div class="prof-bio-text" id="pBioDisp"></div>
@@ -421,27 +526,27 @@ label{cursor:pointer}
       </div>
 
       <div class="prof-quick-pills">
-        <label for="ptab4" class="q-pill">🛒 Deine Bestellungen</label>
-        <label for="ptab2" class="q-pill">🛍️ Showcase</label>
-        <label for="chkVault" class="q-pill lime">💎 VIP-Aura & Vault</label>
-        <label for="chkLiveStudio" onclick="startVybeLive()" class="q-pill violet">🔴 LIVE gehen</label>
+        <label for="chkCardAlbum" class="q-pill lime">🃏 Holo-Sammlerkarten</label>
+        <label for="ptab3" class="q-pill">🛍️ Showcase</label>
+        <label for="chkVault" class="q-pill">💎 VIP-Aura</label>
+        <label for="chkLiveStudio" onclick="$('mLive').checked=true;$('chkLiveOnAir').checked=false;startVybeLive()" class="q-pill violet">🔴 LIVE gehen</label>
         <label for="chkGift" class="q-pill">🎁 Geschenke</label>
       </div>
     </div>
 
-    <div class="vybe-growth-card" onclick="openDailyVault()">
-      <div class="growth-icon">💎</div>
+    <label for="chkCardAlbum" class="vybe-growth-card">
+      <div class="growth-icon">🃏</div>
       <div style="flex:1">
-        <div style="font-size:13.5px;font-weight:900;color:#fff;margin-bottom:2px">VYBE Club Tresor & Prämien</div>
-        <div style="font-size:11.5px;color:#a1a1b5">Sammle VYBE-Boosts im Feed oder öffne deinen täglichen Neon-Tresor!</div>
+        <div style="font-size:13.5px;font-weight:900;color:#fff;margin-bottom:2px">Exklusive VYBE Holo-Sammlerkarten</div>
+        <div style="font-size:11.5px;color:#a1a1b5">Öffne Gratis-Booster, erstelle deine eigene VIP-Karte & sammle die Karten deiner Freunde!</div>
       </div>
       <span style="color:var(--lime);font-size:18px;font-weight:900">›</span>
-    </div>
+    </label>
 
     <div class="prof-tabs-bar">
       <label for="ptab1" class="ptab-btn">🎬 Clips</label>
-      <label for="ptab2" class="ptab-btn">🛍️ Showcase</label>
-      <label for="ptab3" class="ptab-btn">🔖 Gemerkt</label>
+      <label for="ptab2" class="ptab-btn">🃏 Karten-Album</label>
+      <label for="ptab3" class="ptab-btn">🛍️ Showcase</label>
       <label for="ptab4" class="ptab-btn">📦 Adresse</label>
     </div>
 
@@ -452,21 +557,29 @@ label{cursor:pointer}
           <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80">
           <div class="p-grid-foot"><span>Morning Reset</span><span style="color:var(--lime)">❤️ 25 Tsd.</span></div>
         </label>
+        <label for="chkProfile" class="p-grid-card">
+          <span class="tag-top1">✦ VYBE</span>
+          <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80">
+          <div class="p-grid-foot"><span>Night Drive</span><span style="color:var(--lime)">❤️ 14,2 Tsd.</span></div>
+        </label>
       </div>
+
+      <!-- Tab 2: Holo-Sammlerkarten direkt im Profil -->
+      <div class="prof-cards-grid" id="pgridCards" style="grid-template-columns:repeat(auto-fill,minmax(175px,1fr))"></div>
+
       <div class="prof-cards-grid" id="pgridShop">
         <div class="p-grid-card">
           <span class="tag-top1">🎵 TOP 1</span>
           <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80">
           <div class="p-grid-foot"><span>Rokid AR Glasses</span><span style="color:var(--lime)">29,99 €</span></div>
         </div>
+        <div class="p-grid-card">
+          <span class="tag-top1" style="background:var(--violet);color:#fff">TOP PICK</span>
+          <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80">
+          <div class="p-grid-foot"><span>Smart Display</span><span style="color:var(--lime)">49,99 €</span></div>
+        </div>
       </div>
-      <div class="prof-cards-grid" id="pgridSaved">
-        <label for="chkProfile" class="p-grid-card">
-          <span class="tag-top1">🔖 Gemerkt</span>
-          <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80">
-          <div class="p-grid-foot"><span>Mila Moves</span><span style="color:var(--lime)">25 Tsd.</span></div>
-        </label>
-      </div>
+
       <div class="prof-cards-grid" id="pgridOrders">
         <div class="p-grid-card" style="grid-column:1/-1;padding:18px">
           <b style="font-size:13.5px;color:var(--lime)">📦 Deine Lieferadresse & Bestellungen:</b>
@@ -482,9 +595,7 @@ label{cursor:pointer}
 <div class="vybe-extra-page" id="vybeSettingsPage" style="z-index:370000">
   <div class="prof-page-topbar">
     <label for="chkSettings" class="back-vybe-btn">← Zurück zu VYBE</label>
-    <div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:900;color:var(--lime)">
-      <span class="daily-dot"></span> VYBE EINSTELLUNGEN
-    </div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:900;color:var(--lime)"><span class="daily-dot"></span> VYBE EINSTELLUNGEN</div>
     <label for="chkEdit" class="lime-btn">✏️ Konto</label>
   </div>
 
@@ -492,29 +603,24 @@ label{cursor:pointer}
     <div class="settings-group-card">
       <div class="settings-group-title">🎨 Alle 10 Ganzseitigen App-Stimmungen</div>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:4px 0">
-        <label for="moodNight" class="mood-chip" style="justify-content:center;padding:10px">🌙 Night</label>
-        <label for="moodChill" class="mood-chip" style="justify-content:center;padding:10px">🌿 Chill</label>
-        <label for="moodHype" class="mood-chip" style="justify-content:center;padding:10px">⚡ Hype</label>
-        <label for="moodCyber" class="mood-chip" style="justify-content:center;padding:10px">🔮 Cyber</label>
-        <label for="moodSunset" class="mood-chip" style="justify-content:center;padding:10px">🌅 Sunset</label>
-        <label for="moodLava" class="mood-chip" style="justify-content:center;padding:10px">🔥 Lava</label>
-        <label for="moodArctic" class="mood-chip" style="justify-content:center;padding:10px">❄️ Arctic</label>
-        <label for="moodSakura" class="mood-chip" style="justify-content:center;padding:10px">🌸 Sakura</label>
-        <label for="moodGold" class="mood-chip" style="justify-content:center;padding:10px">👑 Gold</label>
-        <label for="moodGalaxy" class="mood-chip" style="justify-content:center;padding:10px">🌌 Galaxy</label>
+        <label for="moodNight" class="mood-chip" style="justify-content:center;padding:10px">🌙 Night (Violett & Lime)</label>
+        <label for="moodChill" class="mood-chip" style="justify-content:center;padding:10px">🌿 Chill (Smaragd & Mint)</label>
+        <label for="moodHype" class="mood-chip" style="justify-content:center;padding:10px">⚡ Hype (Rubin & Pink)</label>
+        <label for="moodCyber" class="mood-chip" style="justify-content:center;padding:10px">🔮 Cyber (Ozean & Cyan)</label>
+        <label for="moodSunset" class="mood-chip" style="justify-content:center;padding:10px">🌅 Sunset (Gold & Purpur)</label>
+        <label for="moodLava" class="mood-chip" style="justify-content:center;padding:10px">🔥 Lava (Magma & Glut)</label>
+        <label for="moodArctic" class="mood-chip" style="justify-content:center;padding:10px">❄️ Arctic (Eisblau & Polar)</label>
+        <label for="moodSakura" class="mood-chip" style="justify-content:center;padding:10px">🌸 Sakura (Pflaume & Kirsch)</label>
+        <label for="moodGold" class="mood-chip" style="justify-content:center;padding:10px">👑 Royal Gold (Onyx & Gold)</label>
+        <label for="moodGalaxy" class="mood-chip" style="justify-content:center;padding:10px">🌌 Galaxy (Kosmos & Ultra)</label>
       </div>
     </div>
 
     <div class="settings-group-card">
-      <div class="settings-group-title">👤 Konto & Persönliche Daten</div>
-      <label for="chkEdit" class="set-row">
-        <div><div>Name, @Handle & Bio bearbeiten</div><div class="set-sub">Ändere deinen Anzeigenamen</div></div>
-        <span style="color:var(--lime)">›</span>
-      </label>
-      <div class="set-row" onclick="addCoins()">
-        <div><div>VYBE Coins & Guthaben</div><div class="set-sub">Verfügbar: <b style="color:var(--lime)" id="settingsCoinsTxt">10.000 🪙</b></div></div>
-        <span class="lime-btn">+10k gratis</span>
-      </div>
+      <div class="settings-group-title">👤 Konto & Exklusive Club-Features</div>
+      <label for="chkEdit" class="set-row"><div><div>Name, @Handle & Lieferadresse</div><div class="set-sub" id="settingsAddrSub">Für Profil & Showcase Shop</div></div><span style="color:var(--lime)">›</span></label>
+      <label for="chkCardAlbum" class="set-row"><div><div>🃏 Mein Holo-Sammlerkarten-Album</div><div class="set-sub">Eigene VIP-Karte & gezogene Creator-Karten</div></div><span style="color:var(--lime)">Öffnen ›</span></label>
+      <div class="set-row" onclick="addCoins()"><div><div>VYBE Coins & Guthaben</div><div class="set-sub">Aktuell verfügbar: <b style="color:var(--lime)" id="settingsCoinsTxt">10.000 🪙</b></div></div><span class="lime-btn">+10k gratis</span></div>
     </div>
   </div>
 </div>
@@ -529,9 +635,11 @@ label{cursor:pointer}
   <div class="prof-page-container" style="max-width:520px">
     <div class="prof-hero-card" style="text-align:left">
       <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">ANZEIGENAME</label>
-      <input id="editNameInp" class="v-inp" value="🍝Nudel King🍝" placeholder="Dein Anzeigename">
+      <input id="editNameInp" class="v-inp" value="🍝Nudel King🍝">
       <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">BENUTZERNAME (@HANDLE)</label>
-      <input id="editHandleInp" class="v-inp" value="@reckpunkt" placeholder="@handle">
+      <input id="editHandleInp" class="v-inp" value="@reckpunkt">
+      <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">VOR- UND NACHNAME</label>
+      <input id="editFullNameInp" class="v-inp" placeholder="Max Mustermann">
       <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">LIEFERADRESSE</label>
       <input id="editAddrInp" class="v-inp" placeholder="Straße, Hausnummer, PLZ & Ort">
       <label style="font-size:11px;font-weight:800;color:var(--lime);display:block;margin-bottom:4px">BIO / SPRUCH</label>
@@ -548,14 +656,12 @@ label{cursor:pointer}
     <b style="font-size:15px;color:var(--lime)">⚡ VYBE Club Menü</b>
     <label for="chkDrawer" style="font-size:18px">✕</label>
   </div>
-  <div class="dr-sec-lbl">Assets & Tresor</div>
-  <div class="dr-item highlight" onclick="addCoins()">
-    <span>👛 Guthaben (<b id="drawerCoinsTxt" style="color:var(--lime)">10.000 🪙</b>)</span>
-    <span style="color:var(--lime)">+10k ›</span>
-  </div>
+  <div class="dr-sec-lbl">Assets & Sammlerkarten</div>
+  <div class="dr-item highlight" onclick="addCoins()"><span>👛 Guthaben (<b id="drawerCoinsTxt" style="color:var(--lime)">10.000 🪙</b>)</span><span style="color:var(--lime)">+10k ›</span></div>
+  <label for="chkCardAlbum" onclick="$('chkDrawer').checked=false" class="dr-item"><span>🃏 Holo-Sammlerkarten & Booster</span><span>›</span></label>
   <label for="chkVault" onclick="$('chkDrawer').checked=false" class="dr-item"><span>💎 VIP-Tresor & Profil-Auren</span><span>›</span></label>
   <div class="dr-sec-lbl">System & Live</div>
-  <label for="chkLiveStudio" onclick="$('chkDrawer').checked=false;startVybeLive()" class="dr-item"><span>🔴 Jetzt LIVE gehen</span><span>›</span></label>
+  <label for="chkLiveStudio" onclick="$('chkDrawer').checked=false;$('mLive').checked=true;$('chkLiveOnAir').checked=false;startVybeLive()" class="dr-item"><span>🔴 Jetzt LIVE gehen</span><span>›</span></label>
   <label for="chkSettings" onclick="$('chkDrawer').checked=false" class="dr-item"><span>⚙️ Einstellungen & 10 Stimmungen</span><span>›</span></label>
   <label for="chkDuel" onclick="$('chkDrawer').checked=false" class="dr-item" style="color:var(--muted)"><span>⚔️ Mini-Duell (nebenbei)</span><span>›</span></label>
 </aside>
@@ -570,27 +676,20 @@ label{cursor:pointer}
           <line x1="5.6" y1="5.6" x2="18.4" y2="18.4"/><line x1="18.4" y1="5.6" x2="5.6" y2="18.4"/>
         </svg>
       </div>
-      <div>
-        <div class="brand-title">VYBE</div>
-        <div class="brand-sub">SHORT VIDEO CLUB</div>
-      </div>
+      <div><div class="brand-title">VYBE</div><div class="brand-sub">SHORT VIDEO CLUB</div></div>
     </label>
 
     <div class="search-wrap">
-      <svg class="search-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <input class="search-box" id="topSearchInp" placeholder="Creator, Trends oder Clips suchen...">
+      <svg class="search-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-box" id="topSearchInp" placeholder="Creator, Trends oder Sammlerkarten suchen...">
     </div>
 
     <div class="header-right">
-      <label for="chkVault" class="top-sq-btn" title="VYBE Tresor">💎</label>
+      <label for="chkCardAlbum" class="top-sq-btn" title="Holo-Sammlerkarten Album">🃏</label>
+      <label for="chkVault" class="top-sq-btn" title="VYBE Tresor & Auren">💎</label>
       <label for="navClub" class="top-sq-btn" title="Kollegen/innen"><span class="pink-dot"></span>♣️</label>
-      <label for="chkGift" class="top-sq-btn" title="Geschenke">🎁</label>
       <label for="chkProfile" class="top-prof-trigger" title="Profil öffnen">
-        <div class="top-ava-btn" id="topAvaRing">
-          <img id="topAvaImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80" alt="Profil">
-        </div>
+        <div class="top-ava-btn"><img id="topAvaImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80"></div>
         <span class="top-prof-lbl">Profil</span>
       </label>
     </div>
@@ -602,24 +701,17 @@ label{cursor:pointer}
         <label for="navFeed" class="side-btn" id="sBtnHome" title="Home">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M3 10.5L12 3l9 7.5v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9z"/><path d="M9 21V13h6v8"/></svg>
         </label>
-        <label for="navClub" class="side-btn" title="Suche & Kollegen">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16" y2="16"/></svg>
-        </label>
-        <label for="chkLiveStudio" onclick="startVybeLive()" class="side-btn" title="Live-Studio">
+        <label for="chkCardAlbum" class="side-btn" title="Holo-Sammlerkarten">🃏</label>
+        <label for="chkLiveStudio" onclick="$('mCam').checked=true;$('chkLiveOnAir').checked=false;startVybeLive()" class="side-btn" title="Kamera & Clips">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </label>
         <label for="navClub" class="side-btn" id="sBtnClub" title="Kollegen/innen">♣️</label>
-        <label for="chkLiveStudio" onclick="startVybeLive()" class="side-btn" title="LIVE">
+        <label for="chkLiveStudio" onclick="$('mLive').checked=true;$('chkLiveOnAir').checked=false;startVybeLive()" class="side-btn" title="LIVE gehen">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg>
         </label>
-        <label for="chkProfile" class="side-btn" title="Profil">👤</label>
+        <label for="chkProfile" class="side-btn" title="Profil Extra-Seite">👤</label>
       </div>
-      <label for="chkSettings" class="side-btn" title="Einstellungen">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-        </svg>
-      </label>
+      <label for="chkSettings" class="side-btn" title="Einstellungen öffnen">⚙️</label>
     </aside>
 
     <main class="vybe-stage">
@@ -634,7 +726,7 @@ label{cursor:pointer}
               <label for="ftab1" class="f-tab" id="lblFtab1">Für dich</label>
               <label for="ftab2" class="f-tab" id="lblFtab2">Abonniert</label>
             </div>
-            <label for="chkSettings" style="font-size:11px;font-weight:800;color:var(--lime)">🎨 Stimmungen ›</label>
+            <label for="chkCardAlbum" style="font-size:11.5px;font-weight:900;color:var(--lime)">🃏 Holo-Karten (Neu) ›</label>
           </div>
 
           <div class="mood-tuner-strip">
@@ -653,11 +745,10 @@ label{cursor:pointer}
 
         <div class="cards-scroller" id="cardsScroller">
           <article class="vybe-card">
-            <img class="vybe-card-media" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=85" alt="Mila Moves">
+            <img class="vybe-card-media" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=85">
             <div class="vybe-card-shade"></div>
             <div class="shockwave-ring" id="shock1"></div>
             <div class="card-pill-left"><span style="color:var(--lime)">✦</span><span>MORNING RESET</span></div>
-
             <div class="vybe-meter-badge" onclick="triggerVybeBoost('shock1','vfill1','vlbl1')">
               <span>⚡ <b id="vlbl1">94% VYBE</b></span>
               <div class="vybe-meter-bar"><div class="vybe-meter-fill" id="vfill1"></div></div>
@@ -666,22 +757,48 @@ label{cursor:pointer}
             <div class="card-actions-right">
               <div class="c-act" onclick="this.classList.toggle('liked')"><div class="c-act-circle">♥</div><span class="c-act-lbl">25 Tsd.</span></div>
               <label for="chkCmt" class="c-act"><div class="c-act-circle">□</div><span class="c-act-lbl">382</span></label>
-              <div class="c-act" onclick="this.classList.toggle('saved')"><div class="c-act-circle">⚑</div><span class="c-act-lbl">Merken</span></div>
+              <label for="chkCardAlbum" class="c-act"><div class="c-act-circle">🃏</div><span class="c-act-lbl">Karte</span></label>
               <div class="c-act boost-btn" onclick="triggerVybeBoost('shock1','vfill1','vlbl1')"><div class="c-act-circle">⚡</div><span class="c-act-lbl" style="color:var(--lime)">Boost</span></div>
             </div>
 
             <div class="card-bottom-info">
               <div class="creator-row">
                 <label for="chkProfile" class="creator-ava"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80"></label>
-                <label for="chkProfile">
-                  <div class="creator-name">Mila Moves</div>
-                  <div class="creator-handle">@mila.moves</div>
-                </label>
+                <label for="chkProfile"><div class="creator-name">Mila Moves</div><div class="creator-handle">@mila.moves</div></label>
                 <button class="sub-badge-btn">✓ Abonniert</button>
               </div>
               <div class="clip-headline">Kleiner Reminder: Du musst nicht jeden Tag alles</div>
               <div class="clip-subline">Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿</div>
               <div class="clip-hashtags"><span>#minivlog</span><span>#slowmorning</span><span>#mindset</span></div>
+            </div>
+          </article>
+
+          <article class="vybe-card">
+            <img class="vybe-card-media" src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1200&q=85">
+            <div class="vybe-card-shade"></div>
+            <div class="shockwave-ring" id="shock2"></div>
+            <div class="card-pill-left"><span style="color:var(--lime)">✦</span><span>NIGHT DRIVE</span></div>
+            <div class="vybe-meter-badge" onclick="triggerVybeBoost('shock2','vfill2','vlbl2')">
+              <span>⚡ <b id="vlbl2">91% VYBE</b></span>
+              <div class="vybe-meter-bar"><div class="vybe-meter-fill" id="vfill2" style="width:88%"></div></div>
+            </div>
+
+            <div class="card-actions-right">
+              <div class="c-act" onclick="this.classList.toggle('liked')"><div class="c-act-circle">♥</div><span class="c-act-lbl">14,2 Tsd.</span></div>
+              <label for="chkCmt" class="c-act"><div class="c-act-circle">□</div><span class="c-act-lbl">194</span></label>
+              <label for="chkCardAlbum" class="c-act"><div class="c-act-circle">🃏</div><span class="c-act-lbl">Karte</span></label>
+              <div class="c-act boost-btn" onclick="triggerVybeBoost('shock2','vfill2','vlbl2')"><div class="c-act-circle">⚡</div><span class="c-act-lbl" style="color:var(--lime)">Boost</span></div>
+            </div>
+
+            <div class="card-bottom-info">
+              <div class="creator-row">
+                <label for="chkProfile" class="creator-ava"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=240&q=80"></label>
+                <label for="chkProfile"><div class="creator-name">Noah Vance</div><div class="creator-handle">@noah.vance</div></label>
+                <button class="sub-badge-btn">✓ Abonniert</button>
+              </div>
+              <div class="clip-headline">Wenn die Stadt schläft, fängt der beste Vibe erst an</div>
+              <div class="clip-subline">Kurzer Run durch die Neon-Straßen heute Nacht ⚡</div>
+              <div class="clip-hashtags"><span>#nightvibes</span><span>#vybeclub</span><span>#aesthetic</span></div>
             </div>
           </article>
         </div>
@@ -691,26 +808,23 @@ label{cursor:pointer}
       <section class="view-pane" id="vClub">
         <div class="vybe-box">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-            <div>
-              <h2 style="font-size:18px;font-weight:900">♣️ Kollegen/innen & Nachrichten</h2>
-              <p style="font-size:12px;color:var(--muted)">Direkt-Chats & aktive Multi-Live-Räume</p>
-            </div>
+            <div><h2 style="font-size:18px;font-weight:900">♣️ Kollegen/innen & Sammlerkarten</h2><p style="font-size:12px;color:var(--muted)">Direkt-Chats, Holo-Karten & aktive Multi-Live-Räume</p></div>
             <label for="chkCode" class="lime-btn">🔑 Raum-Code</label>
           </div>
           <div>
             <div class="person-row">
               <div style="display:flex;align-items:center;gap:10px">
                 <div class="creator-ava"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"></div>
-                <div><b style="font-size:13.5px">Mila Moves</b><div style="font-size:11.5px;color:#cbd5e1">Online • Morning Reset gepostet 🌿</div></div>
+                <div><b style="font-size:13.5px">Mila Moves</b><div style="font-size:11.5px;color:#cbd5e1">Holo-Karte #02 verfügbar 🃏</div></div>
               </div>
-              <label for="chkCmt" class="violet-btn">💬 Chat</label>
+              <label for="chkCardAlbum" class="violet-btn">🃏 Karte</label>
             </div>
             <div class="person-row">
               <div style="display:flex;align-items:center;gap:10px">
                 <div class="creator-ava"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"></div>
                 <div><b style="font-size:13.5px">Noah Vance</b><div style="font-size:11.5px;color:#cbd5e1">Gerade im Multi-Live aktiv 🔴</div></div>
               </div>
-              <label for="chkLiveStudio" onclick="startVybeLive()" class="lime-btn">🔴 Live beitreten</label>
+              <label for="chkLiveStudio" onclick="$('mLive').checked=true;$('chkLiveOnAir').checked=false;startVybeLive()" class="lime-btn">🔴 Live</label>
             </div>
           </div>
         </div>
@@ -719,38 +833,51 @@ label{cursor:pointer}
   </div>
 </div>
 
-<!-- MODALS -->
+<!-- ================= NEU MODAL: VYBE HOLO-SAMMLERKARTEN ALBUM & BOOSTER ================= -->
+<div class="modal-overlay" id="cardAlbumModal">
+  <div class="modal-card" style="max-width:520px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <b style="font-size:16px;color:var(--lime)">🃏 VYBE Holo-Sammlerkarten Album</b>
+      <label for="chkCardAlbum" style="font-size:18px">✕</label>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin-bottom:12px">Deine eigene VIP-Karte & gesammelte Creator-Holo-Karten. Öffne ein Booster-Pack für neue Karten!</p>
+    <div id="packPullStatus" style="font-size:12.5px;font-weight:900;color:var(--lime);text-align:center;margin-bottom:10px"></div>
+    <div class="holo-cards-grid" id="modalCardsContainer"></div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="lime-btn" style="flex:1;padding:12px;font-size:13px" onclick="openCardBooster()">✨ Gratis Holo-Booster öffnen</button>
+      <label for="chkCardAlbum" class="back-vybe-btn">Schließen</label>
+    </div>
+  </div>
+</div>
+
+<!-- WEITERE MODALS -->
 <div class="modal-overlay" id="vaultModal">
   <div class="modal-card" style="text-align:center">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <b style="font-size:15px;color:var(--lime)">💎 VYBE Tresor & Avatar-Auren</b>
-      <label for="chkVault" style="font-size:18px">✕</label>
-    </div>
-    <p style="font-size:11.5px;color:var(--muted);margin-bottom:14px">Wähle deine exklusive Leucht-Aura für dein Profilbild:</p>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b style="font-size:15px;color:var(--lime)">💎 VYBE Tresor & Avatar-Auren</b><label for="chkVault" style="font-size:18px">✕</label></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
       <div class="gift-item" onclick="setAvatarAura('linear-gradient(135deg,#b4ff39,#10b981)','LVL 3 • LIME VIP')"><div style="font-size:24px">🟢</div><div style="font-size:11.5px;font-weight:900;color:var(--lime)">Limetten-Matrix</div></div>
       <div class="gift-item" onclick="setAvatarAura('linear-gradient(135deg,#ec4899,#7c3aed)','LVL 5 • SUPERNOVA')"><div style="font-size:24px">🟣</div><div style="font-size:11.5px;font-weight:900;color:#e879f9">Violett-Supernova</div></div>
+      <div class="gift-item" onclick="setAvatarAura('linear-gradient(135deg,#06b6d4,#3b82f6)','LVL 7 • CYBER LORD')"><div style="font-size:24px">🔵</div><div style="font-size:11.5px;font-weight:900;color:#38bdf8">Cyber-Cyan</div></div>
+      <div class="gift-item" onclick="setAvatarAura('linear-gradient(135deg,#fde047,#f97316)','LVL 99 • GOLD BOSS')"><div style="font-size:24px">🟡</div><div style="font-size:11.5px;font-weight:900;color:#fde047">Inferno-Gold</div></div>
     </div>
     <div id="vaultResultTxt" style="font-size:12.5px;font-weight:900;color:var(--lime);margin-bottom:10px"></div>
-    <button class="violet-btn" style="width:100%;padding:12px" onclick="openDailyVault()">🎰 Täglichen Neon-Tresor knacken</button>
+    <button class="violet-btn" style="width:100%;padding:12px" onclick="openDailyVault()">🎰 Täglichen Neon-Tresor knacken (+Coins)</button>
   </div>
 </div>
 
 <div class="modal-overlay" id="avaZoomModal">
   <div class="modal-card" style="text-align:center">
     <h3 id="zoomHandleTxt" style="color:var(--lime);margin-bottom:12px">@reckpunkt</h3>
-    <div style="width:230px;height:230px;border-radius:50%;padding:4px;background:var(--aura-grad);margin:0 auto 16px">
-      <img id="zoomAvaImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80" style="width:100%;height:100%;border-radius:50%;object-fit:cover">
-    </div>
-    <label for="chkZoom" class="back-vybe-btn" style="justify-content:center">✕ Schließen</label>
+    <div style="width:230px;height:230px;border-radius:50%;padding:4px;background:var(--aura-grad);margin:0 auto 16px"><img id="zoomAvaImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80" style="width:100%;height:100%;border-radius:50%;object-fit:cover"></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><label for="avaInput" class="lime-btn" style="padding:11px">📷 Anderes Bild wählen</label><label for="chkZoom" class="back-vybe-btn" style="justify-content:center">✕ Schließen</label></div>
   </div>
 </div>
 
 <div class="modal-overlay" id="cmtModal">
   <div class="modal-card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b id="cmtTitle">💬 Kommentare</b><label for="chkCmt">✕</label></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px"><b>💬 Kommentare (382)</b><label for="chkCmt">✕</label></div>
     <div id="cmtList" style="max-height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
-      <div style="background:var(--panel-2);padding:8px 11px;border-radius:10px;font-size:12px"><b style="color:var(--lime)">@noah.vance:</b> Super Vibe! 🌿</div>
+      <div style="background:var(--panel-2);padding:8px 11px;border-radius:10px;font-size:12px"><b style="color:var(--lime)">@noah.vance:</b> Genau diesen Reminder habe ich heute gebraucht! 🌿</div>
     </div>
     <div style="display:flex;gap:6px"><input id="cmtInp" class="v-inp" style="margin:0;flex:1" placeholder="Kommentar..."><button class="lime-btn" onclick="addComment()">Senden</button></div>
   </div>
@@ -758,7 +885,7 @@ label{cursor:pointer}
 
 <div class="modal-overlay" id="uploadModal">
   <div class="modal-card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🎬 Video hochladen</b><label for="chkUpload">✕</label></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🎬 Video aus Galerie wählen</b><label for="chkUpload">✕</label></div>
     <label for="vidInput" class="violet-btn" style="width:100%;margin-bottom:10px;padding:11px">📂 Video-Datei auswählen</label>
     <div id="upNotice" style="font-size:12px;font-weight:800;margin-bottom:8px;display:none"></div>
     <input id="upTitleInp" class="v-inp" placeholder="Titelzeile...">
@@ -770,19 +897,23 @@ label{cursor:pointer}
   <div class="modal-card">
     <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🎁 Geschenke (<span id="gModalCoins" style="color:var(--lime)">10.000</span> 🪙)</b><label for="chkGift">✕</label></div>
     <div class="gift-grid">
-      <div class="gift-item" onclick="sendGift('rose')"><div style="font-size:24px">🌹</div><div style="font-size:11px;font-weight:800">Rose</div><div style="font-size:11px;color:var(--lime)">🪙 10</div></div>
-      <div class="gift-item" onclick="sendGift('fire')"><div style="font-size:24px">🔥</div><div style="font-size:11px;font-weight:800">Flame</div><div style="font-size:11px;color:var(--lime)">🪙 50</div></div>
-      <div class="gift-item" onclick="sendGift('frog')"><div style="font-size:24px">🐸</div><div style="font-size:11px;font-weight:800">Frosch</div><div style="font-size:11px;color:var(--lime)">🪙 100</div></div>
+      <div class="gift-item" onclick="sendGift('rose')"><div style="font-size:26px">🌹</div><div style="font-size:11px;font-weight:800">Neon-Rose</div><div style="font-size:11px;color:var(--lime)">🪙 10</div></div>
+      <div class="gift-item" onclick="sendGift('fire')"><div style="font-size:26px">🔥</div><div style="font-size:11px;font-weight:800">Flame</div><div style="font-size:11px;color:var(--lime)">🪙 50</div></div>
+      <div class="gift-item" onclick="sendGift('frog')"><div style="font-size:26px">🐸</div><div style="font-size:11px;font-weight:800">Frosch</div><div style="font-size:11px;color:var(--lime)">🪙 100</div></div>
+      <div class="gift-item" onclick="sendGift('bolt')"><div style="font-size:26px">⚡</div><div style="font-size:11px;font-weight:800">Vibe-Blitz</div><div style="font-size:11px;color:var(--lime)">🪙 500</div></div>
+      <div class="gift-item" onclick="sendGift('rock')"><div style="font-size:26px">🚀</div><div style="font-size:11px;font-weight:800">Rakete</div><div style="font-size:11px;color:var(--lime)">🪙 1000</div></div>
+      <div class="gift-item" onclick="sendGift('drag')"><div style="font-size:26px">🐉</div><div style="font-size:11px;font-weight:800">Drache</div><div style="font-size:11px;color:var(--lime)">🪙 2500</div></div>
     </div>
   </div>
 </div>
 
 <div class="modal-overlay" id="codeModal">
   <div class="modal-card" style="text-align:center">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🔑 Raum-Code</b><label for="chkCode">✕</label></div>
-    <div style="font-size:26px;font-weight:900;color:var(--lime);margin:6px 0 12px" id="modalMyCode">4820</div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>🔑 Live Raum-Code & Co-Host</b><label for="chkCode">✕</label></div>
+    <div style="font-size:26px;font-weight:900;color:var(--lime);margin:6px 0 12px">4820</div>
     <input id="joinCodeInp" class="v-inp" placeholder="4-stelliger Host-Code...">
-    <button class="lime-btn" style="width:100%;padding:11px" onclick="alert('Anfrage gesendet!')">🙋‍♂️ Anfragen</button>
+    <button class="lime-btn" style="width:100%;padding:11px" onclick="sendJoinRequest()">🙋‍♂️ Beim Host anfragen</button>
+    <div id="joinStatusTxt" style="font-size:12px;color:var(--lime);margin-top:8px"></div>
   </div>
 </div>
 
@@ -805,11 +936,55 @@ const memStore={};
 function safeGet(k,fb){try{const v=localStorage.getItem(k);return v!==null?JSON.parse(v):fb;}catch(e){return memStore[k]!==undefined?memStore[k]:fb;}}
 function safeSet(k,val){memStore[k]=val;try{localStorage.setItem(k,JSON.stringify(val));}catch(e){}}
 
-let user=safeGet('vybe_u12',{
+let user=safeGet('vybe_u13',{
   name:'🍝Nudel King🍝',handle:'@reckpunkt',fullName:'',address:'',bio:'',thought:'Was geht?',
   ava:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80'
 });
-let coins=Number(safeGet('vybe_c12',10000))||10000;
+let coins=Number(safeGet('vybe_c13',10000))||10000;
+
+const GIFTS=[
+  {id:'rose',icon:'🌹',name:'Neon-Rose',cost:10},{id:'fire',icon:'🔥',name:'Flame',cost:50},{id:'frog',icon:'🐸',name:'Frosch',cost:100},
+  {id:'bolt',icon:'⚡',name:'Vibe-Blitz',cost:500},{id:'rock',icon:'🚀',name:'Rakete',cost:1000},{id:'drag',icon:'🐉',name:'Drache',cost:2500}
+];
+
+/* HOLO-SAMMLERKARTEN DATENBANK */
+let HOLO_CARDS=[
+  {id:'c_me',name:user.name,role:'FOUNDER • HOLO #01',rarity:'✦ ULTRA HOLO',ava:user.ava,vibe:99,power:'9.8K',isMe:true},
+  {id:'c_mila',name:'Mila Moves',role:'MORNING QUEEN #02',rarity:'★ LEGENDÄR',ava:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',vibe:96,power:'25K'},
+  {id:'c_noah',name:'Noah Vance',role:'NIGHT RIDER #03',rarity:'⚡ EPISCH',ava:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',vibe:94,power:'14K'}
+];
+const BONUS_POOL=[
+  {name:'Lina Studio',role:'SYNTH QUEEN #04',rarity:'🌌 GALAXY HOLO',ava:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',vibe:97,power:'19K'},
+  {name:'Daddyy 😎',role:'ARENA BOSS #05',rarity:'👑 GOLD EDITION',ava:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',vibe:98,power:'32K'},
+  {name:'Cyber Fox',role:'NEON PHANTOM #06',rarity:'🔮 CYBER HOLO',ava:'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80',vibe:95,power:'12K'}
+];
+
+function renderHoloCards(){
+  HOLO_CARDS[0].name=user.name;
+  HOLO_CARDS[0].ava=user.ava;
+  const html=HOLO_CARDS.map(c=>`
+    <div class="holo-card" onclick="alert('🃏 Holo-Sammlerkarte: ${c.name} (${c.rarity})')">
+      <span class="hc-rarity">${c.rarity}</span>
+      <div class="hc-ava"><img src="${c.ava}"></div>
+      <div class="hc-name">${c.name}</div>
+      <div class="hc-role">${c.role}</div>
+      <div class="hc-stats">
+        <div>VIBE<b>${c.vibe}%</b></div>
+        <div>POWER<b>${c.power}</b></div>
+      </div>
+    </div>
+  `).join('');
+  if($('modalCardsContainer'))$('modalCardsContainer').innerHTML=html;
+  if($('pgridCards'))$('pgridCards').innerHTML=html;
+}
+
+function openCardBooster(){
+  const pick=BONUS_POOL[Math.floor(Math.random()*BONUS_POOL.length)];
+  if(!HOLO_CARDS.some(x=>x.name===pick.name))HOLO_CARDS.push(pick);
+  coins+=200;
+  updateUI();
+  $('packPullStatus').textContent=`🎉 GEZOGEN: ${pick.name} (${pick.rarity}) + 200 Coins!`;
+}
 
 function triggerVybeBoost(shockId,fillId,lblId){
   const sh=$(shockId);
@@ -827,7 +1002,7 @@ function setAvatarAura(grad,badgeName){
 function openDailyVault(){
   const prize=Math.floor(500+Math.random()*2500);
   coins+=prize;updateUI();
-  $('vaultResultTxt').textContent=`🎉 JACKPOT! +${prize} VYBE Coins!`;
+  $('vaultResultTxt').textContent=`🎉 JACKPOT! Du hast +${prize} VYBE Coins gezogen!`;
 }
 
 function saveProfileEdit(){
@@ -836,7 +1011,7 @@ function saveProfileEdit(){
   user.fullName=$('editFullNameInp').value.trim();
   user.address=$('editAddrInp').value.trim();
   user.bio=$('editBioInp').value.trim();
-  safeSet('vybe_u12',user);updateUI();
+  safeSet('vybe_u13',user);updateUI();
 }
 
 function addCoins(){coins+=10000;updateUI();alert('🪙 +10.000 VYBE Coins aufgeladen!');}
@@ -844,7 +1019,7 @@ function addCoins(){coins+=10000;updateUI();alert('🪙 +10.000 VYBE Coins aufge
 function handleAvaUpload(e){
   const f=e.target.files[0];if(!f)return;
   const r=new FileReader();
-  r.onload=ev=>{user.ava=ev.target.result;safeSet('vybe_u12',user);updateUI();$('chkZoom').checked=false;};
+  r.onload=ev=>{user.ava=ev.target.result;safeSet('vybe_u13',user);updateUI();$('chkZoom').checked=false;};
   r.readAsDataURL(f);
 }
 
@@ -854,21 +1029,20 @@ function handleVidSelect(e){
   const u=URL.createObjectURL(f),tv=document.createElement('video');tv.preload='metadata';
   tv.onloadedmetadata=()=>{
     const n=$('upNotice');n.style.display='block';
-    if(tv.duration>30.5){URL.revokeObjectURL(u);n.style.color='#f43f5e';n.textContent=`❌ Zu lang (${tv.duration.toFixed(1)}s)! Max. 30s.`;}
+    if(tv.duration>30.5){URL.revokeObjectURL(u);n.style.color='#f43f5e';n.textContent=`❌ Zu lang (${tv.duration.toFixed(1)}s)! Max. 30s erlaubt.`;}
     else{tempVidUrl=u;n.style.color='var(--lime)';n.textContent=`✅ OK (${Math.round(tv.duration)}s)`;}
   };tv.src=u;
 }
 
 function publishClip(){
   if(!tempVidUrl)return;
-  const title=$('upTitleInp').value.trim()||'Mein neuer Clip ✨';
+  const title=$('upTitleInp').value.trim()||'Mein neuer Club Clip ✨';
   $('pgridClips').insertAdjacentHTML('afterbegin',`
     <label for="chkProfile" class="p-grid-card">
       <span class="tag-top1">✦ VYBE</span>
       <video src="${tempVidUrl}" muted loop playsinline autoplay></video>
       <div class="p-grid-foot"><span>${title.slice(0,15)}</span><span style="color:var(--lime)">▶️ Neu</span></div>
     </label>`);
-  $('chkUpload').checked=false;
 }
 
 function addComment(){
@@ -885,9 +1059,11 @@ function sendStreamChatMsg(){
 }
 
 function sendGift(id){
-  coins+=500;updateUI();$('chkGift').checked=false;
+  const g=GIFTS.find(x=>x.id===id)||GIFTS[0];
+  if(coins<g.cost)coins+=10000;
+  coins-=g.cost;updateUI();$('chkGift').checked=false;
   const st=$('giftFxStage');
-  st.innerHTML=`<div class="fx-banner">🎁 <b>${user.name}</b> sendet ein Geschenk!</div><div class="fx-hero">🎁</div>`;
+  st.innerHTML=`<div class="fx-banner">🎁 <b>${user.name}</b> schickt ${g.icon} ${g.name}!</div><div class="fx-hero">${g.icon}</div>`;
   st.classList.add('active');setTimeout(()=>{st.classList.remove('active');st.innerHTML='';},2500);
 }
 
@@ -900,11 +1076,7 @@ function playDuel(){
 
 let myStream=null,animId=null,morphMode='none',facing='user',flashOn=false;
 function setMorph(m){morphMode=m;}
-function cycleFaceMorph(){
-  morphMode=morphMode==='frog'?'clown':morphMode==='clown'?'none':'frog';
-  $('cssFrogMask').style.display=morphMode==='frog'?'flex':'none';
-  $('cssClownMask').style.display=morphMode==='clown'?'flex':'none';
-}
+function cycleFaceMorph(){morphMode=morphMode==='frog'?'clown':morphMode==='clown'?'none':'frog';}
 function flipStudioCam(){
   facing=facing==='user'?'environment':'user';
   if(myStream){myStream.getTracks().forEach(t=>t.stop());myStream=null;}
@@ -939,8 +1111,13 @@ function drawLiveCanvas(){
   animId=requestAnimationFrame(drawLiveCanvas);
 }
 
+function sendJoinRequest(){
+  const code=$('joinCodeInp').value.trim();if(!code)return;
+  $('joinStatusTxt').textContent='⏳ Beitritts-Anfrage an Raum '+code+' gesendet...';
+}
+
 function updateUI(){
-  safeSet('vybe_c12',coins);const cStr=coins.toLocaleString('de-DE');
+  safeSet('vybe_c13',coins);const cStr=coins.toLocaleString('de-DE');
   $('pCoinsDisp').textContent=cStr+' 🪙';
   $('settingsCoinsTxt').textContent=cStr+' 🪙';
   $('drawerCoinsTxt').textContent=cStr+' 🪙';$('gModalCoins').textContent=cStr;
@@ -951,6 +1128,7 @@ function updateUI(){
   $('settingsAddrSub').textContent=addrStr;
   $('topAvaImg').src=user.ava;$('profPageAva').src=user.ava;$('zoomAvaImg').src=user.ava;
   if($('liveSetupCoverImg'))$('liveSetupCoverImg').src=user.ava;
+  renderHoloCards();
 }
 updateUI();
 </script>
