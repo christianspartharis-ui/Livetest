@@ -3,594 +3,1075 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>VYBE — Social Club, 4er-Live & Holo-Cards</title>
+  <title>VYBE — Social Club, 4er-Live, Holo-Cards & Creator Payout</title>
   <style>
     /* =========================================================
-       1. 10 MOOD-FARBWELTEN (GANZSEITIGER FARBWECHSEL)
+       1. 10 MOOD-FARBWELTEN (INKL. KLASSISCHEM VYBE NEON-LIME)
        ========================================================= */
     :root, [data-mood="night"] {
-      --bg: #08090f; --bg-grad: radial-gradient(circle at top, #16192b 0%, #08090f 75%);
-      --card: rgba(20, 23, 38, 0.88); --border: rgba(255, 255, 255, 0.1);
-      --accent: #00f2fe; --accent2: #ff0844; --text: #f3f6ff; --muted: #8e96b8;
+      --bg: #07080c; --bg-panel: #10121a; --card: #151824;
+      --border: rgba(180, 255, 0, 0.18); --accent: #b4ff00; --accent2: #00f2fe;
+      --hot: #ff0055; --text: #f4f7ff; --muted: #8b93b0;
     }
     [data-mood="chill"] {
-      --bg: #071714; --bg-grad: radial-gradient(circle at top, #0f382f 0%, #071714 75%);
-      --card: rgba(14, 41, 35, 0.88); --border: rgba(42, 245, 152, 0.2);
-      --accent: #2af598; --accent2: #009efd; --text: #ecfff8; --muted: #82b8a3;
+      --bg: #061411; --bg-panel: #0b221d; --card: #102e27;
+      --border: rgba(42, 245, 152, 0.22); --accent: #2af598; --accent2: #009efd;
+      --hot: #ff3366; --text: #ecfff8; --muted: #82b8a3;
     }
     [data-mood="hype"] {
-      --bg: #170614; --bg-grad: radial-gradient(circle at top, #3d0e33 0%, #170614 75%);
-      --card: rgba(43, 12, 38, 0.88); --border: rgba(255, 0, 127, 0.25);
-      --accent: #ff007f; --accent2: #ffbe0b; --text: #fff0f8; --muted: #c78ab3;
+      --bg: #140511; --bg-panel: #24091f; --card: #300c29;
+      --border: rgba(255, 0, 127, 0.28); --accent: #ff007f; --accent2: #ffbe0b;
+      --hot: #ff0055; --text: #fff0f8; --muted: #c78ab3;
     }
     [data-mood="cyber"] {
-      --bg: #0a051d; --bg-grad: radial-gradient(circle at top, #240b57 0%, #0a051d 75%);
-      --card: rgba(25, 12, 58, 0.88); --border: rgba(0, 245, 212, 0.25);
-      --accent: #00f5d4; --accent2: #b5179e; --text: #f0faff; --muted: #9886c9;
+      --bg: #080417; --bg-panel: #12092e; --card: #1b0e42;
+      --border: rgba(0, 245, 212, 0.25); --accent: #00f5d4; --accent2: #b5179e;
+      --hot: #ff007f; --text: #f0faff; --muted: #9886c9;
     }
     [data-mood="sunset"] {
-      --bg: #1a0b0e; --bg-grad: radial-gradient(circle at top, #4a1924 0%, #1a0b0e 75%);
-      --card: rgba(48, 19, 25, 0.88); --border: rgba(255, 126, 95, 0.25);
-      --accent: #ff7e5f; --accent2: #feb47b; --text: #fff5f2; --muted: #c99389;
+      --bg: #17090c; --bg-panel: #291015; --card: #38161d;
+      --border: rgba(255, 126, 95, 0.25); --accent: #ff7e5f; --accent2: #feb47b;
+      --hot: #ff2a55; --text: #fff5f2; --muted: #c99389;
     }
     [data-mood="lava"] {
-      --bg: #160404; --bg-grad: radial-gradient(circle at top, #470a0a 0%, #160404 75%);
-      --card: rgba(45, 10, 10, 0.9); --border: rgba(255, 65, 34, 0.3);
-      --accent: #ff4122; --accent2: #ff9900; --text: #fff2f0; --muted: #c47a70;
+      --bg: #140404; --bg-panel: #260707; --card: #360b0b;
+      --border: rgba(255, 65, 34, 0.3); --accent: #ff4122; --accent2: #ff9900;
+      --hot: #ff0033; --text: #fff2f0; --muted: #c47a70;
     }
     [data-mood="arctic"] {
-      --bg: #05131f; --bg-grad: radial-gradient(circle at top, #0f3554 0%, #05131f 75%);
-      --card: rgba(12, 38, 61, 0.88); --border: rgba(112, 225, 245, 0.25);
-      --accent: #70e1f5; --accent2: #3a7bd5; --text: #f0f9ff; --muted: #83acc7;
+      --bg: #05101a; --bg-panel: #0a2033; --card: #0f2c47;
+      --border: rgba(112, 225, 245, 0.25); --accent: #70e1f5; --accent2: #3a7bd5;
+      --hot: #ff3377; --text: #f0f9ff; --muted: #83acc7;
     }
     [data-mood="sakura"] {
-      --bg: #180c16; --bg-grad: radial-gradient(circle at top, #421f3b 0%, #180c16 75%);
-      --card: rgba(46, 22, 41, 0.88); --border: rgba(255, 154, 158, 0.28);
-      --accent: #ff9a9e; --accent2: #fecfef; --text: #fff5fa; --muted: #c79bb9;
+      --bg: #140a12; --bg-panel: #261322; --card: #361b31;
+      --border: rgba(255, 154, 158, 0.28); --accent: #ff9a9e; --accent2: #fecfef;
+      --hot: #ff2a85; --text: #fff5fa; --muted: #c79bb9;
     }
     [data-mood="gold"] {
-      --bg: #120f04; --bg-grad: radial-gradient(circle at top, #3b300c 0%, #120f04 75%);
-      --card: rgba(38, 31, 10, 0.9); --border: rgba(255, 215, 0, 0.3);
-      --accent: #ffd700; --accent2: #ff8c00; --text: #fffdf2; --muted: #bfa96b;
+      --bg: #100d04; --bg-panel: #211b08; --card: #2e250b;
+      --border: rgba(255, 215, 0, 0.3); --accent: #ffd700; --accent2: #ff8c00;
+      --hot: #ff3300; --text: #fffdf2; --muted: #bfa96b;
     }
     [data-mood="galaxy"] {
-      --bg: #060312; --bg-grad: radial-gradient(circle at top, #1f0d4d 0%, #060312 75%);
-      --card: rgba(20, 10, 48, 0.9); --border: rgba(161, 140, 209, 0.3);
-      --accent: #a18cd1; --accent2: #fbc2eb; --text: #f8f5ff; --muted: #9887bd;
+      --bg: #060312; --bg-panel: #12092e; --card: #1b0e42;
+      --border: rgba(161, 140, 209, 0.3); --accent: #a18cd1; --accent2: #fbc2eb;
+      --hot: #ff007f; --text: #f8f5ff; --muted: #9887bd;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-tap-highlight-color: transparent; }
-    body { background: var(--bg-grad); background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; justify-content: center; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; display: flex; }
 
-    /* App Container */
-    .app-shell { width: 100%; max-width: 450px; min-height: 100vh; display: flex; flex-direction: column; position: relative; padding-bottom: 84px; border-left: 1px solid var(--border); border-right: 1px solid var(--border); background: var(--bg-grad); }
+    /* =========================================================
+       2. KLASSISCHES LAYOUT MIT LINKER SEITENLEISTE (SIDEBAR)
+       ========================================================= */
+    .left-sidebar {
+      width: 86px;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 6px;
+      gap: 8px;
+      z-index: 60;
+      flex-shrink: 0;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .left-sidebar::-webkit-scrollbar { display: none; }
 
-    /* Top Header & Mood Bar */
-    .top-header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(8, 9, 15, 0.78); border-bottom: 1px solid var(--border); padding: 10px 14px; }
-    .header-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .brand { font-size: 1.35rem; font-weight: 900; letter-spacing: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 6px; }
-    .top-stats { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-    .pill { background: rgba(255,255,255,0.08); border: 1px solid var(--border); padding: 5px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 5px; cursor: pointer; }
+    .sidebar-logo {
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      text-shadow: 0 0 12px rgba(180,255,0,0.45);
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .side-btn {
+      width: 100%;
+      padding: 10px 4px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.18s;
+      text-align: center;
+    }
+    .side-btn .ico { font-size: 1.35rem; line-height: 1; }
+    .side-btn:hover { background: rgba(255,255,255,0.07); color: var(--text); }
+    .side-btn.active {
+      background: rgba(180, 255, 0, 0.14);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 15px rgba(180,255,0,0.2);
+    }
+
+    .side-btn.plus-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #000;
+      font-weight: 900;
+      border: none;
+    }
+    .side-btn.plus-btn.active { box-shadow: 0 0 20px var(--accent); }
+
+    .side-btn.live-btn {
+      background: linear-gradient(135deg, #ff0055, #ff5500);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      animation: livePulse 2s infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 85, 0.45); }
+      50% { box-shadow: 0 0 22px rgba(255, 0, 85, 0.85); }
+    }
+
+    /* Hauptbereich rechts neben der Sidebar */
+    .main-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Topbar mit Schnellsuche, Info-Button, Level-Pills & Mood-Tuner */
+    .top-bar {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 40;
+    }
+    .top-row-1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .quick-search-wrap {
+      flex: 1;
+      min-width: 140px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .quick-search-input {
+      width: 100%;
+      padding: 8px 12px 8px 32px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.45);
+      color: var(--text);
+      font-size: 0.78rem;
+    }
+    .quick-search-ico {
+      position: absolute;
+      left: 10px;
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+
+    .status-pills { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 99px;
+      font-size: 0.73rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .pill.info-hype {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color: #000;
+      border: none;
+      font-weight: 900;
+      box-shadow: 0 0 12px rgba(180,255,0,0.35);
+    }
     .pill.gold { border-color: rgba(255,215,0,0.5); color: #ffd700; }
-    .pill.streamer { border-color: rgba(255,0,127,0.6); background: rgba(255,0,127,0.15); color: #ff99cc; }
+    .pill.streamer { border-color: rgba(255,0,127,0.55); background: rgba(255,0,127,0.14); color: #ff99cc; }
 
-    .mood-scroller { display: flex; gap: 6px; overflow-x: auto; padding-top: 8px; scrollbar-width: none; }
+    .mood-scroller { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
     .mood-scroller::-webkit-scrollbar { display: none; }
-    .mood-chip { flex-shrink: 0; font-size: 0.7rem; padding: 4px 10px; border-radius: 99px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text); cursor: pointer; font-weight: 600; transition: 0.2s; }
-    .mood-chip.active { background: var(--accent); color: #000; font-weight: 800; border-color: transparent; }
+    .mood-chip {
+      flex-shrink: 0;
+      font-size: 0.68rem;
+      padding: 4px 10px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .mood-chip.active { background: var(--accent); color: #000; font-weight: 900; border-color: transparent; }
 
-    /* Views & Cards */
-    .view { display: none; padding: 12px; animation: fadeIn 0.22s ease; }
+    /* Scrollbarer Content-Bereich */
+    .content-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .view { display: none; animation: fadeIn 0.2s ease; }
     .view.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 14px; margin-bottom: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.35); }
-    .section-title { font-size: 0.9rem; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; letter-spacing: 0.4px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .section-title {
+      font-size: 0.92rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
 
     /* Buttons & Inputs */
-    .btn { border: none; border-radius: 12px; padding: 10px 14px; font-weight: 800; font-size: 0.82rem; cursor: pointer; transition: 0.18s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: #000; background: var(--accent); }
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 9px 14px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.18s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: var(--accent);
+      color: #000;
+    }
     .btn:active { transform: scale(0.96); }
-    .btn.secondary { background: rgba(255,255,255,0.09); color: var(--text); border: 1px solid var(--border); }
-    .btn.hot { background: linear-gradient(90deg, var(--accent2), #ff7b00); color: #fff; }
+    .btn.secondary { background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid var(--border); }
+    .btn.hot { background: linear-gradient(90deg, #ff0055, #ff6600); color: #fff; }
     .btn.gold { background: linear-gradient(90deg, #ffd700, #ff9900); color: #000; }
     .btn.full { width: 100%; }
-    .input { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: rgba(0,0,0,0.35); color: var(--text); font-size: 0.85rem; margin-bottom: 8px; }
+    .input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.4);
+      color: var(--text);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
 
     /* =========================================================
-       2. PROFIL-AUREN & HOLO-KARTEN EFFEKTE
+       3. FEED, GERADE-LIVE-SUCHE, 4ER-RAUM & PROFIL-ELEMENTE
        ========================================================= */
-    .avatar-wrap { position: relative; width: 76px; height: 76px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.1rem; background: #141829; flex-shrink: 0; }
-    .aura-none { border: 2px solid var(--border); }
-    .aura-lime { box-shadow: 0 0 18px #2af598, inset 0 0 10px #2af598; border: 2px solid #2af598; }
-    .aura-cyber { box-shadow: 0 0 20px #00f2fe, 0 0 35px #009efd; border: 2px solid #00f2fe; }
-    .aura-supernova { box-shadow: 0 0 22px #ff007f, 0 0 40px #b5179e; border: 2px solid #ff007f; animation: pulseAura 2s infinite; }
-    .aura-diamond { box-shadow: 0 0 25px #a8ff78, 0 0 45px #78ffd6; border: 2px solid #fff; }
-    .aura-magma { box-shadow: 0 0 25px #ff4122, 0 0 50px #ff9900; border: 2px solid #ff9900; animation: pulseAura 1.4s infinite; }
-    .aura-galaxy { box-shadow: 0 0 28px #a18cd1, 0 0 55px #fbc2eb; border: 2px solid #fbc2eb; animation: pulseAura 1.8s infinite; }
-    .aura-goldboss { box-shadow: 0 0 32px #ffd700, 0 0 65px #ff8c00; border: 3px solid #ffd700; animation: pulseAura 1.1s infinite; }
-    @keyframes pulseAura { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .video-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 430px;
+      background: #0a0c14;
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+    }
+    .video-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5.5rem;
+      background: radial-gradient(circle, rgba(180,255,0,0.16), rgba(7,8,12,0.96));
+      z-index: 0;
+    }
+    .video-top, .video-bottom { position: relative; z-index: 2; }
+    .shockwave-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .shockwave-ring.boom { animation: shockBoom 0.75s ease-out; }
+    @keyframes shockBoom { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(20); opacity: 0; } }
 
-    /* Progress Bars (Dual Level System) */
-    .xp-box { background: rgba(0,0,0,0.38); border: 1px solid var(--border); border-radius: 14px; padding: 12px; margin-bottom: 10px; }
+    .live-now-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+    .live-room-card {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+    .live-room-card.vip-host { border-color: #ffd700; box-shadow: inset 0 0 14px rgba(255,215,0,0.15); }
+    .live-tag {
+      align-self: flex-start;
+      background: #ff0055;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 900;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
+    .cam-stage {
+      position: relative;
+      width: 100%;
+      height: 340px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #05060a;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    video#camPreview { width: 100%; height: 100%; object-fit: cover; }
+    .mask-overlay { position: absolute; font-size: 5.4rem; pointer-events: none; z-index: 5; }
+
+    .multi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+      height: 350px;
+      margin-bottom: 12px;
+    }
+    .multi-slot {
+      position: relative;
+      border-radius: 14px;
+      background: #0d101a;
+      border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      text-align: center;
+    }
+    .multi-slot.host-vip { border-color: #ffd700; box-shadow: inset 0 0 18px rgba(255,215,0,0.22); }
+    .slot-tag { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,0.75); padding: 2px 7px; border-radius: 6px; font-size: 0.65rem; font-weight: 800; }
+    .slot-score { position: absolute; bottom: 6px; left: 6px; background: rgba(0,0,0,0.8); padding: 2px 7px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; color: #ffd700; }
+
+    .live-pin-bar { background: rgba(180,255,0,0.1); border: 1px solid var(--accent); border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 0.78rem; }
+    .pro-flash-banner { background: linear-gradient(90deg, rgba(255,215,0,0.22), rgba(255,0,85,0.25)); border: 2px solid #ffd700; border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+
+    /* Auren & Doppel-Level-Balken */
+    .avatar-wrap { width: 78px; height: 78px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; background: #141829; flex-shrink: 0; }
+    .aura-none { border: 2px solid var(--border); }
+    .aura-lime { box-shadow: 0 0 18px #b4ff00; border: 2px solid #b4ff00; }
+    .aura-cyber { box-shadow: 0 0 20px #00f2fe; border: 2px solid #00f2fe; }
+    .aura-supernova { box-shadow: 0 0 22px #ff007f; border: 2px solid #ff007f; }
+    .aura-diamond { box-shadow: 0 0 25px #78ffd6; border: 2px solid #fff; }
+    .aura-magma { box-shadow: 0 0 26px #ff4122; border: 2px solid #ff9900; }
+    .aura-galaxy { box-shadow: 0 0 28px #a18cd1; border: 2px solid #fbc2eb; }
+    .aura-goldboss { box-shadow: 0 0 32px #ffd700; border: 3px solid #ffd700; }
+
+    .xp-box { background: rgba(0,0,0,0.42); border: 1px solid var(--border); border-radius: 14px; padding: 12px; margin-bottom: 10px; }
     .xp-box.locked { opacity: 0.75; border-style: dashed; }
-    .xp-box.streamer-active { border-color: rgba(255, 215, 0, 0.55); background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,0,127,0.1)); }
+    .xp-box.streamer-active { border-color: rgba(255, 215, 0, 0.6); background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,0,127,0.1)); }
     .xp-bar-bg { width: 100%; height: 11px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; margin: 7px 0; }
     .xp-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 99px; transition: width 0.35s ease; }
-    .xp-bar-fill.streamer { background: linear-gradient(90deg, #ffd700, #ff007f); }
+    .xp-bar-fill.streamer { background: linear-gradient(90deg, #ffd700, #ff0055); }
 
-    /* Holo Collector Card */
-    .holo-card { position: relative; border-radius: 18px; padding: 16px; background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(0,0,0,0.65)); border: 2px solid var(--accent); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .holo-card::before { content: ""; position: absolute; inset: -100%; background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.22) 50%, transparent 60%); animation: holoShine 3.8s infinite; pointer-events: none; }
-    @keyframes holoShine { 0% { transform: translateX(-60%) translateY(-60%); } 100% { transform: translateX(60%) translateY(60%); } }
-    .badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
-    .rank-badge { font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; background: rgba(0,0,0,0.55); border: 1px solid var(--accent); color: var(--accent); }
+    .rank-badge { font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: var(--accent); display: inline-block; }
     .rank-badge.s-badge { border-color: #ffd700; color: #ffd700; }
 
-    /* =========================================================
-       3. VIDEO FEED & SHOCKWAVE BOOST
-       ========================================================= */
-    .video-card { position: relative; border-radius: 20px; overflow: hidden; height: 430px; background: #0c0f1d; border: 1px solid var(--border); margin-bottom: 14px; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; }
-    .video-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 5rem; background: radial-gradient(circle, rgba(0,242,254,0.18), rgba(8,9,15,0.95)); z-index: 0; }
-    .video-overlay-top, .video-overlay-bottom { position: relative; z-index: 2; }
-    .shockwave-ring { position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; border-radius: 50%; border: 4px solid var(--accent); transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none; z-index: 3; }
-    .shockwave-ring.boom { animation: shockBoom 0.75s ease-out; }
-    @keyframes shockBoom { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(18); opacity: 0; } }
+    .holo-card { position: relative; border-radius: 18px; padding: 16px; background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.7)); border: 2px solid var(--accent); overflow: hidden; }
+    .profile-subtabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px; }
+
+    /* Payout Split Cards */
+    .split-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
+    .split-tier { background: rgba(0,0,0,0.45); border: 1px solid var(--border); border-radius: 12px; padding: 10px 8px; text-align: center; opacity: 0.6; }
+    .split-tier.current { border-color: #ffd700; background: rgba(255,215,0,0.12); opacity: 1; box-shadow: 0 0 14px rgba(255,215,0,0.2); }
 
     /* =========================================================
-       4. STUDIO: KAMERA vs. 4ER-MULTI-LIVE & SHOPPING
+       4. INFO-POPUP (WERBE-MODAL OBEN IM HEADER) & OVERLAYS
        ========================================================= */
-    .mode-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: rgba(0,0,0,0.4); padding: 5px; border-radius: 14px; margin-bottom: 12px; border: 1px solid var(--border); }
-    .mode-btn { padding: 9px; border-radius: 10px; border: none; background: transparent; color: var(--muted); font-weight: 800; font-size: 0.8rem; cursor: pointer; }
-    .mode-btn.active { background: var(--accent); color: #000; }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-box {
+      background: var(--bg-panel);
+      border: 2px solid var(--accent);
+      border-radius: 22px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.85);
+    }
+    .promo-block {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+    .promo-block h4 { font-size: 0.88rem; color: var(--accent); margin-bottom: 4px; }
 
-    .cam-stage { position: relative; width: 100%; height: 340px; border-radius: 18px; overflow: hidden; background: #05070d; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-    video#camPreview { width: 100%; height: 100%; object-fit: cover; }
-    .mask-overlay { position: absolute; font-size: 5.2rem; pointer-events: none; z-index: 5; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.7)); }
-
-    /* 4er Multi-Live Grid */
-    .multi-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; width: 100%; height: 340px; margin-bottom: 10px; }
-    .multi-slot { position: relative; border-radius: 14px; background: rgba(15, 19, 34, 0.95); border: 1.5px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 8px; text-align: center; }
-    .multi-slot.host-vip { border-color: #ffd700; box-shadow: inset 0 0 18px rgba(255,215,0,0.25); }
-    .slot-score { position: absolute; bottom: 6px; left: 6px; background: rgba(0,0,0,0.75); padding: 2px 7px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; color: #ffd700; }
-    .slot-tag { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,0.7); padding: 2px 7px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; }
-
-    /* Live Shopping Pop-up & Pin */
-    .live-pin-bar { background: rgba(0,242,254,0.12); border: 1px solid var(--accent); border-radius: 10px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 0.76rem; }
-    .pro-flash-banner { background: linear-gradient(90deg, rgba(255,215,0,0.22), rgba(255,0,127,0.25)); border: 2px solid #ffd700; border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; animation: pulseAura 2s infinite; }
-
-    /* Bottom Navigation */
-    .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 450px; background: rgba(8, 9, 15, 0.92); backdrop-filter: blur(16px); border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(4, 1fr); padding: 8px 6px 14px; z-index: 60; }
-    .nav-item { background: none; border: none; color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 0.68rem; font-weight: 700; cursor: pointer; }
-    .nav-item span.icon { font-size: 1.25rem; }
-    .nav-item.active { color: var(--accent); }
-
-    /* Popups & Fullscreen Effects */
-    .toast-banner { position: fixed; top: 72px; left: 50%; transform: translateX(-50%); z-index: 120; background: linear-gradient(90deg, #111526, #1f2642); border: 2px solid var(--accent); color: #fff; padding: 10px 16px; border-radius: 99px; font-size: 0.8rem; font-weight: 800; box-shadow: 0 10px 30px rgba(0,0,0,0.7); display: none; white-space: nowrap; }
-    .gift-fx { position: fixed; inset: 0; pointer-events: none; z-index: 110; display: none; align-items: center; justify-content: center; flex-direction: column; background: rgba(0,0,0,0.45); backdrop-filter: blur(3px); }
-    .gift-fx .big-emoji { font-size: 6rem; animation: popScale 0.8s ease; }
-    @keyframes popScale { 0% { transform: scale(0.2); opacity: 0; } 60% { transform: scale(1.25); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
-
-    .gold-rain { position: fixed; inset: 0; pointer-events: none; z-index: 105; display: none; background: radial-gradient(circle, rgba(255,215,0,0.28), transparent 70%); }
+    .toast-banner { position: fixed; top: 18px; left: 50%; transform: translateX(-50%); z-index: 250; background: #121626; border: 2px solid var(--accent); color: #fff; padding: 10px 18px; border-radius: 99px; font-size: 0.8rem; font-weight: 800; box-shadow: 0 10px 30px rgba(0,0,0,0.75); display: none; }
+    .gift-fx { position: fixed; inset: 0; pointer-events: none; z-index: 220; display: none; align-items: center; justify-content: center; flex-direction: column; background: rgba(0,0,0,0.5); backdrop-filter: blur(3px); }
+    .gift-fx .big-emoji { font-size: 6rem; }
+    .gold-rain { position: fixed; inset: 0; pointer-events: none; z-index: 210; display: none; background: radial-gradient(circle, rgba(255,215,0,0.3), transparent 70%); }
   </style>
 </head>
 <body>
 
-<div class="app-shell">
-  <!-- TOAST & FULLSCREEN GIFT ANIMATION -->
-  <div id="toastBanner" class="toast-banner">⚡ Willkommen im VYBE Club!</div>
+  <!-- TOAST, GESCHENK-ANIMATION & GOLD-REGEN -->
+  <div id="toastBanner" class="toast-banner">⚡ Willkommen zurück bei VYBE!</div>
   <div id="giftFx" class="gift-fx">
     <div id="giftFxEmoji" class="big-emoji">🐉</div>
-    <div id="giftFxText" style="font-size:1.1rem;font-weight:900;color:#ffd700;margin-top:8px;text-shadow:0 2px 10px #000;"></div>
+    <div id="giftFxText" style="font-size:1.1rem;font-weight:900;color:#ffd700;margin-top:8px;text-shadow:0 2px 10px #000;text-align:center;padding:0 16px;"></div>
   </div>
   <div id="goldRain" class="gold-rain"></div>
 
-  <!-- TOP HEADER + 10 MOOD TUNER -->
-  <header class="top-header">
-    <div class="header-row">
-      <div class="brand">⚡ VYBE</div>
-      <div class="top-stats">
-        <div class="pill gold" onclick="switchTab('club')" title="Deine Coins">🪙 <span id="topCoins">350</span></div>
-        <div class="pill" onclick="switchTab('profile')" title="Mitglieder-/Supporter-Level">⚡ LVL <span id="topMemberLvl">1</span></div>
-        <div class="pill streamer" id="topStreamerPill" onclick="switchTab('profile')" title="Aktiver Streamer-Rang">🔒 S-LVL</div>
+  <!-- =========================================================
+       WERBE- & INFO-MODAL (ÜBER DEN BUTTON OBEN IM HEADER)
+       ========================================================= -->
+  <div id="infoModal" class="modal-backdrop" onclick="if(event.target===this) toggleInfoModal(false)">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h2 style="font-size:1.15rem;font-weight:900;color:var(--accent);">⚡ WILLKOMMEN BEI VYBE – NEXT-GEN LIVE CLUB!</h2>
+        <button class="btn secondary" style="padding:5px 10px;" onclick="toggleInfoModal(false)">✖</button>
       </div>
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:12px;">
+        <strong>Kurzvideos • 4er-Multi-Live • Live-Shopping • Holo-Sammlerkarten • Bis zu 75% Echtgeld-Payout</strong>
+      </p>
+
+      <div class="promo-block">
+        <h4>🚀 1. Blitzschneller Start: Schon ab LEVEL 5 live gehen & verkaufen!</h4>
+        Bei uns brauchst du keine 1.000 Follower. Jeder startet auf <strong>Level 1</strong> und schaltet schon auf <strong>Level 5</strong> (nur 1.000 XP) das volle Basis-Paket frei:<br/>
+        • 🔴 <strong>Solo-Live & 4er-Multi-Räume:</strong> Lade bis zu 3 Freunde per Raum-Code (<code>#4829</code>) auf deine Bühne ein!<br/>
+        • 🛍️ <strong>Eigener Live-Shop:</strong> Pinne bis zu <strong>3 eigene Produkte</strong> direkt in deinen Live-Stream.<br/>
+        • 💡 <strong>Aufstiegs-Turbo:</strong> Zwischen Level 5 und 19 zählen <strong>50 % aller empfangenen Zuschauer-Geschenke</strong> direkt auf deinen Level-Balken Richtung Level 20!
+      </div>
+
+      <div class="promo-block">
+        <h4>👑 2. Das 2-Balken-System (Ab Level 20: AKTIVER STREAMER!)</h4>
+        In deinem Profil warten <strong>zwei getrennte Karriere-Balken</strong> auf dich:<br/>
+        • <strong>⚡ Balken 1 – Supporter- & Mitglieds-Rang (LVL 1–50):</strong> Steigt durch jedes Geschenk & jeden Booster. Ab LVL 15 zieht die Schwierigkeit für echte Prestige-VIPs (×5) an! Schalte krasse Auren frei, sichere dir ab <strong>LVL 30 immer Platz 1</strong> in allen Räumen, wirf ab <strong>LVL 40 das geheime Supernova-Geschenk</strong> und werde auf <strong>LVL 50 zum „Immortal Gold-Boss“</strong>!<br/>
+        • <strong>👑 Balken 2 – Aktiver Streamer-Rang (S-LVL 1–50 ab LVL 20):</strong> Schaltet das große <strong>Pro-Live-Shopping Flash-Banner</strong> (unbegrenzte Produkte!), doppelte Match-Punkte und deine Echtgeld-Auszahlung frei!
+      </div>
+
+      <div class="promo-block" style="border-color:#ffd700;background:rgba(255,215,0,0.07);">
+        <h4 style="color:#ffd700;">💰 3. Verdiene echtes Geld – Bis zu 75 % Auszahlung für Streamer!</h4>
+        Je höher dein <strong>Streamer-Level (S-LVL)</strong>, desto mehr behältst <strong>DU</strong> von allen empfangenen Geschenken (auszahlbar ab LVL 20 + S-LVL 5):<br/>
+        • 🎙️ <strong>S-LVL 1 bis 10 (Starter-Hosts):</strong> <strong>25 % Auszahlung</strong> für dich<br/>
+        • 🔥 <strong>S-LVL 11 bis 39 (Creator & Stars):</strong> <strong>40 % Auszahlung</strong> für dich<br/>
+        • 👑 <strong>S-LVL 40 bis 50 (VYBE Legenden):</strong> Gigantische <strong>75 % Auszahlung für dich!</strong>
+      </div>
+
+      <div class="promo-block">
+        <h4>🃏 4. Werde zur Holo-Sammlerkarte & knacke den Neon-Tresor!</h4>
+        • <strong>🃏 Globale Booster-Packs:</strong> Sobald du <strong>Level 20 (Aktiver Streamer)</strong> erreichst, landet deine persönliche Holo-Karte automatisch im Booster aller Nutzer!<br/>
+        • <strong>🎰 Täglicher Neon-Tresor & 10 Moods:</strong> Drehe täglich gratis am Tresor (bis zu 3.000 Coins) und färbe die gesamte App in 10 Neon-Stimmungen.
+      </div>
+
+      <button class="btn gold full" onclick="toggleInfoModal(false); openView('profile');">🚀 Jetzt starten & mein Level-Dashboard ansehen!</button>
     </div>
-    <div class="mood-scroller" id="moodBar">
-      <button class="mood-chip active" onclick="setMood('night', this)">🌙 Night</button>
-      <button class="mood-chip" onclick="setMood('chill', this)">🌿 Chill</button>
-      <button class="mood-chip" onclick="setMood('hype', this)">🔥 Hype</button>
-      <button class="mood-chip" onclick="setMood('cyber', this)">🤖 Cyber</button>
-      <button class="mood-chip" onclick="setMood('sunset', this)">🌅 Sunset</button>
-      <button class="mood-chip" onclick="setMood('lava', this)">🌋 Lava</button>
-      <button class="mood-chip" onclick="setMood('arctic', this)">❄️ Arctic</button>
-      <button class="mood-chip" onclick="setMood('sakura', this)">🌸 Sakura</button>
-      <button class="mood-chip" onclick="setMood('gold', this)">👑 Royal Gold</button>
-      <button class="mood-chip" onclick="setMood('galaxy', this)">🌌 Galaxy</button>
-    </div>
-  </header>
+  </div>
 
   <!-- =========================================================
-       TAB 1: KURZVIDEO-FEED & SHOCKWAVE BOOST
+       LINKE SEITENLEISTE (ALLE HAUPT-BUTTONS LINKS)
        ========================================================= -->
-  <main id="view-feed" class="view active">
-    <div class="card" style="padding:10px 12px; display:flex; align-items:center; justify-content:space-between;">
-      <div style="font-size:0.78rem;">
-        <strong style="color:var(--accent);">🔴 4er-Räume & Live-Shopping aktiv</strong><br/>
-        <span style="color:var(--muted);" id="feedSubHint">Ab LVL 5 selbst live gehen & Produkte pinnen!</span>
-      </div>
-      <button class="btn hot" style="padding:7px 11px;font-size:0.75rem;" onclick="switchTab('studio')">Zum Live ➔</button>
-    </div>
+  <aside class="left-sidebar">
+    <div class="sidebar-logo">⚡VYBE</div>
 
-    <!-- Video Card -->
-    <div class="video-card" id="feedVideoCard">
-      <div class="shockwave-ring" id="shockRing"></div>
-      <div class="video-bg" id="feedVisual">🕺</div>
+    <button class="side-btn active" id="nav-feed" onclick="openView('feed')">
+      <span class="ico">🏠</span>
+      <span>Feed</span>
+    </button>
 
-      <div class="video-overlay-top" style="display:flex;justify-content:space-between;align-items:center;">
-        <span class="rank-badge" id="feedCreatorBadge">👑 LVL 24 • S-LVL 8 • @NeonJay</span>
-        <span class="pill" style="background:rgba(0,0,0,0.6);">🔥 VYBE: <strong id="feedVybeMeter">88%</strong></span>
-      </div>
+    <button class="side-btn" id="nav-search" onclick="openView('search')">
+      <span class="ico">🔍</span>
+      <span>Suchen</span>
+    </button>
 
-      <div class="video-overlay-bottom">
-        <p style="font-weight:800;font-size:0.95rem;margin-bottom:4px;" id="feedTitle">Cyber-Freestyle im 4er-Match ⚡ Wer kommt rein?</p>
-        <p style="font-size:0.75rem;color:var(--muted);margin-bottom:10px;">Max. 30 Sek. Clip • #VYBEClub #HoloCards</p>
+    <button class="side-btn plus-btn" id="nav-camera" onclick="openView('camera')">
+      <span class="ico">➕</span>
+      <span>Kamera</span>
+    </button>
 
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <button class="btn hot" onclick="triggerShockwaveBoost()">⚡ VYBE-Boost (+10 XP / +50 🪙)</button>
-          <button class="btn secondary" onclick="nextFeedVideo()">⏭️ Nächster Clip</button>
-          <button class="btn secondary" onclick="sendChatComment()">💬 Kommentar (+5 XP)</button>
-        </div>
-      </div>
-    </div>
+    <button class="side-btn live-btn" id="nav-live" onclick="openView('live')">
+      <span class="ico">🔴</span>
+      <span>LIVE gehen</span>
+    </button>
 
-    <!-- Eigenes Video hochladen -->
-    <div class="card">
-      <div class="section-title"><span>📤 Eigenen Clip (max. 30 Sek.) posten</span></div>
-      <input type="file" accept="video/*" class="input" onchange="uploadCustomVideo(event)" />
-      <p style="font-size:0.72rem;color:var(--muted);">Tipp: Boosten & Kommentieren bringt dir bis zu 30 Gratis-XP am Tag. Für schnelle Level-Ups nutze Geschenke & Holo-Booster!</p>
-    </div>
-  </main>
+    <button class="side-btn" id="nav-club" onclick="openView('club')">
+      <span class="ico">🃏</span>
+      <span>Club & Shop</span>
+    </button>
+
+    <button class="side-btn" id="nav-profile" onclick="openView('profile')">
+      <span class="ico">👤</span>
+      <span>Profil</span>
+    </button>
+  </aside>
 
   <!-- =========================================================
-       TAB 2: KAMERA- & 4ER-MULTI-LIVE-STUDIO
+       HAUPTBEREICH RECHTS NEBEN DER LEISTE
        ========================================================= -->
-  <main id="view-studio" class="view">
-    <!-- Strikt getrennte Modi -->
-    <div class="mode-switch">
-      <button class="mode-btn active" id="btnModeCam" onclick="setStudioMode('cam')">📸 Kamera-Studio</button>
-      <button class="mode-btn" id="btnModeLive" onclick="setStudioMode('live')">🔴 Live & 4er-Raum</button>
-    </div>
-
-    <!-- MODUS A: KAMERA STUDIO (Für alle ab LVL 1 offen) -->
-    <div id="studioCamSection">
-      <div class="cam-stage" id="camStage">
-        <video id="camPreview" autoplay playsinline muted></video>
-        <div id="camFallback" style="text-align:center;padding:20px;">
-          <div style="font-size:3rem;">📷</div>
-          <p style="font-size:0.8rem;color:var(--muted);margin-top:6px;">Kamera-Vorschau bereit</p>
+  <div class="main-area">
+    <!-- TOP HEADER MIT SUCHE, INFO-BUTTON, COINS, BEIDEN LEVELN & 10 MOODS -->
+    <header class="top-bar">
+      <div class="top-row-1">
+        <div class="quick-search-wrap">
+          <span class="quick-search-ico">🔍</span>
+          <input type="text" id="topSearchInput" class="quick-search-input" placeholder="Creator, #RaumCode oder Gerade-Live suchen..." oninput="handleQuickSearch(this.value)" onfocus="openView('search')" />
         </div>
-        <div id="maskOverlay" class="mask-overlay"></div>
-      </div>
-
-      <div class="card">
-        <div class="section-title"><span>🎞️ Aufnahme-Dauer & Masken</span></div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
-          <button class="mood-chip active" onclick="selectDuration(this, '15 Sek.')">15 Sek.</button>
-          <button class="mood-chip" onclick="selectDuration(this, '60 Sek.')">60 Sek.</button>
-          <button class="mood-chip" onclick="selectDuration(this, '10 Min.')">10 Min.</button>
-          <button class="mood-chip" onclick="selectDuration(this, 'Foto')">📸 Foto</button>
-          <button class="mood-chip" onclick="selectDuration(this, 'Text')">✍️ Text</button>
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
-          <button class="btn secondary" onclick="setMask('')">🚫 Keine</button>
-          <button class="btn secondary" onclick="setMask('🐸')">🐸 Frosch-Maske</button>
-          <button class="btn secondary" onclick="setMask('🤡')">🤡 Clown-Maske</button>
-          <button class="btn secondary" onclick="cycleCamFilter()">🎨 KI-Filter</button>
-        </div>
-        <button class="btn full" onclick="startCameraPreview()">📷 Kamera starten / Clip speichern</button>
-      </div>
-    </div>
-
-    <!-- MODUS B: LIVE & 4ER-MULTI-LIVE-STUDIO (Ab LVL 5 Normal / Ab LVL 20 Aktiver Streamer) -->
-    <div id="studioLiveSection" style="display:none;">
-      <!-- Sperr-Hinweis unter Level 5 -->
-      <div id="liveLockedCard" class="card" style="text-align:center;border-color:var(--accent2);">
-        <div style="font-size:2.6rem;margin-bottom:6px;">🔒</div>
-        <h3 style="font-size:1rem;margin-bottom:6px;">Live & 4er-Räume ab Level 5!</h3>
-        <p style="font-size:0.78rem;color:var(--muted);margin-bottom:12px;">
-          Du bist aktuell <strong id="lockCurrLvl">LVL 1</strong>. Schicke 2–3 Geschenke oder öffne Holo-Booster (nur 1.000 XP / 10 € Gesamtwert bis LVL 5), um sofort <strong>Solo-Live, 4er-Räume, 4er-Matches & 3 Shop-Produkte</strong> freizuschalten!
-        </p>
-        <div style="display:flex;gap:8px;justify-content:center;">
-          <button class="btn hot" onclick="quickSetLevel(5)">⚡ Schnelltest: Sofort auf LVL 5 setzen</button>
+        <div class="status-pills">
+          <div class="pill info-hype" onclick="toggleInfoModal(true)" title="Alle VYBE Vorteile & Auszahlungs-Info">ℹ️ VYBE Info & 75% Payout</div>
+          <div class="pill gold" onclick="openView('club')">🪙 <span id="topCoins">350</span></div>
+          <div class="pill" onclick="openView('profile')">⚡ LVL <span id="topMemberLvl">1</span></div>
+          <div class="pill streamer" id="topStreamerPill" onclick="openView('profile')">🔒 S-LVL</div>
         </div>
       </div>
 
-      <!-- Aktives Live-Studio (Sichtbar ab Level 5) -->
-      <div id="liveActiveContainer" style="display:none;">
-        <!-- Streamer-Kopfbalken (Unterschied Lvl 5-19 vs. Lvl 20+) -->
-        <div class="card" id="streamerHeaderBanner" style="padding:10px 12px;margin-bottom:10px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span id="liveRoleBadge" class="rank-badge">🎥 Normaler Live-Host (LVL 5+)</span>
-            <span style="font-size:0.73rem;color:var(--muted);">Raum-Code: <strong style="color:var(--accent);" id="roomCodeTxt">#4829</strong></span>
+      <!-- 10 Stimmungs-Farbwelten -->
+      <div class="mood-scroller" id="moodBar">
+        <button class="mood-chip active" onclick="setMood('night', this)">⚡ Neon Night</button>
+        <button class="mood-chip" onclick="setMood('chill', this)">🌿 Chill</button>
+        <button class="mood-chip" onclick="setMood('hype', this)">🔥 Hype</button>
+        <button class="mood-chip" onclick="setMood('cyber', this)">🤖 Cyber</button>
+        <button class="mood-chip" onclick="setMood('sunset', this)">🌅 Sunset</button>
+        <button class="mood-chip" onclick="setMood('lava', this)">🌋 Lava</button>
+        <button class="mood-chip" onclick="setMood('arctic', this)">❄️ Arctic</button>
+        <button class="mood-chip" onclick="setMood('sakura', this)">🌸 Sakura</button>
+        <button class="mood-chip" onclick="setMood('gold', this)">👑 Royal Gold</button>
+        <button class="mood-chip" onclick="setMood('galaxy', this)">🌌 Galaxy</button>
+      </div>
+    </header>
+
+    <!-- SCROLLBARER CONTENT -->
+    <div class="content-scroll">
+
+      <!-- =====================================================
+           ANSICHT 1: HOME / KURZVIDEO-FEED
+           ===================================================== -->
+      <section id="view-feed" class="view active">
+        <div class="card" style="padding:10px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+          <div style="font-size:0.78rem;">
+            <strong style="color:var(--accent);">🔥 Neu bei VYBE?</strong> Live ab LVL 5 • Aktiver Streamer ab LVL 20 • Bis zu <strong>75% Geschenke-Auszahlung</strong>!
           </div>
-          <!-- Goldener Streamer-Balken im Stream (ab LVL 20 aktiv) -->
-          <div id="liveStreamerBarWrap" style="margin-top:8px;">
-            <div style="display:flex;justify-content:space-between;font-size:0.72rem;font-weight:700;">
-              <span id="liveBarLabel">⚡ 50% Geschenk-XP helfen dir bis LVL 20!</span>
-              <span id="liveBarNums">0 / 1000</span>
+          <button class="btn gold" style="padding:6px 12px;font-size:0.74rem;" onclick="toggleInfoModal(true)">ℹ️ Alle Infos ansehen</button>
+        </div>
+
+        <div class="video-card">
+          <div class="shockwave-ring" id="shockRing"></div>
+          <div class="video-bg" id="feedVisual">🕺</div>
+
+          <div class="video-top" style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="rank-badge" id="feedCreatorBadge">👑 LVL 24 • S-LVL 12 • @NeonJay</span>
+            <span class="pill" style="background:rgba(0,0,0,0.7);">🔥 VYBE: <strong id="feedVybeMeter">88%</strong></span>
+          </div>
+
+          <div class="video-bottom">
+            <h3 style="font-size:1rem;font-weight:900;margin-bottom:4px;" id="feedTitle">Cyber-Freestyle im 4er-Match ⚡ Wer kommt rein?</h3>
+            <p style="font-size:0.76rem;color:var(--muted);margin-bottom:12px;">Max. 30 Sek. Clip • #VYBE #4erMatch #HoloCards</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn hot" onclick="triggerShockwaveBoost()">⚡ VYBE-Boost (+10 XP / +50 🪙)</button>
+              <button class="btn secondary" onclick="nextFeedVideo()">⏭️ Nächster Clip</button>
+              <button class="btn secondary" onclick="sendChatComment()">💬 Kommentar (+5 XP)</button>
+              <button class="btn secondary" onclick="openView('live')">🔴 Direkt in den 4er-Raum</button>
             </div>
-            <div class="xp-bar-bg"><div class="xp-bar-fill streamer" id="liveTopBarFill" style="width:20%;"></div></div>
           </div>
         </div>
+      </section>
 
-        <!-- 4er-Raum / 4er-Match Splitscreen -->
-        <div class="multi-grid">
-          <div class="multi-slot host-vip" id="hostSlot">
-            <span class="slot-tag" id="hostSlotTag">🎥 DU (Host)</span>
-            <div style="font-size:2.4rem;" id="hostLiveAvatar">😎</div>
-            <div style="font-size:0.75rem;font-weight:800;margin-top:4px;" id="hostLiveName">DeinName</div>
-            <span class="slot-score">🔥 <span id="matchScore1">1.250</span> Pkt</span>
-          </div>
-          <div class="multi-slot">
-            <span class="slot-tag">⚔️ Slot 2</span>
-            <div style="font-size:2.2rem;">🦊</div>
-            <div style="font-size:0.74rem;font-weight:700;">@CyberFox (LVL 18)</div>
-            <span class="slot-score">🔥 <span id="matchScore2">940</span> Pkt</span>
-          </div>
-          <div class="multi-slot">
-            <span class="slot-tag">⚔️ Slot 3</span>
-            <div style="font-size:2.2rem;">🎧</div>
-            <div style="font-size:0.74rem;font-weight:700;">@DJ_Vibe (LVL 25)</div>
-            <span class="slot-score">🔥 <span id="matchScore3">1.110</span> Pkt</span>
-          </div>
-          <div class="multi-slot" onclick="inviteCoHost()" style="cursor:pointer;">
-            <span class="slot-tag">➕ Co-Host</span>
-            <div style="font-size:2rem;" id="slot4Emoji">➕</div>
-            <div style="font-size:0.72rem;color:var(--muted);" id="slot4Text">Per Code #4829 reinholen</div>
-            <span class="slot-score">🔥 <span id="matchScore4">0</span> Pkt</span>
-          </div>
-        </div>
-
-        <!-- LIVE-SHOPPING EINBLENDUNG (Basis-Pin ab Lvl 5 vs. Pro-Flash-Banner ab Lvl 20) -->
-        <div id="liveProductPinArea"></div>
-
-        <!-- Geschenke senden (Steigert dein Mitglieder-Level) -->
+      <!-- =====================================================
+           ANSICHT 2: SUCHEN & "GERADE LIVE" FINDEN
+           ===================================================== -->
+      <section id="view-search" class="view">
         <div class="card">
           <div class="section-title">
-            <span>🎁 Geschenke im 4er-Raum schicken</span>
-            <span style="font-size:0.7rem;color:var(--accent);">1 Coin = +1 XP</span>
+            <span>🔍 Creator, Raum-Code & Gerade-Live suchen</span>
+            <span style="font-size:0.72rem;color:var(--accent);">Echtzeit-Filter</span>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px;">
-            <button class="btn secondary" onclick="sendGift('🌹 Neon-Rose', 10, '🌹')">🌹 Rose (10)</button>
-            <button class="btn secondary" onclick="sendGift('🔥 Flame', 50, '🔥')">🔥 Flame (50)</button>
-            <button class="btn secondary" onclick="sendGift('🐸 Frosch', 100, '🐸')">🐸 Frosch (100)</button>
-            <button class="btn secondary" onclick="sendGift('⚡ Vibe-Blitz', 500, '⚡')">⚡ Blitz (500)</button>
-            <button class="btn secondary" onclick="sendGift('🚀 Rakete', 1000, '🚀')">🚀 Rakete (1k)</button>
-            <button class="btn hot" onclick="sendGift('🐉 Neon-Drache', 2500, '🐉')">🐉 Drache (2.5k)</button>
+          <input type="text" id="mainSearchBox" class="input" placeholder="Tippe Name (@NeonJay), #RaumCode (#4829) oder Thema (4er-Match, Shop)..." oninput="filterSearchList(this.value)" />
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="mood-chip active" onclick="filterSearchCategory('all', this)">🔥 Alle</button>
+            <button class="mood-chip" onclick="filterSearchCategory('live', this)">🔴 Gerade Live</button>
+            <button class="mood-chip" onclick="filterSearchCategory('match', this)">⚔️ Offene 4er-Matches</button>
+            <button class="mood-chip" onclick="filterSearchCategory('shop', this)">🛍️ Live-Shopping</button>
           </div>
-          <!-- Geheimes Level-40-Geschenk -->
-          <button id="secretLvl40GiftBtn" class="btn gold full" style="display:none;margin-bottom:8px;" onclick="sendGift('🌌 Supernova-Loch', 5000, '🌌')">
-            🌌 GEHEIMES LVL-40 VIP-GESCHENK: Supernova (5.000 🪙)
-          </button>
+        </div>
 
-          <!-- Simulation: Zuschauer beschenken DICH als Streamer -->
-          <div style="border-top:1px solid var(--border);padding-top:10px;margin-top:6px;">
-            <div style="font-size:0.74rem;font-weight:800;margin-bottom:6px;color:#ffd700;">
-              🎙️ Streamer-Test: Lass dich von Zuschauern beschenken!
+        <div class="card">
+          <div class="section-title">
+            <span>🔴 Gerade Live & Offene 4er-Räume</span>
+            <span style="font-size:0.72rem;color:var(--muted);">Klicke zum Beitreten</span>
+          </div>
+          <div class="live-now-grid" id="liveSearchGrid"></div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           ANSICHT 3: ➕ KAMERA-STUDIO (STRIKT GETRENNT VOM LIVE)
+           ===================================================== -->
+      <section id="view-camera" class="view">
+        <div class="card">
+          <div class="section-title">
+            <span>📸 VYBE Kamera-Studio & Clip-Upload</span>
+            <span style="font-size:0.72rem;color:var(--accent);">Ab LVL 1 frei</span>
+          </div>
+          <div class="cam-stage" id="camStage">
+            <video id="camPreview" autoplay playsinline muted></video>
+            <div id="camFallback" style="text-align:center;">
+              <div style="font-size:3.2rem;">📷</div>
+              <p style="font-size:0.8rem;color:var(--muted);margin-top:6px;">Kamera-Vorschau bereit</p>
+            </div>
+            <div id="maskOverlay" class="mask-overlay"></div>
+          </div>
+
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
+            <button class="mood-chip active" onclick="selectDuration(this, '15 Sek.')">15 Sek.</button>
+            <button class="mood-chip" onclick="selectDuration(this, '60 Sek.')">60 Sek.</button>
+            <button class="mood-chip" onclick="selectDuration(this, '10 Min.')">10 Min.</button>
+            <button class="mood-chip" onclick="selectDuration(this, 'Foto')">📸 Foto</button>
+            <button class="mood-chip" onclick="selectDuration(this, 'Text')">✍️ Text</button>
+          </div>
+
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
+            <button class="btn secondary" onclick="setMask('')">🚫 Keine Maske</button>
+            <button class="btn secondary" onclick="setMask('🐸')">🐸 Frosch-Maske</button>
+            <button class="btn secondary" onclick="setMask('🤡')">🤡 Clown-Maske</button>
+            <button class="btn secondary" onclick="cycleCamFilter()">🎨 KI-Filter</button>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn" style="flex:1;" onclick="startCameraPreview()">📷 Kamera aktivieren</button>
+            <label class="btn secondary" style="flex:1;cursor:pointer;">
+              📤 Video aus Galerie <input type="file" accept="video/*" style="display:none;" onchange="uploadCustomVideo(event)" />
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           ANSICHT 4: 🔴 LIVE GEHEN & 4ER-MULTI-LIVE-STUDIO
+           ===================================================== -->
+      <section id="view-live" class="view">
+        <!-- Sperr-Hinweis unter Level 5 -->
+        <div id="liveLockedCard" class="card" style="text-align:center;border-color:#ff0055;">
+          <div style="font-size:2.8rem;margin-bottom:6px;">🔒</div>
+          <h3 style="font-size:1.05rem;margin-bottom:6px;">LIVE gehen & 4er-Raum ab Level 5!</h3>
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:12px;">
+            Du bist aktuell <strong id="lockCurrLvl">LVL 1</strong>. Bis Level 5 brauchst du insgesamt nur <strong>1.000 XP (10,00 € Gegenwert)</strong>, um sofort <strong>Solo-Live, 4er-Räume, 4er-Matches & bis zu 3 Shop-Produkte</strong> freizuschalten!
+          </p>
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+            <button class="btn hot" onclick="quickSetLevel(5)">⚡ Schnelltest: Sofort auf LVL 5 (Normaler Live-Host)</button>
+            <button class="btn gold" onclick="quickSetLevel(20)">👑 Schnelltest: Sofort auf LVL 20 (Aktiver Streamer)</button>
+          </div>
+        </div>
+
+        <!-- Aktives Live- & 4er-Match-Studio (Sichtbar ab Level 5) -->
+        <div id="liveActiveContainer" style="display:none;">
+          <div class="card" style="padding:10px 14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
+              <span id="liveRoleBadge" class="rank-badge">🎥 Normaler Live-Host (LVL 5+)</span>
+              <span style="font-size:0.75rem;color:var(--muted);">Raum-Code: <strong style="color:var(--accent);" id="roomCodeTxt">#4829</strong> • Split: <strong style="color:#ffd700;" id="liveSplitBadge">50% XP-Hilfe</strong></span>
+            </div>
+
+            <!-- Fortschrittsbalken direkt oben im Live-Stream -->
+            <div style="margin-top:8px;">
+              <div style="display:flex;justify-content:space-between;font-size:0.73rem;font-weight:800;">
+                <span id="liveBarLabel">⚡ 50% Geschenk-XP helfen dir bis LVL 20!</span>
+                <span id="liveBarNums">0 / 600</span>
+              </div>
+              <div class="xp-bar-bg"><div class="xp-bar-fill streamer" id="liveTopBarFill" style="width:20%;"></div></div>
+            </div>
+          </div>
+
+          <!-- 4er-Raum / 4er-Match Splitscreen -->
+          <div class="multi-grid">
+            <div class="multi-slot host-vip">
+              <span class="slot-tag" id="hostSlotTag">🎥 DU (Host)</span>
+              <div style="font-size:2.5rem;">😎</div>
+              <div style="font-size:0.78rem;font-weight:800;margin-top:4px;">DeinVYBEName</div>
+              <span class="slot-score">🔥 <span id="matchScore1">1.250</span> Pkt</span>
+            </div>
+            <div class="multi-slot">
+              <span class="slot-tag">⚔️ Slot 2</span>
+              <div style="font-size:2.3rem;">🦊</div>
+              <div style="font-size:0.75rem;font-weight:700;">@CyberFox (LVL 18)</div>
+              <span class="slot-score">🔥 <span id="matchScore2">940</span> Pkt</span>
+            </div>
+            <div class="multi-slot">
+              <span class="slot-tag">⚔️ Slot 3</span>
+              <div style="font-size:2.3rem;">🎧</div>
+              <div style="font-size:0.75rem;font-weight:700;">@DJ_Vibe (LVL 25)</div>
+              <span class="slot-score">🔥 <span id="matchScore3">1.110</span> Pkt</span>
+            </div>
+            <div class="multi-slot" onclick="inviteCoHost()" style="cursor:pointer;">
+              <span class="slot-tag">➕ Co-Host / Match</span>
+              <div style="font-size:2.1rem;" id="slot4Emoji">➕</div>
+              <div style="font-size:0.72rem;color:var(--muted);" id="slot4Text">Per Code #4829 reinholen</div>
+              <span class="slot-score">🔥 <span id="matchScore4">0</span> Pkt</span>
+            </div>
+          </div>
+
+          <!-- LIVE-PRODUKT-VERKAUF (Basis-Pin ab Lvl 5 vs. Pro-Flash-Banner ab Lvl 20) -->
+          <div id="liveProductPinArea"></div>
+
+          <!-- Geschenke senden & empfangen -->
+          <div class="card">
+            <div class="section-title">
+              <span>🎁 Geschenke im 4er-Raum schicken (Steigert dein LVL)</span>
+              <span style="font-size:0.72rem;color:var(--accent);">1 🪙 = +1 XP</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px;">
+              <button class="btn secondary" onclick="sendGift('🌹 Neon-Rose', 10, '🌹')">🌹 Rose (10)</button>
+              <button class="btn secondary" onclick="sendGift('🔥 Flame', 50, '🔥')">🔥 Flame (50)</button>
+              <button class="btn secondary" onclick="sendGift('🐸 Frosch', 100, '🐸')">🐸 Frosch (100)</button>
+              <button class="btn secondary" onclick="sendGift('⚡ Vibe-Blitz', 500, '⚡')">⚡ Blitz (500)</button>
+              <button class="btn secondary" onclick="sendGift('🚀 Rakete', 1000, '🚀')">🚀 Rakete (1k)</button>
+              <button class="btn hot" onclick="sendGift('🐉 Neon-Drache', 2500, '🐉')">🐉 Drache (2.5k)</button>
+            </div>
+
+            <button id="secretLvl40GiftBtn" class="btn gold full" style="display:none;margin-bottom:8px;" onclick="sendGift('🌌 Supernova-Loch', 5000, '🌌')">
+              🌌 GEHEIMES LVL-40 VIP-GESCHENK: Supernova (5.000 🪙)
+            </button>
+
+            <div style="border-top:1px solid var(--border);padding-top:10px;margin-top:6px;">
+              <div style="font-size:0.74rem;font-weight:800;margin-bottom:6px;color:#ffd700;">
+                🎙️ Streamer-Einnahmen testen: Lass dich von Zuschauern beschenken!
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <button class="btn gold" style="flex:1;" onclick="receiveViewerGift(500)">+500 Geschenk-Coins (5 €)</button>
+                <button class="btn hot" style="flex:1;" onclick="receiveViewerGift(5000)">+5.000 Geschenk-Coins (50 €)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           ANSICHT 5: 🃏 CLUB, HOLO-BOOSTER, TRESOR & COIN-SHOP
+           ===================================================== -->
+      <section id="view-club" class="view">
+        <div class="card">
+          <div class="section-title">
+            <span>💳 Coins aufladen (1,00 € = 100 Coins = 100 XP)</span>
+            <span style="font-size:0.7rem;color:var(--muted);">🔒 Coin-Lock: Nur über Geschenke auszahlbar</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+            <button class="btn secondary" onclick="buyCoins(250, '2,50 €')">2,50 €<br/>+250 🪙</button>
+            <button class="btn secondary" onclick="buyCoins(1000, '10,00 €')">10,00 €<br/>+1.000 🪙</button>
+            <button class="btn gold" onclick="buyCoins(2000, '20,00 €')">20,00 €<br/>+2.000 🪙</button>
+            <button class="btn secondary" onclick="buyCoins(5000, '50,00 €')">50,00 €<br/>+5.000 🪙</button>
+            <button class="btn hot" onclick="buyCoins(10000, '100,00 €')">100,00 €<br/>+10.000 🪙</button>
+            <button class="btn gold" onclick="buyCoins(50000, '500,00 €')">VIP 500 €<br/>+50.000 🪙</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">
+            <span>🃏 VYBE Holo-Booster öffnen</span>
+            <span style="font-size:0.72rem;color:var(--accent);">250 🪙 = +250 XP</span>
+          </div>
+          <p style="font-size:0.76rem;color:var(--muted);margin-bottom:10px;">
+            Ziehe seltene Creator-Karten! Alle <strong>Aktiven Streamer (ab LVL 20)</strong> landen automatisch mit ihrer eigenen Sammlerkarte in diesem Booster!
+          </p>
+          <div style="display:flex;gap:8px;">
+            <button class="btn hot full" onclick="openHoloBooster(false)">🃏 Booster öffnen (250 🪙 / +250 XP)</button>
+            <button class="btn secondary" onclick="openHoloBooster(true)">🎁 Gratis-Test</button>
+          </div>
+          <div id="boosterResult" style="margin-top:10px;font-size:0.8rem;font-weight:800;color:#ffd700;"></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="card">
+            <div class="section-title"><span>🎰 Neon-Tresor</span></div>
+            <p style="font-size:0.72rem;color:var(--muted);margin-bottom:10px;">Täglicher Spin für 500 bis 3.000 Coins.</p>
+            <button class="btn full" onclick="spinNeonVault()">🎰 Tresor drehen</button>
+          </div>
+          <div class="card">
+            <div class="section-title"><span>⚔️ Pausen-Duell</span></div>
+            <p style="font-size:0.72rem;color:var(--muted);margin-bottom:10px;">Besiege den Club-Bot für +250 Coins!</p>
+            <button class="btn hot full" onclick="playPauseDuel()">⚔️ Duell starten</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           ANSICHT 6: 👤 PROFIL, 2 BALKEN (×5 AB LVL 16) & PAYOUT-SYSTEM
+           ===================================================== -->
+      <section id="view-profile" class="view">
+        <div class="card" style="display:flex;align-items:center;gap:14px;">
+          <div id="profileAvatarWrap" class="avatar-wrap aura-none">😎</div>
+          <div style="flex:1;">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;">
+              <span class="rank-badge" id="profMemberBadge">🌱 LVL 1 • Club Rookie</span>
+              <span class="rank-badge s-badge" id="profStreamerBadge" style="display:none;">👑 S-LVL 1 • Rising Host</span>
+            </div>
+            <h2 style="font-size:1.1rem;font-weight:900;">DeinVYBEName</h2>
+            <p style="font-size:0.73rem;color:var(--muted);">Ab Level 15 zieht die Kurve (×5) an • Auszahlung bis 75%!</p>
+          </div>
+        </div>
+
+        <!-- DIE 2 FORTSCHRITTSBALKEN UNTEREINANDER -->
+        <div class="card">
+          <div class="section-title">
+            <span>📈 Deine 2 Karriere-Balken (Start bei LVL 1)</span>
+            <span style="font-size:0.7rem;color:var(--accent);">Ab LVL 16 Faktor ×5 aktiv</span>
+          </div>
+
+          <!-- BALKEN 1: Schenker / Mitglieder Level 1 bis 50 -->
+          <div class="xp-box">
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;font-weight:800;">
+              <span id="bar1Title">⚡ MITGLIEDS-RANG: LVL 1 (Club Rookie)</span>
+              <span style="color:var(--accent);" id="bar1Numbers">0 / 250 XP</span>
+            </div>
+            <div class="xp-bar-bg"><div class="xp-bar-fill" id="bar1Fill" style="width:0%;"></div></div>
+            <div style="font-size:0.72rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;">
+              <span id="bar1CostHint">Für +1 Level: 250 XP (2,50 €)</span>
+              <span style="color:#ffd700;font-weight:700;" id="bar1NextReward">🎯 Ziel LVL 5: Live, 4er-Raum & 3 Produkte</span>
+            </div>
+          </div>
+
+          <!-- BALKEN 2: Aktiver Streamer S-LVL 1 bis 50 (ab LVL 20 offen) -->
+          <div class="xp-box locked" id="bar2Container">
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;font-weight:800;">
+              <span id="bar2Title">🔒 AKTIVER STREAMER-RANG (Gesperrt)</span>
+              <span style="color:#ffd700;" id="bar2Numbers">Freischaltung ab LVL 20</span>
+            </div>
+            <div class="xp-bar-bg"><div class="xp-bar-fill streamer" id="bar2Fill" style="width:0%;"></div></div>
+            <div style="font-size:0.72rem;color:var(--muted);" id="bar2Hint">
+              🔒 Noch 19 Level bis zum Aktiven Streamer-Status! (Ab LVL 5 zählen empfangene Geschenke zu 50% für deinen Aufstieg zu LVL 20).
+            </div>
+          </div>
+
+          <!-- Schnelltest-Leiste für Mitglieds-Level -->
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+            <button class="btn secondary" style="font-size:0.68rem;padding:5px 8px;" onclick="quickSetLevel(1)">Reset LVL 1</button>
+            <button class="btn secondary" style="font-size:0.68rem;padding:5px 8px;" onclick="quickSetLevel(5)">LVL 5 (10 €)</button>
+            <button class="btn secondary" style="font-size:0.68rem;padding:5px 8px;" onclick="quickSetLevel(15)">LVL 15 (115 €)</button>
+            <button class="btn hot" style="font-size:0.68rem;padding:5px 8px;" onclick="quickSetLevel(20)">LVL 20 (990 € • Streamer!)</button>
+            <button class="btn gold" style="font-size:0.68rem;padding:5px 8px;" onclick="quickSetLevel(50)">LVL 50 (Boss)</button>
+          </div>
+        </div>
+
+        <!-- PROFIL-UNTERTABS (Payout / Showcase-Shop / Clips / Adresse) -->
+        <div class="profile-subtabs">
+          <button class="btn gold" id="pTabPayoutBtn" onclick="switchProfileSubTab('payout')">💰 Payout (75%)</button>
+          <button class="btn secondary" id="pTabShopBtn" onclick="switchProfileSubTab('shop')">🛍️ Live-Shop</button>
+          <button class="btn secondary" id="pTabClipsBtn" onclick="switchProfileSubTab('clips')">🎬 Clips</button>
+          <button class="btn secondary" id="pTabOrdersBtn" onclick="switchProfileSubTab('orders')">📦 Adresse</button>
+        </div>
+
+        <!-- SUBTAB 1: STREAMER AUSZAHLUNG & PLATTFORM-PROVISION (25% / 40% / 75%) -->
+        <div id="profSub-payout" class="card">
+          <div class="section-title">
+            <span>💰 Streamer-Auszahlung & Gewinn-Split</span>
+            <span class="rank-badge s-badge" id="payoutStatusBadge">🔒 Ab LVL 20 + S-LVL 5</span>
+          </div>
+          <p style="font-size:0.74rem;color:var(--muted);margin-bottom:8px;">
+            Hier siehst du alle im Stream empfangenen Geschenk-Coins. <strong>Schutz-Regel:</strong> Nur empfangene Geschenke sind auszahlbar (Mindestbetrag: <strong>50,00 €</strong> ab S-LVL 5).
+          </p>
+
+          <!-- Die 3 Provisions-Stufen (25% / 40% / 75%) -->
+          <div class="split-grid">
+            <div class="split-tier" id="splitTier1">
+              <div style="font-size:0.7rem;color:var(--muted);font-weight:800;">S-LVL 1 – 10</div>
+              <div style="font-size:1.1rem;font-weight:900;color:var(--accent);margin:2px 0;">25 %</div>
+              <div style="font-size:0.64rem;color:var(--muted);">Streamer-Anteil<br/>(75% Plattform)</div>
+            </div>
+            <div class="split-tier" id="splitTier2">
+              <div style="font-size:0.7rem;color:var(--muted);font-weight:800;">S-LVL 11 – 39</div>
+              <div style="font-size:1.1rem;font-weight:900;color:#00f2fe;margin:2px 0;">40 %</div>
+              <div style="font-size:0.64rem;color:var(--muted);">Streamer-Anteil<br/>(60% Plattform)</div>
+            </div>
+            <div class="split-tier" id="splitTier3">
+              <div style="font-size:0.7rem;color:var(--muted);font-weight:800;">S-LVL 40 – 50</div>
+              <div style="font-size:1.1rem;font-weight:900;color:#ffd700;margin:2px 0;">75 %</div>
+              <div style="font-size:0.64rem;color:var(--muted);">Streamer-Anteil<br/>(25% Plattform)</div>
+            </div>
+          </div>
+
+          <!-- Live Abrechnungs-Box -->
+          <div style="background:rgba(0,0,0,0.45);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:6px;">
+              <span>🎁 Empfangene Geschenk-Coins:</span>
+              <strong id="payReceivedCoins">0 🪙 (0,00 € Gesamtwert)</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:6px;">
+              <span>📊 Deine aktuelle Auszahlungs-Quote:</span>
+              <strong style="color:var(--accent);" id="payCurrentRateTxt">0% (Erst ab LVL 20)</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.9rem;border-top:1px solid var(--border);padding-top:8px;margin-top:6px;">
+              <span>💵 <strong>Dein auszahlbares Streamer-Guthaben:</strong></span>
+              <strong style="color:#ffd700;font-size:1rem;" id="payStreamerEuro">0,00 €</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted);margin-top:4px;">
+              <span>🏦 Plattform-Einnahmen (Dein Betreiber-Anteil):</span>
+              <span id="payPlatformEuro">0,00 €</span>
+            </div>
+          </div>
+
+          <button class="btn gold full" id="btnRequestPayout" onclick="requestPayout()">💸 Jetzt Auszahlung auf Bank/PayPal anfordern (ab 50,00 €)</button>
+
+          <!-- Schnelltest-Buttons für Streamer-Level & Geschenke -->
+          <div style="border-top:1px solid var(--border);padding-top:10px;margin-top:12px;">
+            <div style="font-size:0.7rem;font-weight:800;color:var(--accent);margin-bottom:6px;">
+              🛠️ Payout-Schnelltest (Teste alle 3 Prozent-Stufen & Geschenke):
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap;">
-              <button class="btn gold" style="flex:1;" onclick="receiveViewerGift(200, '🐸 Frosch-Regen')">+200 Geschenk-Coins empfangen</button>
-              <button class="btn hot" style="flex:1;" onclick="receiveViewerGift(1000, '🚀 Club-Rakete')">+1.000 Geschenk-Coins empfangen</button>
+              <button class="btn secondary" style="font-size:0.68rem;padding:5px 8px;" onclick="quickSetStreamer(5)">S-LVL 5 (25%)</button>
+              <button class="btn secondary" style="font-size:0.68rem;padding:5px 8px;" onclick="quickSetStreamer(15)">S-LVL 15 (40%)</button>
+              <button class="btn secondary" style="font-size:0.68rem;padding:5px 8px;" onclick="quickSetStreamer(40)">S-LVL 40 (75%)</button>
+              <button class="btn hot" style="font-size:0.68rem;padding:5px 8px;" onclick="simulateGiftIncome(10000)">+10.000 Geschenk-Coins (100 €)</button>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </main>
 
-  <!-- =========================================================
-       TAB 3: CLUB, HOLO-BOOSTER, TRESOR & PAUSEN-DUELL
-       ========================================================= -->
-  <main id="view-club" class="view">
-    <!-- Coin Auflade-Shop (1 € = 100 Coins) -->
-    <div class="card">
-      <div class="section-title">
-        <span>💳 Coins aufladen (1,00 € = 100 🪙)</span>
-        <span style="font-size:0.72rem;color:#ffd700;">Sofort-Gutschrift</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-        <button class="btn secondary" onclick="buyCoins(250, '2,50 €')">2,50 €<br/>+250 🪙</button>
-        <button class="btn secondary" onclick="buyCoins(1000, '10,00 €')">10,00 €<br/>+1.000 🪙</button>
-        <button class="btn gold" onclick="buyCoins(2000, '20,00 €')">20,00 €<br/>+2.000 🪙</button>
-        <button class="btn secondary" onclick="buyCoins(5000, '50,00 €')">50,00 €<br/>+5.000 🪙</button>
-        <button class="btn hot" onclick="buyCoins(10000, '100,00 €')">100,00 €<br/>+10.000 🪙</button>
-        <button class="btn gold" onclick="buyCoins(50000, '500,00 €')">VIP 500 €<br/>+50.000 🪙</button>
-      </div>
-    </div>
+        <!-- SUBTAB 2: SHOWCASE-SHOP -->
+        <div id="profSub-shop" class="card" style="display:none;">
+          <div class="section-title">
+            <span>🛍️ Produkte vorstellen & im Stream verkaufen</span>
+            <span style="font-size:0.72rem;color:var(--accent);" id="shopLimitBadge">🔒 Ab LVL 5</span>
+          </div>
+          <p style="font-size:0.74rem;color:var(--muted);margin-bottom:10px;">
+            Ab <strong>LVL 5</strong> bis zu 3 Produkte als Chat-Pin im Stream verkaufen. Ab <strong>LVL 20 (Aktiver Streamer)</strong> unbegrenzte Produkte + großes <strong>Flash-Deal Verkaufsbanner</strong>!
+          </p>
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;">
+            <input type="text" id="prodNameInp" class="input" placeholder="Produktname (z.B. VYBE Hoodie)" />
+            <input type="text" id="prodPriceInp" class="input" placeholder="Preis (29,90 €)" />
+          </div>
+          <button class="btn full" onclick="addShowcaseProduct()">➕ Produkt anlegen & im Live-Raum pinnen</button>
+          <div id="productListArea" style="margin-top:10px;"></div>
+        </div>
 
-    <!-- Holo Booster Pack -->
-    <div class="card">
-      <div class="section-title">
-        <span>🃏 VYBE Holo-Booster öffnen</span>
-        <span style="font-size:0.72rem;color:var(--accent);">250 🪙 = +250 XP</span>
-      </div>
-      <p style="font-size:0.76rem;color:var(--muted);margin-bottom:10px;">
-        Ziehe seltene Creator-Sammlerkarten! Hinweis: Alle <strong>Aktiven Streamer (ab LVL 20)</strong> landen automatisch mit ihrer eigenen Karte im globalen Booster!
-      </p>
-      <div style="display:flex;gap:8px;">
-        <button class="btn hot full" onclick="openHoloBooster(false)">🃏 Holo-Booster öffnen (250 🪙 / +250 XP)</button>
-        <button class="btn secondary" onclick="openHoloBooster(true)">🎁 Gratis-Test</button>
-      </div>
-      <div id="boosterResult" style="margin-top:10px;font-size:0.8rem;font-weight:800;color:#ffd700;"></div>
-    </div>
+        <!-- SUBTAB 3: MEINE CLIPS -->
+        <div id="profSub-clips" class="card" style="display:none;">
+          <div class="section-title"><span>🎬 Deine hochgeladenen Kurzvideos</span></div>
+          <p style="font-size:0.76rem;color:var(--muted);">Noch keine eigenen Clips veröffentlicht. Klicke links in der Seitenleiste auf <strong>➕ Kamera</strong>, um einen Clip aufzunehmen!</p>
+        </div>
 
-    <!-- Täglicher Neon-Tresor & Pausen-Duell -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div class="card" style="margin-bottom:0;">
-        <div class="section-title"><span>🎰 Neon-Tresor</span></div>
-        <p style="font-size:0.72rem;color:var(--muted);margin-bottom:10px;">Täglicher Gratis-Spin für 500 bis 3.000 Coins.</p>
-        <button class="btn full" onclick="spinNeonVault()">🎰 Tresor drehen</button>
-      </div>
-      <div class="card" style="margin-bottom:0;">
-        <div class="section-title"><span>⚔️ Pausen-Duell</span></div>
-        <p style="font-size:0.72rem;color:var(--muted);margin-bottom:10px;">Schlage den Club-Bot für +250 Gratis-Coins!</p>
-        <button class="btn hot full" onclick="playPauseDuel()">⚔️ Duell starten</button>
-      </div>
-    </div>
-  </main>
+        <!-- SUBTAB 4: ADRESSE & AUSZAHLUNGS-DATEN (KYC) -->
+        <div id="profSub-orders" class="card" style="display:none;">
+          <div class="section-title"><span>📦 Lieferadresse & Auszahlungs-Konto (KYC)</span></div>
+          <input type="text" class="input" placeholder="Vor- und Nachname" value="Max Mustermann" />
+          <input type="text" class="input" placeholder="Straße & Hausnummer" value="Neonstraße 12, 10115 Berlin" />
+          <input type="text" class="input" placeholder="IBAN oder PayPal-E-Mail für Streamer-Payout" value="DE89 3704 0044 0532 0130 00" />
+          <button class="btn full" onclick="showToast('✅ Adresse & Auszahlungskonto gespeichert!')">💾 Daten speichern</button>
+        </div>
 
-  <!-- =========================================================
-       TAB 4: PROFIL, DOPPEL-LEVEL-DASHBOARD & SHOWCASE-SHOP
-       ========================================================= -->
-  <main id="view-profile" class="view">
-    <!-- Kopfbereich mit Aura -->
-    <div class="card" style="display:flex;align-items:center;gap:14px;">
-      <div id="profileAvatarWrap" class="avatar-wrap aura-none">😎</div>
-      <div style="flex:1;">
-        <div class="badge-row">
-          <span class="rank-badge" id="profMemberBadge">🌱 LVL 1 • Club Rookie</span>
-          <span class="rank-badge s-badge" id="profStreamerBadge" style="display:none;">👑 S-LVL 1 • Rising Host</span>
-        </div>
-        <h2 style="font-size:1.1rem;font-weight:900;" id="profUsername">DeinVYBEName</h2>
-        <p style="font-size:0.73rem;color:var(--muted);" id="profStatusLine">Starte deine Reise von Level 1 bis 50!</p>
-      </div>
-    </div>
-
-    <!-- =========================================================
-         DAS DOPPEL-BALKEN-DASHBOARD (MITGLIEDS-LVL + STREAMER-S-LVL)
-         ========================================================= -->
-    <div class="card">
-      <div class="section-title">
-        <span>📈 Dein Zwei-Säulen-Aufstieg (Start bei LVL 1)</span>
-      </div>
-
-      <!-- BALKEN 1: MITGLIEDER- & SUPPORTER-RANG (LVL 1 bis 50) -->
-      <div class="xp-box">
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;font-weight:800;">
-          <span id="bar1Title">⚡ MITGLIEDS-RANG: LVL 1 (Club Rookie)</span>
-          <span style="color:var(--accent);" id="bar1Numbers">0 / 250 XP</span>
-        </div>
-        <div class="xp-bar-bg">
-          <div class="xp-bar-fill" id="bar1Fill" style="width:0%;"></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);display:flex;justify-content:space-between;">
-          <span id="bar1CostHint">Kosten für +1 Level: 250 XP (2,50 €)</span>
-          <span style="color:#ffd700;font-weight:700;" id="bar1NextReward">🎁 Ziel LVL 5: Live, 4er-Raum & 3 Produkte</span>
-        </div>
-      </div>
-
-      <!-- BALKEN 2: AKTIVER STREAMER-RANG (S-LVL 1 bis 50 - erst ab LVL 20 offen!) -->
-      <div class="xp-box locked" id="bar2Container">
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;font-weight:800;">
-          <span id="bar2Title">🔒 AKTIVER STREAMER-RANG (Gesperrt)</span>
-          <span style="color:#ffd700;" id="bar2Numbers">Ab Mitglieds-LVL 20</span>
-        </div>
-        <div class="xp-bar-bg">
-          <div class="xp-bar-fill streamer" id="bar2Fill" style="width:0%;"></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);" id="bar2Hint">
-          🔒 Noch <strong id="lvlsTo20">19</strong> Level bis zum <strong>Aktiven Streamer-Status (LVL 20)</strong>! (Tipp: Ab LVL 5 zählen empfangene Geschenke zu 50% hierfür mit).
-        </div>
-      </div>
-
-      <!-- SCHNELLTEST-KONSOLE FÜR DICH (ZUM SOFORT-TESTEN ALLER STUFEN) -->
-      <div style="border-top:1px solid var(--border);padding-top:10px;margin-top:8px;">
-        <div style="font-size:0.72rem;font-weight:800;color:var(--accent);margin-bottom:6px;">
-          🛠️ Deine Entwickler-Testknöpfe (Level & Balken sofort live testen):
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <button class="btn secondary" style="font-size:0.7rem;padding:6px 9px;" onclick="quickSetLevel(1)">Reset LVL 1</button>
-          <button class="btn secondary" style="font-size:0.7rem;padding:6px 9px;" onclick="quickSetLevel(5)">Set LVL 5 (Live)</button>
-          <button class="btn secondary" style="font-size:0.7rem;padding:6px 9px;" onclick="quickSetLevel(15)">Set LVL 15</button>
-          <button class="btn hot" style="font-size:0.7rem;padding:6px 9px;" onclick="quickSetLevel(20)">Set LVL 20 (Streamer!)</button>
-          <button class="btn gold" style="font-size:0.7rem;padding:6px 9px;" onclick="quickSetLevel(50)">Set LVL 50 (Boss)</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- DEINE PERSÖNLICHE HOLO-SAMMLERKARTE -->
-    <div class="card">
-      <div class="section-title">
-        <span>🃏 Deine offizielle VYBE Holo-Sammlerkarte</span>
-        <span style="font-size:0.7rem;color:var(--muted);" id="cardGlobalStatus">Nur im Profil</span>
-      </div>
-      <div class="holo-card" id="myHoloCard">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-          <span class="rank-badge" id="cardEditionTag">🌱 ROOKIE EDITION</span>
-          <span style="font-size:0.78rem;font-weight:900;color:#ffd700;" id="cardPowerTxt">⚡ POWER 120</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="font-size:2.8rem;">😎</div>
-          <div>
-            <div style="font-weight:900;font-size:1rem;" id="cardHolderName">DeinVYBEName</div>
-            <div style="font-size:0.75rem;color:var(--accent);" id="cardDualRanks">Mitglied LVL 1</div>
-            <div style="font-size:0.7rem;color:var(--muted);margin-top:3px;" id="cardPerkTxt">Steige auf LVL 5 für die ⚡ NEON EDITION!</div>
+        <!-- Holo-Sammlerkarte -->
+        <div class="card">
+          <div class="section-title">
+            <span>🃏 Deine Holo-Sammlerkarte</span>
+            <span style="font-size:0.7rem;color:var(--muted);" id="cardGlobalStatus">Nur im Profil</span>
+          </div>
+          <div class="holo-card">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <span class="rank-badge" id="cardEditionTag">🌱 ROOKIE EDITION</span>
+              <span style="font-size:0.78rem;font-weight:900;color:#ffd700;" id="cardPowerTxt">⚡ POWER 125</span>
+            </div>
+            <div style="font-weight:900;font-size:0.95rem;">DeinVYBEName</div>
+            <div style="font-size:0.75rem;color:var(--accent);margin-top:2px;" id="cardDualRanks">Mitglieds-Rang LVL 1</div>
+            <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;" id="cardPerkTxt">Erreiche LVL 20, damit deine Karte im globalen Booster landet!</div>
           </div>
         </div>
-      </div>
+      </section>
+
     </div>
-
-    <!-- PRODUKT-SHOWCASE & LIVE-VERKAUF (Ab LVL 5: 3 Produkte / Ab LVL 20: Unbegrenzt + Pro-Banner) -->
-    <div class="card">
-      <div class="section-title">
-        <span>🛍️ Produkte vorstellen & im Stream verkaufen</span>
-        <span style="font-size:0.72rem;color:var(--accent);" id="shopLimitBadge">🔒 Ab LVL 5</span>
-      </div>
-      <p style="font-size:0.74rem;color:var(--muted);margin-bottom:10px;" id="shopRoleDesc">
-        Ab <strong>Level 5</strong> kannst du bis zu 3 Produkte anlegen und als Pin im Live-Chat verkaufen. Ab <strong>Level 20 (Aktiver Streamer)</strong> schaltest du unbegrenzte Produkte + das große <strong>Flash-Deal Verkaufsbanner</strong> frei!
-      </p>
-
-      <div id="productFormArea">
-        <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;">
-          <input type="text" id="prodNameInp" class="input" placeholder="Produktname (z.B. VYBE Hoodie)" />
-          <input type="text" id="prodPriceInp" class="input" placeholder="Preis (29,90 €)" />
-        </div>
-        <button class="btn full" onclick="addShowcaseProduct()">➕ Produkt hinzufügen & im Live-Stream pinnen</button>
-      </div>
-
-      <div id="productListArea" style="margin-top:10px;"></div>
-    </div>
-  </main>
-
-  <!-- BOTTOM NAVIGATION -->
-  <nav class="bottom-nav">
-    <button class="nav-item active" onclick="switchTab('feed', this)"><span class="icon">🏠</span><span>Feed</span></button>
-    <button class="nav-item" onclick="switchTab('studio', this)"><span class="icon">🔴</span><span>Studio & 4er</span></button>
-    <button class="nav-item" onclick="switchTab('club', this)"><span class="icon">🃏</span><span>Club & Shop</span></button>
-    <button class="nav-item" onclick="switchTab('profile', this)"><span class="icon">👤</span><span>Profil & LVL</span></button>
-  </nav>
-</div>
+  </div>
 
 <script>
   /* =====================================================================
-     ⚙️ HIER KANNST DU SPÄTER ALLE WERTE & PREISE SELBST ÄNDERN
-     1,00 € = 100 Coins (🪙) = 100 XP (⚡)
+     ⚙️ HIER KANNST DU SPÄTER ALLE WERTE, FAKTOREN & PROZENTE ÄNDERN
+     Grundregel: 1,00 € = 100 Coins (🪙) = 100 XP (⚡)
+     Ab Level 16 sind alle XP-Stufen exakt mit Faktor ×5 multipliziert!
      ===================================================================== */
   const VYBE_BALANCE_CONFIG = {
-    liveUnlockLevel: 5,          // Ab welchem Level man normal Live, 4er-Raum & 3 Produkte nutzen kann
-    streamerUnlockLevel: 20,     // Ab welchem Level man "Aktiver Streamer" mit S-LVL 1-50 & Pro-Shop wird
-    normalHostGiftXpRate: 0.5,   // 50% XP-Anrechnung für empfangene Geschenke zwischen Level 5 und 19
-    maxDailyFreeXp: 30,          // Max. Gratis-XP pro Tag durch Chatten/Boosten (0,30 € Gegenwert)
+    liveUnlockLevel: 5,          // Ab LVL 5: Normal Live, 4er-Raum & 3 Shop-Produkte
+    streamerUnlockLevel: 20,     // Ab LVL 20: "Aktiver Streamer" mit 2. Balken (S-LVL 1-50) & Pro-Shop
+    normalHostGiftXpRate: 0.5,   // 50% XP-Hilfe für empfangene Geschenke zwischen LVL 5 und 19
+    maxDailyFreeXp: 30,          // Max. Gratis-XP pro Tag
+
+    // AUSZAHLUNGS-QUOTE FÜR STREAMER (Rest bleibt bei dir als Plattform-Gewinn!)
+    payoutSettings: {
+      minStreamerLevelForPayout: 5, // Auszahlung erst ab S-LVL 5 möglich
+      minPayoutEuro: 50.00,         // Mindestbetrag für Auszahlungen (50,00 €)
+      rate_sLvl_1_to_10: 0.25,      // S-LVL 1 bis 10:  25% für Streamer / 75% für dich
+      rate_sLvl_11_to_39: 0.40,     // S-LVL 11 bis 39: 40% für Streamer / 60% für dich
+      rate_sLvl_40_to_50: 0.75      // S-LVL 40 bis 50: 75% für Streamer / 25% für dich
+    },
 
     // SÄULE 1: Benötigte XP pro EINZELNEM Level (Mitglieder & Supporter LVL 1 bis 50)
     memberXpPerLevel: {
-      tier1_lvl_1_to_5: 250,     // 2,50 € pro Level (Gesamt 10 € bei LVL 5)
-      tier2_lvl_6_to_10: 600,    // 6,00 € pro Level (Gesamt 40 € bei LVL 10)
-      tier3_lvl_11_to_15: 1500,  // 15,00 € pro Level (Gesamt 115 € bei LVL 15)
-      tier4_lvl_16_to_20: 3500,  // 35,00 € pro Level (Gesamt 290 € bei LVL 20 -> AKTIVER STREAMER!)
-      tier5_lvl_21_to_30: 8000,  // 80,00 € pro Level (Gesamt 1.090 € bei LVL 30)
-      tier6_lvl_31_to_40: 20000, // 200,00 € pro Level (Gesamt 3.090 € bei LVL 40)
-      tier7_lvl_41_to_50: 50000  // 500,00 € pro Level (Gesamt 8.090 € bei LVL 50)
+      tier1_lvl_1_to_5: 250,       // 2,50 € / Lvl   (Gesamt 10 € bei LVL 5)
+      tier2_lvl_6_to_10: 600,      // 6,00 € / Lvl   (Gesamt 40 € bei LVL 10)
+      tier3_lvl_11_to_15: 1500,    // 15,00 € / Lvl  (Gesamt 115 € bei LVL 15)
+      // --- AB HIER FAKTOR ×5 (SCHWER) ---
+      tier4_lvl_16_to_20: 17500,   // 175,00 € / Lvl (Gesamt 990 € bei LVL 20 -> AKTIVER STREAMER!)
+      tier5_lvl_21_to_30: 40000,   // 400,00 € / Lvl (Gesamt 4.990 € bei LVL 30)
+      tier6_lvl_31_to_40: 100000,  // 1.000 € / Lvl  (Gesamt 14.990 € bei LVL 40)
+      tier7_lvl_41_to_50: 250000   // 2.500 € / Lvl  (Gesamt 39.990 € bei LVL 50)
     },
 
     // SÄULE 2: Benötigte Geschenke-XP pro Level (Aktive Streamer S-LVL 1 bis 50, ab LVL 20)
     streamerXpPerLevel: {
-      sTier1_lvl_1_to_5: 1000,    // 10 € an empfangenen Geschenken pro Level
-      sTier2_lvl_6_to_10: 2500,   // 25 € pro Level
-      sTier3_lvl_11_to_15: 5000,  // 50 € pro Level
-      sTier4_lvl_16_to_20: 10000, // 100 € pro Level
-      sTier5_lvl_21_to_30: 25000, // 250 € pro Level
-      sTier6_lvl_31_to_40: 60000, // 600 € pro Level
-      sTier7_lvl_41_to_50: 150000 // 1.500 € pro Level
+      sTier1_lvl_1_to_5: 1000,     // 10 € Geschenke / Lvl
+      sTier2_lvl_6_to_10: 2500,    // 25 € Geschenke / Lvl
+      sTier3_lvl_11_to_15: 5000,   // 50 € Geschenke / Lvl
+      // --- AB HIER FAKTOR ×5 (SCHWER) ---
+      sTier4_lvl_16_to_20: 50000,  // 500 € Geschenke / Lvl
+      sTier5_lvl_21_to_30: 125000, // 1.250 € Geschenke / Lvl
+      sTier6_lvl_31_to_40: 300000, // 3.000 € Geschenke / Lvl
+      sTier7_lvl_41_to_50: 750000  // 7.500 € Geschenke / Lvl
     }
   };
 
@@ -598,29 +1079,35 @@
      APP-STATUS (STARTET BEI LEVEL 1 MIT 0 XP)
      ===================================================================== */
   const state = {
-    coins: 350,
-    memberLevel: 1,       // Start exakt bei Level 1
+    coins: 350,              // Zum Verschenken / Boosten (nicht direkt auszahlbar!)
+    receivedGiftCoins: 0,    // Im Stream empfangene Geschenke (Basis für Payout)
+    memberLevel: 1,
     memberXp: 0,
-    streamerLevel: 1,     // Startet bei S-LVL 1 sobald Mitglieds-LVL 20 erreicht ist
+    streamerLevel: 1,
     streamerXp: 0,
     dailyFreeXpEarned: 0,
     vaultSpunToday: false,
     camFilterIdx: 0,
-    products: [
-      { name: "VYBE Limited Cap", price: "24,90 €" }
-    ],
+    products: [{ name: "VYBE Limited Cap", price: "24,90 €" }],
     pinnedProductIdx: 0
   };
 
+  const liveRoomsData = [
+    { host: "@NeonJay", lvl: 28, sLvl: 14, title: "⚔️ 4er-Arena Match (40% Payout-Star!)", code: "#4829", cat: "match", viewers: 412, vip: true },
+    { host: "@LunaVibe", lvl: 42, sLvl: 41, title: "🛍️ Flash-Deal Drop • Hall of Fame (75% Split)", code: "#9104", cat: "shop", viewers: 685, vip: true },
+    { host: "@CyberFox", lvl: 14, sLvl: 0, title: "🎥 Offener 4er-Talk (Push mich auf LVL 20!)", code: "#3310", cat: "live", viewers: 64, vip: false },
+    { host: "@FrogKing", lvl: 8, sLvl: 0, title: "🐸 Frosch-Masken Comedy Stream", code: "#7721", cat: "live", viewers: 39, vip: false }
+  ];
+
   const feedClips = [
-    { emoji: "🕺", creator: "👑 LVL 24 • S-LVL 8 • @NeonJay", title: "Cyber-Freestyle im 4er-Match ⚡ Wer kommt rein?", vybe: 88 },
-    { emoji: "🎤", creator: "💎 LVL 32 • S-LVL 16 • @LunaVibe", title: "Live-Shopping Drop + Neue Holo-Karten ziehen!", vybe: 94 },
+    { emoji: "🕺", creator: "👑 LVL 24 • S-LVL 12 • @NeonJay", title: "Cyber-Freestyle im 4er-Match ⚡ Wer kommt rein?", vybe: 88 },
+    { emoji: "🎤", creator: "💎 LVL 42 • S-LVL 41 • @LunaVibe", title: "75% Streamer-Payout geknackt + Neue Holo-Karten!", vybe: 96 },
     { emoji: "🐸", creator: "⚡ LVL 9 • @FrogKing", title: "Frosch-Masken Challenge im Kamera-Studio 😂", vybe: 79 }
   ];
   let currentClipIdx = 0;
 
   /* =====================================================================
-     LEVEL-MATHEMATIK & MEILENSTEIN-BERECHNUNG
+     MATHEMATIK FÜR LEVEL (×5 AB LVL 16) & AUSZAHLUNGS-PROZENTE
      ===================================================================== */
   function getRequiredMemberXp(lvl) {
     const c = VYBE_BALANCE_CONFIG.memberXpPerLevel;
@@ -644,31 +1131,35 @@
     return c.sTier7_lvl_41_to_50;
   }
 
+  function getStreamerPayoutRate(sLvl) {
+    if (state.memberLevel < VYBE_BALANCE_CONFIG.streamerUnlockLevel) return 0;
+    const p = VYBE_BALANCE_CONFIG.payoutSettings;
+    if (sLvl <= 10) return p.rate_sLvl_1_to_10;   // 25%
+    if (sLvl <= 39) return p.rate_sLvl_11_to_39;  // 40%
+    return p.rate_sLvl_40_to_50;                  // 75%
+  }
+
   function getMemberMeta(lvl) {
-    if (lvl >= 50) return { title: "👑 VYBE Immortal Boss", aura: "aura-goldboss", card: "👑 1 OF 1 GOLD-BOSS", next: "MAX LEVEL ERREICHT (Gold-Regen aktiv!)" };
-    if (lvl >= 40) return { title: "🌌 Galaxy Overlord", aura: "aura-galaxy", card: "🌌 GALAXY MASTER", next: "🎯 Ziel LVL 50: Immortal Gold-Boss & Funken-Regen" };
+    if (lvl >= 50) return { title: "👑 VYBE Immortal Boss", aura: "aura-goldboss", card: "👑 1 OF 1 GOLD-BOSS", next: "MAX LEVEL ERREICHT!" };
+    if (lvl >= 40) return { title: "🌌 Galaxy Overlord", aura: "aura-galaxy", card: "🌌 GALAXY MASTER", next: "🎯 Ziel LVL 50: Immortal Gold-Boss" };
     if (lvl >= 30) return { title: "🚀 Neon Baron", aura: "aura-magma", card: "🚀 MYTHISCH", next: "🎯 Ziel LVL 40: Galaxy-Aura & Supernova-Geschenk" };
     if (lvl >= 20) return { title: "💎 Club Elite (Streamer)", aura: "aura-diamond", card: "💎 DIAMANT HOLO", next: "🎯 Ziel LVL 30: Magma-Aura & Platz 1 im Stream" };
-    if (lvl >= 15) return { title: "🔥 Hype Master", aura: "aura-supernova", card: "★ EPISCH", next: "🎯 Ziel LVL 20: AKTIVER STREAMER STATUS & Pro-Shop!" };
+    if (lvl >= 15) return { title: "🔥 Hype Master", aura: "aura-supernova", card: "★ EPISCH", next: "🎯 Ziel LVL 20 (×5 Hürde): AKTIVER STREAMER STATUS!" };
     if (lvl >= 10) return { title: "🔮 Cyber VIP", aura: "aura-cyber", card: "🔮 CYBER HOLO", next: "🎯 Ziel LVL 15: Supernova-Aura & Feuer-Krone" };
     if (lvl >= 5)  return { title: "⚡ Vibe Seeker", aura: "aura-lime", card: "⚡ NEON EDITION", next: "🎯 Ziel LVL 10: Cyber-Aura & Farbiger VIP-Chat" };
     return { title: "🌱 Club Rookie", aura: "aura-none", card: "🌱 ROOKIE EDITION", next: "🎯 Ziel LVL 5: Live-Modus, 4er-Raum & 3 Produkte" };
   }
 
   function getStreamerMeta(sLvl) {
-    if (sLvl >= 50) return { title: "👑 VYBE Hall of Fame", next: "MAX STREAMER-LEVEL ERREICHT!" };
-    if (sLvl >= 40) return { title: "🌌 Arena King/Queen", next: "🏆 Ziel S-LVL 50: Goldene Streamer-Krone & 1of1 Karte" };
-    if (sLvl >= 30) return { title: "🚀 Prime Partner", next: "🏆 Ziel S-LVL 40: Eigener Fan-Club & Galaxy-Bühne" };
-    if (sLvl >= 20) return { title: "💎 Club Star", next: "🏆 Ziel S-LVL 30: Startseiten-Banner & Magma-Bühne" };
-    if (sLvl >= 15) return { title: "🔥 Hype Host", next: "🏆 Ziel S-LVL 20: VIP-Diamant-Rahmen & 2x Booster" };
-    if (sLvl >= 10) return { title: "⚡ Vibe Creator", next: "🏆 Ziel S-LVL 15: Streamer-Holo-Karte im Booster" };
-    if (sLvl >= 5)  return { title: "🎙️ Rising Host Pro", next: "🏆 Ziel S-LVL 10: Live-Goal-Spendenbalken" };
-    return { title: "🎙️ Rising Host", next: "🏆 Ziel S-LVL 5: Grünes LIVE PRO-Badge" };
+    if (sLvl >= 50) return { title: "👑 VYBE Hall of Fame (75% Split)", next: "MAX STREAMER-LEVEL (75% Auszahlung aktiv!)" };
+    if (sLvl >= 40) return { title: "🌌 Arena Legend (75% Split)", next: "🏆 75% PAYOUT AKTIV! Ziel S-LVL 50: Hall of Fame" };
+    if (sLvl >= 30) return { title: "🚀 Prime Partner (40% Split)", next: "🏆 Ziel S-LVL 40: Sprung auf 75% Auszahlungs-Quote!" };
+    if (sLvl >= 20) return { title: "💎 Club Star (40% Split)", next: "🏆 Ziel S-LVL 30: Startseiten-Banner" };
+    if (sLvl >= 11) return { title: "🔥 Hype Host (40% Split)", next: "🏆 40% PAYOUT AKTIV! Ziel S-LVL 20: Diamant-Rahmen" };
+    if (sLvl >= 5)  return { title: "🎙️ Rising Host Pro (25% Split)", next: "🏆 Auszahlung frei! Ziel S-LVL 11: 40% Auszahlungs-Quote!" };
+    return { title: "🎙️ Rising Host (25% Split)", next: "🏆 Ziel S-LVL 5: Auszahlungs-Freigabe & LIVE PRO-Badge" };
   }
 
-  /* =====================================================================
-     XP HINZUFÜGEN & AUTOMATISCHER LEVEL-UP
-     ===================================================================== */
   function addMemberXp(amount, isFreeAction = false) {
     if (isFreeAction) {
       if (state.dailyFreeXpEarned >= VYBE_BALANCE_CONFIG.maxDailyFreeXp) {
@@ -678,68 +1169,61 @@
       amount = Math.min(amount, VYBE_BALANCE_CONFIG.maxDailyFreeXp - state.dailyFreeXpEarned);
       state.dailyFreeXpEarned += amount;
     }
-
-    if (state.memberLevel >= 50) {
-      updateAllUI();
-      return;
-    }
+    if (state.memberLevel >= 50) { updateAllUI(); return; }
 
     state.memberXp += Math.floor(amount);
     let leveledUp = false;
-
     while (state.memberLevel < 50 && state.memberXp >= getRequiredMemberXp(state.memberLevel)) {
       state.memberXp -= getRequiredMemberXp(state.memberLevel);
       state.memberLevel++;
       leveledUp = true;
-
-      // Meilenstein-Belohnungen prüfen
       if (state.memberLevel === 5) {
         state.coins += 500;
-        triggerGiftOverlay("🔓", "LEVEL 5 FREIGESCHALTET! Live, 4er-Raum, 3 Shop-Produkte + 500 🪙 Bonus!");
+        triggerGiftOverlay("🔓", "LEVEL 5 FREIGESCHALTET! Live, 4er-Raum, 3 Produkte + 500 🪙!");
       } else if (state.memberLevel === 20) {
-        triggerGiftOverlay("👑", "LEVEL 20 ERREICHT! Du bist jetzt AKTIVER STREAMER (2. Balken & Pro-Shop offen)!");
+        triggerGiftOverlay("👑", "LEVEL 20 ERREICHT! Du bist jetzt AKTIVER STREAMER (2. Balken & Payout-System offen)!");
       } else if (state.memberLevel === 50) {
         triggerGoldRain();
-        triggerGiftOverlay("💎", "LEVEL 50 IMMORTAL GOLD-BOSS! Goldener Funken-Regen aktiviert!");
+        triggerGiftOverlay("💎", "LEVEL 50 IMMORTAL GOLD-BOSS!");
       }
     }
-
-    if (leveledUp && state.memberLevel !== 5 && state.memberLevel !== 20 && state.memberLevel !== 50) {
+    if (leveledUp && ![5, 20, 50].includes(state.memberLevel)) {
       showToast(`🎉 LEVEL UP! Du bist jetzt Mitglieds-Level ${state.memberLevel}!`);
     }
     updateAllUI();
   }
 
   function addStreamerXp(giftCoins) {
-    // Unter Level 20: 50% der empfangenen Geschenke helfen beim Aufstieg zu Level 20!
+    // Unter Level 20: 50% der empfangenen Geschenke helfen beim Aufstieg zu Level 20
     if (state.memberLevel < VYBE_BALANCE_CONFIG.streamerUnlockLevel) {
       const bonusXp = Math.floor(giftCoins * VYBE_BALANCE_CONFIG.normalHostGiftXpRate);
-      showToast(`🎥 Zuschauer-Geschenk! +${bonusXp} XP (50%-Boost Richtung Level 20!)`);
+      showToast(`🎥 Zuschauer-Geschenk! +${bonusXp} XP (50%-Hilfe Richtung Level 20!)`);
       addMemberXp(bonusXp, false);
       return;
     }
 
-    // Ab Level 20: 100% fließen in den zweiten Balken (Streamer-Level S-LVL 1 bis 50)
-    if (state.streamerLevel >= 50) return;
-    state.streamerXp += giftCoins;
-    let sLeveled = false;
-
-    while (state.streamerLevel < 50 && state.streamerXp >= getRequiredStreamerXp(state.streamerLevel)) {
-      state.streamerXp -= getRequiredStreamerXp(state.streamerLevel);
-      state.streamerLevel++;
-      sLeveled = true;
-    }
-
-    if (sLeveled) {
-      triggerGiftOverlay("👑", `STREAMER LEVEL-UP! Du bist jetzt S-LVL ${state.streamerLevel}!`);
-    } else {
-      showToast(`👑 +${giftCoins} Streamer-XP für deinen S-LVL Balken!`);
+    // Ab Level 20 zählen die Geschenk-Coins für Auszahlung + S-LVL Balken!
+    state.receivedGiftCoins += giftCoins;
+    if (state.streamerLevel < 50) {
+      state.streamerXp += giftCoins;
+      let sLeveled = false;
+      while (state.streamerLevel < 50 && state.streamerXp >= getRequiredStreamerXp(state.streamerLevel)) {
+        state.streamerXp -= getRequiredStreamerXp(state.streamerLevel);
+        state.streamerLevel++;
+        sLeveled = true;
+      }
+      if (sLeveled) {
+        const ratePct = Math.round(getStreamerPayoutRate(state.streamerLevel) * 100);
+        triggerGiftOverlay("👑", `S-LVL ${state.streamerLevel} ERREICHT! Deine Auszahlungs-Quote liegt bei ${ratePct}%!`);
+      } else {
+        showToast(`👑 +${giftCoins} Geschenk-Coins im Payout-Tresor & S-LVL Balken gespeichert!`);
+      }
     }
     updateAllUI();
   }
 
   /* =====================================================================
-     UI KOMPLETT AKTUALISIEREN (BEIDE BALKEN, LIVE-STUDIO, SHOP, KARTEN)
+     UI KOMPLETT AKTUALISIEREN (BEIDE BALKEN + PAYOUT-RECHNER)
      ===================================================================== */
   function updateAllUI() {
     const lvl = state.memberLevel;
@@ -752,38 +1236,30 @@
     const reqM = getRequiredMemberXp(lvl);
     const reqS = getRequiredStreamerXp(sLvl);
 
-    // Header Pills
     document.getElementById("topCoins").textContent = state.coins.toLocaleString("de-DE");
     document.getElementById("topMemberLvl").textContent = lvl;
-    const topSPill = document.getElementById("topStreamerPill");
-    topSPill.textContent = isActiveStreamer ? `👑 S-LVL ${sLvl}` : `🔒 S-LVL (ab 20)`;
+    document.getElementById("topStreamerPill").textContent = isActiveStreamer ? `👑 S-LVL ${sLvl}` : `🔒 S-LVL (ab 20)`;
 
-    // Profil Header & Aura
-    const av = document.getElementById("profileAvatarWrap");
-    av.className = `avatar-wrap ${mMeta.aura}`;
+    document.getElementById("profileAvatarWrap").className = `avatar-wrap ${mMeta.aura}`;
     document.getElementById("profMemberBadge").textContent = `LVL ${lvl} • ${mMeta.title}`;
     const profSBadge = document.getElementById("profStreamerBadge");
-    if (isActiveStreamer) {
-      profSBadge.style.display = "inline-block";
-      profSBadge.textContent = `👑 S-LVL ${sLvl} • ${sMeta.title}`;
-    } else {
-      profSBadge.style.display = "none";
-    }
+    profSBadge.style.display = isActiveStreamer ? "inline-block" : "none";
+    if (isActiveStreamer) profSBadge.textContent = `👑 S-LVL ${sLvl} • ${sMeta.title}`;
 
-    // BALKEN 1: Mitglieder / Supporter
+    // Balken 1 (Mitglieder LVL 1-50)
     const pct1 = lvl >= 50 ? 100 : Math.min(100, Math.round((state.memberXp / reqM) * 100));
     document.getElementById("bar1Title").textContent = `⚡ MITGLIEDS-RANG: LVL ${lvl} (${mMeta.title})`;
     document.getElementById("bar1Numbers").textContent = lvl >= 50 ? "MAX (LVL 50)" : `${state.memberXp.toLocaleString("de-DE")} / ${reqM.toLocaleString("de-DE")} XP`;
     document.getElementById("bar1Fill").style.width = `${pct1}%`;
-    document.getElementById("bar1CostHint").textContent = lvl >= 50 ? "Maximale Stufe erreicht" : `Für +1 Level: ${reqM.toLocaleString("de-DE")} XP (${(reqM/100).toFixed(2).replace('.',',')} €)`;
+    document.getElementById("bar1CostHint").textContent = lvl >= 50 ? "Maximale Stufe" : `Für +1 Level: ${reqM.toLocaleString("de-DE")} XP (${(reqM/100).toLocaleString("de-DE", {minimumFractionDigits:2})} €)`;
     document.getElementById("bar1NextReward").textContent = mMeta.next;
 
-    // BALKEN 2: Aktiver Streamer (Gesperrt unter LVL 20, Aktiv ab LVL 20)
+    // Balken 2 (Streamer S-LVL 1-50)
     const bar2Box = document.getElementById("bar2Container");
     if (!isActiveStreamer) {
       bar2Box.className = "xp-box locked";
       document.getElementById("bar2Title").textContent = "🔒 AKTIVER STREAMER-RANG (Gesperrt)";
-      document.getElementById("bar2Numbers").textContent = `Freischaltung bei LVL 20`;
+      document.getElementById("bar2Numbers").textContent = "Freischaltung bei LVL 20";
       document.getElementById("bar2Fill").style.width = "0%";
       document.getElementById("bar2Hint").innerHTML = `🔒 Noch <strong>${20 - lvl} Level</strong> bis zum <strong>Aktiven Streamer-Status (LVL 20)</strong>! Ab LVL 5 zählen empfangene Geschenke im Stream zu 50% für deinen Aufstieg zu LVL 20.`;
     } else {
@@ -795,20 +1271,35 @@
       document.getElementById("bar2Hint").textContent = sMeta.next;
     }
 
-    // Holo-Sammlerkarte im Profil
+    // PAYOUT-RECHNER AKTUALISIEREN (25% / 40% / 75%)
+    const rate = getStreamerPayoutRate(sLvl);
+    const ratePct = Math.round(rate * 100);
+    const totalRawEuro = state.receivedGiftCoins / 100;
+    const streamerEuro = totalRawEuro * rate;
+    const platformEuro = totalRawEuro * (1 - rate);
+
+    document.getElementById("splitTier1").classList.toggle("current", isActiveStreamer && sLvl >= 1 && sLvl <= 10);
+    document.getElementById("splitTier2").classList.toggle("current", isActiveStreamer && sLvl >= 11 && sLvl <= 39);
+    document.getElementById("splitTier3").classList.toggle("current", isActiveStreamer && sLvl >= 40);
+
+    document.getElementById("payoutStatusBadge").textContent = !isActiveStreamer
+      ? "🔒 Ab LVL 20 + S-LVL 5"
+      : (sLvl < 5 ? `⏳ Noch ${5 - sLvl} S-LVL bis Freigabe` : `✅ Auszahlung aktiv (${ratePct}% Quote)`);
+
+    document.getElementById("payReceivedCoins").textContent = `${state.receivedGiftCoins.toLocaleString("de-DE")} 🪙 (${totalRawEuro.toFixed(2).replace('.',',')} € Gesamtwert)`;
+    document.getElementById("payCurrentRateTxt").textContent = isActiveStreamer
+      ? `${ratePct}% für dich / ${100 - ratePct}% Plattform`
+      : "0% (Werde erst LVL 20 Streamer)";
+    document.getElementById("payStreamerEuro").textContent = `${streamerEuro.toFixed(2).replace('.',',')} €`;
+    document.getElementById("payPlatformEuro").textContent = `${platformEuro.toFixed(2).replace('.',',')} €`;
+
+    // Holo-Karte
     document.getElementById("cardEditionTag").textContent = mMeta.card;
     document.getElementById("cardPowerTxt").textContent = `⚡ POWER ${100 + lvl * 25 + (isActiveStreamer ? sLvl * 30 : 0)}`;
-    document.getElementById("cardDualRanks").textContent = isActiveStreamer
-      ? `[💎 LVL ${lvl}] • [👑 S-LVL ${sLvl}]`
-      : `Mitglieds-Rang LVL ${lvl}`;
-    document.getElementById("cardGlobalStatus").textContent = isActiveStreamer
-      ? "🔥 Im globalen Booster aller Nutzer!"
-      : "Nur im Profil & Raum-Tausch";
-    document.getElementById("cardPerkTxt").textContent = isActiveStreamer
-      ? "👑 Deine Karte kann jetzt von allen Fans im Holo-Booster gezogen werden!"
-      : "Erreiche LVL 20, damit deine Karte im Booster aller Nutzer landet!";
+    document.getElementById("cardDualRanks").textContent = isActiveStreamer ? `[💎 LVL ${lvl}] • [👑 S-LVL ${sLvl}]` : `Mitglieds-Rang LVL ${lvl}`;
+    document.getElementById("cardGlobalStatus").textContent = isActiveStreamer ? "🔥 Im globalen Booster!" : "Nur im Profil";
 
-    // Live-Studio Freischaltung (Ab LVL 5 offen)
+    // Live-Ansicht
     document.getElementById("lockCurrLvl").textContent = `LVL ${lvl}`;
     document.getElementById("liveLockedCard").style.display = canGoLive ? "none" : "block";
     document.getElementById("liveActiveContainer").style.display = canGoLive ? "block" : "none";
@@ -817,48 +1308,143 @@
       document.getElementById("liveRoleBadge").textContent = isActiveStreamer
         ? `👑 AKTIVER STREAMER (LVL ${lvl} • S-LVL ${sLvl})`
         : `🎥 Normaler Live-Host (LVL ${lvl} • 4er-Raum aktiv)`;
+      document.getElementById("liveSplitBadge").textContent = isActiveStreamer ? `${ratePct}% Payout-Split` : "50% XP-Hilfe bis LVL 20";
       document.getElementById("hostSlotTag").textContent = isActiveStreamer ? "👑 TOP HOST" : "🎥 DU (Host)";
 
       if (isActiveStreamer) {
         const sPct = Math.min(100, Math.round((state.streamerXp / reqS) * 100));
-        document.getElementById("liveBarLabel").textContent = `👑 Streamer-Balken (S-LVL ${sLvl} ➔ ${sLvl + 1})`;
-        document.getElementById("liveBarNums").textContent = `${state.streamerXp} / ${reqS} S-XP`;
+        document.getElementById("liveBarLabel").textContent = `👑 Streamer-Balken (S-LVL ${sLvl} ➔ ${sLvl + 1} • ${ratePct}% Payout)`;
+        document.getElementById("liveBarNums").textContent = `${state.streamerXp.toLocaleString("de-DE")} / ${reqS.toLocaleString("de-DE")} S-XP`;
         document.getElementById("liveTopBarFill").style.width = `${sPct}%`;
       } else {
         const mPct = Math.min(100, Math.round((state.memberXp / reqM) * 100));
         document.getElementById("liveBarLabel").textContent = `⚡ 50% Geschenk-XP helfen dir bis LVL 20 (Aktuell LVL ${lvl})`;
-        document.getElementById("liveBarNums").textContent = `${state.memberXp} / ${reqM} XP`;
+        document.getElementById("liveBarNums").textContent = `${state.memberXp.toLocaleString("de-DE")} / ${reqM.toLocaleString("de-DE")} XP`;
         document.getElementById("liveTopBarFill").style.width = `${mPct}%`;
       }
     }
 
-    // Geheimes Level-40-Geschenk
     document.getElementById("secretLvl40GiftBtn").style.display = lvl >= 40 ? "inline-flex" : "none";
-
-    // Produkt-Showcase & Live-Shopping Darstellung
     renderProductsAndLivePin();
   }
 
   /* =====================================================================
-     PRODUKTE VORSTELLEN & LIVE-SHOPPING (LVL 5 PIN vs. LVL 20 PRO-BANNER)
+     AUSZAHLUNG BEANTRAGEN & SCHNELLTEST-FUNKTIONEN
      ===================================================================== */
+  function requestPayout() {
+    if (state.memberLevel < VYBE_BALANCE_CONFIG.streamerUnlockLevel) {
+      showToast("🔒 Auszahlungen sind erst ab Mitglieds-Level 20 (Aktiver Streamer) möglich!");
+      return;
+    }
+    if (state.streamerLevel < VYBE_BALANCE_CONFIG.payoutSettings.minStreamerLevelForPayout) {
+      showToast("🔒 Du benötigst mindestens Streamer-Level S-LVL 5 für deine erste Auszahlung!");
+      return;
+    }
+    const rate = getStreamerPayoutRate(state.streamerLevel);
+    const streamerEuro = (state.receivedGiftCoins / 100) * rate;
+    if (streamerEuro < VYBE_BALANCE_CONFIG.payoutSettings.minPayoutEuro) {
+      showToast(`⚠️ Mindestbetrag für Auszahlungen ist 50,00 € (Aktuell: ${streamerEuro.toFixed(2).replace('.',',')} €).`);
+      return;
+    }
+    const paidOut = streamerEuro.toFixed(2).replace('.',',');
+    state.receivedGiftCoins = 0;
+    triggerGiftOverlay("💸", `${paidOut} € erfolgreich zur Auszahlung angewiesen!`);
+    updateAllUI();
+  }
+
+  function quickSetStreamer(targetSLvl) {
+    state.memberLevel = Math.max(20, state.memberLevel);
+    state.streamerLevel = targetSLvl;
+    state.streamerXp = 0;
+    const pct = Math.round(getStreamerPayoutRate(targetSLvl) * 100);
+    showToast(`🛠️ Test: LVL ${state.memberLevel} & S-LVL ${targetSLvl} aktiviert (${pct}% Streamer-Auszahlung)!`);
+    updateAllUI();
+  }
+
+  function simulateGiftIncome(coinsAmount) {
+    if (state.memberLevel < 20) {
+      state.memberLevel = 20;
+      if (state.streamerLevel < 5) state.streamerLevel = 5;
+    }
+    addStreamerXp(coinsAmount);
+  }
+
+  function toggleInfoModal(show) {
+    document.getElementById("infoModal").style.display = show ? "flex" : "none";
+  }
+
+  /* =====================================================================
+     NAVIGATION, SUCHE, SHOP & KAMERA
+     ===================================================================== */
+  function openView(viewName) {
+    document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+    const target = document.getElementById(`view-${viewName}`);
+    if (target) target.classList.add("active");
+
+    document.querySelectorAll(".left-sidebar .side-btn").forEach(b => b.classList.remove("active"));
+    const sideBtn = document.getElementById(`nav-${viewName}`);
+    if (sideBtn) sideBtn.classList.add("active");
+
+    if (viewName === "live" && state.memberLevel >= 20) {
+      showToast(`💎 VIP-EINZUG: ${state.memberLevel >= 50 ? "👑 IMMORTAL BOSS" : "👑 Aktiver Streamer"} betritt das 4er-Studio!`);
+      if (state.memberLevel >= 50) triggerGoldRain();
+    }
+  }
+
+  function handleQuickSearch(val) {
+    openView("search");
+    document.getElementById("mainSearchBox").value = val;
+    filterSearchList(val);
+  }
+
+  function renderLiveSearchGrid(list) {
+    const grid = document.getElementById("liveSearchGrid");
+    grid.innerHTML = list.map(r => `
+      <div class="live-room-card ${r.vip ? 'vip-host' : ''}">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span class="live-tag">🔴 GERADE LIVE • ${r.viewers} 👀</span>
+          <span style="font-size:0.7rem;color:var(--accent);font-weight:800;">${r.code}</span>
+        </div>
+        <div style="font-weight:900;font-size:0.88rem;margin-top:4px;">
+          ${r.vip ? '👑 ' : '🎥 '}${r.host} <span style="font-size:0.72rem;color:var(--muted);">(LVL ${r.lvl}${r.sLvl ? ' • S-LVL '+r.sLvl : ''})</span>
+        </div>
+        <div style="font-size:0.76rem;color:var(--text);">${r.title}</div>
+        <button class="btn ${r.vip ? 'gold' : 'secondary'} full" style="margin-top:6px;padding:7px;" onclick="joinSearchedRoom('${r.host}', '${r.code}')">
+          ⚡ In 4er-Raum einsteigen
+        </button>
+      </div>
+    `).join("");
+  }
+
+  function filterSearchList(query) {
+    const q = query.toLowerCase().trim();
+    renderLiveSearchGrid(liveRoomsData.filter(r =>
+      r.host.toLowerCase().includes(q) || r.title.toLowerCase().includes(q) || r.code.toLowerCase().includes(q)
+    ));
+  }
+
+  function filterSearchCategory(cat, btn) {
+    btn.parentElement.querySelectorAll(".mood-chip").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderLiveSearchGrid(cat === "all" || cat === "live" ? liveRoomsData : liveRoomsData.filter(r => r.cat === cat));
+  }
+
+  function joinSearchedRoom(host, code) {
+    document.getElementById("roomCodeTxt").textContent = code;
+    openView("live");
+    showToast(`🔴 Verbunden mit 4er-Raum ${code} von ${host}!`);
+  }
+
   function renderProductsAndLivePin() {
     const lvl = state.memberLevel;
     const isActiveStreamer = lvl >= VYBE_BALANCE_CONFIG.streamerUnlockLevel;
     const canSell = lvl >= VYBE_BALANCE_CONFIG.liveUnlockLevel;
 
-    const badge = document.getElementById("shopLimitBadge");
-    if (!canSell) {
-      badge.textContent = "🔒 Ab LVL 5 (Max. 3)";
-    } else if (!isActiveStreamer) {
-      badge.textContent = `✅ Basis-Shop (${state.products.length}/3 Produkte)`;
-    } else {
-      badge.textContent = `👑 Pro-Live-Shop (${state.products.length}/∞ Produkte)`;
-    }
+    document.getElementById("shopLimitBadge").textContent = !canSell
+      ? "🔒 Ab LVL 5 (Max. 3)"
+      : (!isActiveStreamer ? `✅ Basis-Shop (${state.products.length}/3)` : `👑 Pro-Shop (${state.products.length}/∞)`);
 
-    // Produktliste im Profil
-    const listEl = document.getElementById("productListArea");
-    listEl.innerHTML = state.products.map((p, idx) => `
+    document.getElementById("productListArea").innerHTML = state.products.map((p, idx) => `
       <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,0.05);border-radius:10px;margin-bottom:6px;font-size:0.78rem;">
         <div><strong>🛍️ ${p.name}</strong> — <span style="color:#ffd700;">${p.price}</span></div>
         <button class="btn secondary" style="padding:4px 8px;font-size:0.68rem;" onclick="pinProduct(${idx})">
@@ -867,27 +1453,21 @@
       </div>
     `).join("");
 
-    // Live-Stream Produkt-Einblendung
     const pinArea = document.getElementById("liveProductPinArea");
     const activeProd = state.products[state.pinnedProductIdx];
-    if (!canSell || !activeProd) {
-      pinArea.innerHTML = "";
-      return;
-    }
+    if (!canSell || !activeProd) { pinArea.innerHTML = ""; return; }
 
     if (isActiveStreamer) {
-      // LEVEL 20+: Großes Pro-Live-Shopping Flash-Banner mit Countdown & Direktkauf
       pinArea.innerHTML = `
         <div class="pro-flash-banner">
           <div>
-            <div style="font-size:0.66rem;font-weight:900;color:#ffd700;">👑 PRO LIVE-SHOPPING FLASH-DEAL • +500 S-XP BEI KAUF</div>
+            <div style="font-size:0.65rem;font-weight:900;color:#ffd700;">👑 PRO LIVE-SHOPPING FLASH-DEAL • +500 S-XP BEI KAUF</div>
             <div style="font-size:0.86rem;font-weight:900;">🔥 ${activeProd.name} — <span style="color:#ffd700;">${activeProd.price}</span></div>
           </div>
           <button class="btn gold" style="padding:7px 11px;font-size:0.74rem;" onclick="simulateProductSale()">🛒 Jetzt kaufen</button>
         </div>
       `;
     } else {
-      // LEVEL 5–19: Kompakter Pin-Link unten im Live-Raum
       pinArea.innerHTML = `
         <div class="live-pin-bar">
           <span>📌 <strong>Host-Produkt (Basis):</strong> ${activeProd.name} (${activeProd.price})</span>
@@ -904,78 +1484,78 @@
     }
     const isPro = state.memberLevel >= VYBE_BALANCE_CONFIG.streamerUnlockLevel;
     if (!isPro && state.products.length >= 3) {
-      showToast("ℹ️ Normale Live-Hosts (LVL 5–19) können max. 3 Produkte anlegen. Ab LVL 20 unbegrenzt!");
+      showToast("ℹ️ Normale Hosts (LVL 5–19) können max. 3 Produkte anlegen. Ab LVL 20 unbegrenzt!");
       return;
     }
-    const name = document.getElementById("prodNameInp").value.trim() || "VYBE Creator Merch";
-    const price = document.getElementById("prodPriceInp").value.trim() || "19,90 €";
+    const name = document.getElementById("prodNameInp").value.trim() || "VYBE Creator Hoodie";
+    const price = document.getElementById("prodPriceInp").value.trim() || "29,90 €";
     state.products.push({ name, price });
     state.pinnedProductIdx = state.products.length - 1;
     document.getElementById("prodNameInp").value = "";
     document.getElementById("prodPriceInp").value = "";
-    showToast(`🛍️ "${name}" hinzugefügt & im Live-Raum gepinnt!`);
+    showToast(`🛍️ "${name}" angelegt & im Stream gepinnt!`);
     updateAllUI();
   }
 
   function pinProduct(idx) {
     state.pinnedProductIdx = idx;
-    showToast("📌 Produkt im Live-Stream angepinnt!");
+    showToast("📌 Produkt für deinen Live-Stream angepinnt!");
     updateAllUI();
   }
 
   function simulateProductSale() {
     const prod = state.products[state.pinnedProductIdx];
     const isPro = state.memberLevel >= VYBE_BALANCE_CONFIG.streamerUnlockLevel;
-    const provisionCoins = isPro ? 300 : 120;
-    state.coins += provisionCoins;
     if (isPro) {
       addStreamerXp(500);
-      showToast(`🛍️ Flash-Deal verkauft (${prod.name})! +${provisionCoins} 🪙 Provision & +500 Streamer-XP!`);
+      showToast(`🛍️ Flash-Deal verkauft (${prod.name})! +500 Geschenk-Coins in deinen Payout-Tresor!`);
     } else {
       addMemberXp(100, false);
-      showToast(`🛍️ Produkt verkauft (${prod.name})! +${provisionCoins} 🪙 & +100 XP Richtung LVL 20!`);
+      showToast(`🛍️ Produkt verkauft (${prod.name})! +100 XP Richtung LVL 20!`);
     }
     updateAllUI();
   }
 
-  /* =====================================================================
-     LIVE-GESCHENKE, COINS, BOOSTER & INTERAKTIONEN
-     ===================================================================== */
+  function switchProfileSubTab(sub) {
+    ["payout", "shop", "clips", "orders"].forEach(k => {
+      document.getElementById(`profSub-${k}`).style.display = k === sub ? "block" : "none";
+    });
+    document.getElementById("pTabPayoutBtn").className = sub === "payout" ? "btn gold" : "btn secondary";
+    document.getElementById("pTabShopBtn").className = sub === "shop" ? "btn" : "btn secondary";
+    document.getElementById("pTabClipsBtn").className = sub === "clips" ? "btn" : "btn secondary";
+    document.getElementById("pTabOrdersBtn").className = sub === "orders" ? "btn" : "btn secondary";
+  }
+
   function sendGift(name, costCoins, emoji) {
     if (state.coins < costCoins) {
-      showToast(`⚠️ Nicht genug Coins für ${name} (${costCoins} 🪙 benötigt). Lade im Club-Tab auf!`);
+      showToast(`⚠️ Nicht genug Coins für ${name} (${costCoins} 🪙). Lade im Club auf!`);
       return;
     }
     state.coins -= costCoins;
-    // Match-Punkte im 4er-Raum erhöhen (Level 20 Streamer bekommen 2x Match-Punkte!)
     const mult = state.memberLevel >= 20 ? 2 : 1;
     const scoreEl = document.getElementById("matchScore1");
     const currScore = parseInt(scoreEl.textContent.replace(/\./g, ""), 10) || 0;
     scoreEl.textContent = (currScore + costCoins * mult).toLocaleString("de-DE");
-
     triggerGiftOverlay(emoji, `${name} gesendet! (+${costCoins} XP)`);
-    addMemberXp(costCoins, false); // 1 ausgegebener Coin = 1 XP
+    addMemberXp(costCoins, false);
   }
 
-  function receiveViewerGift(giftCoins, giftTitle) {
+  function receiveViewerGift(giftCoins) {
     const scoreEl = document.getElementById("matchScore1");
     const currScore = parseInt(scoreEl.textContent.replace(/\./g, ""), 10) || 0;
     scoreEl.textContent = (currScore + giftCoins).toLocaleString("de-DE");
     addStreamerXp(giftCoins);
   }
 
-  function buyCoins(amount, euroLabel) {
+  function buyCoins(amount, label) {
     state.coins += amount;
-    showToast(`💳 ${euroLabel} Paket geladen: +${amount.toLocaleString("de-DE")} Coins gutgeschrieben!`);
+    showToast(`💳 ${label} geladen: +${amount.toLocaleString("de-DE")} Coins zum Verschenken!`);
     updateAllUI();
   }
 
-  function openHoloBooster(isFreeTest) {
-    if (!isFreeTest) {
-      if (state.coins < 250) {
-        showToast("⚠️ Du brauchst 250 Coins für einen Holo-Booster!");
-        return;
-      }
+  function openHoloBooster(isFree) {
+    if (!isFree) {
+      if (state.coins < 250) { showToast("⚠️ 250 Coins benötigt!"); return; }
       state.coins -= 250;
       addMemberXp(250, false);
     } else {
@@ -994,10 +1574,7 @@
   }
 
   function spinNeonVault() {
-    if (state.vaultSpunToday) {
-      showToast("🎰 Du hast den täglichen Neon-Tresor heute schon geöffnet!");
-      return;
-    }
+    if (state.vaultSpunToday) { showToast("🎰 Heute bereits gedreht!"); return; }
     state.vaultSpunToday = true;
     const win = [500, 750, 1200, 3000][Math.floor(Math.random() * 4)];
     state.coins += win;
@@ -1006,162 +1583,99 @@
   }
 
   function playPauseDuel() {
-    const win = Math.random() > 0.25;
-    if (win) {
+    if (Math.random() > 0.25) {
       state.coins += 250;
-      showToast("⚔️ Duell gegen den Club-Bot gewonnen! +250 Coins!");
+      showToast("⚔️ Duell gewonnen! +250 Coins!");
     } else {
-      showToast("⚔️ Knapp verloren! Versuch es gleich nochmal.");
+      showToast("⚔️ Knapp verloren! Nochmal versuchen.");
     }
     updateAllUI();
   }
 
-  /* =====================================================================
-     FEED, KAMERA & STUDIO HELFER
-     ===================================================================== */
   function triggerShockwaveBoost() {
     const ring = document.getElementById("shockRing");
     ring.classList.remove("boom");
     void ring.offsetWidth;
     ring.classList.add("boom");
-
     document.getElementById("feedVybeMeter").textContent = "100%";
     state.coins += 50;
     addMemberXp(10, true);
-    showToast("⚡ VYBE-Shockwave ausgelöst! +50 Coins & +10 XP!");
+    showToast("⚡ VYBE-Shockwave! +50 Coins & +10 XP!");
     updateAllUI();
   }
 
   function nextFeedVideo() {
     currentClipIdx = (currentClipIdx + 1) % feedClips.length;
-    const clip = feedClips[currentClipIdx];
-    document.getElementById("feedVisual").textContent = clip.emoji;
-    document.getElementById("feedCreatorBadge").textContent = clip.creator;
-    document.getElementById("feedTitle").textContent = clip.title;
-    document.getElementById("feedVybeMeter").textContent = clip.vybe + "%";
+    const c = feedClips[currentClipIdx];
+    document.getElementById("feedVisual").textContent = c.emoji;
+    document.getElementById("feedCreatorBadge").textContent = c.creator;
+    document.getElementById("feedTitle").textContent = c.title;
+    document.getElementById("feedVybeMeter").textContent = c.vybe + "%";
   }
 
-  function sendChatComment() {
-    addMemberXp(5, true);
-    showToast("💬 Kommentar gepostet! (+5 Fleiß-XP)");
-  }
-
-  function uploadCustomVideo(e) {
-    if (e.target.files && e.target.files[0]) {
-      showToast(`📤 Clip "${e.target.files[0].name}" erfolgreich in den Feed geladen!`);
-    }
-  }
-
-  function setStudioMode(mode) {
-    document.getElementById("btnModeCam").classList.toggle("active", mode === "cam");
-    document.getElementById("btnModeLive").classList.toggle("active", mode === "live");
-    document.getElementById("studioCamSection").style.display = mode === "cam" ? "block" : "none";
-    document.getElementById("studioLiveSection").style.display = mode === "live" ? "block" : "none";
-
-    // Einzugs-Banner ab Level 20 & Gold-Regen ab Level 50 beim Betreten des Live-Raums
-    if (mode === "live" && state.memberLevel >= 20) {
-      showToast(`💎 ELITE-VIP EINZUG: ${state.memberLevel >= 50 ? "👑 IMMORTAL BOSS" : "👑 Aktiver Streamer"} hat den 4er-Raum betreten!`);
-      if (state.memberLevel >= 50) triggerGoldRain();
-    }
-  }
-
-  function setMask(emoji) {
-    document.getElementById("maskOverlay").textContent = emoji;
-  }
-
+  function sendChatComment() { addMemberXp(5, true); showToast("💬 Kommentar gepostet (+5 XP)"); }
+  function uploadCustomVideo(e) { if (e.target.files[0]) showToast(`📤 Clip "${e.target.files[0].name}" hochgeladen!`); }
+  function setMask(emoji) { document.getElementById("maskOverlay").textContent = emoji; }
   function selectDuration(btn, label) {
     btn.parentElement.querySelectorAll(".mood-chip").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    showToast(`🎞️ Kamera-Modus auf "${label}" gestellt.`);
+    showToast(`🎞️ Modus: ${label}`);
   }
-
   function cycleCamFilter() {
-    const filters = ["none", "hue-rotate(90deg)", "contrast(1.35) saturate(1.6)", "sepia(0.7)", "invert(0.15)", "brightness(1.2) saturate(1.8)"];
+    const filters = ["none", "hue-rotate(90deg)", "contrast(1.35) saturate(1.6)", "sepia(0.7)", "invert(0.15)"];
     state.camFilterIdx = (state.camFilterIdx + 1) % filters.length;
     document.getElementById("camStage").style.filter = filters[state.camFilterIdx];
-    showToast(`🎨 KI-Farbfilter #${state.camFilterIdx + 1} aktiviert!`);
   }
-
   async function startCameraPreview() {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-      const video = document.getElementById("camPreview");
-      video.srcObject = stream;
+      const s = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+      document.getElementById("camPreview").srcObject = s;
       document.getElementById("camFallback").style.display = "none";
-      showToast("📷 Live-Kamera aktiv!");
-    } catch (err) {
-      showToast("📸 Kamera-Simulation aktiv (Clip gespeichert!)");
-    }
+      showToast("📷 Kamera aktiv!");
+    } catch (e) { showToast("📸 Kamera-Simulation aktiv!"); }
   }
-
   function inviteCoHost() {
     document.getElementById("slot4Emoji").textContent = "🐯";
     document.getElementById("slot4Text").textContent = "@TigerWave (LVL 14)";
     document.getElementById("matchScore4").textContent = "620";
-    showToast("🎙️ @TigerWave ist über Raum-Code #4829 in deinen 4er-Raum eingestiegen!");
+    showToast("🎙️ @TigerWave ist über Code #4829 in dein 4er-Match eingestiegen!");
   }
-
-  /* =====================================================================
-     NAVIGATION, MOODS & SCHNELLTEST-FUNKTIONEN
-     ===================================================================== */
-  function setMood(moodName, btn) {
-    document.documentElement.setAttribute("data-mood", moodName);
+  function setMood(mood, btn) {
+    document.documentElement.setAttribute("data-mood", mood);
     document.querySelectorAll("#moodBar .mood-chip").forEach(b => b.classList.remove("active"));
     if (btn) btn.classList.add("active");
   }
-
-  function switchTab(tabId, navBtn) {
-    document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
-    document.getElementById(`view-${tabId}`).classList.add("active");
-    if (navBtn) {
-      document.querySelectorAll(".bottom-nav .nav-item").forEach(b => b.classList.remove("active"));
-      navBtn.classList.add("active");
-    } else {
-      const idxMap = { feed: 0, studio: 1, club: 2, profile: 3 };
-      const navItems = document.querySelectorAll(".bottom-nav .nav-item");
-      navItems.forEach(b => b.classList.remove("active"));
-      if (navItems[idxMap[tabId]]) navItems[idxMap[tabId]].classList.add("active");
-    }
-  }
-
-  function quickSetLevel(targetLvl) {
-    state.memberLevel = targetLvl;
+  function quickSetLevel(lvl) {
+    state.memberLevel = lvl;
     state.memberXp = 0;
-    if (targetLvl < 20) {
-      state.streamerLevel = 1;
-      state.streamerXp = 0;
-    }
-    if (targetLvl === 50) {
-      triggerGoldRain();
-    }
-    showToast(`🛠️ Test-Modus: Mitglieds-Level direkt auf LVL ${targetLvl} gesetzt!`);
+    if (lvl < 20) { state.streamerLevel = 1; state.streamerXp = 0; }
+    if (lvl === 50) triggerGoldRain();
+    showToast(`🛠️ Test: Mitglieds-Level auf LVL ${lvl} gesetzt!`);
     updateAllUI();
   }
-
   function showToast(msg) {
     const t = document.getElementById("toastBanner");
     t.textContent = msg;
     t.style.display = "block";
-    clearTimeout(window._toastTimer);
-    window._toastTimer = setTimeout(() => { t.style.display = "none"; }, 3200);
+    clearTimeout(window._tTimer);
+    window._tTimer = setTimeout(() => { t.style.display = "none"; }, 3200);
   }
-
   function triggerGiftOverlay(emoji, text) {
     const fx = document.getElementById("giftFx");
     document.getElementById("giftFxEmoji").textContent = emoji;
     document.getElementById("giftFxText").textContent = text;
     fx.style.display = "flex";
-    clearTimeout(window._giftTimer);
-    window._giftTimer = setTimeout(() => { fx.style.display = "none"; }, 1800);
+    clearTimeout(window._gTimer);
+    window._gTimer = setTimeout(() => { fx.style.display = "none"; }, 1900);
   }
-
   function triggerGoldRain() {
-    const rain = document.getElementById("goldRain");
-    rain.style.display = "block";
-    setTimeout(() => { rain.style.display = "none"; }, 4000);
+    const r = document.getElementById("goldRain");
+    r.style.display = "block";
+    setTimeout(() => { r.style.display = "none"; }, 4000);
   }
 
-  // Initialer Start bei Level 1
+  // Start-Initialisierung
+  renderLiveSearchGrid(liveRoomsData);
   updateAllUI();
 </script>
 </body>
