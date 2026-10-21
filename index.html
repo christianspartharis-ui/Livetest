@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>VYBE — Short Video & Live Club</title>
+  <title>VYBE — Short Video & Multi-Live Club</title>
   <style>
     /* =========================================================
        1. 10 MOOD-FARBWELTEN (MIT SANFTEN GLOWS STATT GRELLER RAHMEN)
@@ -268,7 +268,6 @@
 
     .rail-spacer { flex: 1; }
 
-    /* Dynamischer Hauptbereich – skaliert automatisch mit der Handybreite */
     .stage-area {
       flex: 1;
       height: 100%;
@@ -478,7 +477,6 @@
       overflow: hidden;
     }
 
-    /* Sanfter interner Schimmer statt grellem Rahmen für besondere Karten */
     .clean-card.soft-gold {
       background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.09), transparent 55%),
                   linear-gradient(155deg, rgba(28, 30, 42, 0.92), rgba(16, 18, 27, 0.95));
@@ -537,7 +535,7 @@
     .input:focus { border-color: rgba(255,255,255,0.22); }
 
     /* =========================================================
-       6. KAMERA-STUDIO & LIVE-RAUM (GROSS & MIT ECHTER KAMERA + MIKRO)
+       6. KAMERA-STUDIO & LIVE-RAUM (ALLEINE ODER MULTI-LIVE BIS 8 LEUTE)
        ========================================================= */
     .cam-stage-large {
       position: relative;
@@ -554,7 +552,6 @@
       overflow: hidden;
       margin-bottom: 10px;
     }
-    /* WICHTIG: Video absolut positioniert, damit es den Platzhalter nicht zur Seite schiebt! */
     .cam-stage-large video {
       position: absolute;
       inset: 0;
@@ -600,33 +597,54 @@
       gap: 5px;
     }
 
-    /* Größeres 4er-Multi-Live Grid */
-    .multi-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 8px;
-      width: 100%;
-      height: calc(100dvh - clamp(260px, 38dvh, 320px));
-      min-height: 320px;
-      max-height: 580px;
+    /* Umschalter: Alleine Live vs. Multi-Live (bis zu 8 Leute) */
+    .live-mode-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 8px 10px;
       margin-bottom: 10px;
     }
+    .live-mode-pills { display: flex; gap: 5px; flex-wrap: wrap; }
+
+    /* Dynamisches Live-Bühnen-Grid für 1 (Solo), 2, 4 oder 8 Personen gleichzeitig! */
+    .multi-grid {
+      display: grid;
+      gap: 7px;
+      width: 100%;
+      height: calc(100dvh - clamp(250px, 36dvh, 310px));
+      min-height: 340px;
+      max-height: 620px;
+      margin-bottom: 10px;
+    }
+    .multi-grid.slots-1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+    .multi-grid.slots-2 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+    .multi-grid.slots-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+    .multi-grid.slots-8 { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr 1fr; }
+    @media (max-width: 520px) {
+      .multi-grid.slots-8 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); height: calc(100dvh - 210px); min-height: 420px; }
+    }
+
     .multi-slot {
       position: relative;
-      border-radius: 16px;
-      background: rgba(8, 10, 16, 0.75);
+      border-radius: 15px;
+      background: rgba(8, 10, 16, 0.78);
       border: 1px solid var(--border-highlight);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 8px;
+      padding: 6px;
       text-align: center;
       overflow: hidden;
     }
     .multi-slot.host-vip {
-      background: radial-gradient(circle at center, var(--accent-soft), rgba(8, 10, 16, 0.85));
+      background: radial-gradient(circle at center, var(--accent-soft), rgba(8, 10, 16, 0.88));
     }
     .multi-slot video {
       position: absolute;
@@ -637,11 +655,11 @@
       z-index: 1;
     }
     .slot-content-overlay { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
-    .slot-tag { position: absolute; top: 7px; left: 7px; z-index: 3; font-size: 0.62rem; font-weight: 800; background: rgba(0,0,0,0.7); padding: 2px 7px; border-radius: 6px; }
-    .slot-score { position: absolute; bottom: 7px; left: 7px; z-index: 3; font-size: 0.64rem; font-weight: 800; color: #ffd700; background: rgba(0,0,0,0.7); padding: 2px 7px; border-radius: 6px; }
+    .slot-tag { position: absolute; top: 6px; left: 6px; z-index: 3; font-size: 0.58rem; font-weight: 800; background: rgba(0,0,0,0.72); padding: 2px 6px; border-radius: 5px; }
+    .slot-score { position: absolute; bottom: 6px; left: 6px; z-index: 3; font-size: 0.6rem; font-weight: 800; color: #ffd700; background: rgba(0,0,0,0.72); padding: 2px 6px; border-radius: 5px; }
 
     /* =========================================================
-       7. PROFIL, HOLO-KARTE (EDEL OHNE GRELLEN RAHMEN) & 3 MEDIATHEK-TABS UNTEN
+       7. PROFIL, HOLO-KARTE & 3 MEDIATHEK-TABS UNTEN
        ========================================================= */
     .prof-av-wrap {
       width: clamp(48px, 7vw, 58px);
@@ -691,7 +709,6 @@
     .xp-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 99px; transition: width 0.35s ease; }
     .xp-bar-fill.streamer { background: linear-gradient(90deg, #ffd700, #ff2a5f); }
 
-    /* Dezente Holo-Karte ohne grellen grünen Rahmen */
     .holo-card {
       position: relative;
       border-radius: 16px;
@@ -713,7 +730,7 @@
       display: inline-block;
     }
 
-    /* NEU: 3 MEDIATHEK-TABS UNTEN IM PROFIL (VIDEOS / GESPEICHERT / FAVORITEN) */
+    /* 3 Mediathek-Tabs unten im Profil */
     .media-tabs-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -810,7 +827,6 @@
     .gift-fx .big-emoji { font-size: 5.2rem; }
     .gold-rain { position: fixed; inset: 0; pointer-events: none; z-index: 230; display: none; background: radial-gradient(circle, rgba(255,215,0,0.28), transparent 70%); }
 
-    /* Spezielle Anpassungen für sehr schmale Handys (< 380px) */
     @media (max-width: 380px) {
       .brand-sub { display: none; }
       .subtab-bar { grid-template-columns: repeat(2, 1fr); }
@@ -838,8 +854,8 @@
       </div>
       <div style="font-size:0.74rem;color:var(--muted);line-height:1.45;display:flex;flex-direction:column;gap:8px;">
         <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:12px;">
-          <strong style="color:#fff;">🚀 Ab Level 5 live gehen & Produkte pinnen:</strong><br/>
-          Starte auf Level 1 und schalte ab Level 5 (1.000 XP) den 4er-Multi-Raum, 4er-Matches und bis zu 3 Shop-Produkte frei. Zwischen Level 5 und 19 zählen 50 % deiner empfangenen Geschenke für deinen Aufstieg auf Level 20!
+          <strong style="color:#fff;">🚀 Ab Level 5: Alleine Live oder Multi-Live (bis zu 8 Leute!):</strong><br/>
+          Starte auf Level 1 und schalte ab Level 5 (1.000 XP) dein Live-Studio frei: Entscheide flexibel, ob du <strong>alleine live</strong> gehst oder ein <strong>Multi-Live mit bis zu 8 Personen gleichzeitig</strong> startest (inkl. 3 Shop-Produkten)!
         </div>
         <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:12px;">
           <strong style="color:#fff;">🎰 Neon-Tresor (3× täglich) & Watch-to-Earn:</strong><br/>
@@ -851,9 +867,9 @@
           Lädst du einen neuen Nutzer ein, bekommt ihr <strong>beide sofort 400 Coins</strong>. Erreicht dein eingeladener Freund <strong>Level 15</strong>, bekommst du noch einmal <strong>1.000 Coins Bonus</strong>!
         </div>
         <div style="background:rgba(255,215,0,0.06);padding:10px;border-radius:12px;">
-          <strong style="color:#ffd700;">👑 Streamer-Umwandlung (Freie Entscheidung):</strong><br/>
-          Empfangene Geschenk-Coins kannst du komplett behalten oder in den Einstellungen (`⚙`) umwandeln:<br/>
-          • <strong>S-LVL 1–10:</strong> 85 % für Streamer • <strong>S-LVL 11–30:</strong> 70 % • <strong>S-LVL 31–40:</strong> 60 % • <strong>S-LVL 41–50:</strong> 50 %
+          <strong style="color:#ffd700;">👑 Auszahlung nur für direkte Streamer (Freie Entscheidung):</strong><br/>
+          Normale App-Coins sind zum Boosten & Schenken. Wer ab <strong>Level 20 als direkter Streamer</strong> live geht und durch Zuschauer-Geschenke mindestens <strong>S-LVL 5</strong> erreicht, kann seine empfangenen Geschenk-Coins frei umwandeln:<br/>
+          • <strong>S-LVL 1–10:</strong> 85 % • <strong>S-LVL 11–30:</strong> 70 % • <strong>S-LVL 31–40:</strong> 60 % • <strong>S-LVL 41–50:</strong> 50 %
         </div>
       </div>
       <button class="btn full" style="margin-top:12px;" onclick="toggleInfoModal(false); openView('club');">🎰 Direkt zum Tresor & Club</button>
@@ -894,7 +910,7 @@
       <button class="rail-btn" id="rail-search" onclick="openView('search')" title="Suchen & Gerade Live">⚲</button>
       <button class="rail-btn" id="rail-camera" onclick="openView('camera')" title="Kamera-Studio">+</button>
       <button class="rail-btn" id="rail-club" onclick="openView('club')" title="Club, Tresor & Booster">♣</button>
-      <button class="rail-btn" id="rail-live" onclick="openView('live')" title="Live & 4er-Raum">
+      <button class="rail-btn" id="rail-live" onclick="openView('live')" title="Solo- & 8er-Multi-Live">
         <span style="color:#ff2a5f;font-size:1.35rem;">•</span>
       </button>
       <div class="rail-spacer"></div>
@@ -913,7 +929,7 @@
             <button class="feed-tab" onclick="switchFeedMode(this, 'Abonniert')">Abonniert</button>
           </div>
           <div class="daily-mix-pill" onclick="nextFeedClip()">
-            <span class="g-dot"></span> <span id="feedWatchMiniTxt">DAILY MIX (0/10)</span>
+            <span class="g-dot"></span> <span id="feedWatchMiniTxt">DAILY MIX (4/10)</span>
           </div>
         </div>
 
@@ -967,9 +983,9 @@
         <div class="clean-card">
           <div class="clean-title">
             <span>⚲ Creator, #RaumCode & Gerade-Live</span>
-            <span style="font-size:0.7rem;color:var(--accent);">Echtzeit-Suche</span>
+            <span style="font-size:0.7rem;color:var(--accent);">Solo & 8er-Multi-Live</span>
           </div>
-          <input type="text" class="input" placeholder="Suche nach @Name, #4829, 4er-Match oder Live-Shop..." oninput="filterSearchRooms(this.value)" />
+          <input type="text" class="input" placeholder="Suche nach @Name, #4829, Solo-Live oder 8er-Multi-Live..." oninput="filterSearchRooms(this.value)" />
           <div id="searchLiveList" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(155px, 1fr));gap:8px;"></div>
         </div>
       </section>
@@ -984,7 +1000,6 @@
             <span style="font-size:0.7rem;color:var(--accent);" id="camPermStatusTxt">Ab LVL 1 frei</span>
           </div>
 
-          <!-- Großes Kamerafenster (passt sich automatisch der Displayhöhe an) -->
           <div id="camStage" class="cam-stage-large">
             <video id="camPreview" autoplay playsinline muted></video>
             <div id="micBadgeCam" class="mic-indicator">🎙️ Kamera & Mikro aktiv</div>
@@ -995,7 +1010,7 @@
             <div id="camMaskEmoji" class="cam-mask-layer"></div>
           </div>
 
-          <!-- ANGEPASSTE LEISTE: 15 Sek. | 30 Sek. | Foto | Text (ohne 10 Min.) -->
+          <!-- LEISTE: 15 Sek. | 30 Sek. | Foto | Text -->
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
             <button class="mood-pill active" onclick="selectCamMode(this, '15 Sek.')">15 Sek.</button>
             <button class="mood-pill" onclick="selectCamMode(this, '30 Sek.')">30 Sek.</button>
@@ -1020,27 +1035,28 @@
       </section>
 
       <!-- =====================================================
-           4. LIVE & 4ER-MULTI-RAUM (•): GRÖSSER & MIT LIVE-KAMERA IM HOST-SLOT
+           4. LIVE-STUDIO (•): WÄHLE ZWISCHEN ALLEINE LIVE ODER MULTI-LIVE (BIS ZU 8 LEUTE!)
            ===================================================== -->
       <section id="view-live" class="view">
         <div id="liveLockedNotice" class="clean-card" style="text-align:center;">
           <div style="font-size:2.2rem;margin-bottom:4px;">🔒</div>
-          <h3 style="font-size:0.95rem;margin-bottom:6px;">Live & 4er-Räume ab Level 5!</h3>
+          <h3 style="font-size:0.95rem;margin-bottom:6px;">Solo-Live & 8er-Multi-Live ab Level 5!</h3>
           <p style="font-size:0.74rem;color:var(--muted);margin-bottom:12px;">
-            Du bist aktuell <strong id="liveLockLvlTxt">LVL 1</strong>. Ab Level 5 (1.000 XP) schaltest du Solo-Live, 4er-Matches und 3 Shop-Produkte frei!
+            Du bist aktuell <strong id="liveLockLvlTxt">LVL 1</strong>. Ab Level 5 (1.000 XP) kannst du frei einstellen, ob du <strong>alleine live</strong> gehst oder ein <strong>Multi-Live mit bis zu 8 Leuten gleichzeitig</strong> startest!
           </p>
           <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;">
-            <button class="btn" onclick="quickSetLevel(5)">⚡ Schnelltest: LVL 5 (Live)</button>
-            <button class="btn gold" onclick="quickSetLevel(20)">👑 Schnelltest: LVL 20 (Streamer)</button>
+            <button class="btn" onclick="quickSetLevel(5)">⚡ Schnelltest: LVL 5 (Live frei)</button>
+            <button class="btn gold" onclick="quickSetLevel(20)">👑 Schnelltest: LVL 20 (Direkter Streamer)</button>
           </div>
         </div>
 
         <div id="liveStudioActive" style="display:none;">
+          <!-- Kopfbereich im Live-Studio -->
           <div class="clean-card" style="padding:11px 14px;">
             <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.74rem;flex-wrap:wrap;gap:6px;">
-              <strong id="liveRoleHeader" style="color:var(--accent);">🎥 Normaler Live-Host (LVL 5+)</strong>
+              <strong id="liveRoleHeader" style="color:var(--accent);">🎥 Live-Host (LVL 5+)</strong>
               <div style="display:flex;gap:6px;align-items:center;">
-                <button class="btn secondary" style="padding:4px 8px;font-size:0.66rem;" onclick="requestCameraAndMic()">📷🎙️ Live-Cam an</button>
+                <button class="btn secondary" style="padding:4px 8px;font-size:0.66rem;" onclick="requestCameraAndMic()">📷🎙️ Cam & Mic an</button>
                 <span style="color:var(--muted);">Code: <strong style="color:#fff;" id="roomCodeTxt">#4829</strong></span>
               </div>
             </div>
@@ -1053,42 +1069,19 @@
             </div>
           </div>
 
-          <!-- Großer 4er-Raum Splitscreen (Mit echtem Kamerabild in deinem Slot 1) -->
-          <div class="multi-grid">
-            <div class="multi-slot host-vip">
-              <video id="liveHostVideo" autoplay playsinline muted></video>
-              <span class="slot-tag" id="hostSlotTag">🎥 DU (Host)</span>
-              <div class="slot-content-overlay" id="hostAvatarFallback">
-                <div style="font-size:2.1rem;">😎</div>
-                <div style="font-size:0.74rem;font-weight:800;margin-top:3px;" id="liveHostNameTxt">Mila Moves</div>
-              </div>
-              <span class="slot-score">🔥 <span id="matchScore1">1.250</span> Pkt</span>
-            </div>
-            <div class="multi-slot">
-              <span class="slot-tag">⚔️ Slot 2</span>
-              <div class="slot-content-overlay">
-                <div style="font-size:1.9rem;">🦊</div>
-                <div style="font-size:0.72rem;font-weight:700;">@CyberFox (LVL 18)</div>
-              </div>
-              <span class="slot-score">🔥 940 Pkt</span>
-            </div>
-            <div class="multi-slot">
-              <span class="slot-tag">⚔️ Slot 3</span>
-              <div class="slot-content-overlay">
-                <div style="font-size:1.9rem;">🎧</div>
-                <div style="font-size:0.72rem;font-weight:700;">@DJ_Vibe (LVL 25)</div>
-              </div>
-              <span class="slot-score">🔥 1.110 Pkt</span>
-            </div>
-            <div class="multi-slot" onclick="inviteCoHost()" style="cursor:pointer;">
-              <span class="slot-tag">➕ Co-Host</span>
-              <div class="slot-content-overlay">
-                <div style="font-size:1.8rem;" id="slot4Emoji">➕</div>
-                <div style="font-size:0.7rem;color:var(--muted);" id="slot4Text">Per Code #4829 einladen</div>
-              </div>
-              <span class="slot-score">🔥 <span id="matchScore4">0</span> Pkt</span>
+          <!-- NEU: EINSTELLUNG OB ALLEINE LIVE ODER MULTI-LIVE (BIS ZU 8 LEUTE GLEICHZEITIG) -->
+          <div class="live-mode-bar">
+            <span style="font-size:0.72rem;font-weight:800;color:#fff;">📡 Live-Modus wählen:</span>
+            <div class="live-mode-pills" id="liveSlotCountBar">
+              <button class="mood-pill" onclick="setLiveSlotCount(1, this)">👤 Alleine Live (Solo)</button>
+              <button class="mood-pill" onclick="setLiveSlotCount(2, this)">👥 2er Duo</button>
+              <button class="mood-pill" onclick="setLiveSlotCount(4, this)">👥 4er Multi</button>
+              <button class="mood-pill active" onclick="setLiveSlotCount(8, this)">🔥 8er Multi-Live (8 Leute)</button>
             </div>
           </div>
+
+          <!-- Dynamische Live-Bühne (Solo bis 8 Personen gleichzeitig!) -->
+          <div id="multiLiveStageGrid" class="multi-grid slots-8"></div>
 
           <!-- Gepinntes Live-Shopping Produkt -->
           <div id="liveProductPinArea"></div>
@@ -1096,7 +1089,7 @@
           <!-- Geschenke senden & empfangen -->
           <div class="clean-card">
             <div class="clean-title">
-              <span>🎁 Geschenke im 4er-Raum</span>
+              <span>🎁 Geschenke im Live-Stream</span>
               <span style="font-size:0.72rem;color:#ffd700;">🪙 <span id="liveCoinsTxt">7.550</span> Coins</span>
             </div>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px;">
@@ -1119,14 +1112,13 @@
       </section>
 
       <!-- =====================================================
-           5. CLUB: NEON-TRESOR, WATCH-TO-EARN & EINLADUNG (EDLE KARTEN OHNE GRELLE RAHMEN!)
+           5. CLUB: NEON-TRESOR, WATCH-TO-EARN & EINLADUNG (EDLE KARTEN)
            ===================================================== -->
       <section id="view-club" class="view">
-        <!-- 1. NEON-TRESOR (Sanfter Gold-Schimmer statt grellem Rahmen) -->
         <div class="clean-card soft-gold">
           <div class="clean-title">
             <span>🎰 Täglicher Neon-Tresor (3× am Tag)</span>
-            <span style="font-size:0.72rem;color:var(--accent);">⏱️ Online: <strong id="onlineTimeTxt">0 Min.</strong></span>
+            <span style="font-size:0.72rem;color:var(--accent);">⏱️ Online: <strong id="onlineTimeTxt">9 Min.</strong></span>
           </div>
           <p style="font-size:0.73rem;color:var(--muted);margin-bottom:8px;">
             Öffne den Tresor nach <strong>30 Min. (1/3)</strong>, nach <strong>1:30 Std. (2/3)</strong> und nach <strong>3:00 Std. (3/3)</strong> Online-Zeit! Gewinn: <strong>100 bis 500 Coins</strong> <em>(500 Coins = seltener Jackpot!)</em>.
@@ -1142,23 +1134,21 @@
           </div>
         </div>
 
-        <!-- 2. WATCH-TO-EARN (10 KURZVIDEOS = MAXIMAL 50 COINS) -->
         <div class="clean-card">
           <div class="clean-title">
             <span>👀 10 Kurzvideos schauen (Watch-to-Earn)</span>
-            <span style="font-size:0.73rem;color:var(--accent);" id="watchProgressTxt">0 / 10 Videos</span>
+            <span style="font-size:0.73rem;color:var(--accent);" id="watchProgressTxt">4 / 10 Videos</span>
           </div>
           <p style="font-size:0.73rem;color:var(--muted);margin-bottom:8px;">
             Klicke dich im Feed durch 10 Kurzvideos. Belohnung: <strong>Maximal 50 Coins pro Tag</strong>!
           </p>
-          <div class="xp-bar-bg" style="margin-bottom:8px;"><div class="xp-bar-fill" id="watchBarFill" style="width:0%;"></div></div>
+          <div class="xp-bar-bg" style="margin-bottom:8px;"><div class="xp-bar-fill" id="watchBarFill" style="width:40%;"></div></div>
           <div style="display:flex;gap:6px;">
             <button class="btn" style="flex:2;" id="btnClaimWatch" onclick="claimWatchCoins()">🎁 50 Coins Belohnung abholen</button>
             <button class="btn secondary" style="flex:1;" onclick="simulateWatchVideo()">+1 Video Test</button>
           </div>
         </div>
 
-        <!-- 3. EINLADUNGS-LINK (Sanfter Schimmer statt grellem grünen Rahmen!) -->
         <div class="clean-card soft-accent">
           <div class="clean-title">
             <span>🤝 Freunde einladen & Coins kassieren</span>
@@ -1178,7 +1168,6 @@
           </div>
         </div>
 
-        <!-- 4. HOLO-BOOSTER, PAUSEN-DUELL & COINS AUFLADEN -->
         <div class="clean-card">
           <div class="clean-title">
             <span>🃏 Holo-Booster, Pausen-Duell & Coin-Shop</span>
@@ -1198,10 +1187,9 @@
       </section>
 
       <!-- =====================================================
-           6. PROFIL: OBEN 4 TABS + UNTEN DIE 3 NEUEN REITER (VIDEOS, GESPEICHERTE VIDEOS & FAVORITEN)
+           6. PROFIL: OBEN 4 TABS + UNTEN DIE 3 MEDIATHEK-REITER (VIDEOS, GESPEICHERT, FAVORITEN)
            ===================================================== -->
       <section id="view-profile" class="view">
-        <!-- Profilkopf -->
         <div class="clean-card" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
           <div style="display:flex;align-items:center;gap:11px;">
             <div id="profileAvatarEl" class="prof-av-wrap aura-none"></div>
@@ -1218,7 +1206,6 @@
           <div style="font-size:0.8rem;font-weight:900;color:#ffd700;">🪙 <span id="profCoinsTxt">7.550</span></div>
         </div>
 
-        <!-- 4 obere Profil-Reiter -->
         <div class="subtab-bar">
           <button class="subtab-btn active" id="ptab-btn-level" onclick="switchProfileTab('level')">📈 Level & Karte</button>
           <button class="subtab-btn" id="ptab-btn-edit" onclick="switchProfileTab('edit')">✏️ Name & Bio</button>
@@ -1226,7 +1213,6 @@
           <button class="subtab-btn" id="ptab-btn-shop" onclick="switchProfileTab('shop')">🛍️ Live-Shop</button>
         </div>
 
-        <!-- PROFIL-TAB 1: 2 LEVEL-BALKEN + DEZENTE HOLO-SAMMLERKARTE -->
         <div id="ptab-level">
           <div class="clean-card">
             <div class="clean-title">
@@ -1240,24 +1226,24 @@
                 <span style="color:var(--accent);" id="bar1XpTxt">0 / 250 XP</span>
               </div>
               <div class="xp-bar-bg"><div class="xp-bar-fill" id="bar1Fill"></div></div>
-              <div style="font-size:0.68rem;color:var(--muted);" id="bar1NextTxt">🎯 Ziel LVL 5: Live-Modus, 4er-Raum & 3 Shop-Produkte</div>
+              <div style="font-size:0.68rem;color:var(--muted);" id="bar1NextTxt">🎯 Ziel LVL 5: Solo-Live, 8er-Multi-Live & 3 Shop-Produkte</div>
             </div>
 
             <div class="xp-box locked" id="bar2Box">
               <div style="display:flex;justify-content:space-between;font-size:0.75rem;font-weight:800;">
-                <span id="bar2Label">🔒 AKTIVER STREAMER-RANG (Ab LVL 20)</span>
+                <span id="bar2Label">🔒 DIREKTER STREAMER-RANG (Ab LVL 20)</span>
                 <span style="color:#ffd700;" id="bar2XpTxt">Noch 19 Lvl</span>
               </div>
               <div class="xp-bar-bg"><div class="xp-bar-fill streamer" id="bar2Fill"></div></div>
-              <div style="font-size:0.68rem;color:var(--muted);" id="bar2NextTxt">Ab LVL 5 helfen dir empfangene Geschenke zu 50% bis LVL 20!</div>
+              <div style="font-size:0.68rem;color:var(--muted);" id="bar2NextTxt">Steigt durch empfangene Zuschauer-Geschenke im eigenen Live-Stream!</div>
             </div>
 
             <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;">
               <button class="btn secondary" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetLevel(1)">LVL 1</button>
               <button class="btn secondary" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetLevel(5)">LVL 5 (Live)</button>
               <button class="btn secondary" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetLevel(15)">LVL 15</button>
-              <button class="btn" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetLevel(20)">LVL 20 (Streamer)</button>
-              <button class="btn gold" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetLevel(50)">LVL 50 (Boss)</button>
+              <button class="btn" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetLevel(20)">LVL 20 (Nur Supporter)</button>
+              <button class="btn gold" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetDirectStreamer()">👑 Direkter Streamer (LVL 20 + S-LVL 5)</button>
             </div>
           </div>
 
@@ -1278,7 +1264,6 @@
           </div>
         </div>
 
-        <!-- PROFIL-TAB 2: NAME, HANDLE & BIO ÄNDERN -->
         <div id="ptab-edit" style="display:none;">
           <div class="clean-card">
             <div class="clean-title"><span>✏️ Dein Profil bearbeiten (Name & Bio)</span></div>
@@ -1295,7 +1280,6 @@
           </div>
         </div>
 
-        <!-- PROFIL-TAB 3: HINTERGRUND-GRAFIKEN & 10 STIMMUNGEN -->
         <div id="ptab-design" style="display:none;">
           <div class="clean-card">
             <div class="clean-title">
@@ -1330,7 +1314,6 @@
           </div>
         </div>
 
-        <!-- PROFIL-TAB 4: LIVE-SHOP -->
         <div id="ptab-shop" style="display:none;">
           <div class="clean-card">
             <div class="clean-title">
@@ -1346,11 +1329,11 @@
           </div>
         </div>
 
-        <!-- NEU UNTEN IM PROFIL: DIE 3 EXTRA BEREICHE (VIDEOS, GESPEICHERTE VIDEOS & FAVORITEN) -->
+        <!-- UNTEN IM PROFIL: DIE 3 EXTRA BEREICHE (VIDEOS, GESPEICHERTE VIDEOS & FAVORITEN) -->
         <div class="clean-card">
           <div class="clean-title">
             <span>🎞️ Deine Mediathek</span>
-            <span style="font-size:0.68rem;color:var(--muted);" id="mediaCountLabel">3 Einträge</span>
+            <span style="font-size:0.68rem;color:var(--muted);" id="mediaCountLabel">2 Einträge</span>
           </div>
 
           <div class="media-tabs-row">
@@ -1364,7 +1347,7 @@
       </section>
 
       <!-- =====================================================
-           7. ZAHNRAD-EINSTELLUNGEN (⚙): KONTO & FREIWILLIGE COIN-UMWANDLUNG
+           7. ZAHNRAD-EINSTELLUNGEN (⚙): KONTO & DIREKTE STREAMER-UMWANDLUNG
            ===================================================== -->
       <section id="view-settings" class="view">
         <div class="clean-card">
@@ -1391,22 +1374,27 @@
           <button class="btn full" style="margin-top:8px;" onclick="showToast('✅ Konto-Einstellungen gespeichert!')">💾 Konto-Daten sichern</button>
         </div>
 
+        <!-- AUSZAHLUNG NUR FÜR DIREKTE STREAMER (LVL 20 + MIND. S-LVL 5 DURCH LIVE-GESCHENKE) -->
         <div class="clean-card soft-gold">
           <div class="clean-title">
-            <span>🪙 Deine Streamer-Coins (Freie Entscheidung)</span>
-            <span class="rank-badge" style="color:#ffd700;" id="settingsSplitBadge">Quote: 85%</span>
+            <span>🪙 Direkte Streamer-Umwandlung</span>
+            <span class="rank-badge" style="color:#ffd700;" id="settingsSplitBadge">🔒 Nur für direkte Streamer</span>
           </div>
           <p style="font-size:0.72rem;color:var(--muted);margin-bottom:8px;">
-            Du entscheidest selbst, ob du deine empfangenen Geschenk-Coins <strong>als Coins behältst</strong> (1:1 zum Verschenken/Boosten) oder nach deinem Streamer-Level umwandelst:<br/>
-            • <strong>S-LVL 1–10:</strong> <strong>85 %</strong> für Streamer (15 % Plattform)<br/>
-            • <strong>S-LVL 11–30:</strong> <strong>70 %</strong> für Streamer (30 % Plattform)<br/>
-            • <strong>S-LVL 31–40:</strong> <strong>60 %</strong> für Streamer (40 % Plattform)<br/>
-            • <strong>S-LVL 41–50:</strong> <strong>50 %</strong> für Streamer (50 % Plattform)
+            <strong>Schutz-Regel:</strong> Normale Nutzer (die z.B. nur durch Zufall, Tresor oder Schenken Level 20 erreichen) können kein Geld auszahlen. Nur <strong>direkte Streamer</strong> (ab <strong>LVL 20 + mind. S-LVL 5</strong> durch eigene Live-Streams) können empfangene Geschenk-Coins frei umwandeln:<br/>
+            • <strong>S-LVL 1–10:</strong> <strong>85 %</strong> für Streamer (15 % für dich)<br/>
+            • <strong>S-LVL 11–30:</strong> <strong>70 %</strong> für Streamer (30 % für dich)<br/>
+            • <strong>S-LVL 31–40:</strong> <strong>60 %</strong> für Streamer (40 % für dich)<br/>
+            • <strong>S-LVL 41–50:</strong> <strong>50 %</strong> für Streamer (50 % für dich)
           </p>
 
           <div style="background:rgba(0,0,0,0.38);border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:8px;font-size:0.74rem;">
             <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-              <span>🎁 Gesammelte Geschenk-Coins:</span>
+              <span>🎙️ Status als direkter Streamer:</span>
+              <strong id="setDirectStreamerStatus" style="color:var(--hot);">Nein (Noch kein aktiver S-LVL 5 Host)</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span>🎁 Im Stream empfangene Geschenk-Coins:</span>
               <strong id="setGiftCoinsTxt">0 🪙</strong>
             </div>
             <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
@@ -1420,8 +1408,8 @@
           </div>
 
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
-            <button class="btn secondary" style="flex:1;" onclick="keepCoinsInWallet()">🪙 Nicht umwandeln (1:1 als Coins nutzen)</button>
-            <button class="btn gold" style="flex:1;" onclick="convertGiftCoinsToEuro()">💸 Jetzt umwandeln</button>
+            <button class="btn secondary" style="flex:1;" onclick="keepCoinsInWallet()">🪙 Nicht umwandeln (1:1 als Coins behalten)</button>
+            <button class="btn gold" style="flex:1;" onclick="convertGiftCoinsToEuro()">💸 Jetzt auszahlen (Direkte Streamer)</button>
           </div>
 
           <div style="display:flex;gap:5px;flex-wrap:wrap;">
@@ -1449,15 +1437,17 @@
   const VYBE_BALANCE_CONFIG = {
     liveUnlockLevel: 5,
     streamerUnlockLevel: 20,
+    minDirectStreamerSLvlForPayout: 5, // Nur direkte Streamer ab S-LVL 5 können auszahlen!
+    maxMultiLiveGuests: 8,             // Multi-Live bis zu 8 Personen gleichzeitig
     normalHostGiftXpRate: 0.5,
 
     vaultRules: {
-      spin1Minutes: 30,    // 1. Mal nach 30 Minuten Online-Zeit
-      spin2Minutes: 90,    // 2. Mal nach 1:30 Stunden
-      spin3Minutes: 180,   // 3. Mal nach 3:00 Stunden
+      spin1Minutes: 30,
+      spin2Minutes: 90,
+      spin3Minutes: 180,
       minCoins: 100,
       maxCoins: 500,
-      rare500Chance: 0.05  // Seltene 5% Chance auf 500 Coins
+      rare500Chance: 0.05
     },
 
     watchToEarn: { requiredVideos: 10, maxDailyCoins: 50 },
@@ -1492,14 +1482,14 @@
   };
 
   /* =====================================================================
-     APP-STATUS & MEDIATHEK (VIDEOS / GESPEICHERT / FAVORITEN)
+     APP-STATUS, 8ER-MULTI-LIVE SLOTS & MEDIATHEK
      ===================================================================== */
   const state = {
     coins: 7550,
     receivedGiftCoins: 0,
     memberLevel: 1,
     memberXp: 0,
-    streamerLevel: 1,
+    streamerLevel: 0, // 0 = noch kein direkter Streamer (steigt erst durch eigene Streams!)
     streamerXp: 0,
     onlineMinutes: 9,
     vaultClaimed: [false, false, false],
@@ -1509,6 +1499,17 @@
     camFilterIdx: 0,
     activeMediaStream: null,
     currentMediaTab: "videos",
+    liveMaxSlots: 8, // Standardmäßig 8er-Multi-Live ausgewählt (umschaltbar auf 1, 2, 4, 8)
+    hostScore: 1250,
+    multiGuests: [
+      { name: "@CyberFox", emoji: "🦊", lvl: 18, score: 940, active: true },
+      { name: "@DJ_Vibe", emoji: "🎧", lvl: 25, score: 1110, active: true },
+      { name: "@LunaStar", emoji: "🌙", lvl: 31, score: 820, active: true },
+      { name: "@NeonWave", emoji: "⚡", lvl: 14, score: 540, active: true },
+      { name: "@SakuraQueen", emoji: "🌸", lvl: 22, score: 790, active: true },
+      { name: "@ArcticWolf", emoji: "🐺", lvl: 19, score: 410, active: false },
+      { name: "@TigerKing", emoji: "🐯", lvl: 16, score: 0, active: false }
+    ],
     products: [{ name: "VYBE Limited Cap", price: "24,90 €" }],
     pinnedProductIdx: 0,
     mediaLibrary: {
@@ -1543,9 +1544,9 @@
       sound: "♫ Cyber Synth · neon.jay",
       name: "Neon Jay",
       handle: "@neon.jay",
-      title: "Spätschicht im 4er-Raum – wer kommt ins Match?",
-      sub: "Raum-Code #4829 ist offen für alle ab Level 5! 🔥",
-      tags: "#vybeclub #nightdrive #4ermatch",
+      title: "Spätschicht im 8er-Multi-Live – wer kommt rein?",
+      sub: "Raum-Code #4829 ist offen für bis zu 8 Leute ab Level 5! 🔥",
+      tags: "#vybeclub #nightdrive #multilive",
       bg: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85"
     },
     {
@@ -1562,14 +1563,102 @@
   let clipIdx = 0;
 
   const liveRooms = [
-    { host: "@mila.moves", lvl: 24, sLvl: 8, title: "🌿 Morning Talk & Live-Shop", code: "#1042" },
-    { host: "@neon.jay", lvl: 31, sLvl: 18, title: "⚔️ 4er-Arena Match", code: "#4829" },
-    { host: "@luna.vibe", lvl: 42, sLvl: 41, title: "👑 Top-Host Stream", code: "#9910" },
-    { host: "@cyber.fox", lvl: 9, sLvl: 0, title: "🎥 Push mich auf Level 20!", code: "#3310" }
+    { host: "@mila.moves", lvl: 24, sLvl: 8, title: "👤 Solo-Live: Morning Talk & Shop", code: "#1042", slots: 1 },
+    { host: "@neon.jay", lvl: 31, sLvl: 18, title: "🔥 8er-Multi-Live (6/8 Plätze voll)", code: "#4829", slots: 8 },
+    { host: "@luna.vibe", lvl: 42, sLvl: 41, title: "👑 4er-Multi-Talk mit Zuschauern", code: "#9910", slots: 4 },
+    { host: "@cyber.fox", lvl: 9, sLvl: 0, title: "👥 2er-Duo-Stream Richtung LVL 20!", code: "#3310", slots: 2 }
   ];
 
   /* =====================================================================
-     KAMERA & MIKROFON BERECHTIGUNG (AUTOMATISCH + BUTTON)
+     LIVE-MODUS UMSCHALTEN: ALLEINE LIVE (1) ODER MULTI-LIVE (BIS ZU 8 LEUTE)
+     ===================================================================== */
+  function setLiveSlotCount(count, btn) {
+    state.liveMaxSlots = count;
+    if (btn) {
+      document.querySelectorAll("#liveSlotCountBar .mood-pill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+    renderLiveStageGrid();
+    const label = count === 1 ? "👤 Alleine Live (Solo-Stream)" : `👥 Multi-Live mit bis zu ${count} Personen gleichzeitig`;
+    showToast(`📡 Umgestellt auf: ${label}`);
+  }
+
+  function renderLiveStageGrid() {
+    const grid = document.getElementById("multiLiveStageGrid");
+    if (!grid) return;
+
+    const count = state.liveMaxSlots;
+    grid.className = `multi-grid slots-${count}`;
+
+    const hostName = document.getElementById("profEditName") ? document.getElementById("profEditName").value : "Mila Moves";
+    const isDirectStreamer = state.memberLevel >= 20 && state.streamerLevel >= 1;
+
+    // Slot 1 ist immer der Host (mit echtem Kamera-Video)
+    let html = `
+      <div class="multi-slot host-vip">
+        <video id="liveHostVideo" autoplay playsinline muted></video>
+        <span class="slot-tag">${isDirectStreamer ? '👑 TOP HOST' : '🎥 DU (Host)'}</span>
+        <div class="slot-content-overlay" id="hostAvatarFallback" style="${state.activeMediaStream ? 'display:none;' : ''}">
+          <div style="font-size:${count === 1 ? '3.4rem' : '1.9rem'};">😎</div>
+          <div style="font-size:0.74rem;font-weight:800;margin-top:3px;">${hostName}</div>
+          ${count === 1 ? '<div style="font-size:0.68rem;color:var(--accent);margin-top:2px;">👤 Alleine Live aktiv</div>' : ''}
+        </div>
+        <span class="slot-score">🔥 ${state.hostScore.toLocaleString("de-DE")} Pkt</span>
+      </div>
+    `;
+
+    // Bei Multi-Live (2, 4 oder bis zu 8 Leuten gleichzeitig) weitere Slots aufbauen
+    for (let i = 0; i < count - 1; i++) {
+      const g = state.multiGuests[i];
+      if (g && g.active) {
+        html += `
+          <div class="multi-slot">
+            <span class="slot-tag">👥 Gast ${i + 2}</span>
+            <div class="slot-content-overlay">
+              <div style="font-size:1.7rem;">${g.emoji}</div>
+              <div style="font-size:0.68rem;font-weight:700;margin-top:2px;">${g.name}</div>
+              <div style="font-size:0.58rem;color:var(--muted);">LVL ${g.lvl}</div>
+            </div>
+            <span class="slot-score">🔥 ${g.score}</span>
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="multi-slot" onclick="inviteMultiGuest(${i})" style="cursor:pointer;">
+            <span class="slot-tag">➕ Platz ${i + 2}/${count}</span>
+            <div class="slot-content-overlay">
+              <div style="font-size:1.5rem;color:var(--accent);">➕</div>
+              <div style="font-size:0.65rem;color:var(--muted);">Leute reinholen</div>
+            </div>
+            <span class="slot-score">Frei</span>
+          </div>
+        `;
+      }
+    }
+
+    grid.innerHTML = html;
+
+    // Falls Kamera schon läuft, Stream sofort wieder an das Video-Element im Host-Slot hängen
+    if (state.activeMediaStream) {
+      const liveVid = document.getElementById("liveHostVideo");
+      if (liveVid) {
+        liveVid.srcObject = state.activeMediaStream;
+        liveVid.play().catch(() => {});
+      }
+    }
+  }
+
+  function inviteMultiGuest(guestIdx) {
+    if (state.multiGuests[guestIdx]) {
+      state.multiGuests[guestIdx].active = true;
+      state.multiGuests[guestIdx].score = 350;
+      renderLiveStageGrid();
+      showToast(`🎙️ ${state.multiGuests[guestIdx].name} ist in dein Multi-Live (Platz ${guestIdx + 2}/${state.liveMaxSlots}) eingestiegen!`);
+    }
+  }
+
+  /* =====================================================================
+     KAMERA & MIKROFON BERECHTIGUNG
      ===================================================================== */
   async function requestCameraAndMic() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
@@ -1578,7 +1667,6 @@
     }
 
     try {
-      // Fragt explizit Kamera UND Mikrofon an
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } },
         audio: true
@@ -1586,14 +1674,13 @@
       attachMediaStream(stream, true);
       showToast("📷🎙️ Kamera & Mikrofon erfolgreich aktiviert!");
     } catch (errAudio) {
-      // Fallback: Falls Mikrofon blockiert ist, zumindest Kamera öffnen
       try {
         const videoOnlyStream = await navigator.mediaDevices.getUserMedia({
           video: { facingMode: "user" },
           audio: false
         });
         attachMediaStream(videoOnlyStream, false);
-        showToast("📷 Kamera aktiv (Mikrofon-Zugriff wurde vom Browser blockiert)");
+        showToast("📷 Kamera aktiv (Mikrofon-Zugriff wurde blockiert)");
       } catch (errFinal) {
         showToast("⚠️ Bitte erlaube Kamera & Mikrofon oben in deinem Browser (Schloss-Symbol)!");
       }
@@ -1615,7 +1702,9 @@
     }
 
     document.getElementById("camPlaceholder").style.display = "none";
-    document.getElementById("hostAvatarFallback").style.display = "none";
+    const fallback = document.getElementById("hostAvatarFallback");
+    if (fallback) fallback.style.display = "none";
+
     const micBadge = document.getElementById("micBadgeCam");
     micBadge.style.display = "inline-flex";
     micBadge.textContent = hasAudio ? "🎙️ Kamera & Mikro aktiv" : "📷 Kamera aktiv (ohne Ton)";
@@ -1706,17 +1795,19 @@
   }
 
   function getReqStreamerXp(sLvl) {
+    const lvl = Math.max(1, sLvl);
     const c = VYBE_BALANCE_CONFIG.streamerXpPerLevel;
-    if (sLvl < 5) return c.sTier1_lvl_1_to_5;
-    if (sLvl < 10) return c.sTier2_lvl_6_to_10;
-    if (sLvl < 15) return c.sTier3_lvl_11_to_15;
-    if (sLvl < 20) return c.sTier4_lvl_16_to_20;
-    if (sLvl < 30) return c.sTier5_lvl_21_to_30;
-    if (sLvl < 40) return c.sTier6_lvl_31_to_40;
+    if (lvl < 5) return c.sTier1_lvl_1_to_5;
+    if (lvl < 10) return c.sTier2_lvl_6_to_10;
+    if (lvl < 15) return c.sTier3_lvl_11_to_15;
+    if (lvl < 20) return c.sTier4_lvl_16_to_20;
+    if (lvl < 30) return c.sTier5_lvl_21_to_30;
+    if (lvl < 40) return c.sTier6_lvl_31_to_40;
     return c.sTier7_lvl_41_to_50;
   }
 
   function getStreamerRate(sLvl) {
+    if (sLvl < 1) return 0;
     const r = VYBE_BALANCE_CONFIG.streamerConversionRates;
     if (sLvl <= 10) return r.sLvl_1_to_10;  // 85%
     if (sLvl <= 30) return r.sLvl_11_to_30; // 70%
@@ -1828,7 +1919,7 @@
   }
 
   /* =====================================================================
-     FREIWILLIGE ENTSCHEIDUNG: GESCHENK-COINS BEHALTEN ODER UMWANDELN
+     SCHUTZ-LOGIK: AUSZAHLUNG NUR FÜR DIREKTE STREAMER (AB LVL 20 + S-LVL 5)
      ===================================================================== */
   function keepCoinsInWallet() {
     if (state.receivedGiftCoins <= 0) {
@@ -1843,14 +1934,19 @@
   }
 
   function convertGiftCoinsToEuro() {
+    // Prüfen, ob der Nutzer wirklich ein DIREKTER STREAMER ist (nicht nur Supporter auf Lvl 20!)
+    if (state.memberLevel < VYBE_BALANCE_CONFIG.streamerUnlockLevel || state.streamerLevel < VYBE_BALANCE_CONFIG.minDirectStreamerSLvlForPayout) {
+      showToast("🔒 Auszahlung gesperrt! Nur direkte Streamer (LVL 20 + mind. S-LVL 5 durch eigene Live-Streams) können Geld auszahlen!");
+      return;
+    }
     if (state.receivedGiftCoins <= 0) {
-      showToast("ℹ️ Sammle erst Geschenk-Coins im Live-Stream (oder klicke auf einen Test-Button)!");
+      showToast("ℹ️ Du hast aktuell 0 empfangene Live-Geschenk-Coins (Normale Wallet-Coins sind nicht auszahlbar)!");
       return;
     }
     const rate = getStreamerRate(state.streamerLevel);
     const euro = (state.receivedGiftCoins / 100) * rate;
     state.receivedGiftCoins = 0;
-    triggerGiftOverlay("💸", `${euro.toFixed(2).replace('.',',')} € (${Math.round(rate*100)}% Streamer-Anteil) erfolgreich umgewandelt!`);
+    triggerGiftOverlay("💸", `${euro.toFixed(2).replace('.',',')} € (${Math.round(rate*100)}% Streamer-Anteil) erfolgreich ausgezahlt!`);
     updateUI();
   }
 
@@ -1859,12 +1955,12 @@
     state.streamerLevel = targetSLvl;
     if (state.receivedGiftCoins < 5000) state.receivedGiftCoins = 5000;
     const pct = Math.round(getStreamerRate(targetSLvl) * 100);
-    showToast(`👑 S-LVL ${targetSLvl} aktiviert (${pct}% für Streamer / ${100 - pct}% für dich)`);
+    showToast(`👑 Direkter Streamer S-LVL ${targetSLvl} aktiviert (${pct}% für Streamer / ${100 - pct}% für dich)`);
     updateUI();
   }
 
   /* =====================================================================
-     NAVIGATION & AUTOMATISCHER KAMERA-START BEI KAMERA/LIVE
+     NAVIGATION & PROFIL
      ===================================================================== */
   function openView(name) {
     document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
@@ -1876,7 +1972,6 @@
     const rBtn = document.getElementById(railMap[name]);
     if (rBtn) rBtn.classList.add("active");
 
-    // Fragt automatisch Kamera & Mikrofon an, sobald man ins Kamera-Studio oder Live geht!
     if ((name === "camera" || (name === "live" && state.memberLevel >= 5)) && !state.activeMediaStream) {
       requestCameraAndMic();
     }
@@ -1898,9 +1993,9 @@
     document.getElementById("profHandleHeader").textContent = handle;
     document.getElementById("profBioHeader").textContent = bio;
     document.getElementById("cardOwnerName").textContent = name;
-    document.getElementById("liveHostNameTxt").textContent = name;
     document.getElementById("clipCreatorName").textContent = name;
     document.getElementById("clipCreatorHandle").textContent = handle;
+    renderLiveStageGrid();
   }
 
   function setGraphic(url, el) {
@@ -1955,8 +2050,8 @@
     while (state.memberLevel < 50 && state.memberXp >= getReqMemberXp(state.memberLevel)) {
       state.memberXp -= getReqMemberXp(state.memberLevel);
       state.memberLevel++;
-      if (state.memberLevel === 5) triggerGiftOverlay("🔓", "LEVEL 5 FREIGESCHALTET! Live, 4er-Raum & 3 Produkte offen!");
-      else if (state.memberLevel === 20) triggerGiftOverlay("👑", "LEVEL 20 ERREICHT! Aktiver Streamer-Status & 2. Balken offen!");
+      if (state.memberLevel === 5) triggerGiftOverlay("🔓", "LEVEL 5 FREIGESCHALTET! Solo-Live & 8er-Multi-Live offen!");
+      else if (state.memberLevel === 20) triggerGiftOverlay("👑", "LEVEL 20 ERREICHT! Streamer-Balken offen (Gehe live für S-LVL 5)!");
       else if (state.memberLevel === 50) { triggerGoldRain(); triggerGiftOverlay("💎", "LEVEL 50 IMMORTAL GOLD-BOSS!"); }
       else showToast(`🎉 Level-Up! Du bist jetzt LVL ${state.memberLevel}`);
     }
@@ -1966,9 +2061,8 @@
   function sendGift(name, cost, emoji) {
     if (state.coins < cost) { showToast(`⚠️ Nicht genug Coins für ${name} (${cost} 🪙)!`); return; }
     state.coins -= cost;
-    const scoreEl = document.getElementById("matchScore1");
-    const curr = parseInt(scoreEl.textContent.replace(/\./g, ""), 10) || 0;
-    scoreEl.textContent = (curr + cost).toLocaleString("de-DE");
+    state.hostScore += cost;
+    renderLiveStageGrid();
     triggerGiftOverlay(emoji, `${name} gesendet! (+${cost} XP)`);
     addMemberXp(cost);
   }
@@ -1980,6 +2074,7 @@
       addMemberXp(boost);
       return;
     }
+    if (state.streamerLevel === 0) state.streamerLevel = 1;
     state.receivedGiftCoins += coins;
     state.streamerXp += coins;
     while (state.streamerLevel < 50 && state.streamerXp >= getReqStreamerXp(state.streamerLevel)) {
@@ -1987,7 +2082,7 @@
       state.streamerLevel++;
       showToast(`👑 Streamer Level-Up: S-LVL ${state.streamerLevel}!`);
     }
-    showToast(`🎁 +${coins} Geschenk-Coins erhalten! (In ⚙ Einstellungen frei umwandelbar)`);
+    showToast(`🎁 +${coins} Live-Geschenk-Coins erhalten!`);
     updateUI();
   }
 
@@ -2029,13 +2124,6 @@
     updateUI();
   }
 
-  function inviteCoHost() {
-    document.getElementById("slot4Emoji").textContent = "🐯";
-    document.getElementById("slot4Text").textContent = "@TigerWave (LVL 14)";
-    document.getElementById("matchScore4").textContent = "620";
-    showToast("🎙️ @TigerWave ist über Code #4829 beigetreten!");
-  }
-
   function selectCamMode(btn, mode) {
     btn.parentElement.querySelectorAll(".mood-pill").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
@@ -2051,8 +2139,21 @@
   function quickSetLevel(lvl) {
     state.memberLevel = lvl;
     state.memberXp = 0;
+    if (lvl <= 20) {
+      // Zeigt den Fall: Jemand ist zwar Level 20 geworden, aber noch KEIN direkter Streamer (S-LVL 0)
+      state.streamerLevel = 0;
+      state.streamerXp = 0;
+    }
     if (lvl === 50) triggerGoldRain();
-    showToast(`⚡ Level auf LVL ${lvl} gesetzt!`);
+    showToast(`⚡ Mitglieds-Level auf LVL ${lvl} gesetzt (Noch kein direkter Streamer)!`);
+    updateUI();
+  }
+
+  function quickSetDirectStreamer() {
+    state.memberLevel = 20;
+    state.streamerLevel = 5;
+    state.receivedGiftCoins = 5000;
+    showToast("👑 Direkter Streamer (LVL 20 + S-LVL 5) inkl. 5.000 Live-Geschenk-Coins aktiviert!");
     updateUI();
   }
 
@@ -2062,7 +2163,8 @@
   function updateUI() {
     const lvl = state.memberLevel;
     const sLvl = state.streamerLevel;
-    const isStreamer = lvl >= 20;
+    const hasReached20 = lvl >= 20;
+    const isDirectStreamer = hasReached20 && sLvl >= VYBE_BALANCE_CONFIG.minDirectStreamerSLvlForPayout;
     const canLive = lvl >= 5;
     const meta = getMemberMeta(lvl);
     const reqM = getReqMemberXp(lvl);
@@ -2076,8 +2178,8 @@
     document.getElementById("profileAvatarEl").className = `prof-av-wrap ${meta.aura}`;
     document.getElementById("profMemberBadge").textContent = `LVL ${lvl} • ${meta.title}`;
     const sBadge = document.getElementById("profStreamerBadge");
-    sBadge.style.display = isStreamer ? "inline-block" : "none";
-    if (isStreamer) sBadge.textContent = `👑 S-LVL ${sLvl}`;
+    sBadge.style.display = (hasReached20 && sLvl >= 1) ? "inline-block" : "none";
+    if (hasReached20 && sLvl >= 1) sBadge.textContent = `👑 S-LVL ${sLvl}`;
 
     // Balken 1
     const pct1 = lvl >= 50 ? 100 : Math.min(100, Math.round((state.memberXp / reqM) * 100));
@@ -2087,24 +2189,30 @@
 
     // Balken 2
     const b2 = document.getElementById("bar2Box");
-    if (!isStreamer) {
+    if (!hasReached20) {
       b2.className = "xp-box locked";
-      document.getElementById("bar2Label").textContent = "🔒 AKTIVER STREAMER-RANG (Ab LVL 20)";
+      document.getElementById("bar2Label").textContent = "🔒 DIREKTER STREAMER-RANG (Ab LVL 20)";
       document.getElementById("bar2XpTxt").textContent = `Noch ${20 - lvl} Lvl`;
       document.getElementById("bar2Fill").style.width = "0%";
+      document.getElementById("bar2NextTxt").textContent = "Ab LVL 5 helfen dir empfangene Geschenke zu 50% bis LVL 20!";
     } else {
       b2.className = "xp-box streamer-active";
       const pct2 = sLvl >= 50 ? 100 : Math.min(100, Math.round((state.streamerXp / reqS) * 100));
-      document.getElementById("bar2Label").textContent = `👑 STREAMER-RANG: S-LVL ${sLvl}`;
+      document.getElementById("bar2Label").textContent = sLvl === 0
+        ? "🎥 STREAMER-BALKEN OFFEN (Gehe live für S-LVL 1!)"
+        : `👑 DIREKTER STREAMER: S-LVL ${sLvl}`;
       document.getElementById("bar2XpTxt").textContent = `${state.streamerXp.toLocaleString("de-DE")} / ${reqS.toLocaleString("de-DE")} S-XP`;
       document.getElementById("bar2Fill").style.width = `${pct2}%`;
+      document.getElementById("bar2NextTxt").textContent = isDirectStreamer
+        ? "✅ Direkter Streamer-Status aktiv (Auszahlung in ⚙ Einstellungen frei!)"
+        : `🔒 Noch ${Math.max(1, 5 - sLvl)} Streamer-Level durch eigene Live-Streams bis zur Auszahlungs-Freigabe (S-LVL 5)!`;
     }
 
     // Holo-Karte
     document.getElementById("cardEditionTag").textContent = meta.card;
-    document.getElementById("cardPowerTxt").textContent = `⚡ POWER ${100 + lvl * 25 + (isStreamer ? sLvl * 30 : 0)}`;
-    document.getElementById("cardDualRanks").textContent = isStreamer ? `💎 LVL ${lvl} • 👑 S-LVL ${sLvl}` : `Mitglieds-Rang LVL ${lvl}`;
-    document.getElementById("cardGlobalStatus").textContent = isStreamer ? "🔥 Im globalen Booster!" : "Nur im Profil";
+    document.getElementById("cardPowerTxt").textContent = `⚡ POWER ${100 + lvl * 25 + (sLvl * 30)}`;
+    document.getElementById("cardDualRanks").textContent = (hasReached20 && sLvl >= 1) ? `💎 LVL ${lvl} • 👑 S-LVL ${sLvl}` : `Mitglieds-Rang LVL ${lvl}`;
+    document.getElementById("cardGlobalStatus").textContent = isDirectStreamer ? "🔥 Im globalen Booster!" : "Nur im Profil";
 
     // Neon-Tresor Status
     document.getElementById("onlineTimeTxt").textContent = `${state.onlineMinutes} Min.`;
@@ -2119,14 +2227,33 @@
     document.getElementById("feedWatchMiniTxt").textContent = `DAILY MIX (${state.watchedVideos}/10)`;
     document.getElementById("watchBarFill").style.width = `${(state.watchedVideos / 10) * 100}%`;
 
-    // Freiwillige Umwandlung in Einstellungen
-    const rate = getStreamerRate(sLvl);
+    // Einstellungen: Direkte Streamer-Umwandlung vs. Nur-Supporter-Sperre
+    const rate = isDirectStreamer ? getStreamerRate(sLvl) : 0;
     const ratePct = Math.round(rate * 100);
     const rawEuro = state.receivedGiftCoins / 100;
-    document.getElementById("settingsSplitBadge").textContent = `S-LVL ${sLvl} Quote: ${ratePct}%`;
+
+    document.getElementById("settingsSplitBadge").textContent = isDirectStreamer
+      ? `✅ S-LVL ${sLvl} Quote: ${ratePct}%`
+      : "🔒 Nur direkte Streamer (ab S-LVL 5)";
+    const statusEl = document.getElementById("setDirectStreamerStatus");
+    if (isDirectStreamer) {
+      statusEl.textContent = `✅ Ja (Direkter Streamer S-LVL ${sLvl})`;
+      statusEl.style.color = "var(--accent)";
+    } else if (hasReached20) {
+      statusEl.textContent = `🔒 Nein (Zwar LVL ${lvl}, aber erst S-LVL ${sLvl}/5 als Streamer)`;
+      statusEl.style.color = "#ffd700";
+    } else {
+      statusEl.textContent = `🔒 Nein (Aktuell LVL ${lvl} Supporter)`;
+      statusEl.style.color = "var(--hot)";
+    }
+
     document.getElementById("setGiftCoinsTxt").textContent = `${state.receivedGiftCoins.toLocaleString("de-DE")} 🪙`;
-    document.getElementById("setStreamerEuroTxt").textContent = `${(rawEuro * rate).toFixed(2).replace('.',',')} € (${ratePct}%)`;
-    document.getElementById("setPlatformEuroTxt").textContent = `${(rawEuro * (1 - rate)).toFixed(2).replace('.',',')} € (${100 - ratePct}%)`;
+    document.getElementById("setStreamerEuroTxt").textContent = isDirectStreamer
+      ? `${(rawEuro * rate).toFixed(2).replace('.',',')} € (${ratePct}%)`
+      : "0,00 € (Erst ab S-LVL 5 freigeschaltet)";
+    document.getElementById("setPlatformEuroTxt").textContent = isDirectStreamer
+      ? `${(rawEuro * (1 - rate)).toFixed(2).replace('.',',')} € (${100 - ratePct}%)`
+      : "0,00 €";
 
     // Live-Raum
     document.getElementById("liveLockLvlTxt").textContent = `LVL ${lvl}`;
@@ -2135,13 +2262,18 @@
     document.getElementById("secretLvl40GiftBtn").style.display = lvl >= 40 ? "inline-flex" : "none";
 
     if (canLive) {
-      document.getElementById("liveRoleHeader").textContent = isStreamer ? `👑 AKTIVER STREAMER (LVL ${lvl} • S-LVL ${sLvl})` : `🎥 Normaler Live-Host (LVL ${lvl})`;
-      document.getElementById("liveBarTitle").textContent = isStreamer ? `👑 Streamer-Balken (S-LVL ${sLvl})` : `⚡ 50% Geschenk-XP helfen dir bis LVL 20`;
-      document.getElementById("liveBarNumbers").textContent = isStreamer ? `${state.streamerXp} / ${reqS}` : `${state.memberXp} / ${reqM}`;
+      document.getElementById("liveRoleHeader").textContent = isDirectStreamer
+        ? `👑 DIREKTER STREAMER (LVL ${lvl} • S-LVL ${sLvl})`
+        : `🎥 Live-Host (LVL ${lvl} • Solo & 8er-Multi-Live)`;
+      document.getElementById("liveBarTitle").textContent = hasReached20
+        ? `👑 Streamer-Balken (S-LVL ${sLvl} • Auszahlung ab S-LVL 5)`
+        : `⚡ 50% Geschenk-XP helfen dir bis LVL 20`;
+      document.getElementById("liveBarNumbers").textContent = hasReached20 ? `${state.streamerXp} / ${reqS}` : `${state.memberXp} / ${reqM}`;
+      renderLiveStageGrid();
     }
 
     // Produkte
-    document.getElementById("shopLimitBadge").textContent = !canLive ? "🔒 Ab LVL 5" : (!isStreamer ? `${state.products.length}/3 Produkte` : `${state.products.length}/∞ Pro-Shop`);
+    document.getElementById("shopLimitBadge").textContent = !canLive ? "🔒 Ab LVL 5" : (!hasReached20 ? `${state.products.length}/3 Produkte` : `${state.products.length}/∞ Pro-Shop`);
     document.getElementById("productListArea").innerHTML = state.products.map((p, idx) => `
       <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 9px;background:rgba(255,255,255,0.04);border-radius:9px;margin-bottom:5px;font-size:0.74rem;">
         <span>🛍️ <strong>${p.name}</strong> (${p.price})</span>
@@ -2153,7 +2285,7 @@
     const activeProd = state.products[state.pinnedProductIdx];
     if (!canLive || !activeProd) {
       pinArea.innerHTML = "";
-    } else if (isStreamer) {
+    } else if (hasReached20) {
       pinArea.innerHTML = `
         <div class="pro-flash-banner">
           <div>
@@ -2179,7 +2311,7 @@
         <div style="font-size:0.64rem;color:var(--accent);font-weight:800;">● LIVE • ${r.code}</div>
         <div style="font-weight:800;font-size:0.8rem;margin:3px 0;">${r.host} (LVL ${r.lvl})</div>
         <div style="font-size:0.7rem;color:var(--muted);margin-bottom:7px;">${r.title}</div>
-        <button class="btn secondary full" style="padding:5px;font-size:0.68rem;" onclick="document.getElementById('roomCodeTxt').textContent='${r.code}';openView('live');">In 4er-Raum</button>
+        <button class="btn secondary full" style="padding:5px;font-size:0.68rem;" onclick="document.getElementById('roomCodeTxt').textContent='${r.code}';setLiveSlotCount(${r.slots});openView('live');">Beitreten</button>
       </div>
     `).join("");
   }
