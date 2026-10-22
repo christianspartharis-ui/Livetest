@@ -5,11 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>VYBE — Short Video & Live Club</title>
   <style>
+    /* =========================================================
+       1. MOOD-FARBWELTEN (INKL. NEUEM HELLEN / WEISSEN LOOK)
+       ========================================================= */
     :root, [data-mood="lime"] {
       --bg: #0b0c10; --panel: #12141c; --card: rgba(22, 25, 35, 0.88);
       --border: rgba(255, 255, 255, 0.055); --border-highlight: rgba(255, 255, 255, 0.09);
       --accent: #b8ff01; --accent2: #00f2fe; --accent-soft: rgba(184, 255, 1, 0.12);
       --text: #f5f7fa; --muted: #8a90a6; --hot: #ff2a5f;
+    }
+    [data-mood="light"] {
+      --bg: #f0f2f5; --panel: #ffffff; --card: rgba(255, 255, 255, 0.92);
+      --border: rgba(0, 0, 0, 0.08); --border-highlight: rgba(0, 0, 0, 0.15);
+      --accent: #0066ff; --accent2: #00f2fe; --accent-soft: rgba(0, 102, 255, 0.12);
+      --text: #1a1d24; --muted: #656d78; --hot: #ff2a5f;
     }
     [data-mood="night"] {
       --bg: #08090f; --panel: #10131f; --card: rgba(20, 24, 40, 0.88);
@@ -95,7 +104,7 @@
     .app-backdrop-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(10, 11, 15, 0.82);
+      background: rgba(10, 11, 15, 0.80);
       pointer-events: none;
       z-index: 0;
     }
@@ -212,49 +221,58 @@
       flex-shrink: 0;
     }
 
-    /* UNTERE NAVIGATION (BOTTOM NAV) */
+    /* =========================================================
+       VORSCHLAG A: DURCHSICHTIGE, SCHWEBENDE UNTERE LEISTE (SCHNEIDET NICHTS MEHR AB!)
+       ========================================================= */
     .bottom-nav {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 20px);
+      max-width: 480px;
       height: 60px;
-      background: rgba(11, 12, 16, 0.92);
-      backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border);
+      background: rgba(15, 18, 26, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 99px;
       display: flex;
       align-items: center;
       justify-content: space-around;
-      z-index: 50;
+      z-index: 100;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .b-nav-btn {
       background: none;
       border: none;
       color: var(--muted);
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      gap: 1px;
       cursor: pointer;
       transition: 0.18s;
+      padding: 4px 8px;
     }
     .b-nav-btn.active {
       color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-soft);
     }
     .b-nav-btn span {
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       font-weight: 700;
     }
 
-    /* HAUPTBEREICH ÜBER DER UNTEREN LEISTE */
+    /* HAUPTBEREICH MIT GENUG PLATTFORM-ABSTAND UNTEN */
     .workspace {
       position: relative;
       z-index: 10;
       flex: 1;
       display: flex;
       width: 100%;
-      height: calc(100dvh - clamp(52px, 8dvh, 64px) - 60px);
+      height: calc(100dvh - clamp(52px, 8dvh, 64px));
       overflow: hidden;
     }
 
@@ -262,7 +280,7 @@
       flex: 1;
       height: 100%;
       overflow-y: auto;
-      padding: clamp(6px, 1.5dvh, 14px) clamp(10px, 2.5vw, 24px) 20px clamp(10px, 2.5vw, 24px);
+      padding: clamp(6px, 1.5dvh, 12px) clamp(10px, 2.5vw, 20px) 85px clamp(10px, 2.5vw, 20px);
       scrollbar-width: none;
     }
     .stage-area::-webkit-scrollbar { display: none; }
@@ -333,7 +351,7 @@
     .hero-video-card {
       position: relative;
       width: 100%;
-      height: calc(100dvh - clamp(130px, 18dvh, 160px));
+      height: calc(100dvh - clamp(140px, 20dvh, 185px));
       min-height: 380px;
       border-radius: clamp(16px, 3vw, 24px);
       overflow: hidden;
@@ -452,7 +470,7 @@
 
     /* KARTEN */
     .clean-card {
-      background: linear-gradient(155deg, rgba(26, 30, 43, 0.9), rgba(16, 18, 27, 0.94));
+      background: var(--card);
       backdrop-filter: blur(16px);
       border: 1px solid var(--border);
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -463,13 +481,11 @@
       overflow: hidden;
     }
     .clean-card.soft-gold {
-      background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.09), transparent 55%),
-                  linear-gradient(155deg, rgba(28, 30, 42, 0.92), rgba(16, 18, 27, 0.95));
+      background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.09), transparent 55%), var(--card);
       border: 1px solid rgba(255, 255, 255, 0.07);
     }
     .clean-card.soft-accent {
-      background: radial-gradient(circle at top left, var(--accent-soft), transparent 55%),
-                  linear-gradient(155deg, rgba(26, 30, 43, 0.92), rgba(16, 18, 27, 0.95));
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent 55%), var(--card);
       border: 1px solid rgba(255, 255, 255, 0.07);
     }
     .clean-title {
@@ -522,9 +538,9 @@
     .cam-stage-large {
       position: relative;
       width: 100%;
-      height: calc(100dvh - clamp(260px, 36dvh, 310px));
-      min-height: 300px;
-      max-height: 580px;
+      height: calc(100dvh - clamp(280px, 38dvh, 330px));
+      min-height: 280px;
+      max-height: 520px;
       border-radius: 18px;
       background: #06070b;
       border: 1px solid var(--border-highlight);
@@ -597,9 +613,9 @@
       display: grid;
       gap: 7px;
       width: 100%;
-      height: calc(100dvh - clamp(290px, 40dvh, 350px));
-      min-height: 320px;
-      max-height: 580px;
+      height: calc(100dvh - clamp(310px, 42dvh, 370px));
+      min-height: 290px;
+      max-height: 520px;
       margin-bottom: 10px;
     }
     .multi-grid.slots-1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
@@ -607,7 +623,7 @@
     .multi-grid.slots-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
     .multi-grid.slots-8 { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr 1fr; }
     @media (max-width: 520px) {
-      .multi-grid.slots-8 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); height: calc(100dvh - 230px); min-height: 400px; }
+      .multi-grid.slots-8 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); height: calc(100dvh - 250px); min-height: 380px; }
     }
 
     .multi-slot {
@@ -645,6 +661,7 @@
       border-radius: 50%;
       background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80') center/cover;
       flex-shrink: 0;
+      transition: 0.3s;
     }
     .aura-none { border: 2px solid rgba(255,255,255,0.2); }
     .aura-lime { border: 2px solid #b8ff01; box-shadow: 0 0 14px rgba(184,255,1,0.45); }
@@ -821,12 +838,12 @@
       </div>
       <div style="font-size:0.74rem;color:var(--muted);line-height:1.45;display:flex;flex-direction:column;gap:8px;">
         <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:12px;">
-          <strong style="color:#fff;">📡 Solo & Multi-Live (bis zu 8 Leute):</strong><br/>
-          Wähle flexibel, ob du alleine live gehst oder ein Multi-Live mit bis zu 8 Personen startest. Du erhältst als Host bis zu 20% Anteil von den Geschenken deiner Gäste!
+          <strong style="color:#fff;">🎥 Kamera-Studio & Live:</strong><br/>
+          Tippe unten auf <strong>Kamera (+)</strong>, um Clips aufzunehmen, hochzuladen oder direkt in den <strong>Live-Modus</strong> (Solo oder Multi-Live bis 8 Personen) zu wechseln.
         </div>
         <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:12px;">
           <strong style="color:#fff;">⏱️ 15 Std. Wochenpflicht (Mo–So):</strong><br/>
-          Damit deine Streamer-Auszahlung freigeschaltet wird, musst du mind. 15 Std. pro Woche in deinem eigenen Live streamen (mit Kamera & Mikrofon an).
+          Für die Streamer-Auszahlung brauchst du mind. 15 Std. pro Woche in deinem eigenen Live (mit Kamera & Mikrofon an).
         </div>
       </div>
       <button class="btn full" style="margin-top:12px;" onclick="toggleInfoModal(false); openView('club');">🎰 Zum Club & Tresor</button>
@@ -856,7 +873,7 @@
     </div>
   </header>
 
-  <!-- UNTERE NAVIGATION (BOTTOM NAVIGATION BAR) -->
+  <!-- UNTERE SCHWEBENDE & DURCHSICHTIGE LEISTE (VORSCHLAG A) -->
   <nav class="bottom-nav">
     <button class="b-nav-btn active" id="bnav-feed" onclick="openView('feed')">
       <span>⌂</span>
@@ -955,20 +972,23 @@
         </div>
       </section>
 
-      <!-- 3. KAMERA -->
+      <!-- 3. KAMERA-STUDIO (MIT DIREKTEM WECHSEL ZU LIVE) -->
       <section id="view-camera" class="view">
         <div class="clean-card">
           <div class="clean-title">
             <span>📸 VYBE Kamera-Studio</span>
-            <span style="font-size:0.7rem;color:var(--accent);" id="camPermStatusTxt">Ab LVL 1 frei</span>
+            <div style="display:flex;gap:4px;">
+              <button class="btn" style="padding:3px 8px;font-size:0.64rem;" onclick="openView('camera')">🎬 Clip</button>
+              <button class="btn secondary" style="padding:3px 8px;font-size:0.64rem;" onclick="openView('live')">🔴 Live gehen</button>
+            </div>
           </div>
 
           <div id="camStage" class="cam-stage-large">
             <video id="camPreview" autoplay playsinline muted></video>
             <div id="micBadgeCam" class="mic-indicator">🎙️ Kamera & Mikro aktiv</div>
             <div id="camPlaceholder" class="cam-placeholder-box">
-              <div style="font-size:2.4rem;">📷🎙️</div>
-              <div><strong>Kamera & Mikrofon bereit</strong><br/>Tippe unten auf „Kamera & Mikro starten“.</div>
+              <div style="font-size:2.2rem;">📷🎙️</div>
+              <div><strong>Kamera & Mikrofon bereit</strong><br/>Tippe auf „Kamera & Mikro starten“.</div>
             </div>
             <div id="camMaskEmoji" class="cam-mask-layer"></div>
           </div>
@@ -988,7 +1008,7 @@
           </div>
 
           <div style="display:flex;gap:6px;">
-            <button class="btn" style="flex:1.3;" onclick="requestCameraAndMic()">📷🎙️ Kamera & Mikro starten</button>
+            <button class="btn" style="flex:1.2;" onclick="requestCameraAndMic()">📷🎙️ Kamera & Mikro starten</button>
             <label class="btn secondary" style="flex:1;cursor:pointer;">
               📤 Clip hochladen <input type="file" accept="video/*" style="display:none;" onchange="uploadMyVideoClip(event)" />
             </label>
@@ -1028,7 +1048,6 @@
             </div>
           </div>
 
-          <!-- Live-Prüfung Info -->
           <div class="clean-card soft-accent" style="padding:9px 12px">
             <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;flex-wrap:wrap;gap:4px">
               <strong id="liveCheckBadge" style="color:var(--acc)">⏳ Prüfe eigenes Live, Bild & Mikro...</strong>
@@ -1043,7 +1062,6 @@
             </div>
           </div>
 
-          <!-- Auswahl: Alleine Live oder Multi-Live (bis 8 Leute) + Host-Anteil -->
           <div class="clean-card" style="padding:9px 12px">
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:6px">
               <span style="font-size:0.72rem;font-weight:800">👥 Live-Größe (1 bis 8 Personen):</span>
@@ -1060,9 +1078,7 @@
             </div>
           </div>
 
-          <!-- Dynamische Bühne (Solo bis 8 Leute) -->
           <div id="multiLiveStageGrid" class="multi-grid slots-8"></div>
-
           <div id="liveProductPinArea"></div>
 
           <div class="clean-card">
@@ -1097,7 +1113,7 @@
             <span style="font-size:0.72rem;color:var(--accent);">⏱️ Online: <strong id="onlineTimeTxt">9 Min.</strong></span>
           </div>
           <p style="font-size:0.73rem;color:var(--muted);margin-bottom:8px;">
-            Öffne den Tresor nach <strong>30 Min. (1/3)</strong>, <strong>1:30 Std. (2/3)</strong> & <strong>3:00 Std. (3/3)</strong> Online-Zeit! Gewinn: <strong>100 bis 500 Coins</strong>.
+            Öffne den Tresor nach <strong>30 Min. (1/3)</strong>, nach <strong>1:30 Std. (2/3)</strong> & <strong>3:00 Std. (3/3)</strong> Online-Zeit! Gewinn: <strong>100 bis 500 Coins</strong>.
           </p>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:9px;text-align:center;font-size:0.68rem;">
             <div id="vaultSlot1" style="padding:7px;border-radius:10px;background:rgba(0,0,0,0.35);border:1px solid var(--border);">🔒 1. Spin<br/><strong>ab 30 Min.</strong></div>
@@ -1159,7 +1175,7 @@
         </div>
       </section>
 
-      <!-- 6. PROFIL (MIT 3 MEDIATHEK-REITERN UNTEN) -->
+      <!-- 6. PROFIL (OHNE LEVEL-TESTBUTTONS) -->
       <section id="view-profile" class="view">
         <div class="clean-card" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
           <div style="display:flex;align-items:center;gap:11px;">
@@ -1197,7 +1213,7 @@
                 <span style="color:var(--accent);" id="bar1XpTxt">0 / 250 XP</span>
               </div>
               <div class="xp-bar-bg"><div class="xp-bar-fill" id="bar1Fill"></div></div>
-              <div style="font-size:0.68rem;color:var(--muted);" id="bar1NextTxt">🎯 Ziel LVL 5: Solo-Live, Multi-Live & 3 Shop-Produkte</div>
+              <div style="font-size:0.68rem;color:var(--muted);" id="bar1NextTxt">🎯 Ziel LVL 5: Solo & Multi-Live, & 3 Shop-Produkte</div>
             </div>
 
             <div class="xp-box locked" id="bar2Box">
@@ -1207,13 +1223,6 @@
               </div>
               <div class="xp-bar-bg"><div class="xp-bar-fill streamer" id="bar2Fill"></div></div>
               <div style="font-size:0.68rem;color:var(--muted);" id="bar2NextTxt">Steigt durch empfangene Zuschauer-Geschenke im eigenen Live-Stream!</div>
-            </div>
-
-            <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;">
-              <button class="btn secondary" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetLevel(1)">LVL 1</button>
-              <button class="btn secondary" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetLevel(5)">LVL 5</button>
-              <button class="btn" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetLevel(20)">LVL 20</button>
-              <button class="btn gold" style="font-size:0.66rem;padding:5px 8px;" onclick="quickSetDirectStreamer()">👑 Direkter Streamer</button>
             </div>
           </div>
 
@@ -1262,15 +1271,19 @@
               <div class="graphic-thumb" style="background-image:url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80');" onclick="setGraphic('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1000&q=85', this)">🌌 Space</div>
               <div class="graphic-thumb" style="background:#12141c;" onclick="setGraphic('', this)">⬛ Dark</div>
             </div>
-            <div style="font-size:0.72rem;color:var(--muted);font-weight:700;margin-top:12px;">2. Stimmung:</div>
+            <div style="font-size:0.72rem;color:var(--muted);font-weight:700;margin-top:12px;">2. Stimmung (Inkl. neuem Hell-Modus):</div>
             <div class="mood-grid" id="profileMoodGrid">
-              <button class="mood-pill active" onclick="setMood('lime', this)">✳️ Lime</button>
-              <button class="mood-pill" onclick="setMood('night', this)">🌙 Blue</button>
-              <button class="mood-pill" onclick="setMood('chill', this)">🌿 Mint</button>
-              <button class="mood-pill" onclick="setMood('hype', this)">🔥 Pink</button>
-              <button class="mood-pill" onclick="setMood('cyber', this)">🤖 Aqua</button>
+              <button class="mood-pill active" onclick="setMood('lime', this)">✳️ VYBE Lime</button>
+              <button class="mood-pill" onclick="setMood('light', this)">☀️ Light White</button>
+              <button class="mood-pill" onclick="setMood('night', this)">🌙 Cyber Blue</button>
+              <button class="mood-pill" onclick="setMood('chill', this)">🌿 Chill Mint</button>
+              <button class="mood-pill" onclick="setMood('hype', this)">🔥 Hype Pink</button>
+              <button class="mood-pill" onclick="setMood('cyber', this)">🤖 Neon Aqua</button>
               <button class="mood-pill" onclick="setMood('sunset', this)">🌅 Sunset</button>
-              <button class="mood-pill" onclick="setMood('gold', this)">👑 Gold</button>
+              <button class="mood-pill" onclick="setMood('lava', this)">🌋 Lava</button>
+              <button class="mood-pill" onclick="setMood('arctic', this)">❄️ Arctic</button>
+              <button class="mood-pill" onclick="setMood('sakura', this)">🌸 Sakura</button>
+              <button class="mood-pill" onclick="setMood('gold', this)">👑 Royal Gold</button>
               <button class="mood-pill" onclick="setMood('galaxy', this)">🌌 Galaxy</button>
             </div>
           </div>
@@ -1291,7 +1304,6 @@
           </div>
         </div>
 
-        <!-- 3 MEDIATHEK-REITER UNTEN IM PROFIL (VIDEOS, GESPEICHERT, FAVORITEN) -->
         <div class="clean-card">
           <div class="clean-title">
             <span>🎞️ Deine Mediathek</span>
@@ -1306,7 +1318,7 @@
         </div>
       </section>
 
-      <!-- 7. EINSTELLUNGEN & KONTO -->
+      <!-- 7. EINSTELLUNGEN -->
       <section id="view-settings" class="view">
         <div class="clean-card">
           <div class="clean-title">
@@ -1334,7 +1346,7 @@
             <span class="rank-badge" style="color:#ffd700;" id="settingsSplitBadge">🔒 Direkter Streamer nötig</span>
           </div>
           <p style="font-size:0.72rem;color:var(--muted);margin-bottom:8px;">
-            Voraussetzung für Auszahlungen (inkl. Gratis-Coins): <strong>15 Std. Live pro Woche (Mo–So)</strong> mit Kamera & Mikro + LVL 20 (S-LVL 5).<br/>
+            Voraussetzung für Auszahlungen: <strong>15 Std. Live pro Woche (Mo–So)</strong> mit Kamera & Mikro + LVL 20 (S-LVL 5).<br/>
             • <strong>S-LVL 1–10:</strong> 85% • <strong>S-LVL 11–30:</strong> 70% • <strong>S-LVL 31–40:</strong> 60% • <strong>S-LVL 41–50:</strong> 50%
           </p>
 
@@ -1825,9 +1837,9 @@
 
     document.getElementById("profileAvatarEl").className = `prof-av-wrap aura-${lvl>=50?3:lvl>=10?2:lvl>=5?1:0}`;
     document.getElementById("profMemberBadge").textContent = `LVL ${lvl} • ${meta.title}`;
-    const sBdg = document.getElementById("profStreamerBadge");
-    sBdg.style.display = (has20 && sl >= 1) ? 'inline-block' : 'none';
-    if(has20 && sl >= 1) sBdg.textContent = `👑 S-LVL ${sl}`;
+    const sBadge = document.getElementById("profStreamerBadge");
+    sBadge.style.display = (has20 && sl >= 1) ? 'inline-block' : 'none';
+    if(has20 && sl >= 1) sBadge.textContent = `👑 S-LVL ${sl}`;
 
     const pct1 = lvl >= 50 ? 100 : Math.min(100, Math.round((state.memberXp/reqM)*100));
     document.getElementById("bar1Label").textContent = `⚡ SUPPORTER: LVL ${lvl} (${meta.title})`;
@@ -1884,7 +1896,7 @@
       const lValid = isLiveTimeValid();
       const bBadge = document.getElementById("liveCheckBadge");
       bBadge.textContent = lValid ? `✅ Zeit zählt (${state.liveMaxSlots}er Live)` : "⚠️ PAUSIERT: Eigenes Live + Bild hell + Mikro AN!";
-      bBadge.style.color = lValid ? "var(--accent)" : "var(--hot)";
+      bBadge.style.color = lValid ? "var(--acc)" : "var(--hot)";
       document.getElementById("btnTogOwn").textContent = state.isOwnLive ? "✅ Eigenes Live" : "❌ Fremdes Live";
       document.getElementById("btnTogCam").textContent = state.camBright ? "📷 Bild OK" : "⬛ Schwarzbild!";
       document.getElementById("btnTogMic").textContent = state.micOn ? "🎙️ Mikro AN" : "🔇 Mikro AUS!";
@@ -1912,20 +1924,20 @@
     }
   }
 
-  function filterSearch(q="") {
+  function filterSearchRooms(q="") {
     const query = q.toLowerCase().trim();
     const list = liveRooms.filter(r => r.host.toLowerCase().includes(query) || r.title.toLowerCase().includes(query) || r.code.includes(query));
     document.getElementById("searchLiveList").innerHTML = list.map(r => `
       <div style="background:rgba(0,0,0,0.38);border:1px solid var(--border);border-radius:13px;padding:10px;">
         <div style="font-size:0.64rem;color:var(--accent);font-weight:800;">● LIVE • ${r.code}</div>
-        <div style="font-weight:800;font-size:0.8rem;margin:3px 0;">${r.host}</div>
+        <div style="font-weight:800;font-size:0.8rem;margin:3px 0;">${r.host} (LVL ${r.lvl})</div>
         <div style="font-size:0.7rem;color:var(--muted);margin-bottom:7px;">${r.title}</div>
         <button class="btn secondary full" style="padding:5px;font-size:0.68rem;" onclick="setLiveSlotCount(${r.slots});openView('live');">Beitreten</button>
       </div>
     `).join("");
   }
 
-  function toggleInfo(s) { document.getElementById("infoModal").style.display = s ? 'flex' : 'none'; }
+  function toggleInfoModal(show) { document.getElementById("infoModal").style.display = show ? 'flex' : 'none'; }
   function showToast(m) { const t = document.getElementById("toastBanner"); t.textContent = m; t.style.display = 'block'; clearTimeout(window._t); window._t = setTimeout(()=>t.style.display='none', 2800); }
   function triggerGiftOverlay(emoji, text) {
     const fx = document.getElementById("giftFx");
@@ -1939,7 +1951,7 @@
     setTimeout(()=>r.style.display='none', 3800);
   }
 
-  filterSearch();
+  filterSearchRooms();
   renderMediaLibrary();
   updateUI();
 </script>
