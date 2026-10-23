@@ -51,7 +51,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 .h-btn .dot{position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:var(--hot)}
 .h-av{width:33px;height:33px;border-radius:50%;background:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80') center/cover;border:2px solid var(--acc);cursor:pointer}
 
-/* SCHWEBENDE UNTERE LEISTE (MIT WEICHEM GLAS-RAND) */
+/* SCHWEBENDE UNTERE LEISTE */
 .b-nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:calc(100% - 20px);max-width:480px;height:58px;background:rgba(15,18,26,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.06);border-radius:99px;display:flex;align-items:center;justify-content:space-around;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.4)}
 .b-nav-btn{background:none;border:none;color:var(--mut);font-size:1.15rem;display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;padding:4px 8px;transition:.18s}
 .b-nav-btn.active{color:var(--acc)}
@@ -65,7 +65,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 .view{display:none;width:100%;max-width:860px;margin:0 auto}
 .view.active{display:block}
 
-/* FEED & GROSSES VIDEO (UNTERSTÜTZT BILDER UND ECHTE HOCHGELADENE VIDEOS) */
+/* FEED & GROSSES VIDEO */
 .f-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;padding:0 2px}
 .f-tabs{display:flex;gap:15px}
 .f-tab{background:none;border:none;color:var(--mut);font-size:.86rem;font-weight:800;cursor:pointer;padding-bottom:3px;position:relative}
@@ -90,7 +90,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 .shock.boom{animation:sBoom .7s ease-out}
 @keyframes sBoom{0%{transform:translate(-50%,-50%) scale(.5);opacity:1}100%{transform:translate(-50%,-50%) scale(20);opacity:0}}
 
-/* KARTEN MIT EXTREM WEICHEN, UNSICHTBAREN RAHMEN */
+/* KARTEN MIT EXTREM WEICHEN RAHMEN */
 .card{background:var(--card);backdrop-filter:blur(18px);border:1px solid var(--bdr);box-shadow:0 8px 24px rgba(0,0,0,.22);border-radius:20px;padding:14px;margin-bottom:10px;overflow:hidden}
 .c-tit{font-size:.84rem;font-weight:800;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;color:var(--txt)}
 .btn{border:none;border-radius:11px;padding:8px 12px;font-weight:800;font-size:.73rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;background:var(--acc);color:#000}
@@ -99,6 +99,15 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 .btn.gold{background:linear-gradient(90deg,#ffd700,#ffae00);color:#000}
 .btn.full{width:100%}
 .inp{width:100%;background:rgba(0,0,0,.26);border:1px solid var(--bdr2);border-radius:10px;padding:8px 10px;color:var(--txt);font-size:.74rem;outline:none;margin-bottom:7px}
+
+/* NEU: VIP FREUNDE-EINLADEN HERO-BOX IN KONTOEINSTELLUNGEN */
+.ref-hero{background:radial-gradient(circle at top right,rgba(255,215,0,.16),transparent 60%),radial-gradient(circle at bottom left,var(--soft),transparent 60%),var(--card);border:1px solid rgba(255,215,0,.18);position:relative}
+.ref-steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ref-step-box{background:rgba(0,0,0,.28);border:1px solid var(--bdr2);border-radius:14px;padding:10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
+.ref-coin-big{font-size:1.15rem;font-weight:900;color:#ffd700;text-shadow:0 0 12px rgba(255,215,0,.35)}
+.ref-step-sub{font-size:.65rem;color:var(--mut);line-height:1.25}
+html[data-mood="light"] .ref-step-box{background:#f7f8fa!important;border:1px solid #e5e7eb!important}
+html[data-mood="light"] .ref-coin-big{color:#d97706!important;text-shadow:none!important}
 
 /* KAMERA & LIVE */
 .mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:rgba(0,0,0,.22);padding:4px;border-radius:13px;margin-bottom:10px;border:1px solid var(--bdr)}
@@ -175,9 +184,9 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
   <div class="m-box">
     <div class="c-tit"><span style="color:var(--acc)">⚡ VYBE – CLUB & STREAMER REGELN</span><button class="btn sec" onclick="toggleInfo(false)">✖</button></div>
     <div style="font-size:.73rem;color:var(--mut);line-height:1.45;display:flex;flex-direction:column;gap:7px">
-      <div class="xp-box"><strong style="color:var(--txt)">📡 Kamera, Foto-Galerie & Live (Solo bis 8 Leute):</strong><br/>Tippe unten auf <strong>+</strong>, um Videos hochzuladen, über <strong>📸 Foto</strong> Bilder direkt aus deiner Galerie zu wählen oder mit bis zu 8 Leuten live zu gehen. Alles wird lokal auf deinem Handy gespeichert!</div>
+      <div class="xp-box"><strong style="color:var(--txt)">📡 Kamera, Foto-Galerie & Live (Solo bis 8 Leute):</strong><br/>Tippe unten auf <strong>+</strong>, um Videos hochzuladen, über <strong>📸 Foto</strong> Bilder aus deiner Galerie zu wählen oder live zu gehen. Beim Wechsel auf die normale Kamera oder einen anderen Tab stoppt der Video-Ton automatisch!</div>
+      <div class="xp-box"><strong style="color:var(--txt)">🤝 Bis zu 1.400 Coins pro Freund (unter ⚙ Konto):</strong><br/>Unter <strong>⚙ Konto</strong> findest du dein VIP-Einladungs-Programm: <strong>+400 Coins sofort</strong> für euch beide + <strong>+1.000 Coins Extra-Prämie</strong>, sobald dein Freund Level 15 erreicht!</div>
       <div class="xp-box"><strong style="color:var(--txt)">⏱️ Streamer-Prüfung (15 Std. Mo–So):</strong><br/>Egal ob Solo oder im 2er–8er-Live: Solange es dein eigenes Live ist, kein schwarzes Bild gesendet wird und dein Mikrofon an ist, zählt die Zeit für deine 15 Wochenstunden!</div>
-      <div class="xp-box"><strong style="color:var(--txt)">🎨 Profil-Banner & Vollbild-Weiß:</strong><br/>Im Profil kannst du hinter deinem Profilbild ein eigenes Banner-Bild einfügen und unter <strong>⚙ Konto</strong> auf ☀️ Light White umschalten!</div>
     </div>
   </div>
 </div>
@@ -210,7 +219,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 <div class="work">
   <main class="stage">
 
-    <!-- 1. FEED (SPIELT AUCH DEINE HOCHGELADENEN VIDEOS & FOTOS AB!) -->
+    <!-- 1. FEED -->
     <section id="view-feed" class="view active">
       <div class="f-nav">
         <div class="f-tabs">
@@ -257,7 +266,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
       </div>
     </section>
 
-    <!-- 3. KAMERA & LIVE (INKL. FUNKTIONIERENDEM FOTO-GALERIE-UPLOAD & VIDEO-SPEICHERUNG) -->
+    <!-- 3. KAMERA & LIVE (INKL. AUTOMATISCHEM AUDIO-STOPP BEIM WECHSELN) -->
     <section id="view-camera" class="view">
       <div class="mode-switch">
         <button class="sub-btn active" id="btnModeClip" onclick="switchStudioMode('clip')">🎬 Video / Upload</button>
@@ -272,12 +281,12 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
           <img id="camPhotoPrev" class="cam-photo-prev" alt="Foto Vorschau"/>
           <div id="camPh" style="position:relative;z-index:3;text-align:center;color:#8a90a6;font-size:.75rem;padding:14px">
             <div style="font-size:2.2rem;margin-bottom:6px">📷🎙️</div>
-            <strong style="color:#fff">Kamera & Mikrofon bereit</strong><br/>Tippe unten auf „Kamera & Mikro starten“ oder wähle ein Foto/Video
+            <strong style="color:#fff">Kamera & Mikrofon bereit</strong><br/>Tippe unten auf „Normale Kamera starten“ oder wähle ein Foto/Video
           </div>
           <div id="camMask" style="position:absolute;z-index:4;font-size:4.4rem;pointer-events:none"></div>
         </div>
 
-        <!-- LEISTE: 15 Sek. | 30 Sek. | 📸 Foto (Öffnet sofort die Handy-Galerie!) | ✍️ Text -->
+        <!-- LEISTE: 15 Sek. | 30 Sek. | 📸 Foto | ✍️ Text -->
         <div class="pills" style="margin-bottom:8px" id="camModePills">
           <button class="pill active" onclick="selPill(this,'15 Sek.')">15 Sek.</button>
           <button class="pill" onclick="selPill(this,'30 Sek.')">30 Sek.</button>
@@ -295,7 +304,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
         </div>
 
         <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <button class="btn" style="flex:1.2" onclick="startMedia()">📷🎙️ Kamera & Mikro starten</button>
+          <button class="btn" style="flex:1.2" onclick="startMedia()">📷🎙️ Normale Kamera starten</button>
           <label class="btn sec" style="flex:1;cursor:pointer">
             📤 Video hochladen <input type="file" accept="video/*" style="display:none" onchange="uploadClip(event)"/>
           </label>
@@ -369,7 +378,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
       </div>
     </section>
 
-    <!-- 4. CLUB (WEICHE, EDLE KARTEN OHNE HARTE RAHMEN) -->
+    <!-- 4. CLUB (AUFGERÄUMT: TRESOR, 10 VIDEOS & BOOSTER/SHOP) -->
     <section id="view-club" class="view">
       <div class="card">
         <div class="c-tit"><span>🎰 Täglicher Neon-Tresor (3× am Tag)</span><span style="font-size:.7rem;color:var(--acc)">⏱️ Online: <strong id="onMinsTxt">9 Min.</strong></span></div>
@@ -395,19 +404,6 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
       </div>
 
       <div class="card">
-        <div class="c-tit"><span>🤝 Freunde einladen</span><span style="font-size:.7rem;color:#ffae00">+400 & +1.000 🪙</span></div>
-        <p style="font-size:.71rem;color:var(--mut);margin-bottom:7px">• Neuer Nutzer über deinen Link: <strong>Beide bekommen sofort +400 Coins</strong>!<br/>• Erreicht der Eingeladene <strong>Level 15</strong>: <strong>Noch mal +1.000 Coins</strong> für dich!</p>
-        <div style="display:flex;gap:6px;margin-bottom:7px">
-          <input class="inp" style="margin:0" readonly value="https://vybe.club/join?ref=mila_moves"/>
-          <button class="btn" onclick="navigator.clipboard?.writeText('https://vybe.club/join?ref=mila_moves');toast('📋 Link kopiert!')">Kopieren</button>
-        </div>
-        <div style="display:flex;gap:6px">
-          <button class="btn sec" style="flex:1" onclick="state.coins+=400;fx('🤝','+400 Coins für euch beide!');updateUI()">🧪 Neuer Freund (+400)</button>
-          <button class="btn gold" style="flex:1" onclick="state.coins+=1000;fx('🏆','Freund ist LVL 15! +1.000 Coins!');updateUI()">🏆 Freund LVL 15 (+1.000)</button>
-        </div>
-      </div>
-
-      <div class="card">
         <div class="c-tit"><span>🃏 Holo-Booster, Duell & Shop</span><span style="color:#ffae00;font-size:.72rem">🪙 <span id="clubCoins">7.550</span></span></div>
         <div style="display:flex;gap:6px;margin-bottom:7px">
           <button class="btn hot" style="flex:1" onclick="openBooster()">🃏 Booster (250 🪙 = +250 XP)</button>
@@ -422,10 +418,9 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
       </div>
     </section>
 
-    <!-- 5. PROFIL (MIT HINTERGRUND-BANNER HINTER DEM ZENTRIERTEN PROFILBILD) -->
+    <!-- 5. PROFIL (ZENTRIERT MIT HINTERGRUND-BANNER) -->
     <section id="view-profile" class="view">
       <div class="card prof-center" style="padding-top:0">
-        <!-- Hintergrund-Banner im oberen Viereck -->
         <div class="prof-banner" id="profBannerBox">
           <label class="prof-banner-edit">
             🖼️ Hintergrund ändern <input type="file" accept="image/*" style="display:none" onchange="uploadBanner(event)"/>
@@ -521,8 +516,55 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
       </div>
     </section>
 
-    <!-- 6. KONTO -->
+    <!-- 6. KONTOEINSTELLUNGEN (⚙ KONTO): MIT NEUER VIP FREUNDE-PRÄMIE GANZ OBEN! -->
     <section id="view-settings" class="view">
+
+      <!-- NEU: VIP FREUNDE EINLADEN & COINS KASSIEREN (FOKUS AUF 1.400 COINS PRÄMIE!) -->
+      <div class="card ref-hero">
+        <div class="c-tit">
+          <span>🎁 Freunde einladen & Coins kassieren</span>
+          <span class="badge" style="background:rgba(255,215,0,.18);color:#ffd700;border-color:rgba(255,215,0,.35)">🔥 Bis zu 1.400 🪙 pro Freund!</span>
+        </div>
+        <p style="font-size:.73rem;color:var(--mut);line-height:1.4">
+          Teile deinen persönlichen VYBE-Einladungslink und sichere dir für <strong>jeden eingeladenen Freund</strong> zwei fette Coin-Belohnungen:
+        </p>
+
+        <!-- 2 GROSSE PRÄMIEN-BOXEN MIT COIN-FOKUS -->
+        <div class="ref-steps">
+          <div class="ref-step-box">
+            <span class="badge" style="font-size:.55rem">⚡ STUFE 1: SOFORT-START</span>
+            <div class="ref-coin-big">+400 🪙</div>
+            <div style="font-size:.72rem;font-weight:800;color:var(--txt)">Für DICH & deinen Freund</div>
+            <div class="ref-step-sub">Sofort bei Anmeldung über deinen Link!</div>
+          </div>
+          <div class="ref-step-box">
+            <span class="badge" style="font-size:.55rem;color:#ffd700">🏆 STUFE 2: LEVEL-15 BONUS</span>
+            <div class="ref-coin-big">+1.000 🪙</div>
+            <div style="font-size:.72rem;font-weight:800;color:var(--txt)">Extra-Prämie für DICH</div>
+            <div class="ref-step-sub">Sobald dein Freund Level 15 erreicht!</div>
+          </div>
+        </div>
+
+        <!-- ZÄHLER FÜR GEWORBENE FREUNDE & VERDIENTE PRÄMIE -->
+        <div class="xp-box" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;margin-bottom:9px">
+          <span>👥 Geworbene Freunde: <strong id="refCountTxt" style="color:var(--acc)">2 Freunde</strong></span>
+          <span>🪙 Verdiente Prämie: <strong id="refEarnedTxt" style="color:#ffd700">1.800 Coins</strong></span>
+        </div>
+
+        <!-- LINK & KOPIEREN / TEILEN -->
+        <div style="display:flex;gap:6px;margin-bottom:8px">
+          <input id="refLinkInp" class="inp" style="margin:0;font-weight:700" readonly value="https://vybe.club/join?ref=mila_moves"/>
+          <button class="btn gold" style="white-space:nowrap;padding:8px 14px" onclick="copyRefLink()">📋 Link kopieren</button>
+        </div>
+
+        <!-- SCHNELLTEST-BUTTONS FÜR DIE PRÄMIEN -->
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="btn sec" style="flex:1" onclick="triggerRefReward(400, true)">🧪 Test: Neuer Freund (+400 🪙 für beide)</button>
+          <button class="btn gold" style="flex:1" onclick="triggerRefReward(1000, false)">🏆 Test: Freund erreicht LVL 15 (+1.000 🪙)</button>
+        </div>
+      </div>
+
+      <!-- HINTERGRUND-GRAFIK & STIMMUNG -->
       <div class="card">
         <div class="c-tit"><span>🎨 Hintergrund-Grafik & Stimmung</span><span style="font-size:.68rem;color:var(--acc)">Sofort-Vorschau</span></div>
         <div style="font-size:.72rem;color:var(--mut);font-weight:700">1. App-Hintergrund & Profil-Banner wählen:</div>
@@ -552,6 +594,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
         </div>
       </div>
 
+      <!-- PERSÖNLICHE & CREATOR-TOOLS -->
       <div class="card">
         <div class="c-tit"><span>🧰 Persönliche & Creator-Tools</span></div>
         <div class="menu-list-row" onclick="openView('club')"><span>👛 Coin-Guthaben & Tresor</span><span style="color:var(--mut)"><strong id="menuCoinsTxt">7.550 🪙</strong> ›</span></div>
@@ -560,6 +603,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
         <div class="menu-list-row" onclick="openView('camera');switchStudioMode('live')"><span>🎥 VYBE Live-Studio (1–8 Personen)</span><span style="color:var(--mut)">›</span></div>
       </div>
 
+      <!-- STREAMER-PRÜFUNG & AUSZAHLUNG -->
       <div class="card">
         <div class="c-tit"><span>🪙 Streamer-Prüfung & Coin-Umwandlung</span><span class="badge" id="setSplitBdg">Quote: 85%</span></div>
         <p style="font-size:.7rem;color:var(--mut);margin-bottom:7px">
@@ -584,6 +628,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
         </div>
       </div>
 
+      <!-- EINSTELLUNGEN & DATENSCHUTZ -->
       <div class="card">
         <div class="c-tit"><span>🔒 Einstellungen & Datenschutz</span></div>
         <input class="inp" value="mila.moves@vybe.club"/>
@@ -607,6 +652,7 @@ const state = {
   onlineMins: 9, vClaim: [false,false,false], watched: 4, wClaimed: false,
   slots: 8, hostCut: 20, wkHours: 0, isOwnLive: true, camBright: true, micOn: true,
   stream: null, libTab: 'videos', pinIdx: 0,
+  refCount: 2, refEarned: 1800,
   prods: [{name:'VYBE Limited Cap',price:'29,90 €'}],
   guests: [
     {n:'@CyberFox',e:'🦊',s:940},{n:'@DJ_Vibe',e:'🎧',s:1110},
@@ -625,12 +671,33 @@ const state = {
 const clips = [
   {tag:'<span style="color:#ffd700">✦</span> MORNING RESET',snd:'♫ Originalton · mila.moves',n:'Mila Moves',h:'@mila.moves',t:'Kleiner Reminder: Du musst nicht jeden Tag alles',s:'Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿',g:'#minivlog #slowmorning #mindset',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85',vidUrl:null},
   {tag:'<span style="color:#b8ff01">⚡</span> 8ER MULTI-LIVE',snd:'♫ Cyber Synth · neon.jay',n:'Neon Jay',h:'@neon.jay',t:'Spätschicht im 8er-Live – Host kriegt 20% Bonus!',s:'Alle Gratis-Coins & Geschenke zählen voll mit! 🔥',g:'#vybeclub #8erlive #streamer',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null},
-  {tag:'<span style="color:#ff7e5f">🌅</span> GOLDEN HOUR',snd:'♫ Ocean Breeze · luna.vibe',n:'Luna Vibe',h:'@luna.vibe',t:'10 Clips schauen = 50 Gratis-Coins sichern',s:'Galerie-Upload & Banner bleiben beim Neuladen gespeichert ✨',g:'#sunset #watchtoearn #vybe',bg:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85',vidUrl:null}
+  {tag:'<span style="color:#ff7e5f">🌅</span> GOLDEN HOUR',snd:'♫ Ocean Breeze · luna.vibe',n:'Luna Vibe',h:'@luna.vibe',t:'10 Clips schauen = 50 Gratis-Coins sichern',s:'Lade Freunde unter ⚙ Konto ein für bis zu 1.400 Coins ✨',g:'#sunset #watchtoearn #vybe',bg:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85',vidUrl:null}
 ];
 let cIdx = 0;
 
 /* =========================================================
-   DAUERHAFTE HANDY-SPEICHERUNG (INDEXED-DB FÜR GROSSE VIDEOS & FOTOS)
+   NEU: AUDIO-STOPP-AUTOMATIK (VERHINDERT HINTERGRUND-TON!)
+   ========================================================= */
+function stopAllVideoAudio(keepFeedPlaying = false){
+  // 1. Hochgeladenes Video im Kamera-Studio sofort stoppen & stummschalten
+  const cp = $('camPrev');
+  if(cp && !cp.srcObject){
+    cp.pause();
+    cp.muted = true;
+    cp.removeAttribute('src');
+    cp.controls = false;
+    cp.load();
+  }
+  // 2. Feed-Video sofort stoppen & stummschalten, wenn man nicht im Feed ist
+  const fv = $('feedRealVideo');
+  if(fv && !keepFeedPlaying){
+    fv.pause();
+    fv.muted = true;
+  }
+}
+
+/* =========================================================
+   DAUERHAFTE HANDY-SPEICHERUNG (INDEXED-DB FÜR VIDEOS & FOTOS)
    ========================================================= */
 let vybeDb = null;
 function initMediaDB(){
@@ -676,12 +743,16 @@ function loadSavedMediaFromDB(){
           vidUrl:it.type==='video'?url:null
         });
       });
-      if(items.length > 0){ cIdx = 0; showClipAtIndex(0); renderLib(); }
+      if(items.length > 0){
+        cIdx = 0;
+        const onFeed = $('view-feed').classList.contains('active');
+        showClipAtIndex(0, onFeed);
+        renderLib();
+      }
     };
   }catch(err){}
 }
 
-// Lokale Einstellungen (Banner, Avatar, Favs, Saved) beim Start laden
 try{
   const sBanner = localStorage.getItem('vybe_banner');
   if(sBanner) $('profBannerBox').style.setProperty('--prof-banner-bg', `url('${sBanner}')`);
@@ -698,12 +769,14 @@ const reqM = l => CFG.mXp[l<5?0:l<10?1:l<15?2:l<20?3:l<30?4:l<40?5:6];
 const reqS = l => CFG.sXp[l<5?0:l<10?1:l<15?2:l<20?3:l<30?4:l<40?5:6];
 
 function switchStudioMode(m){
+  // Stoppt sofort jedes hochgeladene Video im Hintergrund!
+  stopAllVideoAudio(false);
   $('btnModeClip').classList.toggle('active', m==='clip');
   $('btnModeLive').classList.toggle('active', m==='live');
   $('studioClipBox').style.display = m==='clip' ? 'block' : 'none';
   $('studioLiveBox').style.display = m==='live' ? 'block' : 'none';
   if(m==='live' && state.mLvl>=5) renderLiveGrid();
-  if(m==='clip' && !state.stream) startMedia();
+  if(m==='clip') startMedia();
 }
 
 function isLiveTimeValid(){ return state.isOwnLive && state.camBright && state.micOn; }
@@ -727,8 +800,23 @@ setInterval(()=>{
   updateUI();
 },60000);
 
+/* NORMALE KAMERA STARTEN -> STOPPT SOFORT HOCHGELADENES VIDEO & TON */
 async function startMedia(){
+  stopAllVideoAudio(false);
   $('camPhotoPrev').style.display='none';
+
+  // Falls der Kamera-Stream schon aktiv ist, direkt wieder stumm auf das Vorschaufenster legen
+  if(state.stream){
+    const cp = $('camPrev');
+    cp.muted = true;
+    cp.controls = false;
+    cp.srcObject = state.stream;
+    cp.play().catch(()=>{});
+    $('camPh').style.display='none';
+    toast('📷 Normale Live-Kamera aktiv (Video-Ton gestoppt)');
+    return;
+  }
+
   if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ toast('⚠️ Bitte über https:// in Chrome/Safari öffnen!'); return; }
   try{
     const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:true});
@@ -740,7 +828,13 @@ async function startMedia(){
 }
 function attachStream(s,aud){
   state.stream = s; state.camBright = true; state.micOn = aud;
-  if($('camPrev')){$('camPrev').srcObject=s;$('camPrev').play().catch(()=>{});}
+  const cp = $('camPrev');
+  if(cp){
+    cp.muted = true;
+    cp.controls = false;
+    cp.srcObject = s;
+    cp.play().catch(()=>{});
+  }
   if($('liveHostVid')){$('liveHostVid').srcObject=s;$('liveHostVid').play().catch(()=>{});}
   $('camPh').style.display='none';
   $('camStat').textContent = aud ? '✅ Cam & Mic AN' : '📷 Cam AN';
@@ -811,6 +905,24 @@ function addMXp(xp){
   updateUI();
 }
 
+/* FREUNDE-PRÄMIE IN KONTOEINSTELLUNGEN */
+function copyRefLink(){
+  const val = $('refLinkInp').value;
+  navigator.clipboard?.writeText(val);
+  toast('📋 Einladungslink kopiert! Teile ihn für +400 & +1.000 Coins!');
+}
+function triggerRefReward(amount, isNewFriend){
+  state.coins += amount;
+  state.refEarned += amount;
+  if(isNewFriend){
+    state.refCount++;
+    fx('🤝', `NEUER FREUND DABEI! +${amount} Coins sofort für euch beide!`);
+  } else {
+    fx('🏆', `DEIN FREUND HAT LEVEL 15 ERREICHT! +${amount} Extra-Coins für dich!`);
+  }
+  updateUI();
+}
+
 function spinVault(){
   const m = state.onlineMins, lim = [30,90,180];
   let idx = lim.findIndex((t,i)=> !state.vClaim[i] && m>=t);
@@ -853,13 +965,23 @@ function testStr(s){
   toast(`👑 S-LVL ${s} + 15 Wochenstunden aktiviert (${Math.round(CFG.rates(s)*100)}% Quote)!`); updateUI();
 }
 
+/* TAB-WECHSEL -> STOPPT SOFORT HINTERGRUND-VIDEOS */
 function openView(v){
+  const isFeed = (v === 'feed');
+  stopAllVideoAudio(isFeed);
+
   document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
   $(`view-${v}`).classList.add('active');
   document.querySelectorAll('.b-nav .b-nav-btn').forEach(b=>b.classList.remove('active'));
   const nb = $(`bn-${v}`); if(nb) nb.classList.add('active');
-  if(v==='camera' && !state.stream && $('camPhotoPrev').style.display==='none') startMedia();
+
+  if(isFeed){
+    showClipAtIndex(cIdx, true);
+  } else if(v==='camera'){
+    startMedia();
+  }
 }
+
 function swProf(t){ ['level','edit','shop'].forEach(k=>{ $(`pt-${k}`).style.display=k===t?'block':'none'; $(`pb-${k}`).classList.toggle('active',k===t); }); }
 function swLib(t){ state.libTab=t; ['videos','saved','favs'].forEach(k=>$(`mt-${k}`).classList.toggle('active',k===t)); renderLib(); }
 
@@ -870,7 +992,7 @@ function renderLib(){
   $('cFav').textContent = l.favs.length;
   $('libGrid').innerHTML = l[state.libTab].map((x,idx)=>{
     const mediaHtml = x.type==='video'
-      ? `<video src="${x.bg}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>`
+      ? `<video src="${x.bg}" muted loop playsinline></video>`
       : '';
     return `<div class="m-item" style="${x.type!=='video'?`background-image:url('${x.bg}')`:''}" onclick="playMediaFromLib(${idx})">
       ${mediaHtml}
@@ -895,11 +1017,10 @@ function playMediaFromLib(idx){
     vidUrl:item.type==='video'?item.bg:null
   });
   cIdx = 0;
-  showClipAtIndex(0);
   openView('feed');
 }
 
-function showClipAtIndex(i){
+function showClipAtIndex(i, allowPlay = true){
   const c = clips[i]; if(!c) return;
   $('cTag').innerHTML = c.tag;
   $('cSnd').textContent = c.snd;
@@ -912,9 +1033,16 @@ function showClipAtIndex(i){
   if(c.vidUrl){
     fVid.src = c.vidUrl;
     fVid.style.display = 'block';
-    fVid.play().catch(()=>{});
+    if(allowPlay && $('view-feed').classList.contains('active')){
+      fVid.muted = false;
+      fVid.play().catch(()=>{ fVid.muted = true; fVid.play().catch(()=>{}); });
+    } else {
+      fVid.pause();
+      fVid.muted = true;
+    }
   } else {
     fVid.pause();
+    fVid.muted = true;
     fVid.style.display = 'none';
     $('heroVid').style.setProperty('--feed-bg',`url('${c.bg}')`);
   }
@@ -922,7 +1050,7 @@ function showClipAtIndex(i){
 
 function nextClip(){
   cIdx = (cIdx+1)%clips.length;
-  showClipAtIndex(cIdx);
+  showClipAtIndex(cIdx, true);
   if(state.watched<10) state.watched++;
   updateUI();
 }
@@ -941,14 +1069,17 @@ function saveClip(){
 }
 function commClip(){ $('commTxt').textContent = +$('commTxt').textContent + 1; addMXp(5); toast('💬 Kommentar (+5 XP)'); }
 
-/* VIDEO HOCHLADEN & DAUERHAFT SPEICHERN */
+/* VIDEO HOCHLADEN (STARTET KEINEN DOPPEL-TON MEHR IM HINTERGRUND!) */
 function uploadClip(e){
   const file = e.target.files && e.target.files[0];
   if(!file) return;
   const fName = file.name.replace(/\.[^/.]+$/, "");
   const blobUrl = URL.createObjectURL(file);
 
-  // Sofort im Kamera-Studio abspielen
+  // Stoppt zunächst das Feed-Video, damit nichts doppelt läuft
+  stopAllVideoAudio(false);
+
+  // Im Kamera-Studio abspielen
   $('camPhotoPrev').style.display='none';
   $('camPh').style.display='none';
   const cp = $('camPrev');
@@ -958,7 +1089,7 @@ function uploadClip(e){
   cp.controls = true;
   cp.play().catch(()=>{});
 
-  // In Mediathek & Feed eintragen
+  // In Mediathek & Feed speichern (Feed-Video bleibt pausiert, solange man im Kamera-Tab ist!)
   state.lib.videos.unshift({t:fName, v:'🎬 Gespeichert', bg:blobUrl, type:'video'});
   clips.unshift({
     tag:'<span style="color:var(--acc)">🎬</span> NEUES VIDEO',
@@ -971,18 +1102,20 @@ function uploadClip(e){
     bg:clips[0].bg,
     vidUrl:blobUrl
   });
-  cIdx = 0; showClipAtIndex(0);
+  cIdx = 0;
+  showClipAtIndex(0, false); // false = noch NICHT im Hintergrund im Feed abspielen!
   renderLib();
 
-  // Dauerhaft in IndexedDB speichern (überlebt Seiten-Neuladen!)
   saveMediaItemToDB({title:fName, sub:'🎬 Gespeichert', blob:file, type:'video'});
-  toast(`🎬 Video „${fName}“ dauerhaft gespeichert!`);
+  toast(`🎬 Video „${fName}“ gespeichert! (Klicke auf Normale Kamera oder anderen Tab zum Stoppen)`);
+  e.target.value = '';
 }
 
-/* FOTO AUS DER GALERIE HOCHLADEN & DAUERHAFT SPEICHERN */
+/* FOTO AUS DER GALERIE HOCHLADEN */
 function uploadPhotoFromGallery(e){
   const file = e.target.files && e.target.files[0];
   if(!file) return;
+  stopAllVideoAudio(false);
   document.querySelectorAll('#camModePills .pill').forEach(x=>x.classList.remove('active'));
   $('photoPillBtn').classList.add('active');
 
@@ -990,13 +1123,11 @@ function uploadPhotoFromGallery(e){
   const reader = new FileReader();
   reader.onload = function(evt){
     const dataUrl = evt.target.result;
-    // Sofort groß im Kamera-Studio zeigen
     $('camPh').style.display='none';
     const imgPrev = $('camPhotoPrev');
     imgPrev.src = dataUrl;
     imgPrev.style.display = 'block';
 
-    // In Mediathek & Feed eintragen
     state.lib.videos.unshift({t:fName, v:'📸 Galerie-Foto', bg:dataUrl, type:'img'});
     clips.unshift({
       tag:'<span style="color:#ffd700">📸</span> FOTO POST',
@@ -1009,17 +1140,17 @@ function uploadPhotoFromGallery(e){
       bg:dataUrl,
       vidUrl:null
     });
-    cIdx = 0; showClipAtIndex(0);
+    cIdx = 0;
+    showClipAtIndex(0, false);
     renderLib();
 
-    // Dauerhaft in IndexedDB speichern
     saveMediaItemToDB({title:fName, sub:'📸 Galerie-Foto', dataUrl:dataUrl, type:'img'});
     toast(`📸 Foto „${fName}“ aus Galerie geladen & gespeichert!`);
   };
   reader.readAsDataURL(file);
+  e.target.value = '';
 }
 
-/* PROFIL-BANNER & AVATAR HOCHLADEN */
 function uploadBanner(e){
   const file = e.target.files && e.target.files[0];
   if(!file) return;
@@ -1066,7 +1197,13 @@ function setMood(m,b){
   toast(m==='light' ? '☀️ Vollbild-Weiß aktiviert!' : '🎨 Stimmung geändert!');
 }
 function selPill(b,m){
+  // Beim Klick auf 15 Sek. / 30 Sek. / Text wird jedes hochgeladene Video gestoppt und die normale Kamera gezeigt!
+  stopAllVideoAudio(false);
   $('camPhotoPrev').style.display='none';
+  if(state.stream){
+    const cp = $('camPrev');
+    cp.muted = true; cp.controls = false; cp.srcObject = state.stream; cp.play().catch(()=>{});
+  }
   b.parentElement.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
   toast('🎞️ Modus: '+m);
@@ -1104,6 +1241,10 @@ function updateUI(){
   $('cPowTxt').textContent = `⚡ POWER ${100 + l*25 + (isStr?sl*30:0)}`;
   $('cRanksTxt').textContent = isStr ? `💎 LVL ${l} • 👑 S-LVL ${sl}` : `Mitglieds-Rang LVL ${l}`;
   $('cGlobStat').textContent = isStr ? '🔥 Im globalen Booster!' : 'Nur im Profil';
+
+  // Freunde-Einladen Zähler in Kontoeinstellungen
+  if($('refCountTxt')) $('refCountTxt').textContent = `${state.refCount} Freunde`;
+  if($('refEarnedTxt')) $('refEarnedTxt').textContent = `${state.refEarned.toLocaleString('de-DE')} Coins`;
 
   $('onMinsTxt').textContent = `${state.onlineMins} Min.`;
   [30,90,180].forEach((t,i)=>{ $(`vSlot${i+1}`).innerHTML = state.vClaim[i] ? `✅ ${i+1}. Spin<br/>Offen` : (state.onlineMins>=t ? `🔓 ${i+1}. Spin<br/><strong style="color:var(--acc)">BEREIT</strong>` : `🔒 ${i+1}. Spin<br/>ab ${t}m`); });
