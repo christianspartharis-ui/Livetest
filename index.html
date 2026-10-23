@@ -1,1114 +1,1919 @@
 <!DOCTYPE html>
-<html lang="de" class="dark">
+<html lang="de" data-mood="lime">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VYBE — Short Video & Live Club</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --vybe-lime: #b8ff01;
-      --vybe-cyan: #00f2fe;
-      --vybe-pink: #ff2e93;
-    }
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #07090e;
-      color: #f8fafc;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<title>VYBE — Short Video & Live Club</title>
+<style>
+/* =========================================================
+   1. FARBWELTEN & WEICHE RAHMEN
+   ========================================================= */
+:root,[data-mood="lime"]{--bg:#0b0c10;--card:rgba(20,23,32,.78);--bdr:rgba(255,255,255,.03);--bdr2:rgba(255,255,255,.06);--acc:#b8ff01;--acc2:#00f2fe;--soft:rgba(184,255,1,.12);--txt:#f5f7fa;--mut:#8a90a6;--hot:#ff2a5f;--drawer:#12151f}
+[data-mood="night"]{--bg:#08090f;--card:rgba(18,22,36,.78);--acc:#00f2fe;--acc2:#4facfe;--soft:rgba(0,242,254,.12);--hot:#ff0844;--drawer:#0e1220}
+[data-mood="chill"]{--bg:#071310;--card:rgba(15,36,30,.78);--acc:#2af598;--acc2:#009efd;--soft:rgba(42,245,152,.12);--drawer:#0b1c17}
+[data-mood="hype"]{--bg:#130611;--card:rgba(34,12,30,.78);--acc:#ff007f;--acc2:#ffbe0b;--soft:rgba(255,0,127,.12);--drawer:#1c0a19}
+[data-mood="cyber"]{--bg:#090517;--card:rgba(22,12,48,.78);--acc:#00f5d4;--acc2:#b5179e;--soft:rgba(0,245,212,.12);--drawer:#120a2a}
+[data-mood="sunset"]{--bg:#14090b;--card:rgba(39,18,22,.78);--acc:#ff7e5f;--acc2:#feb47b;--soft:rgba(255,126,95,.12);--drawer:#1f0e12}
+[data-mood="lava"]{--bg:#140404;--card:rgba(40,8,8,.78);--acc:#ff4122;--acc2:#ff9900;--soft:rgba(255,65,34,.12);--drawer:#210707}
+[data-mood="arctic"]{--bg:#05101a;--card:rgba(12,32,54,.78);--acc:#70e1f5;--acc2:#3a7bd5;--soft:rgba(112,225,245,.12);--drawer:#091c2e}
+[data-mood="sakura"]{--bg:#140a12;--card:rgba(40,20,36,.78);--acc:#ff9a9e;--acc2:#fecfef;--soft:rgba(255,154,158,.12);--drawer:#21101d}
+[data-mood="gold"]{--bg:#100d05;--card:rgba(32,26,10,.78);--acc:#ffd700;--acc2:#ff8c00;--soft:rgba(255,215,0,.12);--drawer:#1a1508}
+[data-mood="galaxy"]{--bg:#070412;--card:rgba(21,13,44,.78);--acc:#a18cd1;--acc2:#fbc2eb;--soft:rgba(161,140,209,.12);--drawer:#110a24}
 
-    /* Schlanker Smartphone-Rahmen (9:19,5 Format) */
-    .slim-phone {
-      width: 295px;
-      height: 625px;
-      border-radius: 42px;
-      background: #0b0e14;
-      border: 6px solid #1e2433;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85),
-                  0 0 35px rgba(184, 255, 1, 0.08);
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      user-select: none;
-    }
+/* DURCHGEHENDER VOLLBILD-WEISS-MODUS */
+html[data-mood="light"],html[data-mood="light"] body{--bg:#ffffff;--card:#ffffff;--bdr:rgba(0,0,0,.04);--bdr2:rgba(0,0,0,.07);--acc:#ff2a5f;--acc2:#00c2ff;--soft:rgba(255,42,95,.08);--txt:#111111;--mut:#6b7280;--hot:#ff2a5f;--drawer:#ffffff;background:#ffffff!important;color:#111111!important}
+html[data-mood="light"] .bg-ov{background:#ffffff!important;opacity:1!important}
+html[data-mood="light"] .top-hdr{background:rgba(255,255,255,.96)!important;border-bottom:1px solid #f0f1f3!important}
+html[data-mood="light"] .b-tit,html[data-mood="light"] .c-tit,html[data-mood="light"] .f-tab.active{color:#111111!important;text-shadow:none!important}
+html[data-mood="light"] .f-tab{color:#6b7280!important;text-shadow:none!important}
+html[data-mood="light"] .card,html[data-mood="light"] .m-box{background:#ffffff!important;border:1px solid #f2f3f5!important;box-shadow:0 4px 16px rgba(0,0,0,.035)!important;color:#111111!important}
+html[data-mood="light"] .xp-box,html[data-mood="light"] .holo,html[data-mood="light"] .inp,html[data-mood="light"] .h-srch input,html[data-mood="light"] .h-btn,html[data-mood="light"] .sub-btn,html[data-mood="light"] .btn.sec,html[data-mood="light"] .pill,html[data-mood="light"] .mix-pill,html[data-mood="light"] .coin-pkg-card,html[data-mood="light"] .legal-details{background:#f7f8fa!important;border:1px solid #eceef2!important;color:#111111!important}
+html[data-mood="light"] .sub-btn.active,html[data-mood="light"] .pill.active,html[data-mood="light"] .btn:not(.sec):not(.gold):not(.hot){background:#111111!important;color:#ffffff!important}
+html[data-mood="light"] .b-nav{background:rgba(255,255,255,.9)!important;border:1px solid #eceef2!important;box-shadow:0 8px 24px rgba(0,0,0,.08)!important}
+html[data-mood="light"] .b-nav-btn{color:#6b7280!important}
+html[data-mood="light"] .b-nav-btn.active{color:#111111!important;font-weight:900!important}
 
-    .slim-phone.active-slide {
-      border-color: #b8ff01;
-      box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.95),
-                  0 0 45px rgba(184, 255, 1, 0.22);
-      transform: scale(1.03);
-    }
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--app-bg,url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=80')) center/cover fixed;color:var(--txt);display:flex;flex-direction:column}
+.bg-ov{position:fixed;inset:0;background:rgba(10,11,15,.82);pointer-events:none;z-index:0}
 
-    /* Dynamic Island */
-    .phone-notch {
-      width: 86px;
-      height: 20px;
-      background: #000;
-      border-radius: 999px;
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 40;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 8px;
-    }
-    .phone-notch::after {
-      content: '';
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #1a2639;
-      box-shadow: inset 0 0 2px #00f2fe;
-    }
+/* HEADER */
+.top-hdr{position:relative;z-index:30;height:clamp(50px,7.5dvh,60px);padding:0 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid var(--bdr);background:rgba(11,12,16,.9);backdrop-filter:blur(14px);flex-shrink:0}
+.brand{display:flex;align-items:center;gap:7px;cursor:pointer;flex-shrink:0}
+.b-ico{width:32px;height:32px;border-radius:9px;background:var(--acc);color:#000;font-size:1.3rem;font-weight:900;display:flex;align-items:center;justify-content:center;padding-top:3px}
+.b-tit{font-size:.96rem;font-weight:900;color:#fff;line-height:1}
+.b-sub{font-size:.42rem;font-weight:700;letter-spacing:1.3px;color:var(--mut)}
+.h-srch{flex:1;min-width:65px;max-width:320px;position:relative;display:flex;align-items:center}
+.h-srch input{width:100%;background:rgba(255,255,255,.045);border:1px solid var(--bdr2);border-radius:99px;padding:7px 12px 7px 28px;color:var(--txt);font-size:.73rem;outline:none}
+.h-srch span{position:absolute;left:10px;color:var(--mut);font-size:.75rem}
+.h-acts{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.h-btn{width:33px;height:33px;border-radius:10px;background:rgba(255,255,255,.045);border:1px solid var(--bdr2);color:var(--txt);display:flex;align-items:center;justify-content:center;font-size:.86rem;cursor:pointer;position:relative}
+.h-btn .dot{position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:var(--hot)}
+.h-av{width:33px;height:33px;border-radius:50%;background:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80') center/cover;border:2px solid var(--acc);cursor:pointer}
 
-    /* Karussell ohne sichtbare Scrollbar */
-    .carousel-track {
-      scroll-behavior: smooth;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .carousel-track::-webkit-scrollbar {
-      display: none;
-    }
+/* SCHWEBENDE UNTERE LEISTE */
+.b-nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:calc(100% - 20px);max-width:480px;height:58px;background:rgba(15,18,26,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.06);border-radius:99px;display:flex;align-items:center;justify-content:space-around;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.b-nav-btn{background:none;border:none;color:var(--mut);font-size:1.15rem;display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;padding:4px 8px;transition:.18s}
+.b-nav-btn.active{color:var(--acc)}
+.b-nav-btn span.lbl{font-size:.58rem;font-weight:700}
+.b-nav-plus{width:42px;height:32px;border-radius:11px;background:linear-gradient(90deg,var(--acc),var(--acc2));color:#000!important;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;box-shadow:0 0 12px var(--soft)}
 
-    /* Innere App-Scrollbars */
-    .app-scroll::-webkit-scrollbar {
-      width: 3px;
-    }
-    .app-scroll::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.18);
-      border-radius: 999px;
-    }
+/* HAUPTBEREICH */
+.work{position:relative;z-index:10;flex:1;width:100%;height:calc(100dvh - clamp(50px,7.5dvh,60px));overflow:hidden}
+.stage{width:100%;height:100%;overflow-y:auto;padding:8px 12px 96px 12px;scrollbar-width:none}
+.stage::-webkit-scrollbar{display:none}
+.view{display:none;width:100%;max-width:860px;margin:0 auto}
+.view.active{display:block}
 
-    /* Schwebe-Herzen im Live */
-    @keyframes floatUpHeart {
-      0% { transform: translateY(0) scale(0.7); opacity: 1; }
-      100% { transform: translateY(-140px) scale(1.25); opacity: 0; }
-    }
-    .floating-heart {
-      animation: floatUpHeart 1.8s ease-out forwards;
-      pointer-events: none;
-    }
-  </style>
+/* FEED & GROSSES VIDEO */
+.f-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;padding:0 2px}
+.f-tabs{display:flex;gap:15px}
+.f-tab{background:none;border:none;color:var(--mut);font-size:.86rem;font-weight:800;cursor:pointer;padding-bottom:3px;position:relative}
+.f-tab.active{color:var(--txt)}
+.f-tab.active::after{content:"";position:absolute;bottom:0;left:0;width:20px;height:3px;border-radius:99px;background:var(--acc)}
+.mix-pill{background:rgba(255,255,255,.04);border:1px solid var(--bdr2);padding:4px 10px;border-radius:99px;font-size:.6rem;font-weight:800;color:var(--txt);display:flex;align-items:center;gap:5px;cursor:pointer}
+.mix-pill i{width:6px;height:6px;border-radius:50%;background:#2af598;box-shadow:0 0 6px #2af598}
+.hero-vid{position:relative;width:100%;height:calc(100dvh - 165px);min-height:390px;border-radius:22px;overflow:hidden;background:var(--feed-bg,url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85')) center/cover;box-shadow:0 14px 36px rgba(0,0,0,.4);border:1px solid var(--bdr);display:flex;flex-direction:column;justify-content:space-between;padding:13px}
+.hero-vid video.feed-real-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:none}
+.hero-vid::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 40%,rgba(0,0,0,.86) 100%);pointer-events:none}
+.v-pills{position:relative;z-index:2;display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap}
+.g-pill{background:rgba(18,20,28,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08);padding:5px 10px;border-radius:99px;font-size:.64rem;font-weight:800;color:#fff}
+.r-acts{position:absolute;right:10px;bottom:18px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:11px}
+.a-itm{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.a-cir{width:40px;height:40px;border-radius:50%;background:rgba(18,20,28,.7);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.a-lbl{font-size:.6rem;font-weight:700;color:#e2e6f0}
+.v-bot{position:relative;z-index:2;max-width:82%}
+.c-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.c-av{width:36px;height:36px;border-radius:50%;background:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80') center/cover;border:2px solid var(--acc)}
+.sub-b{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);color:#b8ff01;padding:3px 9px;border-radius:99px;font-size:.62rem;font-weight:800;cursor:pointer}
+.shock{position:absolute;top:50%;left:50%;width:20px;height:20px;border-radius:50%;border:4px solid var(--acc);transform:translate(-50%,-50%) scale(0);opacity:0;pointer-events:none;z-index:4}
+.shock.boom{animation:sBoom .7s ease-out}
+@keyframes sBoom{0%{transform:translate(-50%,-50%) scale(.5);opacity:1}100%{transform:translate(-50%,-50%) scale(20);opacity:0}}
+
+/* KARTEN MIT WEICHEN RAHMEN */
+.card{background:var(--card);backdrop-filter:blur(18px);border:1px solid var(--bdr);box-shadow:0 8px 24px rgba(0,0,0,.22);border-radius:20px;padding:14px;margin-bottom:10px;overflow:hidden}
+.c-tit{font-size:.84rem;font-weight:800;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;color:var(--txt)}
+.btn{border:none;border-radius:11px;padding:8px 12px;font-weight:800;font-size:.73rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;background:var(--acc);color:#000}
+.btn.sec{background:rgba(255,255,255,.045);color:var(--txt);border:1px solid var(--bdr2)}
+.btn.hot{background:linear-gradient(90deg,#ff2a5f,#ff6b00);color:#fff}
+.btn.gold{background:linear-gradient(90deg,#ffd700,#ffae00);color:#000}
+.btn.full{width:100%}
+.inp{width:100%;background:rgba(0,0,0,.26);border:1px solid var(--bdr2);border-radius:10px;padding:8px 10px;color:var(--txt);font-size:.74rem;outline:none;margin-bottom:7px}
+
+/* =========================================================
+   NEU: VOLLBILD LIVE-RAUM WIE AUF DEN 3 SCREENSHOTS
+   (1 GROSSES FENSTER LINKS + 2x4 GÄSTE RECHTS + TRANSPARENTER CHAT)
+   ========================================================= */
+.live-room-screen{
+  position:relative;
+  width:100%;
+  min-height:calc(100dvh - 140px);
+  border-radius:22px;
+  overflow:hidden;
+  background:radial-gradient(circle at top,#282c54 0%,#141629 55%,#0c0d17 100%);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:10px;
+  color:#fff;
+  box-shadow:0 16px 40px rgba(0,0,0,.55);
+}
+
+/* OBEN: HOST-PILLE, FOLGEN, RANG & SCHLIESSEN */
+.lr-top-row{display:flex;justify-content:space-between;align-items:center;gap:6px;z-index:5}
+.lr-host-pill{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(0,0,0,.42);backdrop-filter:blur(10px);
+  padding:3px 6px 3px 3px;border-radius:99px;border:1px solid rgba(255,255,255,.12);
+  cursor:pointer;
+}
+.lr-host-av{width:32px;height:32px;border-radius:50%;background:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80') center/cover;border:1.5px solid #ff2a5f}
+.lr-follow-btn{background:#ff2a5f;color:#fff;border:none;border-radius:99px;padding:5px 10px;font-size:.66rem;font-weight:800;cursor:pointer}
+.lr-top-right{display:flex;align-items:center;gap:5px}
+.lr-viewer-bub{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,215,0,.5);display:flex;align-items:center;justify-content:center;font-size:.65rem;position:relative;cursor:pointer}
+.lr-viewer-bub i{position:absolute;bottom:-3px;background:#ffd700;color:#000;font-style:normal;font-size:.44rem;font-weight:900;padding:0 3px;border-radius:4px}
+.lr-count-pill{background:rgba(0,0,0,.45);padding:4px 8px;border-radius:99px;font-size:.66rem;font-weight:800}
+.lr-close-btn{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:.85rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* ZWEITE ZEILE: TÄGLICHE RANGLISTE, SCHATZKISTE & LEVEL */
+.lr-sub-row{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:6px;z-index:5;flex-wrap:wrap}
+.lr-chip{background:rgba(0,0,0,.38);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);padding:3px 9px;border-radius:99px;font-size:.62rem;font-weight:700;display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+
+/* LEUCHTENDER SPRUCH IN DER MITTE (z.B. Keep gifting box battle) */
+.lr-neon-banner{
+  text-align:center;font-size:.82rem;font-weight:900;font-style:italic;
+  color:#a5b4fc;text-shadow:0 0 10px rgba(236,72,153,.8),0 0 18px rgba(99,102,241,.6);
+  margin:6px 0;letter-spacing:.3px;z-index:5;
+}
+
+/* HAUPT-STAGE WIE AUF BILD 1 & 2: LINKS GROSS + RECHTS 2x4 GITTER */
+.lr-stage-grid{
+  display:grid;
+  grid-template-columns:1.18fr 1fr;
+  gap:5px;
+  width:100%;
+  height:320px;
+  margin:2px 0 6px;
+  z-index:5;
+}
+.lr-stage-grid.solo-only{grid-template-columns:1fr}
+.lr-main-box{
+  position:relative;
+  border-radius:12px;
+  background:#2d2f3b;
+  border:1px solid rgba(255,255,255,.12);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.lr-main-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.lr-right-8grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:repeat(4,1fr);
+  gap:5px;
+  height:100%;
+}
+.lr-slot-card{
+  position:relative;
+  border-radius:10px;
+  background:rgba(48,50,64,.82);
+  border:1px solid rgba(255,255,255,.09);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  cursor:pointer;
+  padding:4px;
+  transition:.15s;
+}
+.lr-slot-card:hover{border-color:rgba(255,255,255,.3)}
+.lr-slot-card.empty-slot{background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.15)}
+.lr-pts-tag{
+  position:absolute;top:4px;left:4px;z-index:3;
+  background:rgba(0,0,0,.55);padding:1px 6px;border-radius:99px;
+  font-size:.54rem;font-weight:800;color:#fff;display:inline-flex;align-items:center;gap:3px;
+}
+.lr-pts-dot{width:7px;height:7px;border-radius:50%;background:#00d2ff;display:inline-block}
+.lr-circle-av{
+  width:42px;height:42px;border-radius:50%;
+  background-size:cover;background-position:center;
+  border:1.5px solid rgba(255,255,255,.35);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.25rem;background-color:#1c1f2b;
+}
+.lr-main-box .lr-circle-av{width:86px;height:86px;font-size:2.2rem}
+.lr-name-bot{
+  position:absolute;bottom:3px;left:5px;right:18px;z-index:3;
+  font-size:.54rem;font-weight:700;color:#fff;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;
+}
+.lr-mic-ico{
+  position:absolute;bottom:3px;right:4px;z-index:3;
+  font-size:.58rem;opacity:.85;
+}
+
+/* TRANSPARENTER LIVE-CHAT UNTER DEM GITTER (WIE BILD 1 & 2) */
+.lr-chat-wrap{
+  position:relative;z-index:5;
+  display:flex;flex-direction:column;gap:4px;
+  max-height:135px;overflow-y:auto;
+  padding:2px 4px;scrollbar-width:none;
+  mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 100%);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 100%);
+}
+.lr-chat-wrap::-webkit-scrollbar{display:none}
+.lr-join-pill{
+  align-self:flex-start;
+  background:linear-gradient(90deg,rgba(59,130,246,.65),rgba(37,99,235,.35));
+  border:1px solid rgba(96,165,250,.4);
+  padding:3px 10px;border-radius:99px;font-size:.64rem;font-weight:800;color:#fff;
+}
+.lr-msg-row{display:flex;align-items:flex-start;gap:6px;font-size:.68rem;line-height:1.3;text-shadow:0 1px 3px rgba(0,0,0,.85)}
+.lr-msg-av{width:22px;height:22px;border-radius:50%;background:#262936;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;cursor:pointer}
+.lr-lvl-bdg{background:linear-gradient(90deg,#4f46e5,#7c3aed);color:#fff;font-size:.52rem;font-weight:900;padding:1px 5px;border-radius:4px;display:inline-flex;align-items:center;gap:2px;margin-right:3px}
+.lr-host-bdg{background:rgba(255,255,255,.2);color:#fff;font-size:.52rem;font-weight:800;padding:1px 5px;border-radius:4px;margin-left:3px}
+
+/* UNTERE INTERAKTIONS- & SCHNELLGESCHENK-LEISTE */
+.lr-bottom-bar{
+  position:relative;z-index:6;
+  display:flex;align-items:center;gap:6px;
+  margin-top:6px;padding-top:4px;
+}
+.lr-chat-inp-box{
+  flex:1;display:flex;align-items:center;
+  background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14);
+  border-radius:99px;padding:6px 11px;gap:6px;
+}
+.lr-chat-inp-box input{
+  flex:1;background:none;border:none;color:#fff;font-size:.7rem;outline:none;
+}
+.lr-quick-ico{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;cursor:pointer;flex-shrink:0;transition:.15s;
+}
+.lr-quick-ico:hover{transform:scale(1.08);border-color:var(--acc)}
+.lr-quick-ico.gift-main{background:linear-gradient(135deg,#ff2a5f,#ff6b00);border:none}
+
+/* WEISSES PROFIL-SHOWCASE POPUP IM LIVE-STREAM (WIE BILD 3) */
+.lr-profile-sheet{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
+  z-index:245;display:none;align-items:center;justify-content:center;padding:14px;
+}
+.lr-sheet-card{
+  background:#ffffff;color:#111111;border-radius:24px;
+  width:100%;max-width:350px;padding:18px;
+  box-shadow:0 18px 45px rgba(0,0,0,.55);
+}
+
+/* GROSSES PROFIL-HINTERGRUNDBILD (VOLLER HINTERGRUND) */
+.prof-hero-card{
+  position:relative;border-radius:22px;overflow:hidden;margin-bottom:10px;
+  min-height:290px;padding:22px 14px 18px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  background-image:var(--prof-banner-bg,url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85'));
+  background-size:cover;background-position:center;border:1px solid var(--bdr2);
+  box-shadow:0 12px 32px rgba(0,0,0,.35);
+}
+.prof-hero-card::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,10,16,.22) 0%,rgba(8,10,16,.58) 50%,rgba(8,10,16,.88) 100%);
+  pointer-events:none;z-index:1;
+}
+.prof-top-bar{position:absolute;top:10px;left:10px;right:10px;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.prof-banner-edit{background:rgba(15,18,26,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);padding:5px 11px;border-radius:99px;font-size:.64rem;font-weight:800;color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.prof-top-right{display:flex;align-items:center;gap:6px}
+.prof-qr-trig{background:rgba(15,18,26,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:99px;font-size:.64rem;font-weight:800;color:#b8ff01;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.prof-menu-trig{width:34px;height:34px;border-radius:50%;background:rgba(15,18,26,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.prof-hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:16px}
+.p-av-wrap{position:relative;margin-bottom:9px}
+.p-av{width:92px;height:92px;border-radius:50%;background:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80') center/cover;transition:.3s}
+.p-av-plus{position:absolute;bottom:0;right:0;width:26px;height:26px;border-radius:50%;background:#00d2ff;color:#fff;font-weight:900;font-size:1.05rem;display:flex;align-items:center;justify-content:center;border:2px solid #0b0c10;cursor:pointer}
+.aura-0{border:2.5px solid var(--acc)}.aura-1{border:2.5px solid #b8ff01;box-shadow:0 0 16px rgba(184,255,1,.5)}.aura-2{border:2.5px solid #00f2fe;box-shadow:0 0 18px rgba(0,242,254,.55)}.aura-3{border:3px solid #ffd700;box-shadow:0 0 22px rgba(255,215,0,.7)}
+.p-name-row{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:2px;flex-wrap:wrap}
+.p-name-big{font-size:1.14rem;font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.p-edit-chip{background:rgba(255,255,255,.18);border:none;border-radius:99px;padding:3px 9px;font-size:.7rem;color:#fff;cursor:pointer}
+.p-stats-row{display:flex;align-items:center;justify-content:center;gap:18px;margin:11px 0;width:100%;flex-wrap:wrap}
+.stat-col{display:flex;flex-direction:column;align-items:center}
+.stat-num{font-size:.95rem;font-weight:900;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.stat-lbl{font-size:.64rem;color:#d0d6e2;margin-top:1px}
+
+/* RECHTES AUFKLAPPBARES SEITENMENÜ */
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);z-index:210;opacity:0;pointer-events:none;transition:opacity .24s ease}
+.drawer-backdrop.open{opacity:1;pointer-events:auto}
+.right-drawer{position:fixed;top:0;right:0;width:78%;max-width:360px;height:100dvh;background:var(--drawer);border-left:1px solid var(--bdr2);box-shadow:-12px 0 36px rgba(0,0,0,.55);z-index:220;transform:translateX(100%);transition:transform .26s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;overflow-y:auto;padding:18px 16px 32px}
+.right-drawer.open{transform:translateX(0)}
+.drw-sec-title{font-size:.68rem;font-weight:700;color:var(--mut);margin:14px 0 6px;padding:0 4px}
+.drw-sec-title:first-child{margin-top:4px}
+.drw-item{display:flex;align-items:center;justify-content:space-between;padding:13px 6px;border-bottom:1px solid var(--bdr);font-size:.84rem;font-weight:700;color:var(--txt);cursor:pointer;transition:.15s}
+.drw-item:hover{opacity:.82}
+.drw-item-left{display:flex;align-items:center;gap:11px}
+.drw-ico{font-size:1.05rem;width:22px;text-align:center}
+.drw-val{font-size:.76rem;color:var(--mut);font-weight:600;display:flex;align-items:center;gap:6px}
+
+/* GUTHABEN / COIN-AUFLADE-GRID */
+.coin-shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
+.coin-pkg-card{background:rgba(0,0,0,.32);border:1px solid var(--bdr2);border-radius:14px;padding:11px;text-align:center;cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:3px;position:relative;overflow:hidden}
+.coin-pkg-card:hover{border-color:var(--acc);transform:translateY(-2px)}
+.coin-pkg-card.popular{border-color:rgba(255,215,0,.45);background:radial-gradient(circle at top,rgba(255,215,0,.09),rgba(0,0,0,.35))}
+.pkg-coins{font-size:.92rem;font-weight:900;color:#ffd700}
+.pkg-price{font-size:.85rem;font-weight:900;color:var(--txt)}
+.pkg-save{font-size:.58rem;font-weight:800;color:#2af598}
+
+.founder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:8px}
+.founder-card{border-radius:14px;padding:10px;background:rgba(0,0,0,.28);border:1px solid var(--bdr2);position:relative}
+.founder-card.gold-evo{background:radial-gradient(circle at top right,rgba(255,215,0,.22),transparent 65%),rgba(20,16,6,.65);border-color:rgba(255,215,0,.55)}
+
+.legal-details{background:rgba(0,0,0,.22);border:1px solid var(--bdr2);border-radius:11px;padding:9px 11px;margin-bottom:7px;font-size:.7rem;color:var(--mut);line-height:1.45}
+.legal-details summary{font-weight:800;color:var(--txt);cursor:pointer;font-size:.74rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.legal-details summary::after{content:"▾";color:var(--acc)}
+.legal-details[open] summary::after{content:"▴"}
+
+.ref-hero{background:radial-gradient(circle at top right,rgba(255,215,0,.16),transparent 60%),radial-gradient(circle at bottom left,var(--soft),transparent 60%),var(--card);border:1px solid rgba(255,215,0,.18);position:relative}
+.ref-steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ref-step-box{background:rgba(0,0,0,.28);border:1px solid var(--bdr2);border-radius:14px;padding:10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
+.ref-coin-big{font-size:1.15rem;font-weight:900;color:#ffd700;text-shadow:0 0 12px rgba(255,215,0,.35)}
+.ref-step-sub{font-size:.65rem;color:var(--mut);line-height:1.25}
+
+.mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:rgba(0,0,0,.22);padding:4px;border-radius:13px;margin-bottom:10px;border:1px solid var(--bdr)}
+.cam-box{position:relative;width:100%;height:calc(100dvh - 335px);min-height:240px;max-height:450px;border-radius:16px;background:#06070b;border:1px solid var(--bdr2);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:9px}
+.cam-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.cam-box img.cam-photo-prev{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;display:none}
+
+.sub-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.sub-btn{padding:8px 4px;border-radius:10px;border:1px solid var(--bdr);background:rgba(255,255,255,.03);color:var(--mut);font-size:.68rem;font-weight:800;cursor:pointer}
+.sub-btn.active{background:var(--acc);color:#000;border-color:transparent}
+.xp-box{background:rgba(0,0,0,.22);border:1px solid var(--bdr);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.xp-bg{width:100%;height:7px;background:rgba(128,128,128,.16);border-radius:99px;overflow:hidden;margin:5px 0}
+.xp-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .3s}
+.xp-fill.str{background:linear-gradient(90deg,#ffd700,#ff2a5f)}
+.holo{border-radius:14px;padding:12px;background:radial-gradient(circle at top right,var(--soft),transparent 60%),rgba(0,0,0,.26);border:1px solid var(--bdr)}
+.badge{font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid var(--bdr2);color:var(--acc);display:inline-block}
+.m-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px}
+.m-grid-lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:7px}
+.m-item{height:142px;border-radius:13px;background-size:cover;background-position:center;position:relative;overflow:hidden;border:1px solid var(--bdr);display:flex;flex-direction:column;justify-content:flex-end;padding:7px;cursor:pointer;background-color:#0b0c10}
+.m-item video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.m-item::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.85) 100%)}
+
+.g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+.g-th{height:54px;border-radius:9px;background-size:cover;background-position:center;border:1.5px solid var(--bdr);cursor:pointer;display:flex;align-items:flex-end;padding:4px 6px;font-size:.6rem;font-weight:800;color:#fff;text-shadow:0 1px 4px #000}
+.g-th.active{border-color:var(--acc)}
+.pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.pill{padding:5px 10px;border-radius:99px;background:rgba(255,255,255,.04);border:1px solid var(--bdr2);color:var(--txt);font-size:.68rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.pill.active{background:var(--acc);color:#000;font-weight:800;border-color:transparent}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);z-index:240;display:none;align-items:center;justify-content:center;padding:12px}
+.m-box{background:#141722;border:1px solid var(--bdr2);border-radius:18px;max-width:500px;width:100%;max-height:86dvh;overflow-y:auto;padding:15px}
+.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:260;background:rgba(20,23,34,.96);border:1px solid var(--bdr2);color:#fff;padding:7px 14px;border-radius:99px;font-size:.72rem;font-weight:800;display:none;max-width:92vw;text-align:center}
+.fx{position:fixed;inset:0;pointer-events:none;z-index:250;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,.45)}
+.gold-rain{position:fixed;inset:0;pointer-events:none;z-index:230;display:none;background:radial-gradient(circle,rgba(255,215,0,.28),transparent 70%)}
+
+.qr-visual{width:150px;height:150px;margin:10px auto;border-radius:14px;padding:10px;background:#fff;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);gap:3px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.qr-cell{background:#111;border-radius:2px}.qr-cell.w{background:transparent}.qr-cell.acc{background:#ff2a5f}
+</style>
 </head>
-<body class="min-h-screen selection:bg-[#b8ff01] selection:text-black">
+<body>
+<div class="bg-ov"></div>
+<div id="toast" class="toast"></div>
+<div id="fx" class="fx"><div id="fxEmo" style="font-size:4.8rem">🐉</div><div id="fxTxt" style="font-size:.92rem;font-weight:900;color:#ffd700;margin-top:6px;text-align:center;padding:0 12px"></div></div>
+<div id="goldRain" class="gold-rain"></div>
 
-  <!-- Hintergrund-Glow -->
-  <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[750px] h-[400px] bg-[#b8ff01]/10 blur-[140px] rounded-full"></div>
-    <div class="absolute top-[420px] left-1/4 w-[450px] h-[450px] bg-pink-600/10 blur-[150px] rounded-full"></div>
-    <div class="absolute top-[380px] right-1/4 w-[450px] h-[450px] bg-cyan-500/10 blur-[150px] rounded-full"></div>
+<!-- =========================================================
+     WEISSES PROFIL-SHOWCASE POPUP IM LIVE-STREAM (WIE BILD 3)
+     ========================================================= -->
+<div id="liveUserSheet" class="lr-profile-sheet" onclick="if(event.target===this)closeLiveUserSheet()">
+  <div class="lr-sheet-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div id="shAv" style="width:54px;height:54px;border-radius:50%;background:#111 center/cover;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff">🍝</div>
+        <div>
+          <div style="font-size:1.05rem;font-weight:900;color:#111" id="shName">🍝Nudel King🍝</div>
+          <div style="font-size:.72rem;color:#6b7280" id="shSub">reckpunkt</div>
+        </div>
+      </div>
+      <button onclick="closeLiveUserSheet()" style="width:32px;height:32px;border-radius:50%;border:none;background:#f3f4f6;font-weight:900;cursor:pointer">👑</button>
+    </div>
+
+    <div style="font-size:.76rem;font-weight:800;color:#111;margin-bottom:4px">2888 Follower*innen · 4785 folge ich</div>
+    <div style="font-size:.72rem;color:#4b5563;margin-bottom:12px">@⚜️☕INFINITY☕⚜️ #glücklichvergeben🩷</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+      <div style="background:#fff1f2;border-radius:14px;padding:10px">
+        <div style="font-size:1.2rem">❤️</div>
+        <div style="font-size:.75rem;font-weight:800;color:#e11d48">Community <span style="font-size:.65rem">👤 7</span></div>
+      </div>
+      <div style="background:#f5f3ff;border-radius:14px;padding:10px">
+        <div style="font-size:1.2rem">💎</div>
+        <div style="font-size:.75rem;font-weight:800;color:#7c3aed" id="shLvlTxt">Lvl. 26</div>
+      </div>
+    </div>
+
+    <div style="background:#fdf2f8;border-radius:14px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-size:.74rem;font-weight:800;color:#db2777">📦 D2 Geschenkgalerie 0/10</div>
+        <div style="width:120px;height:5px;background:#fbcfe8;border-radius:99px;margin-top:4px"><div style="width:35%;height:100%;background:#db2777;border-radius:99px"></div></div>
+      </div>
+      <span style="color:#9ca3af">›</span>
+    </div>
+
+    <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:14px;padding:11px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;font-weight:800;cursor:pointer" onclick="closeLiveUserSheet();openView('profile');swProf('shop')">
+      <span id="shShowcaseTxt">Showcase von 🍝Nudel King🍝</span><span>›</span>
+    </div>
+
+    <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:14px;padding:11px 12px;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;font-weight:800">
+      <span>Gruppenchats</span><span style="color:#6b7280">1 ›</span>
+    </div>
+  </div>
+</div>
+
+<!-- GESCHENK-AUSWAHL POPUP FÜR DEN LIVE-STREAM -->
+<div id="liveGiftModal" class="modal" onclick="if(event.target===this)$('liveGiftModal').style.display='none'">
+  <div class="m-box">
+    <div class="c-tit"><span>🎁 Geschenk im Live senden</span><span style="color:#ffd700;font-size:.75rem">🪙 <span id="modGiftCoins">7.550</span></span></div>
+    <p style="font-size:.68rem;color:var(--mut);margin-bottom:8px">Jedes Geschenk füllt die 2% Live-Schatzkiste, gibt dem Host 50% XP & sammelt Mod-Coins!</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px">
+      <button class="btn sec" onclick="sendGift('🌹 Rose',10,'🌹')">🌹 Rose (10)</button>
+      <button class="btn sec" onclick="sendGift('🫰 Fingerherz',25,'🫰')">🫰 Herz (25)</button>
+      <button class="btn sec" onclick="sendGift('🍩 Donut',50,'🍩')">🍩 Donut (50)</button>
+      <button class="btn sec" onclick="sendGift('🐸 Frosch',100,'🐸')">🐸 Frosch (100)</button>
+      <button class="btn sec" onclick="sendGift('⚡ Blitz',500,'⚡')">⚡ Blitz (500)</button>
+      <button class="btn hot" onclick="sendGift('🐉 Drache',2500,'🐉')">🐉 Drache (2.5k)</button>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--bdr);padding-top:8px">
+      <button class="btn gold" style="flex:1" onclick="recvGift(1000,false);$('liveGiftModal').style.display='none'">🎙️ Mir +1.000 🪙 schenken</button>
+      <button class="btn sec" style="flex:1" onclick="recvGift(1000,true);$('liveGiftModal').style.display='none'">👥 Gast +1.000 🪙 schenken</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECHTES SEITENMENÜ -->
+<div id="drawerBackdrop" class="drawer-backdrop" onclick="toggleRightDrawer(false)"></div>
+<aside id="rightDrawer" class="right-drawer">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <strong style="font-size:.92rem;color:var(--txt)">Menü & Konto</strong>
+    <button class="btn sec" style="padding:4px 9px;font-size:.7rem" onclick="toggleRightDrawer(false)">✕</button>
   </div>
 
-  <!-- HEADER / NAVBAR -->
-  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#07090e]/80 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-[#b8ff01] flex items-center justify-center text-black font-black text-2xl shadow-[0_0_20px_rgba(184,255,1,0.4)]">
-          *
+  <div class="drw-sec-title">Assets</div>
+  <div class="drw-item" onclick="openAccountSection('wallet')">
+    <div class="drw-item-left"><span class="drw-ico">👛</span><span>Guthaben & Coins aufladen</span></div>
+    <div class="drw-val"><span id="drwCoinsTxt">7.550 🪙</span><span>›</span></div>
+  </div>
+  <div class="drw-item" onclick="openAccountSection('referral')">
+    <div class="drw-item-left"><span class="drw-ico">🎁</span><span>Freunde einladen</span></div>
+    <div class="drw-val"><span style="color:#ffd700;font-weight:800">+1.400 🪙</span><span>›</span></div>
+  </div>
+
+  <div class="drw-sec-title">Persönliche Tools</div>
+  <div class="drw-item" onclick="openAccountSection('design')">
+    <div class="drw-item-left"><span class="drw-ico">🎨</span><span>Hintergrund & Stimmung</span></div>
+    <div class="drw-val"><span>›</span></div>
+  </div>
+
+  <div class="drw-sec-title">Erstellungs- und Business-Tools</div>
+  <div class="drw-item" onclick="toggleRightDrawer(false);openView('camera');switchStudioMode('live')">
+    <div class="drw-item-left"><span class="drw-ico">🎥</span><span>VYBE Studio (Live Setup)</span></div>
+    <div class="drw-val"><span>›</span></div>
+  </div>
+  <div class="drw-item" onclick="toggleRightDrawer(false);toggleInfo(true)">
+    <div class="drw-item-left"><span class="drw-ico">📄</span><span>Streamer- & Club-Regeln</span></div>
+    <div class="drw-val"><span>›</span></div>
+  </div>
+  <div class="drw-item" onclick="openAccountSection('privacy')">
+    <div class="drw-item-left"><span class="drw-ico">⚙️</span><span>Einstellungen und Datenschutz</span></div>
+    <div class="drw-val"><span>›</span></div>
+  </div>
+</aside>
+
+<!-- QR-CODE MODAL -->
+<div id="qrMod" class="modal" onclick="if(event.target===this)toggleQrModal(false)">
+  <div class="m-box" style="text-align:center;max-width:340px">
+    <div class="c-tit"><span>🏁 Dein VYBE Profil-QR-Code</span><button class="btn sec" onclick="toggleQrModal(false)">✖</button></div>
+    <p style="font-size:.72rem;color:var(--mut);margin-bottom:6px">Lass Freunde diesen Code scannen, um dir direkt zu folgen und dir +400 Einladungs-Coins zu sichern!</p>
+    <div class="qr-visual">
+      <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell w"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+      <div class="qr-cell"></div><div class="qr-cell acc"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell acc"></div><div class="qr-cell"></div>
+      <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell w"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+      <div class="qr-cell w"></div><div class="qr-cell"></div><div class="qr-cell w"></div><div class="qr-cell acc"></div><div class="qr-cell w"></div><div class="qr-cell"></div><div class="qr-cell w"></div>
+      <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell w"></div><div class="qr-cell"></div><div class="qr-cell acc"></div><div class="qr-cell"></div>
+      <div class="qr-cell"></div><div class="qr-cell acc"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell w"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+      <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell w"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+    </div>
+    <div style="font-weight:900;font-size:.9rem" id="qrNameTxt">Mila Moves</div>
+    <div style="font-size:.74rem;color:var(--acc);margin-bottom:10px" id="qrHdlTxt">vybe.club/@mila.moves</div>
+    <button class="btn full" onclick="copyRefLink();toggleQrModal(false)">📋 Profil- & Einladungslink kopieren</button>
+  </div>
+</div>
+
+<!-- INFO MODAL -->
+<div id="infoMod" class="modal" onclick="if(event.target===this)toggleInfo(false)">
+  <div class="m-box">
+    <div class="c-tit"><span style="color:var(--acc)">⚡ VYBE – ALLE EXKLUSIVEN FEATURES</span><button class="btn sec" onclick="toggleInfo(false)">✖</button></div>
+    <div style="font-size:.73rem;color:var(--mut);line-height:1.45;display:flex;flex-direction:column;gap:7px">
+      <div class="xp-box"><strong style="color:#ffd700">🎛️ 1. Vorab-Setup & Vollbild-Multi-Live:</strong><br/>Stelle vor dem Start deinen Host-Anteil (0–20 %) und Moderator-Bonus (0–5 % in Coins) ein. Sobald du das Live startest, verschwinden alle Einstellungs-Menüs und du hast vollen Platz für das große Hauptfenster links, die 8 Gäste-Plätze rechts und den Live-Chat!</div>
+      <div class="xp-box"><strong style="color:var(--acc)">💥 2. Live-Schatzkiste (2-%-Topf) & Entdecker-Karten:</strong><br/>Von jedem Geschenk wandern 2 % in die Raum-Schatzkiste (100 Coins Topf bei 5.000 verschenkten Coins). Frühe Supporter kleiner Creator erhalten im Club die Gründer-Entdeckerkarte (+10 % XP ab LVL 20).</div>
+      <div class="xp-box"><strong style="color:#00f2fe">🛡️ 3. Moderator-Coins & 50 % Host-XP:</strong><br/>Moderatoren erhalten ihren Anteil beim Beenden des Streams direkt in Coins ausgezahlt, und Hosts erhalten 50 % aller Geschenke als Level-XP!</div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="top-hdr">
+  <div class="brand" onclick="openView('feed')">
+    <div class="b-ico">*</div>
+    <div><div class="b-tit">VYBE</div><div class="b-sub">SHORT VIDEO CLUB</div></div>
+  </div>
+  <div class="h-srch"><span>⚲</span><input placeholder="Creator, Sounds oder Trends suchen" onfocus="openView('search')" oninput="filterSearch(this.value)"/></div>
+  <div class="h-acts">
+    <button class="h-btn" onclick="toggleInfo(true)">ℹ️</button>
+    <button class="h-btn" onclick="openView('club')">♣<span class="dot"></span></button>
+    <button class="h-btn" onclick="nextClip()">♫</button>
+    <div class="h-av" onclick="openView('profile')" title="Profil"></div>
+  </div>
+</header>
+
+<!-- SCHWEBENDE UNTERE LEISTE -->
+<nav class="b-nav">
+  <button class="b-nav-btn active" id="bn-feed" onclick="openView('feed')"><span>⌂</span><span class="lbl">Home</span></button>
+  <button class="b-nav-btn" id="bn-search" onclick="openView('search')"><span>⚲</span><span class="lbl">Suchen</span></button>
+  <button class="b-nav-btn" id="bn-camera" onclick="openView('camera')"><div class="b-nav-plus">+</div></button>
+  <button class="b-nav-btn" id="bn-club" onclick="openView('club')"><span>♣</span><span class="lbl">Club</span></button>
+  <button class="b-nav-btn" id="bn-profile" onclick="openView('profile')"><span>👤</span><span class="lbl">Profil</span></button>
+  <button class="b-nav-btn" id="bn-settings" onclick="toggleRightDrawer(true)"><span>⚙</span><span class="lbl">Konto</span></button>
+</nav>
+
+<div class="work">
+  <main class="stage">
+
+    <!-- 1. FEED -->
+    <section id="view-feed" class="view active">
+      <div class="f-nav">
+        <div class="f-tabs">
+          <button class="f-tab active" onclick="switchFeedTab(this)">Für dich</button>
+          <button class="f-tab" onclick="switchFeedTab(this)">Abonniert</button>
         </div>
-        <div>
-          <span class="font-extrabold text-lg tracking-tight text-white block leading-none">VYBE</span>
-          <span class="text-[10px] tracking-widest uppercase text-slate-400 font-semibold">Short Video & Live Club</span>
-        </div>
+        <div class="mix-pill" onclick="nextClip()"><i></i><span id="mixTxt">DAILY MIX (4/10)</span></div>
       </div>
 
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
-        <a href="#preview" class="hover:text-[#b8ff01] transition">App-Vorschau</a>
-        <a href="#live-feature" onclick="jumpToSlide(0)" class="hover:text-[#b8ff01] transition">Live 1–8 & Setup</a>
-        <a href="#vorteile" class="hover:text-[#b8ff01] transition">Vorteile</a>
-      </nav>
+      <div class="hero-vid" id="heroVid">
+        <video id="feedRealVideo" class="feed-real-vid" autoplay loop playsinline controls></video>
+        <div class="shock" id="shock"></div>
+        <div class="v-pills">
+          <span class="g-pill" id="cTag"><span style="color:#ffd700">✦</span> MORNING RESET</span>
+          <span class="g-pill" id="cSnd">♫ Originalton · mila.moves</span>
+        </div>
 
-      <div class="flex items-center gap-3">
-        <a href="https://christianspartharis-ui.github.io" target="_blank" rel="noopener"
-           class="px-4 py-2 rounded-xl bg-[#b8ff01] hover:bg-[#c8ff33] text-black font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(184,255,1,0.3)] transition">
-          App öffnen ↗
-        </a>
-      </div>
-    </div>
-  </header>
+        <div class="r-acts">
+          <div class="a-itm" onclick="favClip()"><div class="a-cir" id="likeCir">♥</div><span class="a-lbl">25 Tsd.</span></div>
+          <div class="a-itm" onclick="commClip()"><div class="a-cir">□</div><span class="a-lbl" id="commTxt">382</span></div>
+          <div class="a-itm" onclick="saveClip()"><div class="a-cir" id="saveCir">⚑</div><span class="a-lbl">Merken</span></div>
+          <div class="a-itm" onclick="nextClip()"><div class="a-cir">↗</div><span class="a-lbl">Weiter</span></div>
+        </div>
 
-  <!-- HERO TITEL -->
-  <section class="pt-10 pb-4 px-4 text-center max-w-4xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-[#b8ff01] mb-4">
-      <span class="w-2 h-2 rounded-full bg-[#b8ff01] animate-ping"></span>
-      Neu: Sauberes Live 1–8 Grid mit Vorab-Setup für Host & Modis
-    </div>
-    <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
-      Dein <span class="text-[#b8ff01]">Short Video</span> &amp; <span class="bg-gradient-to-r from-pink-500 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Multi-Live Club</span>
-    </h1>
-    <p class="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
-      Wische durch die schlanke App-Vorschau: Stelle vor deinem Live-Stream alles in Ruhe ein (Host-Geschenkanteil, Modis &amp; Modus) und genieße im Live 100 % freien Platz für bis zu 8 Teilnehmer und deinen Live-Chat.
-    </p>
-  </section>
-
-  <!-- ZENTRALES SWIPE-KARUSSELL (6 SCHLANKE SMARTPHONES) -->
-  <section id="preview" class="py-6 relative max-w-7xl mx-auto">
-    <!-- Schnellwahl-Tabs über dem Karussell -->
-    <div class="flex flex-wrap items-center justify-center gap-2 px-4 mb-6" id="slideTabs">
-      <button onclick="jumpToSlide(0)" class="slide-tab px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#b8ff01] text-black transition">
-        1. 🔴 Live 1–8 &amp; Setup
-      </button>
-      <button onclick="jumpToSlide(1)" class="slide-tab px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-slate-300 hover:bg-white/15 transition">
-        2. 🎬 Für dich Feed
-      </button>
-      <button onclick="jumpToSlide(2)" class="slide-tab px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-slate-300 hover:bg-white/15 transition">
-        3. ♣️ Club &amp; Tresor
-      </button>
-      <button onclick="jumpToSlide(3)" class="slide-tab px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-slate-300 hover:bg-white/15 transition">
-        4. 📸 Kamera-Studio
-      </button>
-      <button onclick="jumpToSlide(4)" class="slide-tab px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-slate-300 hover:bg-white/15 transition">
-        5. 👤 Profil &amp; Level
-      </button>
-      <button onclick="jumpToSlide(5)" class="slide-tab px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-slate-300 hover:bg-white/15 transition">
-        6. ⚙️ Menü &amp; Konto
-      </button>
-    </div>
-
-    <!-- Links / Rechts Swipe-Buttons -->
-    <button onclick="scrollCarousel(-1)" aria-label="Nach links"
-            class="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-slate-900/90 hover:bg-[#b8ff01] hover:text-black border border-white/15 items-center justify-center text-white text-xl shadow-2xl transition">
-      ‹
-    </button>
-    <button onclick="scrollCarousel(1)" aria-label="Nach rechts"
-            class="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-slate-900/90 hover:bg-[#b8ff01] hover:text-black border border-white/15 items-center justify-center text-white text-xl shadow-2xl transition">
-      ›
-    </button>
-
-    <!-- Karussell-Spur -->
-    <div id="carouselTrack" class="carousel-track flex items-center gap-7 overflow-x-auto px-8 sm:px-20 py-6 snap-x snap-mandatory">
-
-      <!-- =========================================================
-           PHONE 1: LIVE 1–8 MIT VORAB-SETUP & MULTI-GRID (WIE SCREENSHOT 6)
-           ========================================================= -->
-      <div class="snap-center flex flex-col items-center" data-index="0">
-        <div class="slim-phone active-slide flex flex-col justify-between bg-[#12131c]">
-          <div class="phone-notch"></div>
-
-          <!-- Umschalter oben (Setup vs. Live-Raum) zum schnellen Testen -->
-          <div class="pt-8 px-2.5 pb-1.5 bg-black/50 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-30">
-            <span class="text-[10px] font-bold text-slate-300 flex items-center gap-1">
-              <span id="liveStateDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
-              <span id="liveStateLabel">1. Vorab-Setup</span>
-            </span>
-            <div class="flex gap-1">
-              <button onclick="switchLiveMode('setup')" id="btnShowSetup"
-                      class="px-2 py-0.5 rounded text-[9px] font-bold bg-[#b8ff01] text-black">
-                ⚙️ Setup
-              </button>
-              <button onclick="switchLiveMode('live')" id="btnShowLive"
-                      class="px-2 py-0.5 rounded text-[9px] font-bold bg-white/10 text-slate-300">
-                🔴 Live-Ansicht
-              </button>
-            </div>
+        <div class="v-bot">
+          <div class="c-row">
+            <div class="c-av" onclick="openView('profile')" style="cursor:pointer"></div>
+            <div><div style="font-size:.86rem;font-weight:800;color:#fff" id="cName">Mila Moves</div><div style="font-size:.7rem;color:#b5bccd" id="cHdl">@mila.moves</div></div>
+            <button class="sub-b" onclick="this.textContent=this.textContent.includes('✓')?'+ Folgen':'✓ Abonniert'">✓ Abonniert</button>
           </div>
+          <div style="font-size:.96rem;font-weight:800;color:#fff;margin-bottom:3px;line-height:1.22" id="cTit">Kleiner Reminder: Du musst nicht jeden Tag alles</div>
+          <div style="font-size:.74rem;color:#d0d6e2;margin-bottom:4px" id="cSub">Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿</div>
+          <div style="font-size:.74rem;font-weight:800;color:#b8ff01" id="cTags">#minivlog #slowmorning #mindset</div>
+        </div>
+      </div>
+    </section>
 
-          <!-- SCHRITT A: VORAB-SETUP (erscheint VOR dem Live-Start, damit im Live nichts stört) -->
-          <div id="liveSetupScreen" class="flex-1 flex flex-col justify-between p-3.5 overflow-y-auto app-scroll bg-gradient-to-b from-[#131624] to-[#0b0d14]">
-            <div class="space-y-3">
-              <div class="p-2.5 rounded-2xl bg-white/5 border border-white/10">
-                <div class="text-[10px] font-extrabold uppercase tracking-wider text-[#b8ff01]">Vor dem Live einstellen</div>
-                <h3 class="text-xs font-bold text-white mt-0.5">Live-Raum konfigurieren</h3>
-                <p class="text-[10px] text-slate-400 leading-relaxed mt-0.5">
-                  Stelle Host-Prozente &amp; Modis jetzt ein. Sobald du startest, verschwinden alle Menüs für maximalen Platz!
-                </p>
-              </div>
+    <!-- 2. SUCHE -->
+    <section id="view-search" class="view">
+      <div class="card">
+        <div class="c-tit"><span>⚲ Creator & Gerade-Live Räume</span><span style="font-size:.68rem;color:var(--acc)">Solo bis 9er-Panel</span></div>
+        <input class="inp" placeholder="Suche @Name, #Code oder Multi-Live..." oninput="filterSearch(this.value)"/>
+        <div id="srchList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px"></div>
+      </div>
+    </section>
 
-              <!-- 1. Host Geschenk-Anteil -->
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
-                <div class="flex justify-between items-center text-[11px] font-bold">
-                  <span>🎁 Host-Anteil (Geschenke)</span>
-                  <span id="hostShareValue" class="text-[#b8ff01]">50 %</span>
-                </div>
-                <input id="hostShareSlider" type="range" min="10" max="100" step="10" value="50"
-                       oninput="document.getElementById('hostShareValue').innerText = this.value + ' %'"
-                       class="w-full accent-[#b8ff01] cursor-pointer h-1.5 bg-slate-700 rounded-lg" />
-                <div class="flex justify-between text-[9px] text-slate-400">
-                  <span>Rest geht an aktive Gäste (1–8)</span>
-                  <span>+50% Host-XP</span>
-                </div>
-              </div>
+    <!-- 3. KAMERA & LIVE (MIT VORAB-SETUP -> DANN SAUBERER VOLLBILD-STREAM WIE AUF DEN SCREENSHOTS!) -->
+    <section id="view-camera" class="view">
+      <div class="mode-switch" id="studioTopSwitch">
+        <button class="sub-btn active" id="btnModeClip" onclick="switchStudioMode('clip')">🎬 Video / Upload</button>
+        <button class="sub-btn" id="btnModeLive" onclick="switchStudioMode('live')">🔴 Live gehen (1–9)</button>
+      </div>
 
-              <!-- 2. Moderatoren (Modis) auswählen -->
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
-                <div class="flex justify-between items-center text-[11px] font-bold">
-                  <span>🛡️ Modis (Moderatoren)</span>
-                  <span class="text-[9px] text-cyan-400">Rechte aktiv</span>
-                </div>
-                <div class="flex flex-wrap gap-1.5 pt-0.5">
-                  <button onclick="toggleModiChip(this)" class="px-2 py-1 rounded-lg text-[10px] font-semibold bg-[#b8ff01]/20 border border-[#b8ff01] text-[#b8ff01]">
-                    ✓ 💕Monika💕
-                  </button>
-                  <button onclick="toggleModiChip(this)" class="px-2 py-1 rounded-lg text-[10px] font-semibold bg-[#b8ff01]/20 border border-[#b8ff01] text-[#b8ff01]">
-                    ✓ Denis...
-                  </button>
-                  <button onclick="toggleModiChip(this)" class="px-2 py-1 rounded-lg text-[10px] font-semibold bg-white/5 border border-white/15 text-slate-300">
-                    + 🌺lams...
-                  </button>
-                  <button onclick="toggleModiChip(this)" class="px-2 py-1 rounded-lg text-[10px] font-semibold bg-white/5 border border-white/15 text-slate-300">
-                    + Shahya...
-                  </button>
-                </div>
-              </div>
+      <!-- TEIL A: VIDEO & FOTO STUDIO -->
+      <div id="studioClipBox" class="card">
+        <div class="c-tit"><span>📸 VYBE Kamera-Studio</span><span style="font-size:.68rem;color:var(--acc)" id="camStat">Ab LVL 1 frei</span></div>
+        <div id="camStage" class="cam-box">
+          <video id="camPrev" autoplay playsinline muted></video>
+          <img id="camPhotoPrev" class="cam-photo-prev" alt="Foto Vorschau"/>
+          <div id="camPh" style="position:relative;z-index:3;text-align:center;color:#8a90a6;font-size:.75rem;padding:14px">
+            <div style="font-size:2.2rem;margin-bottom:6px">📷🎙️</div>
+            <strong style="color:#fff">Kamera & Mikrofon bereit</strong><br/>Tippe unten auf „Normale Kamera starten“ oder wähle ein Foto/Video
+          </div>
+          <div id="camMask" style="position:absolute;z-index:4;font-size:4.4rem;pointer-events:none"></div>
+        </div>
 
-              <!-- 3. Spielmodus & Layout -->
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
-                <div class="text-[11px] font-bold">🎮 Live-Modus (Grid 1–8)</div>
-                <select id="liveModeSelect" class="w-full bg-slate-900 border border-white/15 rounded-lg px-2.5 py-1.5 text-[11px] text-white outline-none">
-                  <option value="Keep gifting 🩷 box battle 1k">Box Battle 1k (1 Haupt + 7 Slots)</option>
-                  <option value="🔥 Multi-Talk 1–8 • Offene Runde">Multi-Talk 1–8 (Offene Runde)</option>
-                  <option value="💎 Creator-Turnier • Top Gifter">Creator-Turnier (Top Gifter)</option>
-                </select>
-              </div>
+        <div class="pills" style="margin-bottom:8px" id="camModePills">
+          <button class="pill active" onclick="selPill(this,'15 Sek.')">15 Sek.</button>
+          <button class="pill" onclick="selPill(this,'30 Sek.')">30 Sek.</button>
+          <label class="pill" id="photoPillBtn" style="cursor:pointer">
+            📸 Foto <input type="file" accept="image/*" style="display:none" onchange="uploadPhotoFromGallery(event)"/>
+          </label>
+          <button class="pill" onclick="selPill(this,'Text')">✍️ Text</button>
+        </div>
 
-              <!-- 4. Zusammenfassung -->
-              <div class="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-[10px] text-emerald-300 flex items-center gap-2">
-                <span>✅</span>
-                <span>Alle Einstellungen gespeichert. Im Stream hast du 100 % freie Sicht!</span>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+          <button class="btn sec" onclick="$('camMask').textContent=''">🚫 Keine</button>
+          <button class="btn sec" onclick="$('camMask').textContent='🐸'">🐸 Frosch</button>
+          <button class="btn sec" onclick="$('camMask').textContent='🤡'">🤡 Clown</button>
+          <button class="btn sec" onclick="cycleFilter()">🎨 KI-Filter</button>
+        </div>
+
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="btn" style="flex:1.2" onclick="startMedia()">📷🎙️ Normale Kamera starten</button>
+          <label class="btn sec" style="flex:1;cursor:pointer">
+            📤 Video hochladen <input type="file" accept="video/*" style="display:none" onchange="uploadClip(event)"/>
+          </label>
+        </div>
+      </div>
+
+      <!-- TEIL B: LIVE-BEREICH -->
+      <div id="studioLiveBox" style="display:none">
+        <div id="liveLock" class="card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:4px">🔒</div>
+          <h3 style="font-size:.92rem;margin-bottom:5px">Live & Multi-Live ab Level 5!</h3>
+          <p style="font-size:.73rem;color:var(--mut);margin-bottom:10px">Du bist <strong id="lockLvlTxt">LVL 1</strong>. Öffne im Club 4 Holo-Booster (je +250 XP), um sofort Level 5 und dein Live-Studio freizuschalten!</p>
+          <button class="btn" onclick="openView('club')">🃏 Zum Club & Booster öffnen</button>
+        </div>
+
+        <div id="liveAct" style="display:none">
+
+          <!-- =========================================================
+               SCHRITT 1: VORAB-EINSTELLUNGEN (PRE-LIVE SETUP)
+               Wird VOR dem Starten des Streams angezeigt. Sobald man startet,
+               verschwindet diese Box komplett für maximalen Platz!
+               ========================================================= -->
+          <div id="preLiveSetupCard" class="card">
+            <div class="c-tit">
+              <span>🎛️ 1. Live-Stream vorab einstellen</span>
+              <span class="badge">Vor dem Start konfigurieren</span>
+            </div>
+            <p style="font-size:.71rem;color:var(--mut);margin-bottom:10px">
+              Stelle hier vorab alle Quoten und die Raum-Größe ein. Sobald du startest, werden diese Einstellungen ausgeblendet, damit du vollen Platz im Live-Stream hast!
+            </p>
+
+            <label style="font-size:.68rem;color:var(--mut);font-weight:700">✨ Stream-Spruch / Titel über dem Gitter:</label>
+            <input id="setupBannerInp" class="inp" value="Keep gifting 🩷 box battle 1k" oninput="state.liveTitle=this.value"/>
+
+            <div class="xp-box">
+              <div style="font-size:.72rem;font-weight:800;margin-bottom:5px">👥 Layout & aktive Plätze wählen:</div>
+              <div class="pills" id="slotBtns" style="margin-top:0">
+                <button class="pill" onclick="setSlots(1,this)">👤 Solo (Nur Hauptfenster)</button>
+                <button class="pill" onclick="setSlots(3,this)">👥 3 aktive Leute (+ Einladen)</button>
+                <button class="pill" onclick="setSlots(5,this)">👥 5 aktive Leute</button>
+                <button class="pill active" onclick="setSlots(9,this)">🔥 Volles 9er Panel (Wie Bild 1)</button>
               </div>
             </div>
 
-            <!-- START BUTTON -->
-            <button onclick="switchLiveMode('live')"
-                    class="mt-3 w-full py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-400 hover:to-rose-400 text-white font-extrabold text-xs shadow-[0_0_25px_rgba(244,63,94,0.5)] transition">
-              🔴 Live-Stream jetzt starten
+            <div class="xp-box">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.72rem;margin-bottom:8px">
+                <span>👑 <strong>Dein Host-Anteil bei Gäste-Geschenken:</strong> <strong style="color:#ffae00" id="hostCutLbl">20 %</strong></span>
+                <input type="range" min="0" max="20" value="20" style="width:115px;accent-color:var(--acc)" oninput="state.hostCut=+this.value;$('hostCutLbl').textContent=this.value+' %'"/>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.72rem;border-top:1px solid var(--bdr);padding-top:8px">
+                <span>🛡️ <strong>Moderator-Bonus (@Mod_Alex):</strong> <strong style="color:#00f2fe" id="modCutLbl">3 % (in Coins)</strong></span>
+                <input type="range" min="0" max="5" value="3" style="width:115px;accent-color:#00f2fe" oninput="state.modCut=+this.value;$('modCutLbl').textContent=this.value+' % (in Coins)'"/>
+              </div>
+              <div style="font-size:.63rem;color:var(--mut);margin-top:5px">
+                💡 Info: Du erhältst als Host automatisch <strong>50 % der Geschenke als Level-XP</strong>. Die <strong>2 % Live-Schatzkiste</strong> für Zuschauer läuft automatisch mit.
+              </div>
+            </div>
+
+            <div class="xp-box" style="display:flex;justify-content:space-between;align-items:center;font-size:.7rem;flex-wrap:wrap;gap:6px">
+              <span>📅 <strong>Wochen-Livezeit (Mo–So):</strong> <span id="wkHoursTxt">0.0 / 15.0 Std.</span></span>
+              <div style="display:flex;gap:5px">
+                <button class="btn sec" style="padding:3px 7px;font-size:.62rem" onclick="addLiveHours(3)">⏩ +3 Std. Test</button>
+                <button class="btn sec" style="padding:3px 7px;font-size:.62rem" id="btnTogMic" onclick="togLiveCond('mic')">🎙️ Mikro AN</button>
+              </div>
+            </div>
+
+            <button class="btn hot full" style="padding:12px;font-size:.85rem;margin-top:4px" onclick="launchCleanLiveStream()">
+              🔴 JETZT LIVE STARTEN (Vollbild-Ansicht öffnen)
             </button>
           </div>
 
-          <!-- SCHRITT B: AKTIVES LIVE 1–8 (EXAKT WIE SCREENSHOT 6, OHNE STÖRENDE MENÜS) -->
-          <div id="liveActiveScreen" class="hidden flex-1 flex flex-col justify-between relative overflow-hidden"
-               style="background: linear-gradient(180deg, #1b1926 0%, #242134 55%, #2f1f38 100%);">
+          <!-- =========================================================
+               SCHRITT 2: AKTIVER VOLLBILD-LIVE-STREAM (WIE BILD 1, 2 & 3)
+               Keine störenden Einstellungs-Boxen mehr – 100% Fokus auf Stream & Chat!
+               ========================================================= -->
+          <div id="activeLiveRoomScreen" class="live-room-screen" style="display:none">
 
-            <!-- OBEN: Host-Leiste & Rangliste -->
-            <div class="p-2 space-y-1.5 z-20">
-              <div class="flex items-center justify-between">
-                <!-- Host Pill links -->
-                <div class="flex items-center gap-1.5 bg-black/40 rounded-full p-0.5 pr-1.5 border border-white/10">
-                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80"
-                       alt="jyunii011" class="w-6 h-6 rounded-full object-cover" />
-                  <div class="leading-tight">
-                    <div class="text-[10px] font-bold text-white">jyunii011</div>
-                    <div class="text-[8px] text-slate-300">🤍 13.7K</div>
+            <!-- 1. OBEN: HOST-INFO + FOLGEN + ZUSCHAUER + BEENDEN -->
+            <div>
+              <div class="lr-top-row">
+                <div class="lr-host-pill" onclick="openLiveUserSheet('host')">
+                  <div class="lr-host-av" id="lrTopHostAv"></div>
+                  <div>
+                    <div style="font-size:.72rem;font-weight:900;line-height:1.1" id="lrTopHostName">jyunii011</div>
+                    <div style="font-size:.58rem;color:#cbd5e1">🤍 13.7K</div>
                   </div>
-                  <button class="ml-1 px-2 py-0.5 rounded-full bg-[#ff3b5c] text-white text-[9px] font-bold">
-                    + Folgen
-                  </button>
+                  <button class="lr-follow-btn" onclick="event.stopPropagation();this.textContent=this.textContent.includes('✓')?'+ Folgen':'✓ Gefolgt'">+ Folgen</button>
                 </div>
 
-                <!-- Zuschauer Rechts + Schließen -->
-                <div class="flex items-center gap-1">
-                  <div class="flex -space-x-1.5">
-                    <span class="w-5 h-5 rounded-full bg-amber-500/80 border border-black text-[7px] font-bold flex items-center justify-center">10+</span>
-                    <span class="w-5 h-5 rounded-full bg-slate-600 border border-black text-[7px] font-bold flex items-center justify-center">10+</span>
-                  </div>
-                  <span class="px-1.5 py-0.5 rounded-full bg-black/40 text-[9px] font-bold text-slate-200">11</span>
-                  <button onclick="switchLiveMode('setup')" title="Zurück zum Setup"
-                          class="w-5 h-5 rounded-full bg-black/40 text-white text-[10px] flex items-center justify-center hover:bg-white/20">
-                    ✕
-                  </button>
+                <div class="lr-top-right">
+                  <div class="lr-viewer-bub" onclick="openLiveUserSheet('guest',0)">🦊<i>68</i></div>
+                  <div class="lr-viewer-bub" onclick="openLiveUserSheet('guest',1)">🎧<i>10+</i></div>
+                  <span class="lr-count-pill" id="lrViewerCount">11</span>
+                  <button class="lr-close-btn" onclick="stopLiveAndReturnToSetup()" title="Stream beenden & Mod auszahlen">✕</button>
                 </div>
               </div>
 
-              <!-- Zweite Reihe: Tägliche Rangliste & LVL. 2 -->
-              <div class="flex items-center justify-between text-[8px]">
-                <span class="px-2 py-0.5 rounded-full bg-black/40 text-slate-200 font-semibold">
-                  🔥 Tägliche Rangliste
+              <!-- 2. SUB-LEISTE: RANGLISTE, SCHATZKISTE (2%) & STREAMER-LEVEL -->
+              <div class="lr-sub-row">
+                <span class="lr-chip" onclick="toast('🔥 Platz #4 in der täglichen VYBE-Rangliste!')">🔥 Tägliche Rangliste</span>
+                <span class="lr-chip" id="lrChestChip" onclick="grabLiveChest()" style="border-color:rgba(255,215,0,.4);color:#ffd700">
+                  💥 Kiste: <strong id="chestProgTxt">0%</strong>
                 </span>
-                <div class="flex items-center gap-1">
-                  <span class="px-1.5 py-0.5 rounded-full bg-black/40 text-pink-300 font-semibold">💎 LVL. 2 <span class="text-white">0/3</span></span>
-                  <span class="px-1.5 py-0.5 rounded-full bg-black/40 text-amber-300 font-semibold">Creators-C... 🏆</span>
+                <span class="lr-chip" onclick="openAccountSection('wallet')">
+                  💎 LVL. <span id="lrStrLvlChip">5</span> • 🛡️ Mod: <span id="modPoolTxt">0</span> 🪙
+                </span>
+              </div>
+
+              <!-- 3. LEUCHTENDER SPRUCH ÜBER DEM GITTER (WIE BILD 1) -->
+              <div class="lr-neon-banner" id="lrNeonBannerTxt">Keep gifting 🩷 box battle 1k</div>
+            </div>
+
+            <!-- 4. MULTI-LIVE STAGE: LINKS GROSSES FENSTER + RECHTS 2x4 GÄSTE-GITTER (WIE BILD 1 & 2) -->
+            <div id="lrStageGrid" class="lr-stage-grid"></div>
+
+            <!-- 5. TRANSPARENTER LIVE-CHAT UNTER DEM GITTER (WIE BILD 1 & 2) -->
+            <div>
+              <div class="lr-chat-wrap" id="lrChatList">
+                <div class="lr-join-pill" id="lrJoinBanner">💎 26 🍝Nudel King🍝 ist beigetreten</div>
+                <div class="lr-msg-row" onclick="openLiveUserSheet('host')">
+                  <div class="lr-msg-av">👑</div>
+                  <div><strong style="color:#cbd5e1">jyunii011</strong><span class="lr-host-bdg">Host</span><br/>@💕Monika💕 🩷🩷🩷</div>
+                </div>
+                <div class="lr-msg-row" onclick="openLiveUserSheet('guest',3)">
+                  <div class="lr-msg-av">🎩</div>
+                  <div><span class="lr-lvl-bdg">💎 27</span><strong style="color:#f9a8d4">💕Monika💕</strong> <span style="background:rgba(244,63,94,.25);color:#fda4af;font-size:.5rem;padding:1px 4px;border-radius:4px">🏅 Nr. 2</span><br/>🥰🥰🥰</div>
+                </div>
+                <div class="lr-msg-row">
+                  <div class="lr-msg-av">↗</div>
+                  <div style="color:#cbd5e1">srkl edits <strong>hat das LIVE geteilt</strong></div>
+                </div>
+                <div class="lr-msg-row">
+                  <div class="lr-msg-av">👋</div>
+                  <div style="color:#cbd5e1">seems144 <strong>ist beigetreten</strong></div>
                 </div>
               </div>
 
-              <!-- Neon Banner Text -->
-              <div id="liveBannerText" class="text-center text-[10px] font-extrabold tracking-wide text-purple-300 drop-shadow-[0_0_8px_rgba(192,132,252,0.8)] pt-0.5">
-                Keep gifting 🩷 box battle 1k
+              <!-- 6. UNTERE LEISTE: TIPPEN, EMOJI, GAST EINLADEN, SCHNELLGESCHENKE & GESCHENK-BOX (WIE BILD 1) -->
+              <div class="lr-bottom-bar">
+                <div class="lr-chat-inp-box">
+                  <input id="lrChatInp" placeholder="Tippen ..." onkeydown="if(event.key==='Enter')sendLiveChatMsg()"/>
+                  <span style="cursor:pointer;opacity:.8" onclick="sendLiveChatMsg()">😊</span>
+                </div>
+                <div class="lr-quick-ico" onclick="inviteNextGuestSlot()" title="Gast einladen">👥</div>
+                <div class="lr-quick-ico" onclick="sendGift('🌹 Rose',10,'🌹')" title="Rose (10)">🌹</div>
+                <div class="lr-quick-ico" onclick="sendGift('🫰 Fingerherz',25,'🫰')" title="Fingerherz (25)">🫰</div>
+                <div class="lr-quick-ico" onclick="sendGift('🍩 Donut',50,'🍩')" title="Donut (50)">🍩</div>
+                <div class="lr-quick-ico gift-main" onclick="$('modGiftCoins').textContent=state.coins.toLocaleString('de-DE');$('liveGiftModal').style.display='flex'" title="Alle Geschenke">🎁</div>
+                <div class="lr-quick-ico" onclick="shareLiveStream()" title="Live teilen">↗</div>
               </div>
             </div>
 
-            <!-- MITTE: ASYMMETRISCHES 1 + 8 LIVE-GRID (WIE SCREENSHOT 6) -->
-            <div class="px-2 flex-1 flex items-center">
-              <div class="w-full h-[250px] grid grid-cols-12 gap-[2px] bg-[#16151d] rounded-lg overflow-hidden border border-white/10">
-
-                <!-- LINKE GROSSE HAUPTKACHEL (andrew siltman +) -->
-                <div class="col-span-6 relative bg-[#3a3637] flex flex-col justify-between p-1.5">
-                  <div class="inline-flex items-center gap-1 self-start px-1.5 py-0.5 rounded-full bg-black/40 text-[8px] font-bold text-cyan-300">
-                    💿 214
-                  </div>
-                  <div class="my-auto mx-auto">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80"
-                         alt="andrew siltman" class="w-14 h-14 rounded-full object-cover border border-white/20 shadow-md" />
-                  </div>
-                  <div class="flex items-center justify-between text-[8px] text-white">
-                    <span class="px-1.5 py-0.5 rounded bg-black/50 truncate max-w-[95px]">andrew siltman +</span>
-                    <span class="text-slate-300">🔇</span>
-                  </div>
-                </div>
-
-                <!-- RECHTE SEITE: 2 SPALTEN × 4 REIHEN (8 SLOTS) -->
-                <div class="col-span-6 grid grid-cols-2 grid-rows-4 gap-[2px]">
-                  <!-- Slot 1: Host jyunii011 -->
-                  <div class="relative bg-[#3a3637] p-1 flex flex-col justify-between items-center">
-                    <span class="self-start px-1 rounded bg-black/50 text-[7px] text-slate-200">Host</span>
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80" class="w-7 h-7 rounded-full object-cover" />
-                    <span class="self-start text-[7px] text-white bg-black/40 px-1 rounded truncate max-w-full">jyunii011</span>
-                  </div>
-
-                  <!-- Slot 2: Denis... 150 -->
-                  <div class="relative bg-[#3a3637] p-1 flex flex-col justify-between items-center">
-                    <span class="self-start px-1 rounded bg-black/50 text-[7px] text-cyan-300">💿 150</span>
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" class="w-7 h-7 rounded-full object-cover" />
-                    <div class="w-full flex justify-between items-center text-[7px] text-white">
-                      <span class="bg-black/40 px-1 rounded truncate">Denis... +</span><span>🔇</span>
-                    </div>
-                  </div>
-
-                  <!-- Slot 3: lams... 148 -->
-                  <div class="relative bg-[#3a3637] p-1 flex flex-col justify-between items-center">
-                    <span class="self-start px-1 rounded bg-black/50 text-[7px] text-cyan-300">💿 148</span>
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" class="w-7 h-7 rounded-full object-cover" />
-                    <div class="w-full flex justify-between items-center text-[7px] text-white">
-                      <span class="bg-black/40 px-1 rounded truncate">🌺lams... +</span><span>🔇</span>
-                    </div>
-                  </div>
-
-                  <!-- Slot 4: Monika... 128 -->
-                  <div class="relative bg-[#3a3637] p-1 flex flex-col justify-between items-center">
-                    <span class="self-start px-1 rounded bg-black/50 text-[7px] text-cyan-300">💿 128</span>
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&auto=format&fit=crop&q=80" class="w-7 h-7 rounded-full object-cover" />
-                    <div class="w-full flex justify-between items-center text-[7px] text-white">
-                      <span class="bg-black/40 px-1 rounded truncate">💕Monika...</span><span>🔇</span>
-                    </div>
-                  </div>
-
-                  <!-- Slot 5: Shahya... 2 -->
-                  <div class="relative bg-[#3a3637] p-1 flex flex-col justify-between items-center">
-                    <span class="self-start px-1 rounded bg-black/50 text-[7px] text-cyan-300">💿 2</span>
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&auto=format&fit=crop&q=80" class="w-7 h-7 rounded-full object-cover" />
-                    <div class="w-full flex justify-between items-center text-[7px] text-white">
-                      <span class="bg-black/40 px-1 rounded truncate">Shahya... +</span><span>🔇</span>
-                    </div>
-                  </div>
-
-                  <!-- Slot 6: Abbas... 2 -->
-                  <div class="relative bg-[#3a3637] p-1 flex flex-col justify-between items-center">
-                    <span class="self-start px-1 rounded bg-black/50 text-[7px] text-cyan-300">💿 2</span>
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&auto=format&fit=crop&q=80" class="w-7 h-7 rounded-full object-cover" />
-                    <div class="w-full flex justify-between items-center text-[7px] text-white">
-                      <span class="bg-black/40 px-1 rounded truncate">Abbas... +</span><span>🔇</span>
-                    </div>
-                  </div>
-
-                  <!-- Slot 7: srkl edits + 0 -->
-                  <div class="relative bg-[#3a3637] p-1 flex flex-col justify-between items-center">
-                    <span class="self-start px-1 rounded bg-black/50 text-[7px] text-cyan-300">💿 0</span>
-                    <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=80&auto=format&fit=crop&q=80" class="w-7 h-7 rounded-full object-cover" />
-                    <div class="w-full flex justify-between items-center text-[7px] text-white">
-                      <span class="bg-black/40 px-1 rounded truncate">srkl edits +</span><span>🔇</span>
-                    </div>
-                  </div>
-
-                  <!-- Slot 8: "Schnapp dir das" Freier Slot -->
-                  <div onclick="claimEighthSlot(this)" class="relative bg-[#2b2533] p-1 flex flex-col justify-center items-center cursor-pointer hover:bg-[#383042] transition">
-                    <div class="w-6 h-6 rounded-full bg-black/60 border border-pink-500/40 flex items-center justify-center text-[9px] text-pink-300 mb-1">
-                      +
-                    </div>
-                    <span class="px-1.5 py-0.5 rounded-full bg-white text-black font-bold text-[7px] shadow">
-                      Schnapp dir das
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- UNTEN: LIVE-CHAT & AKTIONEN (WIE SCREENSHOT 6) -->
-            <div class="p-2 pt-1 space-y-1 relative z-20">
-              <!-- Fliegende Herzen Container -->
-              <div id="heartContainer" class="absolute right-3 bottom-12 w-8 h-32 pointer-events-none"></div>
-
-              <!-- Blaue Beitritts-Pille -->
-              <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#3b5bdb]/90 text-white text-[9px] font-semibold shadow">
-                <span class="px-1 rounded bg-blue-400/30 text-[8px]">💎 26</span>
-                <span>🍜Nudel King🍜 ist beigetreten</span>
-              </div>
-
-              <!-- Chat-Verlauf -->
-              <div id="liveChatList" class="space-y-1 max-h-[105px] overflow-y-auto app-scroll pr-8 text-[9px]">
-                <div class="flex items-start gap-1.5">
-                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&auto=format&fit=crop&q=80" class="w-4 h-4 rounded-full object-cover mt-0.5" />
-                  <div>
-                    <span class="text-slate-300 font-semibold">jyunii011</span>
-                    <span class="px-1 py-0.2 rounded bg-white/15 text-[7px] text-white ml-0.5">Host</span>
-                    <div class="text-white font-medium">@💕Monika💕 🩷🩷🩷</div>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-1.5">
-                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=40&auto=format&fit=crop&q=80" class="w-4 h-4 rounded-full object-cover mt-0.5" />
-                  <div>
-                    <span class="px-1 rounded bg-blue-600/80 text-[7px] text-white">💎 27</span>
-                    <span class="text-pink-200 font-semibold ml-0.5">💕Monika💕</span>
-                    <span class="px-1 rounded bg-rose-500/80 text-[7px] text-white ml-0.5">🥇 Nr. 2</span>
-                    <div class="text-sm leading-tight">🥰🥰🥰</div>
-                  </div>
-                </div>
-
-                <div class="text-slate-300/90 flex items-center gap-1 text-[8px]">
-                  <span>↪️</span> <span><b>srkl edits</b> hat das LIVE geteilt</span>
-                </div>
-                <div class="text-slate-300/90 flex items-center gap-1 text-[8px]">
-                  <span>👋</span> <span><b>seems144</b> ist beigetreten</span>
-                </div>
-              </div>
-
-              <!-- Rechte Schwebe-Buttons (Herz & Teilen) -->
-              <div class="absolute right-2.5 bottom-11 flex flex-col gap-1.5">
-                <button onclick="spawnLiveHeart()" class="w-7 h-7 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-rose-500 text-xs shadow active:scale-125 transition">
-                  ❤️
-                </button>
-                <button onclick="addSystemChat('Du hast das LIVE geteilt 🚀')" class="w-7 h-7 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-blue-400 text-xs shadow">
-                  ↪️
-                </button>
-              </div>
-
-              <!-- Untere Eingabeleiste: Tippen ... + Geschenke -->
-              <div class="flex items-center gap-1 pt-1">
-                <form onsubmit="sendLiveChat(event)" class="flex-1 flex items-center bg-black/45 border border-white/10 rounded-full px-2.5 py-1">
-                  <input id="liveChatInput" type="text" placeholder="Tippen ..."
-                         class="bg-transparent text-[9px] text-white placeholder-slate-400 outline-none w-full" />
-                  <button type="submit" class="text-[9px] text-slate-300">😊</button>
-                </form>
-                <button onclick="sendGiftChat('🌹 Rose')" title="Rose senden" class="w-6 h-6 rounded-full bg-black/40 flex items-center justify-center text-xs hover:scale-110 transition">🌹</button>
-                <button onclick="sendGiftChat('🫰 Herz')" title="Fingerherz" class="w-6 h-6 rounded-full bg-black/40 flex items-center justify-center text-xs hover:scale-110 transition">🫰</button>
-                <button onclick="sendGiftChat('🎁 Box Battle Geschenk')" title="Geschenkbox" class="w-6 h-6 rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-xs hover:scale-110 transition">🎁</button>
-                <div class="px-1.5 py-0.5 rounded-full bg-black/40 text-[8px] text-slate-300 font-bold">32</div>
-              </div>
-            </div>
           </div>
         </div>
-        <span class="mt-3 text-xs font-bold text-[#b8ff01]">1. Live 1–8 (Setup → Vollbild-Live)</span>
+      </div>
+    </section>
+
+    <!-- 4. CLUB -->
+    <section id="view-club" class="view">
+      <div class="card">
+        <div class="c-tit"><span>🎰 Täglicher Neon-Tresor (3× am Tag)</span><span style="font-size:.7rem;color:var(--acc)">⏱️ Online: <strong id="onMinsTxt">9 Min.</strong></span></div>
+        <p style="font-size:.71rem;color:var(--mut);margin-bottom:7px">Öffne nach <strong>30 Min. (1/3)</strong>, <strong>1:30 Std. (2/3)</strong> & <strong>3:00 Std. (3/3)</strong>! Gewinn: <strong>100–500 Coins</strong>.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px;text-align:center;font-size:.66rem">
+          <div id="vSlot1" class="xp-box" style="margin:0">🔒 1. Spin<br/>ab 30m</div>
+          <div id="vSlot2" class="xp-box" style="margin:0">🔒 2. Spin<br/>ab 1:30h</div>
+          <div id="vSlot3" class="xp-box" style="margin:0">🔒 3. Spin<br/>ab 3:00h</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="btn gold" style="flex:2" onclick="spinVault()">🎰 Tresor öffnen</button>
+          <button class="btn sec" style="flex:1" onclick="state.onlineMins+=30;toast('⏱️ +30 Min. Online-Zeit');updateUI()">⏩ +30m</button>
+        </div>
       </div>
 
-      <!-- =========================================================
-           PHONE 2: SHORT VIDEO FEED ("FÜR DICH" - WIE SCREENSHOT 5)
-           ========================================================= -->
-      <div class="snap-center flex flex-col items-center" data-index="1">
-        <div class="slim-phone flex flex-col justify-between bg-[#0b0e14]">
-          <div class="phone-notch"></div>
-
-          <!-- Top App Bar -->
-          <div class="pt-8 px-3 pb-2 bg-[#0d1118] border-b border-white/10 flex items-center justify-between">
-            <div class="flex items-center gap-1.5">
-              <span class="w-5 h-5 rounded-md bg-[#b8ff01] text-black font-black text-xs flex items-center justify-center">*</span>
-              <span class="font-extrabold text-[11px] text-white">VYBE</span>
-            </div>
-            <div class="flex items-center gap-3 text-[11px] font-bold">
-              <span class="text-white border-b-2 border-[#b8ff01] pb-0.5">Für dich</span>
-              <span class="text-slate-400">Abonniert</span>
-            </div>
-            <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-[8px] font-bold text-emerald-300">
-              ● DAILY MIX (4/10)
-            </span>
-          </div>
-
-          <!-- Video Feed Content -->
-          <div class="relative flex-1 bg-slate-900 overflow-hidden flex flex-col justify-between p-3"
-               style="background: radial-gradient(circle at 50% 35%, #1e3a5f 0%, #090d16 75%);">
-            <div class="flex items-center justify-between z-10">
-              <span class="px-2 py-0.5 rounded-md bg-black/60 text-[#b8ff01] text-[9px] font-bold">★ DEIN UPLOAD</span>
-              <span class="px-2 py-0.5 rounded-md bg-black/60 text-white text-[9px]">♫ Originalton • @mila.moves</span>
-            </div>
-
-            <!-- Anime / Video Artwork Platzhalter oder Upload -->
-            <div class="my-auto text-center px-2">
-              <div class="w-28 h-28 mx-auto rounded-2xl bg-gradient-to-tr from-cyan-500/30 to-indigo-500/30 border border-cyan-400/40 flex items-center justify-center text-4xl shadow-lg">
-                🃏⚡
-              </div>
-              <p class="mt-3 text-xs font-extrabold text-white drop-shadow">
-                „Ich rufaht, meinen gebtebieter kuber!“
-              </p>
-            </div>
-
-            <!-- Rechts: Interaktions-Buttons -->
-            <div class="absolute right-2.5 bottom-16 flex flex-col items-center gap-2.5 z-10">
-              <button onclick="this.querySelector('span').innerText='25,1 Tsd.'; this.classList.add('text-rose-400')"
-                      class="flex flex-col items-center text-white">
-                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center text-sm">♥</div>
-                <span class="text-[8px] mt-0.5 font-semibold">25 Tsd.</span>
-              </button>
-              <div class="flex flex-col items-center text-white">
-                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center text-xs">💬</div>
-                <span class="text-[8px] mt-0.5 font-semibold">382</span>
-              </div>
-              <div class="flex flex-col items-center text-white">
-                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center text-xs">🔖</div>
-                <span class="text-[8px] mt-0.5 font-semibold">Merken</span>
-              </div>
-              <div class="flex flex-col items-center text-white">
-                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center text-xs">↗</div>
-                <span class="text-[8px] mt-0.5 font-semibold">Weiter</span>
-              </div>
-            </div>
-
-            <!-- Unten links: Creator Info -->
-            <div class="z-10 pr-12">
-              <div class="flex items-center gap-2">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80"
-                     class="w-7 h-7 rounded-full border border-[#b8ff01] object-cover" />
-                <div>
-                  <div class="text-[11px] font-bold text-white">Mila Moves</div>
-                  <div class="text-[9px] text-slate-400">@mila.moves</div>
-                </div>
-                <span class="px-2 py-0.5 rounded-full bg-white/10 text-[#b8ff01] text-[8px] font-bold">✓ Abonniert</span>
-              </div>
-              <div class="mt-1.5 text-[10px] text-slate-200 font-semibold">Dein Handy-Video 🎬</div>
-              <div class="text-[10px] text-[#b8ff01] font-bold">#vybe #meinupload</div>
-            </div>
-          </div>
-
-          <!-- Untere App-Navigation -->
-          <div class="px-3 py-2 bg-[#0d1118] border-t border-white/10 flex items-center justify-around text-[9px] text-slate-400">
-            <span class="text-[#b8ff01] font-bold flex flex-col items-center">🏠<span>Home</span></span>
-            <span class="flex flex-col items-center">🔍<span>Suchen</span></span>
-            <span class="w-8 h-6 rounded-lg bg-gradient-to-r from-[#b8ff01] to-cyan-400 text-black font-black flex items-center justify-center text-sm">+</span>
-            <span class="flex flex-col items-center">♣️<span>Club</span></span>
-            <span class="flex flex-col items-center">👤<span>Profil</span></span>
-          </div>
+      <div class="card">
+        <div class="c-tit"><span>👀 10 Kurzvideos schauen</span><span style="font-size:.7rem;color:var(--acc)" id="wProgTxt">4 / 10 Videos</span></div>
+        <div class="xp-bg"><div class="xp-fill" id="wBarFill" style="width:40%"></div></div>
+        <div style="display:flex;gap:6px;margin-top:7px">
+          <button class="btn" style="flex:2" onclick="claimWatch()">🎁 50 Coins Belohnung abholen</button>
+          <button class="btn sec" style="flex:1" onclick="if(state.watched<10)state.watched++;updateUI()">+1 Video</button>
         </div>
-        <span class="mt-3 text-xs font-bold text-slate-300">2. Für dich Short-Feed</span>
       </div>
 
-      <!-- =========================================================
-           PHONE 3: VYBE CLUB & NEON-TRESOR (WIE SCREENSHOT 3)
-           ========================================================= -->
-      <div class="snap-center flex flex-col items-center" data-index="2">
-        <div class="slim-phone flex flex-col justify-between bg-[#0b0e14]">
-          <div class="phone-notch"></div>
-
-          <div class="pt-8 px-3 pb-2 bg-[#0d1118] border-b border-white/10 flex items-center justify-between">
-            <span class="font-extrabold text-[11px] text-white">♣️ VYBE Club-Belohnungen</span>
-            <span class="text-[9px] font-bold text-[#b8ff01]">⏱ Online: 9 Min.</span>
-          </div>
-
-          <div class="flex-1 p-3 space-y-2.5 overflow-y-auto app-scroll">
-            <!-- Täglicher Neon-Tresor -->
-            <div class="p-2.5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-              <div class="text-[11px] font-extrabold text-white">🎰 Täglicher Neon-Tresor (3× am Tag)</div>
-              <p class="text-[9px] text-slate-400">Öffne nach 30 Min., 1:30 Std. &amp; 3:00 Std.! Gewinn: 100–500 Coins.</p>
-              <div class="grid grid-cols-3 gap-1 text-center text-[8px]">
-                <div class="p-1.5 rounded-lg bg-black/40 border border-white/10">🔒 1. Spin<br><span class="text-slate-400">ab 30m</span></div>
-                <div class="p-1.5 rounded-lg bg-black/40 border border-white/10">🔒 2. Spin<br><span class="text-slate-400">ab 90m</span></div>
-                <div class="p-1.5 rounded-lg bg-black/40 border border-white/10">🔒 3. Spin<br><span class="text-slate-400">ab 180m</span></div>
-              </div>
-              <button onclick="this.innerText='🎉 +250 Coins gewonnen!'"
-                      class="w-full py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-extrabold text-[10px] transition">
-                🎰 Tresor öffnen
-              </button>
-            </div>
-
-            <!-- 10 Kurzvideos schauen -->
-            <div class="p-2.5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-              <div class="flex justify-between text-[10px] font-bold">
-                <span>👀 10 Kurzvideos schauen</span>
-                <span class="text-[#b8ff01]">4 / 10 Videos</span>
-              </div>
-              <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
-                <div class="w-2/5 h-full bg-gradient-to-r from-[#b8ff01] to-cyan-400"></div>
-              </div>
-              <button class="w-full py-1.5 rounded-xl bg-[#b8ff01] text-black font-extrabold text-[10px]">
-                🎁 50 Coins Belohnung abholen
-              </button>
-            </div>
-
-            <!-- Entdecker-Karten -->
-            <div class="p-2.5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-              <div class="flex justify-between items-center">
-                <span class="text-[10px] font-extrabold text-white">🌱👑 Entdecker-Karten</span>
-                <span class="px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 text-[8px] font-bold">+10 % XP aktiv</span>
-              </div>
-              <div class="space-y-1 text-[9px]">
-                <div class="p-1.5 rounded-lg bg-black/40 border border-white/10 flex justify-between items-center">
-                  <div><b>@kleiner_max</b> <span class="text-slate-400">LVL 6</span></div>
-                  <span class="px-1.5 py-0.5 rounded bg-amber-400 text-black font-bold text-[8px]">Aufstieg testen</span>
-                </div>
-                <div class="p-1.5 rounded-lg bg-black/40 border border-white/10 flex justify-between items-center">
-                  <div><b>@melody_mia</b> <span class="text-slate-400">LVL 8</span></div>
-                  <span class="px-1.5 py-0.5 rounded bg-[#b8ff01] text-black font-bold text-[8px]">Supporten (50 🪙)</span>
-                </div>
-                <div class="p-1.5 rounded-lg bg-amber-500/10 border border-amber-400/40 flex justify-between items-center">
-                  <div><b>@street_leo</b> <span class="text-amber-300">LVL 20 👑</span></div>
-                  <span class="text-emerald-300 font-bold text-[8px]">✅ +10 % XP</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Holo-Booster & Shop -->
-            <div class="p-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
-              <span class="text-[10px] font-bold">🃏 Holo-Booster &amp; Duell</span>
-              <span class="text-[10px] font-extrabold text-amber-300">🪙 7.550</span>
-            </div>
-          </div>
-
-          <div class="px-3 py-2 bg-[#0d1118] border-t border-white/10 flex items-center justify-around text-[9px] text-slate-400">
-            <span class="flex flex-col items-center">🏠<span>Home</span></span>
-            <span class="flex flex-col items-center">🔍<span>Suchen</span></span>
-            <span class="w-8 h-6 rounded-lg bg-gradient-to-r from-[#b8ff01] to-cyan-400 text-black font-black flex items-center justify-center text-sm">+</span>
-            <span class="text-[#b8ff01] font-bold flex flex-col items-center">♣️<span>Club</span></span>
-            <span class="flex flex-col items-center">👤<span>Profil</span></span>
-          </div>
+      <div class="card">
+        <div class="c-tit">
+          <span>🌱➡️👑 Entdecker-Karten (Frühe Supporter)</span>
+          <span class="badge" id="founderBonusBdg">XP-Bonus: +10 %</span>
         </div>
-        <span class="mt-3 text-xs font-bold text-slate-300">3. Club, Tresor &amp; Entdecker-Karten</span>
-      </div>
-
-      <!-- =========================================================
-           PHONE 4: KAMERA-STUDIO (WIE SCREENSHOT 4)
-           ========================================================= -->
-      <div class="snap-center flex flex-col items-center" data-index="3">
-        <div class="slim-phone flex flex-col justify-between bg-[#0b0e14]">
-          <div class="phone-notch"></div>
-
-          <div class="pt-8 px-3 pb-2 bg-[#0d1118] border-b border-white/10">
-            <div class="grid grid-cols-2 gap-1 bg-black/50 p-1 rounded-xl text-[9px] font-bold">
-              <button class="py-1 rounded-lg bg-[#b8ff01] text-black">🎬 Video / Upload</button>
-              <button onclick="jumpToSlide(0)" class="py-1 rounded-lg text-slate-300 hover:text-white">🔴 Live gehen (1–8)</button>
-            </div>
-          </div>
-
-          <div class="flex-1 p-3 flex flex-col justify-between">
-            <div class="flex items-center justify-between text-[9px]">
-              <span class="font-bold text-white">📸 VYBE Kamera-Studio</span>
-              <span class="text-[#b8ff01] font-bold">✅ Cam &amp; Mic AN</span>
-            </div>
-
-            <!-- Kamera-Vorschau -->
-            <div class="my-2 flex-1 rounded-2xl bg-gradient-to-br from-slate-800 via-slate-900 to-black border border-white/15 flex flex-col items-center justify-center relative overflow-hidden">
-              <div class="w-16 h-16 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-2xl">
-                📷
-              </div>
-              <span class="mt-2 text-[10px] text-slate-300 font-semibold">Kamera &amp; Mikrofon aktiv!</span>
-            </div>
-
-            <!-- Dauer & Modi -->
-            <div class="space-y-2">
-              <div class="flex gap-1.5 text-[9px] font-bold">
-                <span class="px-2.5 py-1 rounded-full bg-[#b8ff01] text-black">15 Sek.</span>
-                <span class="px-2.5 py-1 rounded-full bg-white/10 text-slate-300">30 Sek.</span>
-                <span class="px-2.5 py-1 rounded-full bg-white/10 text-slate-300">📷 Foto</span>
-                <span class="px-2.5 py-1 rounded-full bg-white/10 text-slate-300">✍️ Text</span>
-              </div>
-
-              <!-- Filter -->
-              <div class="flex gap-1.5 text-[9px] font-semibold">
-                <span class="px-2 py-1 rounded-lg bg-white/10 text-slate-200">🚫 Keine</span>
-                <span class="px-2 py-1 rounded-lg bg-white/10 text-slate-200">🐸 Frosch</span>
-                <span class="px-2 py-1 rounded-lg bg-white/10 text-slate-200">🤡 Clown</span>
-                <span class="px-2 py-1 rounded-lg bg-white/10 text-slate-200">🎨 KI-Filter</span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-1.5 pt-1">
-                <button class="py-2 rounded-xl bg-[#b8ff01] text-black font-extrabold text-[9px]">
-                  📹 Normale Kamera
-                </button>
-                <button class="py-2 rounded-xl bg-white/10 text-white font-bold text-[9px]">
-                  📤 Video hochladen
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="px-3 py-2 bg-[#0d1118] border-t border-white/10 flex items-center justify-around text-[9px] text-slate-400">
-            <span class="flex flex-col items-center">🏠<span>Home</span></span>
-            <span class="flex flex-col items-center">🔍<span>Suchen</span></span>
-            <span class="w-8 h-6 rounded-lg bg-gradient-to-r from-[#b8ff01] to-cyan-400 text-black font-black flex items-center justify-center text-sm">+</span>
-            <span class="flex flex-col items-center">♣️<span>Club</span></span>
-            <span class="flex flex-col items-center">👤<span>Profil</span></span>
-          </div>
-        </div>
-        <span class="mt-3 text-xs font-bold text-slate-300">4. Kamera-Studio &amp; KI-Filter</span>
-      </div>
-
-      <!-- =========================================================
-           PHONE 5: PROFIL & 2 LEVEL-BALKEN (WIE SCREENSHOT 2)
-           ========================================================= -->
-      <div class="snap-center flex flex-col items-center" data-index="4">
-        <div class="slim-phone flex flex-col justify-between bg-[#0b0e14]">
-          <div class="phone-notch"></div>
-
-          <div class="flex-1 overflow-y-auto app-scroll">
-            <!-- Header Banner -->
-            <div class="pt-9 pb-3 px-3 bg-gradient-to-b from-slate-800/90 to-[#0b0e14] text-center relative">
-              <div class="w-16 h-16 mx-auto rounded-full p-0.5 bg-[#b8ff01] relative">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80"
-                     class="w-full h-full rounded-full object-cover" />
-              </div>
-              <div class="mt-2 flex items-center justify-center gap-1.5">
-                <span class="font-extrabold text-sm text-white">Mila Moves</span>
-                <span class="px-1.5 py-0.5 rounded bg-[#b8ff01]/20 text-[#b8ff01] text-[8px] font-bold">LVL 5 • Vibe</span>
-              </div>
-              <div class="text-[9px] text-slate-400">@mila.moves</div>
-
-              <!-- Stats -->
-              <div class="grid grid-cols-5 gap-1 mt-2.5 text-center">
-                <div><div class="text-[10px] font-extrabold">4.785</div><div class="text-[7px] text-slate-400">Gefolgt</div></div>
-                <div><div class="text-[10px] font-extrabold">2.888</div><div class="text-[7px] text-slate-400">Follower</div></div>
-                <div><div class="text-[10px] font-extrabold">14.311</div><div class="text-[7px] text-slate-400">Likes</div></div>
-                <div><div class="text-[10px] font-extrabold text-amber-400">7.550</div><div class="text-[7px] text-slate-400">Coins 🪙</div></div>
-                <div><div class="text-[10px] font-extrabold text-cyan-400">0</div><div class="text-[7px] text-slate-400">Diamanten</div></div>
-              </div>
-            </div>
-
-            <div class="p-3 space-y-2.5">
-              <!-- Tabs -->
-              <div class="grid grid-cols-3 gap-1 text-[8px] font-bold">
-                <span class="py-1.5 rounded-lg bg-[#b8ff01] text-black text-center">📈 Level &amp; Karte</span>
-                <span class="py-1.5 rounded-lg bg-white/5 text-slate-300 text-center">✏️ Name &amp; Bio</span>
-                <span class="py-1.5 rounded-lg bg-white/5 text-slate-300 text-center">🛍️ Live-Shop</span>
-              </div>
-
-              <!-- 2 Level-Balken -->
-              <div class="p-2.5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-                <div class="flex justify-between items-center text-[9px] font-bold">
-                  <span>📈 Deine 2 Level-Balken</span>
-                  <span class="text-[#b8ff01] text-[8px]">Host = 50% XP</span>
-                </div>
-                <div class="p-2 rounded-xl bg-black/40 space-y-1">
-                  <div class="flex justify-between text-[9px] font-bold">
-                    <span>⚡ HAUPT-RANG: LVL 5</span>
-                    <span class="text-[#b8ff01]">0 / 600 XP</span>
-                  </div>
-                  <p class="text-[8px] text-slate-400">Steigt durch eigene Geschenke (100% XP), als Live-Host (50% XP) &amp; Gold-Entdeckerkarten (+10% XP)!</p>
-                </div>
-                <div class="p-2 rounded-xl bg-black/40 space-y-1">
-                  <div class="flex justify-between text-[9px] font-bold">
-                    <span>🔒 STREAMER-RANG (Ab LVL 20)</span>
-                    <span class="text-amber-400">Noch 15 Lvl</span>
-                  </div>
-                  <p class="text-[8px] text-slate-400">Steigt durch empfangene Diamanten im eigenen Live-Stream!</p>
-                </div>
-              </div>
-
-              <!-- Holo-Sammlerkarte -->
-              <div class="p-2.5 rounded-2xl bg-gradient-to-r from-[#b8ff01]/15 to-cyan-500/15 border border-[#b8ff01]/40 flex justify-between items-center">
-                <div>
-                  <div class="text-[8px] font-bold text-[#b8ff01]">🌱 ROOKIE EDITION</div>
-                  <div class="text-[11px] font-extrabold text-white">Mila Moves Holo-Karte</div>
-                </div>
-                <span class="text-[10px] font-black text-amber-300">⚡ POWER 225</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="px-3 py-2 bg-[#0d1118] border-t border-white/10 flex items-center justify-around text-[9px] text-slate-400">
-            <span class="flex flex-col items-center">🏠<span>Home</span></span>
-            <span class="flex flex-col items-center">🔍<span>Suchen</span></span>
-            <span class="w-8 h-6 rounded-lg bg-gradient-to-r from-[#b8ff01] to-cyan-400 text-black font-black flex items-center justify-center text-sm">+</span>
-            <span class="flex flex-col items-center">♣️<span>Club</span></span>
-            <span class="text-[#b8ff01] font-bold flex flex-col items-center">👤<span>Profil</span></span>
-          </div>
-        </div>
-        <span class="mt-3 text-xs font-bold text-slate-300">5. Profil, 2 Level-Balken &amp; Holo-Karte</span>
-      </div>
-
-      <!-- =========================================================
-           PHONE 6: MENÜ & KONTO (WIE SCREENSHOT 1)
-           ========================================================= -->
-      <div class="snap-center flex flex-col items-center" data-index="5">
-        <div class="slim-phone flex flex-col justify-between bg-[#0d1017]">
-          <div class="phone-notch"></div>
-
-          <div class="pt-9 px-3.5 pb-3 border-b border-white/10 flex items-center justify-between">
-            <span class="font-extrabold text-xs text-white">Menü &amp; Konto</span>
-            <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs">✕</span>
-          </div>
-
-          <div class="flex-1 p-3.5 space-y-3 overflow-y-auto app-scroll text-[10px]">
-            <div class="space-y-1.5">
-              <div class="text-[9px] font-bold uppercase text-slate-400">Assets</div>
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
-                <span>👛 Guthaben &amp; Coins aufladen</span>
-                <span class="font-bold text-amber-300">7.550 🪙 ›</span>
-              </div>
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
-                <span>🎁 Freunde einladen</span>
-                <span class="font-bold text-[#b8ff01]">+1.400 🪙 ›</span>
-              </div>
-            </div>
-
-            <div class="space-y-1.5">
-              <div class="text-[9px] font-bold uppercase text-slate-400">Persönliche Tools</div>
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
-                <span>🎨 Hintergrund &amp; Stimmung</span>
-                <span class="text-slate-400">›</span>
-              </div>
-            </div>
-
-            <div class="space-y-1.5">
-              <div class="text-[9px] font-bold uppercase text-slate-400">Erstellungs- und Business-Tools</div>
-              <div onclick="jumpToSlide(0)" class="p-2.5 rounded-xl bg-[#b8ff01]/10 border border-[#b8ff01]/40 flex justify-between items-center cursor-pointer">
-                <span class="font-bold text-[#b8ff01]">🎥 VYBE Studio (Live 1–8)</span>
-                <span class="text-[#b8ff01]">›</span>
-              </div>
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
-                <span>📄 Streamer- &amp; Club-Regeln</span>
-                <span class="text-slate-400">›</span>
-              </div>
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
-                <span>⚙️ Einstellungen und Datenschutz</span>
-                <span class="text-slate-400">›</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="px-3 py-2 bg-[#0d1118] border-t border-white/10 flex items-center justify-around text-[9px] text-slate-400">
-            <span class="flex flex-col items-center">🏠<span>Home</span></span>
-            <span class="flex flex-col items-center">🔍<span>Suchen</span></span>
-            <span class="w-8 h-6 rounded-lg bg-gradient-to-r from-[#b8ff01] to-cyan-400 text-black font-black flex items-center justify-center text-sm">+</span>
-            <span class="flex flex-col items-center">♣️<span>Club</span></span>
-            <span class="text-[#b8ff01] font-bold flex flex-col items-center">⚙️<span>Konto</span></span>
-          </div>
-        </div>
-        <span class="mt-3 text-xs font-bold text-slate-300">6. Menü, Assets &amp; VYBE Studio</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- UNTEN DRUNTER: DIE VORTEILE DER VYBE APP -->
-  <section id="vorteile" class="py-14 px-4 max-w-6xl mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-10">
-      <span class="text-xs font-extrabold uppercase tracking-widest text-[#b8ff01]">Warum VYBE?</span>
-      <h2 class="text-2xl sm:text-4xl font-extrabold mt-1">Alle Vorteile auf einen Blick</h2>
-      <p class="text-slate-400 text-sm mt-2">
-        Entwickelt für Creator, Streamer und Supporter – aufgeräumt, belohnend und interaktiv.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <!-- Vorteil 1 -->
-      <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-[#b8ff01]/50 transition">
-        <div class="w-11 h-11 rounded-2xl bg-[#b8ff01]/15 border border-[#b8ff01]/30 flex items-center justify-center text-xl mb-4">
-          ⚙️
-        </div>
-        <h3 class="text-lg font-extrabold text-white">Vorab-Setup vor dem Live</h3>
-        <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
-          Stelle <b>Host-Geschenkanteile</b>, <b>Moderatoren (Modis)</b> und den <b>Spielmodus (z. B. Box Battle)</b> vor dem Start ein. Sobald du live bist, verschwinden alle Einstellungsmenüs für maximalen Platz!
+        <p style="font-size:.71rem;color:var(--mut);line-height:1.4">
+          Unterstütze kleine Creator (unter LVL 10) und sichere dir ihre <strong>Gründer-Entdeckerkarte</strong>. Sobald der Creator <strong>LVL 20</strong> erreicht, wird sie zur <strong>👑 Gold-Gründerkarte (+10 % XP)</strong>!
         </p>
+        <div id="founderCardsGrid" class="founder-grid"></div>
       </div>
 
-      <!-- Vorteil 2 -->
-      <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-pink-500/50 transition">
-        <div class="w-11 h-11 rounded-2xl bg-pink-500/15 border border-pink-500/30 flex items-center justify-center text-xl mb-4">
-          🎥
+      <div class="card">
+        <div class="c-tit"><span>🃏 Holo-Booster & Shop</span><span style="color:#ffae00;font-size:.72rem">🪙 <span id="clubCoins">7.550</span></span></div>
+        <div style="display:flex;gap:6px;margin-bottom:7px">
+          <button class="btn hot" style="flex:1" onclick="openBooster()">🃏 Booster (250 🪙 = +250 XP)</button>
+          <button class="btn sec" style="flex:1" onclick="state.coins+=150;toast('⚔️ Duell gewonnen! +150 🪙');updateUI()">⚔️ Duell (+150 🪙)</button>
         </div>
-        <h3 class="text-lg font-extrabold text-white">Multi-Guest Live (1–8 Grid)</h3>
-        <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
-          Streame allein oder mit bis zu 8 Personen gleichzeitig im übersichtlichen Split-Grid – inklusive Hauptsprecher-Ansicht, Punkte-Zähler und freien „Schnapp dir das“-Slots für Zuschauer.
-        </p>
-      </div>
-
-      <!-- Vorteil 3 -->
-      <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-cyan-400/50 transition">
-        <div class="w-11 h-11 rounded-2xl bg-cyan-400/15 border border-cyan-400/30 flex items-center justify-center text-xl mb-4">
-          💬
+        <div id="boosterResultTxt" style="font-size:.72rem;font-weight:800;color:#ffd700;margin-bottom:6px"></div>
+        <div style="text-align:center;margin-top:6px">
+          <button class="btn gold full" onclick="openAccountSection('wallet')">👛 Zum Guthaben & Coin-Paketen (ab 50 Coins)</button>
         </div>
-        <h3 class="text-lg font-extrabold text-white">Echter Live-Chat &amp; Gifting</h3>
-        <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
-          Beitritts-Banner in Echtzeit, Level-Badges, Top-Gifter-Ränge (Nr. 1–3), fliegende Herzen und Direkt-Geschenke direkt in der unteren Chat-Leiste.
-        </p>
       </div>
+    </section>
 
-      <!-- Vorteil 4 -->
-      <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-amber-400/50 transition">
-        <div class="w-11 h-11 rounded-2xl bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-xl mb-4">
-          🎰
+    <!-- 5. PROFIL -->
+    <section id="view-profile" class="view">
+      <div class="prof-hero-card" id="profBannerBox">
+        <div class="prof-top-bar">
+          <label class="prof-banner-edit">
+            🖼️ Hintergrund ändern <input type="file" accept="image/*" style="display:none" onchange="uploadBanner(event)"/>
+          </label>
+          <div class="prof-top-right">
+            <button class="prof-qr-trig" onclick="toggleQrModal(true)" title="Dein QR-Code">🏁 QR-Code</button>
+            <button class="prof-menu-trig" onclick="toggleRightDrawer(true)" title="Menü öffnen">☰</button>
+          </div>
         </div>
-        <h3 class="text-lg font-extrabold text-white">Täglicher Neon-Tresor</h3>
-        <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
-          Öffne 3× täglich den Neon-Tresor und erledige die 10-Kurzvideos-Quest, um dir kostenlos 100 bis 500 Coins für Geschenke und Booster zu sichern.
-        </p>
-      </div>
 
-      <!-- Vorteil 5 -->
-      <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-emerald-400/50 transition">
-        <div class="w-11 h-11 rounded-2xl bg-emerald-400/15 border border-emerald-400/30 flex items-center justify-center text-xl mb-4">
-          🌱
+        <div class="prof-hero-content">
+          <div class="p-av-wrap">
+            <div id="profAv" class="p-av aura-0"></div>
+            <label class="p-av-plus" title="Profilbild ändern">
+              + <input type="file" accept="image/*" style="display:none" onchange="uploadAvatar(event)"/>
+            </label>
+          </div>
+
+          <div class="p-name-row">
+            <span class="p-name-big" id="pNameHdr">Mila Moves</span>
+            <span class="badge" id="pMemBdg" style="background:rgba(0,0,0,.55);color:#b8ff01">LVL 5 • Vibe</span>
+            <span class="badge" id="pStrBdg" style="display:none;background:rgba(0,0,0,.55);color:#ffd700">👑 S-LVL 1</span>
+            <button class="p-edit-chip" onclick="swProf('edit')">✎</button>
+            <button class="p-edit-chip" onclick="toggleQrModal(true)" title="QR-Code zeigen">🏁</button>
+          </div>
+          <div style="font-size:.75rem;color:#e2e6f0;font-weight:600" id="pHdlHdr">@mila.moves</div>
+
+          <div class="p-stats-row">
+            <div class="stat-col"><span class="stat-num">4.785</span><span class="stat-lbl">Gefolgt</span></div>
+            <div class="stat-col"><span class="stat-num">2.888</span><span class="stat-lbl">Follower</span></div>
+            <div class="stat-col"><span class="stat-num">14.311</span><span class="stat-lbl">Likes</span></div>
+            <div class="stat-col"><span class="stat-num" style="color:#ffd700" id="profCoins">7.550</span><span class="stat-lbl">Coins 🪙</span></div>
+            <div class="stat-col"><span class="stat-num" style="color:#00f2fe" id="profDiamonds">0</span><span class="stat-lbl">Diamanten 💎</span></div>
+          </div>
+
+          <div style="font-size:.76rem;color:#ffffff;max-width:440px;line-height:1.35;text-shadow:0 1px 6px rgba(0,0,0,.7)" id="pBioHdr">Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿</div>
         </div>
-        <h3 class="text-lg font-extrabold text-white">Entdecker- &amp; Holo-Karten</h3>
-        <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
-          Unterstütze Newcomer unter Level 10: Erreichen sie Level 20, wird deine Karte automatisch zur <b>Gold-Gründerkarte</b> mit dauerhaft +10 % mehr XP!
-        </p>
       </div>
 
-      <!-- Vorteil 6 -->
-      <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-purple-400/50 transition">
-        <div class="w-11 h-11 rounded-2xl bg-purple-400/15 border border-purple-400/30 flex items-center justify-center text-xl mb-4">
-          📈
+      <div class="sub-bar">
+        <button class="sub-btn active" id="pb-level" onclick="swProf('level')">📈 Level & Karte</button>
+        <button class="sub-btn" id="pb-edit" onclick="swProf('edit')">✏️ Name & Bio</button>
+        <button class="sub-btn" id="pb-shop" onclick="swProf('shop')">🛍️ Live-Shop</button>
+      </div>
+
+      <div id="pt-level">
+        <div class="card">
+          <div class="c-tit"><span>📈 Deine 2 Level-Balken</span><span style="font-size:.66rem;color:var(--acc)">Host = 50% XP bei Geschenken!</span></div>
+          <div class="xp-box">
+            <div style="display:flex;justify-content:space-between;font-size:.72rem;font-weight:800"><span id="b1Lbl">⚡ HAUPT-RANG: LVL 5</span><span style="color:var(--acc)" id="b1Xp">0 / 600 XP</span></div>
+            <div class="xp-bg"><div class="xp-fill" id="b1Fill"></div></div>
+            <div style="font-size:.66rem;color:var(--mut)">💡 Steigt durch eigene Geschenke (100% XP), als Live-Host (50% XP) & Gold-Entdeckerkarten (+10% XP)!</div>
+          </div>
+          <div class="xp-box" id="b2Box" style="margin-bottom:0">
+            <div style="display:flex;justify-content:space-between;font-size:.72rem;font-weight:800"><span id="b2Lbl">🔒 STREAMER-RANG (Ab LVL 20)</span><span style="color:#ffae00" id="b2Xp">Noch 15 Lvl</span></div>
+            <div class="xp-bg"><div class="xp-fill str" id="b2Fill"></div></div>
+            <div style="font-size:.66rem;color:var(--mut)">Steigt durch empfangene Diamanten im eigenen Live-Stream!</div>
+          </div>
         </div>
-        <h3 class="text-lg font-extrabold text-white">Duales 2-Level-System</h3>
-        <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
-          Steige parallel im <b>Haupt-Rang</b> (durch Support &amp; Host-XP) und ab Level 20 im <b>Streamer-Rang</b> (durch empfangene Diamanten im eigenen Live) auf.
+
+        <div class="card">
+          <div class="c-tit"><span>🃏 Deine VYBE Holo-Sammlerkarte</span><span style="font-size:.66rem;color:var(--mut)" id="cGlobStat">Nur im Profil</span></div>
+          <div class="holo">
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span class="badge" id="cEdTag">🌱 ROOKIE EDITION</span><span style="font-size:.72rem;font-weight:900;color:#ffae00" id="cPowTxt">⚡ POWER 225</span></div>
+            <div style="font-weight:900;font-size:.88rem" id="cOwnName">Mila Moves</div>
+            <div style="font-size:.7rem;color:var(--acc)" id="cRanksTxt">Mitglieds-Rang LVL 5</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pt-edit" style="display:none">
+        <div class="card">
+          <div class="c-tit"><span>✏️ Name, Bio & Profil-Hintergrund</span></div>
+          <input id="inName" class="inp" value="Mila Moves" oninput="updIdent()"/>
+          <input id="inHdl" class="inp" value="@mila.moves" oninput="updIdent()"/>
+          <input id="inBio" class="inp" value="Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿" oninput="updIdent()"/>
+          <button class="btn full" onclick="swProf('level');toast('✅ Profil dauerhaft gespeichert!')">💾 Speichern</button>
+        </div>
+      </div>
+
+      <div id="pt-shop" style="display:none">
+        <div class="card">
+          <div class="c-tit"><span>🛍️ Live-Shop Produkte</span><span style="font-size:.68rem;color:var(--acc)" id="shopLimBdg">1/3 Produkte</span></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:5px">
+            <input id="pNameIn" class="inp" placeholder="Produkt (z.B. Hoodie)"/>
+            <input id="pPriceIn" class="inp" placeholder="29,90 €"/>
+          </div>
+          <button class="btn full" onclick="addProd()">➕ Anlegen & pinnen</button>
+          <div id="prodList" style="margin-top:8px"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="c-tit"><span>🎞️ Deine Mediathek</span></div>
+        <div class="m-tabs">
+          <button class="sub-btn active" id="mt-videos" onclick="swLib('videos')">🎬 Videos & Fotos (<span id="cVid">2</span>)</button>
+          <button class="sub-btn" id="mt-saved" onclick="swLib('saved')">🔖 Gespeichert (<span id="cSav">1</span>)</button>
+          <button class="sub-btn" id="mt-favs" onclick="swLib('favs')">⭐ Favoriten (<span id="cFav">1</span>)</button>
+        </div>
+        <div class="m-grid-lib" id="libGrid"></div>
+      </div>
+    </section>
+
+    <!-- 6. KONTOEINSTELLUNGEN -->
+    <section id="view-settings" class="view">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <button class="btn sec" onclick="toggleRightDrawer(true)">☰ Menü rechts öffnen</button>
+        <button class="btn sec" onclick="openView('profile')">👤 Zurück zum Profil</button>
+      </div>
+
+      <div id="accSec-wallet" class="card">
+        <div class="c-tit">
+          <span>👛 Guthaben & Coins aufladen</span>
+          <span class="badge" style="background:rgba(255,215,0,.15);color:#ffd700">🪙 <span id="walletCoinsTxt">7.550</span></span>
+        </div>
+        <p style="font-size:.72rem;color:var(--mut);margin-bottom:8px">
+          Wähle dein Coin-Paket (ab 50 Coins Einstieg bis zum großen 30.000er & 40.000er Paket):
         </p>
+
+        <div class="coin-shop-grid">
+          <div class="coin-pkg-card" onclick="buyCoinPackage(50, 0.49)">
+            <span class="pkg-coins">🟡 50 Coins</span>
+            <span class="pkg-price">0,49 €</span>
+            <span class="pkg-save">Mini-Start</span>
+          </div>
+          <div class="coin-pkg-card" onclick="buyCoinPackage(200, 1.99)">
+            <span class="pkg-coins">🟡 200 Coins</span>
+            <span class="pkg-price">1,99 €</span>
+            <span class="pkg-save">Kleines Paket</span>
+          </div>
+          <div class="coin-pkg-card" onclick="buyCoinPackage(500, 4.99)">
+            <span class="pkg-coins">🟡 500 Coins</span>
+            <span class="pkg-price">4,99 €</span>
+            <span class="pkg-save">Einstieg</span>
+          </div>
+          <div class="coin-pkg-card" onclick="buyCoinPackage(1500, 12.99)">
+            <span class="pkg-coins">🟡 1.500 Coins</span>
+            <span class="pkg-price">12,99 €</span>
+            <span class="pkg-save">Beliebt</span>
+          </div>
+          <div class="coin-pkg-card popular" onclick="buyCoinPackage(4200, 35.99)">
+            <span class="badge" style="font-size:.5rem;margin-bottom:2px">🔥 TOP SPARTIPP</span>
+            <span class="pkg-coins">🟡 4.200 Coins</span>
+            <span class="pkg-price">35,99 €</span>
+            <span class="pkg-save">Statt 63,90 €</span>
+          </div>
+          <div class="coin-pkg-card" onclick="buyCoinPackage(5500, 46.99)">
+            <span class="pkg-coins">🟡 5.500 Coins</span>
+            <span class="pkg-price">46,99 €</span>
+            <span class="pkg-save">Aktiv-Paket</span>
+          </div>
+          <div class="coin-pkg-card" onclick="buyCoinPackage(8000, 67.99)">
+            <span class="pkg-coins">🟡 8.000 Coins</span>
+            <span class="pkg-price">67,99 €</span>
+            <span class="pkg-save">Pro Streamer</span>
+          </div>
+          <div class="coin-pkg-card" onclick="buyCoinPackage(12000, 99.99)">
+            <span class="pkg-coins">🟡 12.000 Coins</span>
+            <span class="pkg-price">99,99 €</span>
+            <span class="pkg-save">VIP Paket</span>
+          </div>
+          <div class="coin-pkg-card popular" onclick="buyCoinPackage(30000, 335.00)">
+            <span class="badge" style="font-size:.5rem;margin-bottom:2px">💎 CA. 120 € GESPART</span>
+            <span class="pkg-coins">🟡 30.000 Coins</span>
+            <span class="pkg-price">335,00 €</span>
+            <span class="pkg-save">Statt 454,99 €</span>
+          </div>
+          <div class="coin-pkg-card popular" onclick="buyCoinPackage(40000, 439.00)">
+            <span class="badge" style="font-size:.5rem;margin-bottom:2px;color:#00f2fe">👑 BOSS-PAKET</span>
+            <span class="pkg-coins">🟡 40.000 Coins</span>
+            <span class="pkg-price">439,00 €</span>
+            <span class="pkg-save">Statt 609,00 €</span>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--bdr);padding-top:10px;margin-top:6px">
+          <div class="c-tit"><span>💎 Streamer-Guthaben & Auszahlung</span><span class="badge" id="setSplitBdg">S-LVL 1</span></div>
+          <p style="font-size:.7rem;color:var(--mut);margin-bottom:7px">Voraussetzung für Auszahlung: LVL 20 (S-LVL 5) + 15 Std. Live / Woche (Mo–So) mit Kamera & Mikro.</p>
+          <div class="xp-box" style="font-size:.72rem">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>📅 Wochen-Livezeit:</span><strong id="setWkTxt">0.0 / 15.0 Std.</strong></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>💎 Diamanten:</span><strong style="color:#00f2fe" id="setDiamondsTxt">0 💎</strong></div>
+            <div style="display:flex;justify-content:space-between"><span>💵 Auszahlung:</span><strong style="color:var(--acc)" id="setStrEur">0,00 €</strong></div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="btn sec" style="flex:1" onclick="convertToDiamonds()">💎 In Diamanten umwandeln</button>
+            <button class="btn gold" style="flex:1" onclick="payoutDiamonds()">💸 Auszahlen</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-white/10 py-8 px-4 text-center text-xs text-slate-500">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="w-6 h-6 rounded-md bg-[#b8ff01] text-black font-black flex items-center justify-center">*</span>
-        <span class="font-bold text-slate-300">VYBE — Short Video &amp; Live Club</span>
+      <div id="accSec-referral" class="card ref-hero">
+        <div class="c-tit">
+          <span>🎁 Freunde einladen & Coins kassieren</span>
+          <span class="badge" style="background:rgba(255,215,0,.18);color:#ffd700;border-color:rgba(255,215,0,.35)">🔥 Bis zu 1.400 🪙 pro Freund!</span>
+        </div>
+        <p style="font-size:.73rem;color:var(--mut);line-height:1.4">Teile deinen Einladungslink und sichere dir Boni:</p>
+        <div class="ref-steps">
+          <div class="ref-step-box">
+            <span class="badge" style="font-size:.55rem">⚡ STUFE 1: SOFORT</span>
+            <div class="ref-coin-big">+400 🪙</div>
+            <div style="font-size:.72rem;font-weight:800;color:var(--txt)">Für DICH & Freund</div>
+          </div>
+          <div class="ref-step-box">
+            <span class="badge" style="font-size:.55rem;color:#ffd700">🏆 STUFE 2: LVL 15</span>
+            <div class="ref-coin-big">+1.000 🪙</div>
+            <div style="font-size:.72rem;font-weight:800;color:var(--txt)">Extra für DICH</div>
+          </div>
+        </div>
+        <div class="xp-box" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;margin-bottom:9px">
+          <span>👥 Freunde: <strong id="refCountTxt" style="color:var(--acc)">2</strong></span>
+          <span>🪙 Prämie: <strong id="refEarnedTxt" style="color:#ffd700">1.800 Coins</strong></span>
+        </div>
+        <div style="display:flex;gap:6px;margin-bottom:8px">
+          <input id="refLinkInp" class="inp" style="margin:0;font-weight:700" readonly value="https://vybe.club/join?ref=mila_moves"/>
+          <button class="btn gold" style="white-space:nowrap;padding:8px 14px" onclick="copyRefLink()">Kopieren</button>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="btn sec" style="flex:1" onclick="triggerRefReward(400, true)">➕ Freund (+400)</button>
+          <button class="btn gold" style="flex:1" onclick="triggerRefReward(1000, false)">🏆 LVL 15 (+1.000)</button>
+        </div>
       </div>
-      <div>© 2026 VYBE Club • Alle Rechte vorbehalten</div>
-    </div>
-  </footer>
 
-  <!-- JAVASCRIPT FÜR KARUSSELL & INTERAKTIVES LIVE-SETUP -->
-  <script>
-    const track = document.getElementById('carouselTrack');
-    const phones = document.querySelectorAll('.slim-phone');
-    const tabs = document.querySelectorAll('.slide-tab');
+      <div id="accSec-design" class="card">
+        <div class="c-tit"><span>🎨 Hintergrund-Grafik & Stimmung</span></div>
+        <div style="font-size:.72rem;color:var(--mut);font-weight:700">1. App-Hintergrund & großes Profil-Banner wählen:</div>
+        <div class="g-grid" id="gSel">
+          <div class="g-th active" style="background-image:url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=500&q=80')" onclick="setBg('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=80',this)">🌲 Forest</div>
+          <div class="g-th" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=500&q=80')" onclick="setBg('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=80',this)">🏜️ Canyon</div>
+          <div class="g-th" style="background-image:url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80')" onclick="setBg('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=80',this)">🌃 Tokyo</div>
+          <div class="g-th" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80')" onclick="setBg('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80',this)">🌅 Beach</div>
+          <div class="g-th" style="background-image:url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=500&q=80')" onclick="setBg('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=900&q=80',this)">🌌 Space</div>
+          <div class="g-th" style="background:#12141c" onclick="setBg('',this)">⬛ Dark</div>
+        </div>
+        <div style="font-size:.72rem;color:var(--mut);font-weight:700;margin-top:12px">2. Stimmung (☀️ Light White = Vollbild Weiß!):</div>
+        <div class="pills" id="mSel">
+          <button class="pill active" onclick="setMood('lime',this)">✳️ VYBE Lime</button>
+          <button class="pill" onclick="setMood('light',this)">☀️ Light White (Vollbild Weiß)</button>
+          <button class="pill" onclick="setMood('night',this)">🌙 Cyber Blue</button>
+          <button class="pill" onclick="setMood('chill',this)">🌿 Chill Mint</button>
+          <button class="pill" onclick="setMood('hype',this)">🔥 Hype Pink</button>
+          <button class="pill" onclick="setMood('cyber',this)">🤖 Neon Aqua</button>
+          <button class="pill" onclick="setMood('sunset',this)">🌅 Sunset</button>
+          <button class="pill" onclick="setMood('lava',this)">🌋 Lava</button>
+          <button class="pill" onclick="setMood('arctic',this)">❄️ Arctic</button>
+          <button class="pill" onclick="setMood('sakura',this)">🌸 Sakura</button>
+          <button class="pill" onclick="setMood('gold',this)">👑 Royal Gold</button>
+          <button class="pill" onclick="setMood('galaxy',this)">🌌 Galaxy</button>
+        </div>
+      </div>
 
-    // Karussell per Pfeil nach links/rechts scrollen
-    function scrollCarousel(direction) {
-      const cardWidth = 320;
-      track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-    }
+      <div id="accSec-privacy" class="card">
+        <div class="c-tit"><span>⚙️ Einstellungen, Datenschutz & Rechtliches</span><span class="badge">DSGVO & DDG konform</span></div>
+        <label style="font-size:.68rem;color:var(--mut);font-weight:700">Hinterlegte E-Mail-Adresse:</label>
+        <input class="inp" value="mila.moves@vybe.club"/>
+        <label style="font-size:.68rem;color:var(--mut);font-weight:700">Neues Passwort festlegen:</label>
+        <input type="password" class="inp" placeholder="••••••••••••"/>
 
-    // Direkt zu einem bestimmten Smartphone-Screen springen
-    function jumpToSlide(index) {
-      const items = track.querySelectorAll('[data-index]');
-      if (!items[index]) return;
-      items[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      setActiveVisuals(index);
-    }
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:.74rem">
+          <span>🔐 2-Faktor-Authentifizierung (2FA)</span>
+          <input type="checkbox" checked onchange="toast('🔐 2FA gespeichert')"/>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0 10px;font-size:.74rem">
+          <span>🌍 Öffentliches Creator-Profil</span>
+          <input type="checkbox" checked onchange="toast('🌍 Sichtbarkeit aktualisiert')"/>
+        </div>
 
-    function setActiveVisuals(activeIndex) {
-      phones.forEach((p, idx) => {
-        p.classList.toggle('active-slide', idx === activeIndex);
-      });
-      tabs.forEach((t, idx) => {
-        if (idx === activeIndex) {
-          t.className = 'slide-tab px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#b8ff01] text-black transition';
+        <details class="legal-details">
+          <summary>🛡️ 1. Datenschutzerklärung (gemäß Art. 13, 14 DSGVO)</summary>
+          <p style="margin-top:6px">
+            <strong>Verantwortlicher & Datenverarbeitung:</strong> VYBE verarbeitet personenbezogene Daten (Profilname, @Handle, E-Mail-Adresse, hochgeladene Kurzvideos, Fotos sowie Coin- und Diamanten-Transaktionen) ausschließlich zur Bereitstellung der Plattform (Art. 6 Abs. 1 lit. b DSGVO).<br/>
+            <strong>Kamera- & Mikrofonzugriff:</strong> Der Zugriff auf Kamera und Mikrofon im VYBE Studio erfolgt ausschließlich nach ausdrücklicher Einwilligung des Nutzers (Art. 6 Abs. 1 lit. a DSGVO).<br/>
+            <strong>Betroffenenrechte:</strong> Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung (Art. 18 DSGVO) sowie Datenübertragbarkeit (Art. 20 DSGVO).
+          </p>
+        </details>
+
+        <details class="legal-details">
+          <summary>📜 2. Allgemeine Geschäftsbedingungen (AGB) & Virtuelle Güter</summary>
+          <p style="margin-top:6px">
+            Coins dienen dem Erwerb virtueller Geschenke und Booster. Empfangene Geschenke werden dem Host als Diamanten gutgeschrieben (abzüglich 2% für die Zuschauer-Schatzkiste und dem eingestellten Moderator-Bonus in Coins). Auszahlungen setzen LVL 20 (S-LVL 5) und 15 Wochenstunden (Mo–So) voraus.
+          </p>
+        </details>
+
+        <details class="legal-details">
+          <summary>💳 3. Widerrufsbelehrung für digitale Inhalte (Coin-Pakete)</summary>
+          <p style="margin-top:6px">
+            Bei virtuellen Coins handelt es sich um digitale Inhalte (§ 356 Abs. 5 BGB). Mit Sofortkauf stimmt der Nutzer dem sofortigen Beginn der Vertragserfüllung vor Ablauf der Widerrufsfrist zu.
+          </p>
+        </details>
+
+        <details class="legal-details">
+          <summary>⚖️ 4. Jugendmedienschutz (JMStV), MStV & Impressum (§ 5 DDG)</summary>
+          <p style="margin-top:6px">
+            <strong>Jugendschutz & Richtlinien:</strong> Gewalt, Hassrede und das Erschleichen von Live-Stunden durch Schwarzbild/Stummschaltung sind untersagt.<br/>
+            <strong>Anbieterkennzeichnung (§ 5 DDG):</strong> VYBE — Short Video & Live Club • Kontakt & Jugendschutzbeauftragter: support@vybe.club
+          </p>
+        </details>
+
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+          <button class="btn" style="flex:1" onclick="toast('✅ Einstellungen & Datenschutz gesichert!')">💾 Speichern</button>
+          <button class="btn sec" style="flex:1" onclick="exportUserData()">📥 Daten-Export</button>
+          <button class="btn hot" style="flex:1" onclick="deleteLocalAccountData()">🗑️ Lokale Daten löschen</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const CFG = {
+  mXp: [250,600,1500,17500,40000,100000,250000],
+  sXp: [1000,2500,5000,50000,125000,300000,750000],
+  rates: s => s<=10 ? .85 : s<=30 ? .70 : s<=40 ? .60 : .50
+};
+const state = {
+  coins: 7550,
+  diamonds: 0,
+  mLvl: 5, mXp: 0, sLvl: 1, sXp: 0,
+  onlineMins: 9, vClaim: [false,false,false], watched: 4, wClaimed: false,
+  slots: 9, // 1 Hauptfenster links + bis zu 8 rechte Plätze (wie auf Bild 1 & 2)
+  liveRunning: false,
+  liveTitle: 'Keep gifting 🩷 box battle 1k',
+  hostCut: 20,
+  modCut: 3, modCoinsPool: 0,
+  chestGiftCoins: 0, chestReadyPool: 0,
+  wkHours: 0, isOwnLive: true, camBright: true, micOn: true,
+  stream: null, libTab: 'videos', pinIdx: 0,
+  refCount: 2, refEarned: 1800,
+  founders: [
+    {id:1, name:'@kleiner_max', lvl:6, supported:true, gold:false},
+    {id:2, name:'@melody_mia', lvl:8, supported:false, gold:false},
+    {id:3, name:'@street_leo', lvl:20, supported:true, gold:true}
+  ],
+  prods: [{name:'VYBE Limited Cap',price:'29,90 €'}],
+  // Die 8 rechten Plätze wie auf deinen Screenshots
+  guests: [
+    {n:'jyunii011',e:'👩‍🦰',s:'Host',lvl:24,sub:'Host • 13.7K'},
+    {n:'Denis...',e:'🤳',s:150,lvl:18,sub:'Creator'},
+    {n:'🎀Iams...',e:'👩🏽',s:148,lvl:15,sub:'Vibe Club'},
+    {n:'💕Monika...',e:'🎩',s:128,lvl:27,sub:'🏅 Nr. 2 Gifter'},
+    {n:'Shahya...',e:'🧢',s:2,lvl:9,sub:'Rookie'},
+    {n:'Abbas...',e:'👦🏻',s:2,lvl:11,sub:'Supporter'},
+    {n:'srkl edits',e:'🙇🏻',s:0,lvl:7,sub:'Editor'},
+    {n:'🍝Nudel King🍝',e:'🍝',s:0,lvl:26,sub:'reckpunkt'}
+  ],
+  lib: {
+    videos: [
+      {t:'Morning Reset Road',v:'25,4 Tsd.',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80',type:'img'},
+      {t:'Misty Forest Walk',v:'12,1 Tsd.',bg:'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=400&q=80',type:'img'}
+    ],
+    saved: [{t:'Neon Tokyo Drift',v:'🔖 @neon.jay',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',type:'img'}],
+    favs: [{t:'Golden Hour Beach',v:'⭐ @luna.vibe',bg:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80',type:'img'}]
+  }
+};
+const clips = [
+  {tag:'<span style="color:#ffd700">✦</span> MORNING RESET',snd:'♫ Originalton · mila.moves',n:'Mila Moves',h:'@mila.moves',t:'Kleiner Reminder: Du musst nicht jeden Tag alles',s:'Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿',g:'#minivlog #slowmorning #mindset',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85',vidUrl:null},
+  {tag:'<span style="color:#b8ff01">⚡</span> 9ER PANEL LIVE',snd:'♫ Cyber Synth · jyunii011',n:'jyunii011',h:'@jyunii011',t:'Neues Multi-Live Panel + Vorab-Setup aktiv!',s:'Tippe unten auf + und starte dein sauberes Vollbild-Live! 🔥',g:'#vybeclub #multilive #boxbattle',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null},
+  {tag:'<span style="color:#ff7e5f">🌅</span> GOLDEN HOUR',snd:'♫ Ocean Breeze · luna.vibe',n:'Luna Vibe',h:'@luna.vibe',t:'Entdecker-Karten im Club sichern (+10% XP)',s:'Coin-Pakete ab 50 Coins unter ⚙ Konto ✨',g:'#sunset #watchtoearn #vybe',bg:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85',vidUrl:null}
+];
+let cIdx = 0;
+
+/* =========================================================
+   NEU: VORAB-SETUP STARTEN & VOLLBILD-LIVE-RAUM STEUERN
+   ========================================================= */
+function launchCleanLiveStream(){
+  state.liveRunning = true;
+  $('preLiveSetupCard').style.display = 'none';
+  $('studioTopSwitch').style.display = 'none';
+  $('activeLiveRoomScreen').style.display = 'flex';
+  $('lrNeonBannerTxt').textContent = state.liveTitle || 'Keep gifting 🩷 box battle 1k';
+  renderLiveGrid();
+  if(!state.stream) startMedia();
+  toast('🔴 Live-Stream gestartet! Alle Einstellungen sind gespeichert.');
+}
+
+function stopLiveAndReturnToSetup(){
+  state.liveRunning = false;
+  $('activeLiveRoomScreen').style.display = 'none';
+  $('preLiveSetupCard').style.display = 'block';
+  $('studioTopSwitch').style.display = 'grid';
+
+  if(state.modCoinsPool > 0){
+    const paid = state.modCoinsPool;
+    state.modCoinsPool = 0;
+    fx('🛡️', `Live beendet! Moderator @Mod_Alex hat ${paid.toLocaleString('de-DE')} Coins (🪙) ausgezahlt bekommen!`);
+  } else {
+    toast('⏹️ Live-Stream beendet. Du bist zurück in den Vorab-Einstellungen.');
+  }
+  updateUI();
+}
+
+/* RENDERT DAS 1-GROSS-LINKS + 2x4-RECHTS PANEL WIE AUF BILD 1 & 2 */
+function renderLiveGrid(){
+  const stage = $('lrStageGrid'); if(!stage) return;
+  const hName = $('inName') ? $('inName').value : 'Mila Moves';
+  $('lrTopHostName').textContent = hName;
+
+  if(state.slots === 1){
+    stage.className = 'lr-stage-grid solo-only';
+    stage.innerHTML = `
+      <div class="lr-main-box" onclick="openLiveUserSheet('host')">
+        <video id="liveHostVid" autoplay playsinline muted style="${!state.camBright?'filter:brightness(0)':''}"></video>
+        <span class="lr-pts-tag"><i class="lr-pts-dot"></i> Host • 214</span>
+        <div class="lr-circle-av" style="${state.stream?'display:none':''}">🦌</div>
+        <span class="lr-name-bot">${hName} +</span>
+        <span class="lr-mic-ico">${state.micOn?'🎙️':'🔇'}</span>
+      </div>`;
+  } else {
+    stage.className = 'lr-stage-grid';
+    const activeGuestsCount = state.slots - 1; // bis zu 8 rechte Boxen
+    let rightHtml = '';
+    for(let i=0; i<8; i++){
+      if(i < activeGuestsCount){
+        const u = state.guests[i];
+        const isShopSlot = (i === 7 && state.prods[state.pinIdx]);
+        if(isShopSlot){
+          const pr = state.prods[state.pinIdx];
+          rightHtml += `
+            <div class="lr-slot-card" style="background:rgba(30,41,59,.9)" onclick="recvGift(500,false)">
+              <div class="lr-circle-av" style="width:36px;height:36px;font-size:1rem">🛍️</div>
+              <span style="background:#fff;color:#000;font-size:.52rem;font-weight:900;padding:2px 7px;border-radius:99px;margin-top:4px">Schnapp dir das</span>
+            </div>`;
         } else {
-          t.className = 'slide-tab px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-slate-300 hover:bg-white/15 transition';
+          rightHtml += `
+            <div class="lr-slot-card" onclick="openLiveUserSheet('guest',${i})">
+              <span class="lr-pts-tag">${u.s==='Host'?'Host':`<i class="lr-pts-dot"></i> ${u.s}`}</span>
+              <div class="lr-circle-av">${u.e}</div>
+              <span class="lr-name-bot">${u.n} +</span>
+              <span class="lr-mic-ico">🔇</span>
+            </div>`;
         }
+      } else {
+        // Freier Platz wie auf Bild 2 ("+ Einladen")
+        rightHtml += `
+          <div class="lr-slot-card empty-slot" onclick="inviteNextGuestSlot()">
+            <div style="font-size:1.25rem;color:rgba(255,255,255,.75);line-height:1">+</div>
+            <div style="font-size:.58rem;color:rgba(255,255,255,.75);font-weight:700;margin-top:2px">Einladen</div>
+          </div>`;
+      }
+    }
+
+    stage.innerHTML = `
+      <div class="lr-main-box" onclick="openLiveUserSheet('host')">
+        <video id="liveHostVid" autoplay playsinline muted style="${!state.camBright?'filter:brightness(0)':''}"></video>
+        <span class="lr-pts-tag"><i class="lr-pts-dot"></i> 214</span>
+        <div class="lr-circle-av" style="${state.stream?'display:none':''}">🦌</div>
+        <span class="lr-name-bot">andrew siltman +</span>
+        <span class="lr-mic-ico">${state.micOn?'🎙️':'🔇'}</span>
+      </div>
+      <div class="lr-right-8grid">${rightHtml}</div>
+    `;
+  }
+
+  if(state.stream && $('liveHostVid')){
+    $('liveHostVid').srcObject = state.stream;
+    $('liveHostVid').play().catch(()=>{});
+  }
+}
+
+function inviteNextGuestSlot(){
+  if(state.slots < 9){
+    state.slots++;
+    renderLiveGrid();
+    toast('👥 Weiterer Gast-Platz im Panel aktiviert!');
+  } else {
+    toast('✅ Alle 9 Plätze im Multi-Live sind bereits voll besetzt!');
+  }
+}
+
+/* CHAT-NACHRICHT IM LIVE SENDEN */
+function sendLiveChatMsg(){
+  const inp = $('lrChatInp');
+  const txt = inp.value.trim();
+  if(!txt) return;
+  const hName = $('inName') ? $('inName').value : 'Mila Moves';
+  appendLiveChatRow('👑', hName, state.mLvl, txt, true);
+  inp.value = '';
+  addMXp(5);
+}
+function appendLiveChatRow(emo, name, lvl, text, isHost = false){
+  const list = $('lrChatList'); if(!list) return;
+  const div = document.createElement('div');
+  div.className = 'lr-msg-row';
+  div.innerHTML = `
+    <div class="lr-msg-av">${emo}</div>
+    <div>
+      <span class="lr-lvl-bdg">💎 ${lvl}</span>
+      <strong style="color:#fff">${name}</strong>
+      ${isHost ? '<span class="lr-host-bdg">Host</span>' : ''}
+      <br/>${text}
+    </div>`;
+  list.appendChild(div);
+  list.scrollTop = list.scrollHeight;
+}
+function shareLiveStream(){
+  appendLiveChatRow('↗', $('inName').value||'Mila Moves', state.mLvl, '<strong>hat das LIVE geteilt</strong> 🔥');
+  toast('↗ Live-Stream geteilt!');
+}
+
+/* WEISSES PROFIL-SHOWCASE POPUP ÖFFNEN (WIE BILD 3) */
+function openLiveUserSheet(type, idx = 0){
+  if(type === 'host'){
+    const hName = $('inName') ? $('inName').value : 'Mila Moves';
+    $('shAv').textContent = '👑';
+    $('shName').textContent = hName;
+    $('shSub').textContent = $('inHdl') ? $('inHdl').value : '@mila.moves';
+    $('shLvlTxt').textContent = 'Lvl. ' + state.mLvl;
+    $('shShowcaseTxt').textContent = 'Showcase von ' + hName;
+  } else {
+    const u = state.guests[idx] || state.guests[7];
+    $('shAv').textContent = u.e;
+    $('shName').textContent = u.n;
+    $('shSub').textContent = u.sub || 'VYBE Creator';
+    $('shLvlTxt').textContent = 'Lvl. ' + (u.lvl || 26);
+    $('shShowcaseTxt').textContent = 'Showcase von ' + u.n;
+  }
+  $('liveUserSheet').style.display = 'flex';
+}
+function closeLiveUserSheet(){
+  $('liveUserSheet').style.display = 'none';
+}
+
+/* COIN-PAKET KAUFEN */
+function buyCoinPackage(amount, priceEur){
+  state.coins += amount;
+  fx('🪙', `+${amount.toLocaleString('de-DE')} Coins für ${priceEur.toFixed(2).replace('.',',')} € aufgeladen!`);
+  updateUI();
+}
+
+/* LIVE-SCHATZKISTE (2% AUS GESCHENKEN, MAX 100 COINS TOPF) */
+function addGiftToLiveChest(giftCoins){
+  state.chestGiftCoins += giftCoins;
+  if(state.chestGiftCoins >= 5000 && state.chestReadyPool === 0){
+    state.chestGiftCoins -= 5000;
+    state.chestReadyPool = 100;
+    fx('💥', 'SCHATZKISTE (100 COINS TOPF) IST GEPLATZT!');
+  }
+}
+function grabLiveChest(){
+  if(state.chestReadyPool <= 0){
+    toast(`ℹ️ Schatzkiste lädt auf: ${state.chestGiftCoins} / 5.000 🪙 (Bei 100% gibt es 100 Gratis-Coins!)`);
+    return;
+  }
+  const drop = Math.min(state.chestReadyPool, 5 + Math.floor(Math.random() * 16));
+  state.chestReadyPool -= drop;
+  state.coins += drop;
+  fx('🎁', `Du hast +${drop} Gratis-Coins aus der Live-Schatzkiste gegriffen! (Rest: ${state.chestReadyPool} 🪙)`);
+  updateUI();
+}
+
+/* ENTDECKER-KARTEN */
+function getFounderXpMultiplier(){
+  return state.founders.some(f => f.supported && f.gold) ? 1.10 : 1.0;
+}
+function supportNewcomer(id){
+  const f = state.founders.find(x => x.id === id);
+  if(!f) return;
+  if(state.coins < 50){ toast('⚠️ 50 Coins zum Unterstützen benötigt!'); return; }
+  state.coins -= 50;
+  f.supported = true;
+  addMXp(50);
+  fx('🌱', `Gründer-Entdeckerkarte von ${f.name} gesichert!`);
+  updateUI();
+}
+function simulateCreatorLvl20(id){
+  const f = state.founders.find(x => x.id === id);
+  if(!f) return;
+  f.lvl = 20;
+  if(f.supported){
+    f.gold = true;
+    fx('👑', `${f.name} hat LVL 20 erreicht! Deine Karte ist jetzt eine GOLD-GRÜNDERKARTE (+10% XP)!`);
+  }
+  updateUI();
+}
+function renderFounderCards(){
+  const box = $('founderCardsGrid'); if(!box) return;
+  const hasGold = state.founders.some(f => f.supported && f.gold);
+  $('founderBonusBdg').textContent = hasGold ? '👑 Gold-Bonus: +10 % XP aktiv!' : 'XP-Bonus: +0 %';
+  box.innerHTML = state.founders.map(f => `
+    <div class="founder-card ${f.gold ? 'gold-evo' : ''}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span class="badge" style="${f.gold?'color:#ffd700':''}">${f.gold ? '👑 GOLD-GRÜNDER' : (f.supported ? '🌱 GRÜNDER-KARTE' : '🔍 NEWCOMER')}</span>
+        <span style="font-size:.65rem;font-weight:800;color:var(--acc)">LVL ${f.lvl}</span>
+      </div>
+      <div style="font-weight:900;font-size:.82rem;margin-bottom:3px">${f.name}</div>
+      <div style="font-size:.64rem;color:var(--mut);margin-bottom:7px">
+        ${f.gold ? '✨ Bringt dir dauerhaft +10 % mehr XP!' : (f.supported ? 'Wartet auf Aufstieg zu LVL 20' : 'Unterstütze unter LVL 10 (50 🪙)')}
+      </div>
+      <div style="display:flex;gap:4px">
+        ${!f.supported ? `<button class="btn full" style="padding:5px;font-size:.64rem" onclick="supportNewcomer(${f.id})">🌱 Supporten (50 🪙)</button>` : ''}
+        ${f.supported && !f.gold ? `<button class="btn gold full" style="padding:5px;font-size:.64rem" onclick="simulateCreatorLvl20(${f.id})">⏩ Aufstieg LVL 20 testen</button>` : ''}
+        ${f.gold ? `<button class="btn sec full" style="padding:5px;font-size:.64rem;color:#ffd700" disabled>✅ +10 % XP aktiv</button>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleRightDrawer(open){
+  $('drawerBackdrop').classList.toggle('open', open);
+  $('rightDrawer').classList.toggle('open', open);
+}
+function toggleQrModal(open){
+  $('qrMod').style.display = open ? 'flex' : 'none';
+}
+function openAccountSection(secKey){
+  toggleRightDrawer(false);
+  openView('settings');
+  const el = $(`accSec-${secKey}`);
+  if(el) setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}), 80);
+}
+
+function stopAllVideoAudio(keepFeedPlaying = false){
+  const cp = $('camPrev');
+  if(cp && !cp.srcObject){ cp.pause(); cp.muted = true; cp.removeAttribute('src'); cp.controls = false; cp.load(); }
+  const fv = $('feedRealVideo');
+  if(fv && !keepFeedPlaying){ fv.pause(); fv.muted = true; }
+}
+
+let vybeDb = null;
+function initMediaDB(){
+  try{
+    const req = indexedDB.open('VYBE_LocalMediaDB', 1);
+    req.onupgradeneeded = e => {
+      const db = e.target.result;
+      if(!db.objectStoreNames.contains('uploads')) db.createObjectStore('uploads', {keyPath:'id', autoIncrement:true});
+    };
+    req.onsuccess = e => { vybeDb = e.target.result; loadSavedMediaFromDB(); };
+  }catch(err){}
+}
+function saveMediaItemToDB(item){
+  if(!vybeDb) return;
+  try{ const tx = vybeDb.transaction('uploads','readwrite'); tx.objectStore('uploads').add(item); }catch(err){}
+}
+function loadSavedMediaFromDB(){
+  if(!vybeDb) return;
+  try{
+    const tx = vybeDb.transaction('uploads','readonly');
+    const req = tx.objectStore('uploads').getAll();
+    req.onsuccess = () => {
+      const items = req.result || [];
+      items.forEach(it => {
+        const url = it.blob ? URL.createObjectURL(it.blob) : it.dataUrl;
+        if(!url) return;
+        state.lib.videos.unshift({t:it.title, v:it.sub, bg:url, type:it.type});
+        clips.unshift({
+          tag:'<span style="color:var(--acc)">★</span> DEIN UPLOAD',
+          snd:'♫ Originalton · ' + ($('inHdl')?$('inHdl').value:'@mila.moves'),
+          n:$('inName')?$('inName').value:'Mila Moves',
+          h:$('inHdl')?$('inHdl').value:'@mila.moves',
+          t:it.title,
+          s:it.type==='video'?'Dein Handy-Video 🎬':'Dein Galerie-Foto 📸',
+          g:'#vybe #meinupload',
+          bg:it.type==='img'?url:clips[0].bg,
+          vidUrl:it.type==='video'?url:null
+        });
       });
-    }
+      if(items.length > 0){ cIdx = 0; showClipAtIndex(0, $('view-feed').classList.contains('active')); renderLib(); }
+    };
+  }catch(err){}
+}
 
-    // Umschalten zwischen 1. Vorab-Setup und 2. Sauberer Live-Ansicht (Phone 1)
-    function switchLiveMode(mode) {
-      const setupScreen = document.getElementById('liveSetupScreen');
-      const liveScreen = document.getElementById('liveActiveScreen');
-      const btnSetup = document.getElementById('btnShowSetup');
-      const btnLive = document.getElementById('btnShowLive');
-      const stateDot = document.getElementById('liveStateDot');
-      const stateLabel = document.getElementById('liveStateLabel');
-      const modeSelect = document.getElementById('liveModeSelect');
-      const bannerText = document.getElementById('liveBannerText');
+try{
+  const sBanner = localStorage.getItem('vybe_banner');
+  if(sBanner) $('profBannerBox').style.setProperty('--prof-banner-bg', `url('${sBanner}')`);
+  const sAvatar = localStorage.getItem('vybe_avatar');
+  if(sAvatar){
+    $('profAv').style.backgroundImage = `url('${sAvatar}')`;
+    document.querySelectorAll('.h-av,.c-av,#lrTopHostAv').forEach(el => el.style.backgroundImage = `url('${sAvatar}')`);
+  }
+  const sMood = localStorage.getItem('vybe_mood');
+  if(sMood) document.documentElement.setAttribute('data-mood', sMood);
+}catch(e){}
 
-      if (mode === 'live') {
-        bannerText.innerText = modeSelect.value;
-        setupScreen.classList.add('hidden');
-        liveScreen.classList.remove('hidden');
-        btnLive.className = 'px-2 py-0.5 rounded text-[9px] font-bold bg-[#b8ff01] text-black';
-        btnSetup.className = 'px-2 py-0.5 rounded text-[9px] font-bold bg-white/10 text-slate-300';
-        stateDot.className = 'w-2 h-2 rounded-full bg-rose-500 animate-ping';
-        stateLabel.innerText = '2. LIVE AKTIV (1–8)';
-      } else {
-        liveScreen.classList.add('hidden');
-        setupScreen.classList.remove('hidden');
-        btnSetup.className = 'px-2 py-0.5 rounded text-[9px] font-bold bg-[#b8ff01] text-black';
-        btnLive.className = 'px-2 py-0.5 rounded text-[9px] font-bold bg-white/10 text-slate-300';
-        stateDot.className = 'w-2 h-2 rounded-full bg-amber-400';
-        stateLabel.innerText = '1. Vorab-Setup';
-      }
-    }
+const reqM = l => CFG.mXp[l<5?0:l<10?1:l<15?2:l<20?3:l<30?4:l<40?5:6];
+const reqS = l => CFG.sXp[l<5?0:l<10?1:l<15?2:l<20?3:l<30?4:l<40?5:6];
 
-    // Moderatoren (Modis) im Setup an-/abwählen
-    function toggleModiChip(btn) {
-      const isSelected = btn.innerText.trim().startsWith('✓');
-      const cleanName = btn.innerText.replace('✓ ', '').replace('+ ', '');
-      if (isSelected) {
-        btn.innerText = '+ ' + cleanName;
-        btn.className = 'px-2 py-1 rounded-lg text-[10px] font-semibold bg-white/5 border border-white/15 text-slate-300';
-      } else {
-        btn.innerText = '✓ ' + cleanName;
-        btn.className = 'px-2 py-1 rounded-lg text-[10px] font-semibold bg-[#b8ff01]/20 border border-[#b8ff01] text-[#b8ff01]';
-      }
-    }
+function switchStudioMode(m){
+  stopAllVideoAudio(false);
+  $('btnModeClip').classList.toggle('active', m==='clip');
+  $('btnModeLive').classList.toggle('active', m==='live');
+  $('studioClipBox').style.display = m==='clip' ? 'block' : 'none';
+  $('studioLiveBox').style.display = m==='live' ? 'block' : 'none';
+  if(m==='live' && state.mLvl>=5) renderLiveGrid();
+  if(m==='clip') startMedia();
+}
 
-    // 8. Slot ("Schnapp dir das") interaktiv belegen
-    function claimEighthSlot(slotEl) {
-      slotEl.innerHTML = `
-        <span class="self-start px-1 rounded bg-black/50 text-[7px] text-[#b8ff01]">💿 NEU</span>
-        <div class="w-7 h-7 rounded-full bg-[#b8ff01] text-black font-black flex items-center justify-center text-[10px]">DU</div>
-        <div class="w-full flex justify-between items-center text-[7px] text-white">
-          <span class="bg-black/40 px-1 rounded truncate">Du (Gast 8)</span><span>🎤</span>
-        </div>
-      `;
-      addSystemChat('🎉 Du bist dem 8. Live-Slot beigetreten!');
-    }
+function isLiveTimeValid(){ return state.isOwnLive && state.camBright && state.micOn; }
+function togLiveCond(k){
+  if(k==='own') state.isOwnLive=!state.isOwnLive;
+  if(k==='cam') state.camBright=!state.camBright;
+  if(k==='mic') state.micOn=!state.micOn;
+  updateUI();
+}
+function addLiveHours(h){
+  if(!isLiveTimeValid()){ toast('⚠️ Zeit zählt nicht: Eigenes Live + Bild hell + Mikro AN nötig!'); return; }
+  state.wkHours = Math.min(40, +(state.wkHours + h).toFixed(1));
+  toast(`⏱️ +${h} Std. angerechnet! (${state.wkHours}/15 Std. Mo–So)`);
+  updateUI();
+}
+setInterval(()=>{
+  state.onlineMins++;
+  if($('view-camera').classList.contains('active') && state.liveRunning && state.mLvl>=5 && isLiveTimeValid()){
+    state.wkHours = +(state.wkHours + (1/60)).toFixed(2);
+  }
+  updateUI();
+},60000);
 
-    // Chat-Nachricht im Live senden
-    function sendLiveChat(e) {
-      e.preventDefault();
-      const input = document.getElementById('liveChatInput');
-      const text = input.value.trim();
-      if (!text) return;
-      const chatList = document.getElementById('liveChatList');
-      const msg = document.createElement('div');
-      msg.className = 'flex items-start gap-1.5';
-      msg.innerHTML = `
-        <span class="px-1 rounded bg-[#b8ff01] text-black font-bold text-[7px]">LVL 5</span>
-        <div>
-          <span class="text-[#b8ff01] font-semibold">Du:</span>
-          <span class="text-white ml-1">${text}</span>
-        </div>
-      `;
-      chatList.appendChild(msg);
-      chatList.scrollTop = chatList.scrollHeight;
-      input.value = '';
-    }
+async function startMedia(){
+  stopAllVideoAudio(false);
+  $('camPhotoPrev').style.display='none';
+  if(state.stream){
+    const cp = $('camPrev'); cp.muted = true; cp.controls = false; cp.srcObject = state.stream; cp.play().catch(()=>{});
+    $('camPh').style.display='none'; return;
+  }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ toast('⚠️ Bitte über https:// öffnen!'); return; }
+  try{
+    const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:true});
+    attachStream(s,true); toast('📷🎙️ Kamera & Mikrofon aktiv!');
+  }catch(e){
+    try{ const s2 = await navigator.mediaDevices.getUserMedia({video:true}); attachStream(s2,false); toast('📷 Kamera aktiv!'); }
+    catch(e2){ toast('⚠️ Bitte Berechtigung erteilen!'); }
+  }
+}
+function attachStream(s,aud){
+  state.stream = s; state.camBright = true; state.micOn = aud;
+  const cp = $('camPrev');
+  if(cp){ cp.muted = true; cp.controls = false; cp.srcObject = s; cp.play().catch(()=>{}); }
+  if($('liveHostVid')){$('liveHostVid').srcObject=s;$('liveHostVid').play().catch(()=>{});}
+  $('camPh').style.display='none';
+  $('camStat').textContent = aud ? '✅ Cam & Mic AN' : '📷 Cam AN';
+  updateUI();
+}
 
-    // Geschenk in den Live-Chat posten
-    function sendGiftChat(giftName) {
-      const chatList = document.getElementById('liveChatList');
-      const msg = document.createElement('div');
-      msg.className = 'px-2 py-0.5 rounded bg-pink-500/20 border border-pink-500/40 text-pink-200 text-[8px] font-bold';
-      msg.innerText = `🎁 Du hast ${giftName} gesendet!`;
-      chatList.appendChild(msg);
-      chatList.scrollTop = chatList.scrollHeight;
-      spawnLiveHeart();
-    }
+function setSlots(n,btn){
+  state.slots = n;
+  if(btn){ document.querySelectorAll('#slotBtns .pill').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
+  renderLiveGrid();
+}
 
-    function addSystemChat(text) {
-      const chatList = document.getElementById('liveChatList');
-      const msg = document.createElement('div');
-      msg.className = 'text-[#b8ff01] text-[8px] font-semibold';
-      msg.innerText = text;
-      chatList.appendChild(msg);
-      chatList.scrollTop = chatList.scrollHeight;
-    }
+function sendGift(name,cost,emo){
+  if(state.coins<cost){ toast(`⚠️ Nicht genug Coins (${cost} 🪙 benötigt)!`); return; }
+  state.coins -= cost;
+  addGiftToLiveChest(cost);
+  appendLiveChatRow(emo, $('inName').value||'Mila Moves', state.mLvl, `hat <strong>${name}</strong> gesendet ${emo} × 1`);
+  $('liveGiftModal').style.display='none';
+  fx(emo, `${name} gesendet!`);
+  addMXp(cost);
+}
 
-    // Fliegende Herzen im Live-Stream
-    function spawnLiveHeart() {
-      const container = document.getElementById('heartContainer');
-      const heart = document.createElement('div');
-      const icons = ['❤️', '🩷', '💖', '🔥', '💎'];
-      heart.innerText = icons[Math.floor(Math.random() * icons.length)];
-      heart.className = 'floating-heart absolute bottom-0 right-1 text-base';
-      heart.style.right = Math.floor(Math.random() * 18) + 'px';
-      container.appendChild(heart);
-      setTimeout(() => heart.remove(), 1800);
-    }
-  </script>
+function recvGift(coins, isForGuest){
+  addGiftToLiveChest(coins);
+  const afterChest = Math.round(coins * 0.98);
+  let grossHost = isForGuest ? Math.round(afterChest * (state.hostCut / 100)) : afterChest;
+  const modShareCoins = Math.round(grossHost * (state.modCut / 100));
+  state.modCoinsPool += modShareCoins;
+  const netDiamonds = Math.max(1, grossHost - modShareCoins);
+  state.diamonds += netDiamonds;
+
+  const xpBoost = Math.max(5, Math.floor(grossHost * 0.5));
+  if(state.isOwnLive){ addMXp(xpBoost); }
+
+  if(state.mLvl >= 20){
+    state.sXp += netDiamonds;
+    while(state.sLvl<50 && state.sXp>=reqS(state.sLvl)){ state.sXp-=reqS(state.sLvl); state.sLvl++; }
+  }
+
+  appendLiveChatRow('🎁', '⚜️INFINITY⚜️', 21, `hat Geschenke (+${coins} 🪙) gesendet 🔥`);
+  toast(`💎 +${netDiamonds} Diamanten | 🛡️ +${modShareCoins} Mod-Coins | ⚡ +${xpBoost} Host-XP!`);
+  updateUI();
+}
+
+function addMXp(baseXp){
+  if(state.mLvl>=50){ updateUI(); return; }
+  const totalXp = Math.round(baseXp * getFounderXpMultiplier());
+  state.mXp += totalXp;
+  while(state.mLvl<50 && state.mXp>=reqM(state.mLvl)){
+    state.mXp -= reqM(state.mLvl); state.mLvl++;
+    if(state.mLvl===50){ $('goldRain').style.display='block'; setTimeout(()=>$('goldRain').style.display='none',3500); }
+    fx('🎉', `LEVEL ${state.mLvl} ERREICHT!`);
+  }
+  updateUI();
+}
+
+function copyRefLink(){
+  const val = $('refLinkInp').value;
+  navigator.clipboard?.writeText(val);
+  toast('📋 Einladungslink kopiert!');
+}
+function triggerRefReward(amount, isNewFriend){
+  state.coins += amount; state.refEarned += amount;
+  if(isNewFriend){ state.refCount++; fx('🤝', `+${amount} Coins sofort für euch beide!`); }
+  else { fx('🏆', `LVL 15 ERREICHT! +${amount} Extra-Coins!`); }
+  updateUI();
+}
+
+function spinVault(){
+  const m = state.onlineMins, lim = [30,90,180];
+  let idx = lim.findIndex((t,i)=> !state.vClaim[i] && m>=t);
+  if(idx===-1){ toast('✅ Noch nicht bereit oder alle 3 Tresore offen!'); return; }
+  state.vClaim[idx] = true;
+  const won = Math.random() < 0.05 ? 500 : 100 + Math.floor(Math.pow(Math.random(),1.6)*290);
+  state.coins += won; fx('🎰', `+${won} Coins!`); updateUI();
+}
+function claimWatch(){
+  if(state.wClaimed){ toast('✅ Bereits abgeholt!'); return; }
+  if(state.watched<10){ toast(`⚠️ Noch ${10-state.watched} Videos schauen!`); return; }
+  state.wClaimed = true; state.coins += 50; fx('👀','+50 Coins erhalten!'); updateUI();
+}
+function openBooster(){
+  if(state.coins<250){ toast('⚠️ 250 Coins benötigt!'); return; }
+  state.coins -= 250;
+  const pulls = ['🔮 CYBER HOLO: @neon.jay','★ EPISCH: @mila.moves','💎 DIAMANT HOLO: @luna.vibe','👑 1OF1 BOSS-KARTE'];
+  const p = pulls[Math.floor(Math.random()*pulls.length)];
+  $('boosterResultTxt').textContent = `🎉 Gezogen: ${p}`;
+  fx('🃏', p); addMXp(250);
+}
+
+function convertToDiamonds(){
+  if(state.coins < 100){ toast('ℹ️ Mindestens 100 Coins zum Umwandeln benötigt.'); return; }
+  state.diamonds += 100; state.coins -= 100;
+  toast('💎 100 Coins in 100 Diamanten umgewandelt!'); updateUI();
+}
+function payoutDiamonds(){
+  if(state.mLvl<20 || state.sLvl<5){ toast('🔒 Erst ab LVL 20 & S-LVL 5!'); return; }
+  if(state.wkHours < 15){ toast('🔒 Mind. 15 Std. Live / Woche (Mo–So) nötig!'); return; }
+  if(state.diamonds<=0){ toast('ℹ️ 0 Diamanten vorhanden.'); return; }
+  const r = CFG.rates(state.sLvl), eur = ((state.diamonds/100)*r).toFixed(2).replace('.',',');
+  state.diamonds = 0; fx('💸', `${eur} € ausgezahlt!`); updateUI();
+}
+
+function exportUserData(){
+  const data = JSON.stringify({name:$('inName').value, handle:$('inHdl').value, coins:state.coins, diamonds:state.diamonds, level:state.mLvl}, null, 2);
+  navigator.clipboard?.writeText(data);
+  toast('📥 DSGVO-Datenexport in die Zwischenablage kopiert!');
+}
+function deleteLocalAccountData(){
+  try{ localStorage.clear(); indexedDB.deleteDatabase('VYBE_LocalMediaDB'); }catch(e){}
+  toast('🗑️ Alle lokalen Gerätedaten wurden DSGVO-konform gelöscht!');
+}
+
+function openView(v){
+  const isFeed = (v === 'feed');
+  stopAllVideoAudio(isFeed);
+  document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
+  $(`view-${v}`).classList.add('active');
+  document.querySelectorAll('.b-nav .b-nav-btn').forEach(b=>b.classList.remove('active'));
+  const nb = $(`bn-${v}`); if(nb) nb.classList.add('active');
+  if(isFeed){ showClipAtIndex(cIdx, true); }
+  else if(v==='camera'){ startMedia(); }
+}
+
+function swProf(t){ ['level','edit','shop'].forEach(k=>{ $(`pt-${k}`).style.display=k===t?'block':'none'; $(`pb-${k}`).classList.toggle('active',k===t); }); }
+function swLib(t){ state.libTab=t; ['videos','saved','favs'].forEach(k=>$(`mt-${k}`).classList.toggle('active',k===t)); renderLib(); }
+
+function renderLib(){
+  const l = state.lib;
+  $('cVid').textContent = l.videos.length;
+  $('cSav').textContent = l.saved.length;
+  $('cFav').textContent = l.favs.length;
+  $('libGrid').innerHTML = l[state.libTab].map((x,idx)=>{
+    const mediaHtml = x.type==='video' ? `<video src="${x.bg}" muted loop playsinline></video>` : '';
+    return `<div class="m-item" style="${x.type!=='video'?`background-image:url('${x.bg}')`:''}" onclick="playMediaFromLib(${idx})">
+      ${mediaHtml}
+      <div style="position:relative;z-index:2;font-size:.64rem;font-weight:800;color:#fff">${x.t}</div>
+      <div style="position:relative;z-index:2;font-size:.56rem;color:#b8ff01">${x.v}</div>
+    </div>`;
+  }).join('');
+}
+
+function playMediaFromLib(idx){
+  const item = state.lib[state.libTab][idx];
+  if(!item) return;
+  clips.unshift({
+    tag:'<span style="color:var(--acc)">★</span> MEDIATHEK',
+    snd:'♫ Originalton · ' + ($('inHdl')?$('inHdl').value:'@mila.moves'),
+    n:$('inName')?$('inName').value:'Mila Moves',
+    h:$('inHdl')?$('inHdl').value:'@mila.moves',
+    t:item.t, s:item.v, g:'#vybe',
+    bg:item.type==='video'?clips[0].bg:item.bg,
+    vidUrl:item.type==='video'?item.bg:null
+  });
+  cIdx = 0; openView('feed');
+}
+
+function showClipAtIndex(i, allowPlay = true){
+  const c = clips[i]; if(!c) return;
+  $('cTag').innerHTML = c.tag; $('cSnd').textContent = c.snd; $('cName').textContent = c.n;
+  $('cHdl').textContent = c.h; $('cTit').textContent = c.t; $('cSub').textContent = c.s; $('cTags').textContent = c.g;
+  const fVid = $('feedRealVideo');
+  if(c.vidUrl){
+    fVid.src = c.vidUrl; fVid.style.display = 'block';
+    if(allowPlay && $('view-feed').classList.contains('active')){
+      fVid.muted = false; fVid.play().catch(()=>{ fVid.muted = true; fVid.play().catch(()=>{}); });
+    } else { fVid.pause(); fVid.muted = true; }
+  } else { fVid.pause(); fVid.muted = true; fVid.style.display = 'none'; $('heroVid').style.setProperty('--feed-bg',`url('${c.bg}')`); }
+}
+
+function nextClip(){
+  cIdx = (cIdx+1)%clips.length; showClipAtIndex(cIdx, true);
+  if(state.watched<10) state.watched++; updateUI();
+}
+function switchFeedTab(b){ b.parentElement.querySelectorAll('.f-tab').forEach(x=>x.classList.remove('active')); b.classList.add('active'); nextClip(); }
+
+function favClip(){
+  $('shock').classList.remove('boom'); void $('shock').offsetWidth; $('shock').classList.add('boom');
+  $('likeCir').style.color='var(--acc)'; const c = clips[cIdx];
+  if(!state.lib.favs.some(x=>x.t===c.t)){ state.lib.favs.unshift({t:c.t,v:'⭐ '+c.h,bg:c.vidUrl||c.bg,type:c.vidUrl?'video':'img'}); renderLib(); }
+  addMXp(10); toast('⭐ Zu Favoriten (+10 XP)');
+}
+function saveClip(){
+  $('saveCir').style.color='var(--acc)'; const c = clips[cIdx];
+  if(!state.lib.saved.some(x=>x.t===c.t)){ state.lib.saved.unshift({t:c.t,v:'🔖 '+c.h,bg:c.vidUrl||c.bg,type:c.vidUrl?'video':'img'}); renderLib(); }
+  toast('🔖 Unter Gespeichert abgelegt!');
+}
+function commClip(){ $('commTxt').textContent = +$('commTxt').textContent + 1; addMXp(5); toast('💬 Kommentar (+5 XP)'); }
+
+function uploadClip(e){
+  const file = e.target.files && e.target.files[0]; if(!file) return;
+  const fName = file.name.replace(/\.[^/.]+$/, ""); const blobUrl = URL.createObjectURL(file);
+  stopAllVideoAudio(false); $('camPhotoPrev').style.display='none'; $('camPh').style.display='none';
+  const cp = $('camPrev'); cp.srcObject = null; cp.src = blobUrl; cp.muted = false; cp.controls = true; cp.play().catch(()=>{});
+  state.lib.videos.unshift({t:fName, v:'🎬 Gespeichert', bg:blobUrl, type:'video'});
+  clips.unshift({tag:'<span style="color:var(--acc)">🎬</span> NEUES VIDEO', snd:'♫ Originalton', n:$('inName').value||'Mila Moves', h:$('inHdl').value||'@mila.moves', t:fName, s:'Hochgeladen!', g:'#vybe', bg:clips[0].bg, vidUrl:blobUrl});
+  cIdx = 0; showClipAtIndex(0, false); renderLib();
+  saveMediaItemToDB({title:fName, sub:'🎬 Gespeichert', blob:file, type:'video'});
+  toast(`🎬 Video „${fName}“ gespeichert!`); e.target.value = '';
+}
+
+function uploadPhotoFromGallery(e){
+  const file = e.target.files && e.target.files[0]; if(!file) return;
+  stopAllVideoAudio(false); document.querySelectorAll('#camModePills .pill').forEach(x=>x.classList.remove('active')); $('photoPillBtn').classList.add('active');
+  const fName = file.name.replace(/\.[^/.]+$/, ""); const reader = new FileReader();
+  reader.onload = function(evt){
+    const dataUrl = evt.target.result; $('camPh').style.display='none';
+    const imgPrev = $('camPhotoPrev'); imgPrev.src = dataUrl; imgPrev.style.display = 'block';
+    state.lib.videos.unshift({t:fName, v:'📸 Galerie-Foto', bg:dataUrl, type:'img'});
+    clips.unshift({tag:'<span style="color:#ffd700">📸</span> FOTO POST', snd:'♫ Originalton', n:$('inName').value||'Mila Moves', h:$('inHdl').value||'@mila.moves', t:fName, s:'Aus Galerie', g:'#foto', bg:dataUrl, vidUrl:null});
+    cIdx = 0; showClipAtIndex(0, false); renderLib();
+    saveMediaItemToDB({title:fName, sub:'📸 Galerie-Foto', dataUrl:dataUrl, type:'img'});
+    toast(`📸 Foto „${fName}“ gespeichert!`);
+  };
+  reader.readAsDataURL(file); e.target.value = '';
+}
+
+function uploadBanner(e){
+  const file = e.target.files && e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt){
+    $('profBannerBox').style.setProperty('--prof-banner-bg', `url('${evt.target.result}')`);
+    try{ localStorage.setItem('vybe_banner', evt.target.result); }catch(err){}
+    toast('🖼️ Großes Profil-Hintergrundbild gespeichert!');
+  };
+  reader.readAsDataURL(file);
+}
+function uploadAvatar(e){
+  const file = e.target.files && e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt){
+    $('profAv').style.backgroundImage = `url('${evt.target.result}')`;
+    document.querySelectorAll('.h-av,.c-av,#lrTopHostAv').forEach(el => el.style.backgroundImage = `url('${evt.target.result}')`);
+    try{ localStorage.setItem('vybe_avatar', evt.target.result); }catch(err){}
+    toast('👤 Profilbild aktualisiert!');
+  };
+  reader.readAsDataURL(file);
+}
+
+function updIdent(){
+  $('pNameHdr').textContent = $('cOwnName').textContent = $('cName').textContent = $('qrNameTxt').textContent = $('inName').value;
+  $('pHdlHdr').textContent = $('cHdl').textContent = $('inHdl').value;
+  $('qrHdlTxt').textContent = 'vybe.club/' + $('inHdl').value;
+  $('pBioHdr').textContent = $('inBio').value; renderLiveGrid();
+}
+function setBg(u,el){
+  document.querySelectorAll('#gSel .g-th').forEach(x=>x.classList.remove('active')); el.classList.add('active');
+  document.body.style.setProperty('--app-bg', u?`url('${u}')`:'none');
+  if(u){ $('profBannerBox').style.setProperty('--prof-banner-bg', `url('${u}')`); $('heroVid').style.setProperty('--feed-bg',`url('${u}')`); }
+  toast('🖼️ Hintergrund & großes Profil-Banner angepasst!');
+}
+function setMood(m,b){
+  document.documentElement.setAttribute('data-mood',m);
+  try{ localStorage.setItem('vybe_mood', m); }catch(err){}
+  document.querySelectorAll('#mSel .pill').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  toast(m==='light' ? '☀️ Vollbild-Weiß aktiviert!' : '🎨 Stimmung geändert!');
+}
+function selPill(b,m){
+  stopAllVideoAudio(false); $('camPhotoPrev').style.display='none';
+  if(state.stream){ const cp = $('camPrev'); cp.muted = true; cp.controls = false; cp.srcObject = state.stream; cp.play().catch(()=>{}); }
+  b.parentElement.querySelectorAll('.pill').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  toast('🎞️ Modus: '+m);
+}
+function cycleFilter(){ const f=['none','hue-rotate(90deg)','contrast(1.3) saturate(1.5)','sepia(.6)']; state.fIdx=((state.fIdx||0)+1)%f.length; $('camStage').style.filter=f[state.fIdx]; }
+function addProd(){
+  if(state.mLvl<5){ toast('🔒 Erst ab Level 5!'); return; }
+  state.prods.push({name:$('pNameIn').value||'VYBE Merch',price:$('pPriceIn').value||'29,90 €'});
+  state.pinIdx=state.prods.length-1; updateUI(); toast('🛍️ Produkt gepinnt!');
+}
+function filterSearch(q=''){
+  const rooms=[{h:'@jyunii011',l:24,t:'🔥 9er Panel Box Battle',c:'#1042',s:9},{h:'@Nudel_King',l:26,t:'🍝 Multi-Live + Einladen',c:'#4829',s:3},{h:'@luna.vibe',l:42,t:'👑 Solo-Talk',c:'#9910',s:1}];
+  $('srchList').innerHTML = rooms.filter(r=>r.h.includes(q.toLowerCase())||r.t.toLowerCase().includes(q.toLowerCase())).map(r=>`<div class="xp-box" style="margin:0"><div style="font-size:.62rem;color:var(--acc);font-weight:800">● ${r.s}er LIVE • ${r.c}</div><div style="font-weight:800;font-size:.78rem;margin:2px 0">${r.h}</div><div style="font-size:.68rem;color:var(--mut);margin-bottom:6px">${r.t}</div><button class="btn sec full" onclick="setSlots(${r.s});openView('camera');switchStudioMode('live');launchCleanLiveStream()">Direkt beitreten</button></div>`).join('');
+}
+
+function updateUI(){
+  const l = state.mLvl, sl = state.sLvl, isStr = l>=20, canL = l>=5, rm = reqM(l), rs = reqS(sl);
+  const cStr = state.coins.toLocaleString('de-DE');
+  const dStr = state.diamonds.toLocaleString('de-DE');
+  $('profCoins').textContent = $('clubCoins').textContent = cStr;
+  $('profDiamonds').textContent = dStr;
+  $('drwCoinsTxt').textContent = cStr + ' 🪙';
+  $('walletCoinsTxt').textContent = cStr;
+  $('profAv').className = `p-av aura-${l>=50?3:l>=10?2:l>=5?1:0}`;
+  $('pMemBdg').textContent = `LVL ${l} • ${l>=20?'Elite':l>=5?'Vibe':'Rookie'}`;
+  $('pStrBdg').style.display = isStr ? 'inline-block' : 'none';
+  if(isStr) $('pStrBdg').textContent = `👑 S-LVL ${sl}`;
+  if($('lrStrLvlChip')) $('lrStrLvlChip').textContent = l;
+
+  $('b1Lbl').textContent = `⚡ HAUPT-RANG: LVL ${l}`;
+  $('b1Xp').textContent = `${state.mXp.toLocaleString('de-DE')} / ${rm.toLocaleString('de-DE')} XP`;
+  $('b1Fill').style.width = `${Math.min(100,(state.mXp/rm)*100)}%`;
+
+  $('b2Lbl').textContent = isStr ? `👑 STREAMER: S-LVL ${sl}` : '🔒 STREAMER-RANG (Ab LVL 20)';
+  $('b2Xp').textContent = isStr ? `${state.sXp.toLocaleString('de-DE')} / ${rs.toLocaleString('de-DE')} S-XP` : `Noch ${20-l} Lvl`;
+  $('b2Fill').style.width = isStr ? `${Math.min(100,(state.sXp/rs)*100)}%` : '0%';
+
+  $('cPowTxt').textContent = `⚡ POWER ${100 + l*25 + (isStr?sl*30:0)}`;
+  $('cRanksTxt').textContent = isStr ? `💎 LVL ${l} • 👑 S-LVL ${sl}` : `Mitglieds-Rang LVL ${l}`;
+  $('cGlobStat').textContent = isStr ? '🔥 Im globalen Booster!' : 'Nur im Profil';
+
+  const chestPct = state.chestReadyPool > 0 ? 100 : Math.min(100, Math.round((state.chestGiftCoins / 5000) * 100));
+  if($('chestProgTxt')){
+    $('chestProgTxt').textContent = state.chestReadyPool > 0
+      ? `GREIFEN (${state.chestReadyPool}🪙)`
+      : `${chestPct}%`;
+  }
+  if($('modPoolTxt')) $('modPoolTxt').textContent = state.modCoinsPool.toLocaleString('de-DE');
+
+  renderFounderCards();
+
+  if($('refCountTxt')) $('refCountTxt').textContent = `${state.refCount} Freunde`;
+  if($('refEarnedTxt')) $('refEarnedTxt').textContent = `${state.refEarned.toLocaleString('de-DE')} Coins`;
+
+  $('onMinsTxt').textContent = `${state.onlineMins} Min.`;
+  [30,90,180].forEach((t,i)=>{ $(`vSlot${i+1}`).innerHTML = state.vClaim[i] ? `✅ ${i+1}. Spin<br/>Offen` : (state.onlineMins>=t ? `🔓 ${i+1}. Spin<br/><strong style="color:var(--acc)">BEREIT</strong>` : `🔒 ${i+1}. Spin<br/>ab ${t}m`); });
+  $('wProgTxt').textContent = `${state.watched} / 10 Videos`;
+  $('mixTxt').textContent = `DAILY MIX (${state.watched}/10)`;
+  $('wBarFill').style.width = `${(state.watched/10)*100}%`;
+
+  $('lockLvlTxt').textContent = `LVL ${l}`;
+  $('liveLock').style.display = canL ? 'none' : 'block';
+  $('liveAct').style.display = canL ? 'block' : 'none';
+
+  $('btnTogMic').textContent = state.micOn ? '🎙️ Mikro AN' : '🔇 Mikro AUS!';
+  $('wkHoursTxt').textContent = $('setWkTxt').textContent = `${state.wkHours} / 15.0 Std.`;
+
+  if(canL) renderLiveGrid();
+
+  $('shopLimBdg').textContent = !canL ? '🔒 Ab LVL 5' : `${state.prods.length}/${isStr?'∞':'3'} Produkte`;
+  $('prodList').innerHTML = state.prods.map((p,i)=>`<div style="display:flex;justify-content:space-between;font-size:.72rem;padding:5px 0"><span>🛍️ ${p.name} (${p.price})</span><button class="btn sec" style="padding:2px 6px;font-size:.62rem" onclick="state.pinIdx=${i};updateUI()">Pinnen</button></div>`).join('');
+
+  const r = CFG.rates(sl), raw = state.diamonds/100;
+  $('setSplitBdg').textContent = `👑 S-LVL ${sl}`;
+  $('setDiamondsTxt').textContent = `${dStr} 💎`;
+  $('setStrEur').textContent = `${(raw*r).toFixed(2).replace('.',',')} €`;
+}
+
+function toggleInfo(s){ $('infoMod').style.display = s ? 'flex' : 'none'; }
+function toast(m){ const t=$('toast'); t.textContent=m; t.style.display='block'; clearTimeout(window._t); window._t=setTimeout(()=>t.style.display='none',2800); }
+function fx(e,t){ $('fxEmo').textContent=e; $('fxTxt').textContent=t; $('fx').style.display='flex'; clearTimeout(window._f); window._f=setTimeout(()=>$('fx').style.display='none',1800); }
+
+initMediaDB(); filterSearch(); renderLib(); updateUI();
+</script>
 </body>
 </html>
