@@ -5,22 +5,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
 <title>VYBE — Short Video & Live Club</title>
 <style>
-/* =========================================================
-   1. FARBWELTEN & WEICHE RAHMEN
-   ========================================================= */
-:root,[data-mood="lime"]{--bg:#0b0c10;--card:rgba(20,23,32,.78);--bdr:rgba(255,255,255,.03);--bdr2:rgba(255,255,255,.06);--acc:#b8ff01;--acc2:#00f2fe;--soft:rgba(184,255,1,.12);--txt:#f5f7fa;--mut:#8a90a6;--hot:#ff2a5f;--drawer:#12151f}
-[data-mood="night"]{--bg:#08090f;--card:rgba(18,22,36,.78);--acc:#00f2fe;--acc2:#4facfe;--soft:rgba(0,242,254,.12);--hot:#ff0844;--drawer:#0e1220}
-[data-mood="chill"]{--bg:#071310;--card:rgba(15,36,30,.78);--acc:#2af598;--acc2:#009efd;--soft:rgba(42,245,152,.12);--drawer:#0b1c17}
-[data-mood="hype"]{--bg:#130611;--card:rgba(34,12,30,.78);--acc:#ff007f;--acc2:#ffbe0b;--soft:rgba(255,0,127,.12);--drawer:#1c0a19}
-[data-mood="cyber"]{--bg:#090517;--card:rgba(22,12,48,.78);--acc:#00f5d4;--acc2:#b5179e;--soft:rgba(0,245,212,.12);--drawer:#120a2a}
-[data-mood="sunset"]{--bg:#14090b;--card:rgba(39,18,22,.78);--acc:#ff7e5f;--acc2:#feb47b;--soft:rgba(255,126,95,.12);--drawer:#1f0e12}
-[data-mood="lava"]{--bg:#140404;--card:rgba(40,8,8,.78);--acc:#ff4122;--acc2:#ff9900;--soft:rgba(255,65,34,.12);--drawer:#210707}
-[data-mood="arctic"]{--bg:#05101a;--card:rgba(12,32,54,.78);--acc:#70e1f5;--acc2:#3a7bd5;--soft:rgba(112,225,245,.12);--drawer:#091c2e}
-[data-mood="sakura"]{--bg:#140a12;--card:rgba(40,20,36,.78);--acc:#ff9a9e;--acc2:#fecfef;--soft:rgba(255,154,158,.12);--drawer:#21101d}
-[data-mood="gold"]{--bg:#100d05;--card:rgba(32,26,10,.78);--acc:#ffd700;--acc2:#ff8c00;--soft:rgba(255,215,0,.12);--drawer:#1a1508}
-[data-mood="galaxy"]{--bg:#070412;--card:rgba(21,13,44,.78);--acc:#a18cd1;--acc2:#fbc2eb;--soft:rgba(161,140,209,.12);--drawer:#110a24}
+:root,[data-mood="lime"]{--bg:#0b0c10;--card:rgba(20,23,32,.72);--bdr:rgba(255,255,255,.025);--bdr2:rgba(255,255,255,.048);--acc:#b8ff01;--acc2:#00f2fe;--soft:rgba(184,255,1,.12);--txt:#f5f7fa;--mut:#8a90a6;--hot:#ff2a5f;--drawer:#12151f}
+[data-mood="night"]{--bg:#08090f;--card:rgba(18,22,36,.72);--acc:#00f2fe;--acc2:#4facfe;--soft:rgba(0,242,254,.12);--hot:#ff0844;--drawer:#0e1220}
+[data-mood="chill"]{--bg:#071310;--card:rgba(15,36,30,.72);--acc:#2af598;--acc2:#009efd;--soft:rgba(42,245,152,.12);--drawer:#0b1c17}
+[data-mood="hype"]{--bg:#130611;--card:rgba(34,12,30,.72);--acc:#ff007f;--acc2:#ffbe0b;--soft:rgba(255,0,127,.12);--drawer:#1c0a19}
+[data-mood="cyber"]{--bg:#090517;--card:rgba(22,12,48,.72);--acc:#00f5d4;--acc2:#b5179e;--soft:rgba(0,245,212,.12);--drawer:#120a2a}
+[data-mood="sunset"]{--bg:#14090b;--card:rgba(39,18,22,.72);--acc:#ff7e5f;--acc2:#feb47b;--soft:rgba(255,126,95,.12);--drawer:#1f0e12}
+[data-mood="lava"]{--bg:#140404;--card:rgba(40,8,8,.72);--acc:#ff4122;--acc2:#ff9900;--soft:rgba(255,65,34,.12);--drawer:#210707}
+[data-mood="arctic"]{--bg:#05101a;--card:rgba(12,32,54,.72);--acc:#70e1f5;--acc2:#3a7bd5;--soft:rgba(112,225,245,.12);--drawer:#091c2e}
+[data-mood="sakura"]{--bg:#140a12;--card:rgba(40,20,36,.72);--acc:#ff9a9e;--acc2:#fecfef;--soft:rgba(255,154,158,.12);--drawer:#21101d}
+[data-mood="gold"]{--bg:#100d05;--card:rgba(32,26,10,.72);--acc:#ffd700;--acc2:#ff8c00;--soft:rgba(255,215,0,.12);--drawer:#1a1508}
+[data-mood="galaxy"]{--bg:#070412;--card:rgba(21,13,44,.72);--acc:#a18cd1;--acc2:#fbc2eb;--soft:rgba(161,140,209,.12);--drawer:#110a24}
 
-/* DURCHGEHENDER VOLLBILD-WEISS-MODUS */
 html[data-mood="light"],html[data-mood="light"] body{--bg:#ffffff;--card:#ffffff;--bdr:rgba(0,0,0,.04);--bdr2:rgba(0,0,0,.07);--acc:#ff2a5f;--acc2:#00c2ff;--soft:rgba(255,42,95,.08);--txt:#111111;--mut:#6b7280;--hot:#ff2a5f;--drawer:#ffffff;background:#ffffff!important;color:#111111!important}
 html[data-mood="light"] .bg-ov{background:#ffffff!important;opacity:1!important}
 html[data-mood="light"] .top-hdr{background:rgba(255,255,255,.96)!important;border-bottom:1px solid #f0f1f3!important}
@@ -37,35 +33,36 @@ html[data-mood="light"] .b-nav-btn.active{color:#111111!important;font-weight:90
 html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--app-bg,url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=80')) center/cover fixed;color:var(--txt);display:flex;flex-direction:column}
 .bg-ov{position:fixed;inset:0;background:rgba(10,11,15,.82);pointer-events:none;z-index:0}
 
-/* HEADER */
-.top-hdr{position:relative;z-index:30;height:clamp(50px,7.5dvh,60px);padding:0 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid var(--bdr);background:rgba(11,12,16,.9);backdrop-filter:blur(14px);flex-shrink:0}
+/* WENN LIVE AKTIV IST: UNTERE LEISTE KOMPLETT AUSBLENDEN & VOLLER PLATZ */
+body.in-live .b-nav{display:none!important}
+body.in-live .stage{padding-bottom:10px!important}
+
+.top-hdr{position:relative;z-index:30;height:clamp(48px,7dvh,58px);padding:0 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid var(--bdr);background:rgba(11,12,16,.88);backdrop-filter:blur(14px);flex-shrink:0}
 .brand{display:flex;align-items:center;gap:7px;cursor:pointer;flex-shrink:0}
 .b-ico{width:32px;height:32px;border-radius:9px;background:var(--acc);color:#000;font-size:1.3rem;font-weight:900;display:flex;align-items:center;justify-content:center;padding-top:3px}
 .b-tit{font-size:.96rem;font-weight:900;color:#fff;line-height:1}
 .b-sub{font-size:.42rem;font-weight:700;letter-spacing:1.3px;color:var(--mut)}
 .h-srch{flex:1;min-width:65px;max-width:320px;position:relative;display:flex;align-items:center}
-.h-srch input{width:100%;background:rgba(255,255,255,.045);border:1px solid var(--bdr2);border-radius:99px;padding:7px 12px 7px 28px;color:var(--txt);font-size:.73rem;outline:none}
+.h-srch input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bdr2);border-radius:99px;padding:7px 12px 7px 28px;color:var(--txt);font-size:.73rem;outline:none}
 .h-srch span{position:absolute;left:10px;color:var(--mut);font-size:.75rem}
 .h-acts{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.h-btn{width:33px;height:33px;border-radius:10px;background:rgba(255,255,255,.045);border:1px solid var(--bdr2);color:var(--txt);display:flex;align-items:center;justify-content:center;font-size:.86rem;cursor:pointer;position:relative}
+.h-btn{width:33px;height:33px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--bdr2);color:var(--txt);display:flex;align-items:center;justify-content:center;font-size:.86rem;cursor:pointer;position:relative}
 .h-btn .dot{position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:var(--hot)}
 .h-av{width:33px;height:33px;border-radius:50%;background:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80') center/cover;border:2px solid var(--acc);cursor:pointer}
 
-/* SCHWEBENDE UNTERE LEISTE */
-.b-nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:calc(100% - 20px);max-width:480px;height:58px;background:rgba(15,18,26,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.06);border-radius:99px;display:flex;align-items:center;justify-content:space-around;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.b-nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:calc(100% - 20px);max-width:480px;height:56px;background:rgba(15,18,26,.52);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.045);border-radius:99px;display:flex;align-items:center;justify-content:space-around;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.38)}
 .b-nav-btn{background:none;border:none;color:var(--mut);font-size:1.15rem;display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;padding:4px 8px;transition:.18s}
 .b-nav-btn.active{color:var(--acc)}
 .b-nav-btn span.lbl{font-size:.58rem;font-weight:700}
 .b-nav-plus{width:42px;height:32px;border-radius:11px;background:linear-gradient(90deg,var(--acc),var(--acc2));color:#000!important;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;box-shadow:0 0 12px var(--soft)}
 
-/* HAUPTBEREICH */
-.work{position:relative;z-index:10;flex:1;width:100%;height:calc(100dvh - clamp(50px,7.5dvh,60px));overflow:hidden}
-.stage{width:100%;height:100%;overflow-y:auto;padding:8px 12px 96px 12px;scrollbar-width:none}
+.work{position:relative;z-index:10;flex:1;width:100%;height:calc(100dvh - clamp(48px,7dvh,58px));overflow:hidden}
+.stage{width:100%;height:100%;overflow-y:auto;padding:8px 12px 92px 12px;scrollbar-width:none}
 .stage::-webkit-scrollbar{display:none}
 .view{display:none;width:100%;max-width:860px;margin:0 auto}
 .view.active{display:block}
 
-/* FEED & GROSSES VIDEO */
+/* FEED */
 .f-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;padding:0 2px}
 .f-tabs{display:flex;gap:15px}
 .f-tab{background:none;border:none;color:var(--mut);font-size:.86rem;font-weight:800;cursor:pointer;padding-bottom:3px;position:relative}
@@ -77,92 +74,81 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 .hero-vid video.feed-real-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:none}
 .hero-vid::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 40%,rgba(0,0,0,.86) 100%);pointer-events:none}
 .v-pills{position:relative;z-index:2;display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap}
-.g-pill{background:rgba(18,20,28,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08);padding:5px 10px;border-radius:99px;font-size:.64rem;font-weight:800;color:#fff}
+.g-pill{background:rgba(18,20,28,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.06);padding:5px 10px;border-radius:99px;font-size:.64rem;font-weight:800;color:#fff}
 .r-acts{position:absolute;right:10px;bottom:18px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:11px}
 .a-itm{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
-.a-cir{width:40px;height:40px;border-radius:50%;background:rgba(18,20,28,.7);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.a-cir{width:40px;height:40px;border-radius:50%;background:rgba(18,20,28,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem}
 .a-lbl{font-size:.6rem;font-weight:700;color:#e2e6f0}
 .v-bot{position:relative;z-index:2;max-width:82%}
 .c-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
 .c-av{width:36px;height:36px;border-radius:50%;background:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80') center/cover;border:2px solid var(--acc)}
-.sub-b{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);color:#b8ff01;padding:3px 9px;border-radius:99px;font-size:.62rem;font-weight:800;cursor:pointer}
+.sub-b{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);color:#b8ff01;padding:3px 9px;border-radius:99px;font-size:.62rem;font-weight:800;cursor:pointer}
 .shock{position:absolute;top:50%;left:50%;width:20px;height:20px;border-radius:50%;border:4px solid var(--acc);transform:translate(-50%,-50%) scale(0);opacity:0;pointer-events:none;z-index:4}
 .shock.boom{animation:sBoom .7s ease-out}
 @keyframes sBoom{0%{transform:translate(-50%,-50%) scale(.5);opacity:1}100%{transform:translate(-50%,-50%) scale(20);opacity:0}}
 
-/* KARTEN MIT WEICHEN RAHMEN */
-.card{background:var(--card);backdrop-filter:blur(18px);border:1px solid var(--bdr);box-shadow:0 8px 24px rgba(0,0,0,.22);border-radius:20px;padding:14px;margin-bottom:10px;overflow:hidden}
+/* KARTEN MIT SEHR TRANSPARENTEN RAHMEN */
+.card{background:var(--card);backdrop-filter:blur(18px);border:1px solid var(--bdr);box-shadow:0 8px 24px rgba(0,0,0,.18);border-radius:20px;padding:14px;margin-bottom:10px;overflow:hidden}
 .c-tit{font-size:.84rem;font-weight:800;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;color:var(--txt)}
 .btn{border:none;border-radius:11px;padding:8px 12px;font-weight:800;font-size:.73rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;background:var(--acc);color:#000}
-.btn.sec{background:rgba(255,255,255,.045);color:var(--txt);border:1px solid var(--bdr2)}
+.btn.sec{background:rgba(255,255,255,.04);color:var(--txt);border:1px solid var(--bdr2)}
 .btn.hot{background:linear-gradient(90deg,#ff2a5f,#ff6b00);color:#fff}
 .btn.gold{background:linear-gradient(90deg,#ffd700,#ffae00);color:#000}
 .btn.full{width:100%}
-.inp{width:100%;background:rgba(0,0,0,.26);border:1px solid var(--bdr2);border-radius:10px;padding:8px 10px;color:var(--txt);font-size:.74rem;outline:none;margin-bottom:7px}
+.inp{width:100%;background:rgba(0,0,0,.22);border:1px solid var(--bdr2);border-radius:10px;padding:8px 10px;color:var(--txt);font-size:.74rem;outline:none;margin-bottom:7px}
 
 /* =========================================================
-   NEU: VOLLBILD LIVE-RAUM WIE AUF DEN 3 SCREENSHOTS
-   (1 GROSSES FENSTER LINKS + 2x4 GÄSTE RECHTS + TRANSPARENTER CHAT)
+   VOLLBILD LIVE-RAUM (TRANSPARENTERE RAHMEN, MEHR CHAT, OHNE UNTERE LEISTE)
    ========================================================= */
 .live-room-screen{
   position:relative;
   width:100%;
-  min-height:calc(100dvh - 140px);
+  height:calc(100dvh - clamp(66px,9dvh,78px));
+  min-height:480px;
   border-radius:22px;
   overflow:hidden;
-  background:radial-gradient(circle at top,#282c54 0%,#141629 55%,#0c0d17 100%);
-  border:1px solid rgba(255,255,255,.08);
+  background:radial-gradient(circle at top,rgba(42,46,88,.88) 0%,rgba(20,22,42,.92) 55%,rgba(12,13,24,.96) 100%);
+  border:1px solid rgba(255,255,255,.035);
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  padding:10px;
+  padding:10px 10px 12px;
   color:#fff;
-  box-shadow:0 16px 40px rgba(0,0,0,.55);
+  box-shadow:0 14px 36px rgba(0,0,0,.45);
 }
 
-/* OBEN: HOST-PILLE, FOLGEN, RANG & SCHLIESSEN */
-.lr-top-row{display:flex;justify-content:space-between;align-items:center;gap:6px;z-index:5}
-.lr-host-pill{
-  display:flex;align-items:center;gap:7px;
-  background:rgba(0,0,0,.42);backdrop-filter:blur(10px);
-  padding:3px 6px 3px 3px;border-radius:99px;border:1px solid rgba(255,255,255,.12);
-  cursor:pointer;
-}
+.lr-top-row{display:flex;justify-content:space-between;align-items:center;gap:6px;z-index:5;flex-shrink:0}
+.lr-host-pill{display:flex;align-items:center;gap:7px;background:rgba(0,0,0,.32);backdrop-filter:blur(10px);padding:3px 6px 3px 3px;border-radius:99px;border:1px solid rgba(255,255,255,.05);cursor:pointer}
 .lr-host-av{width:32px;height:32px;border-radius:50%;background:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80') center/cover;border:1.5px solid #ff2a5f}
 .lr-follow-btn{background:#ff2a5f;color:#fff;border:none;border-radius:99px;padding:5px 10px;font-size:.66rem;font-weight:800;cursor:pointer}
 .lr-top-right{display:flex;align-items:center;gap:5px}
-.lr-viewer-bub{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,215,0,.5);display:flex;align-items:center;justify-content:center;font-size:.65rem;position:relative;cursor:pointer}
+.lr-viewer-bub{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,215,0,.35);display:flex;align-items:center;justify-content:center;font-size:.65rem;position:relative;cursor:pointer}
 .lr-viewer-bub i{position:absolute;bottom:-3px;background:#ffd700;color:#000;font-style:normal;font-size:.44rem;font-weight:900;padding:0 3px;border-radius:4px}
-.lr-count-pill{background:rgba(0,0,0,.45);padding:4px 8px;border-radius:99px;font-size:.66rem;font-weight:800}
-.lr-close-btn{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:.85rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lr-count-pill{background:rgba(0,0,0,.35);padding:4px 8px;border-radius:99px;font-size:.66rem;font-weight:800;border:1px solid rgba(255,255,255,.04)}
+.lr-close-btn{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.06);color:#fff;font-size:.85rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center}
 
-/* ZWEITE ZEILE: TÄGLICHE RANGLISTE, SCHATZKISTE & LEVEL */
-.lr-sub-row{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:6px;z-index:5;flex-wrap:wrap}
-.lr-chip{background:rgba(0,0,0,.38);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);padding:3px 9px;border-radius:99px;font-size:.62rem;font-weight:700;display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.lr-sub-row{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:5px;z-index:5;flex-wrap:wrap;flex-shrink:0}
+.lr-chip{background:rgba(0,0,0,.28);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.045);padding:3px 9px;border-radius:99px;font-size:.61rem;font-weight:700;display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.lr-neon-banner{text-align:center;font-size:.8rem;font-weight:900;font-style:italic;color:#a5b4fc;text-shadow:0 0 10px rgba(236,72,153,.8),0 0 18px rgba(99,102,241,.6);margin:4px 0;letter-spacing:.3px;z-index:5;flex-shrink:0}
 
-/* LEUCHTENDER SPRUCH IN DER MITTE (z.B. Keep gifting box battle) */
-.lr-neon-banner{
-  text-align:center;font-size:.82rem;font-weight:900;font-style:italic;
-  color:#a5b4fc;text-shadow:0 0 10px rgba(236,72,153,.8),0 0 18px rgba(99,102,241,.6);
-  margin:6px 0;letter-spacing:.3px;z-index:5;
-}
-
-/* HAUPT-STAGE WIE AUF BILD 1 & 2: LINKS GROSS + RECHTS 2x4 GITTER */
+/* STAGE MIT SEHR TRANSPARENTEN RAHMEN & KOMPAKTERER HÖHE FÜR MEHR CHAT-PLATZ */
 .lr-stage-grid{
   display:grid;
-  grid-template-columns:1.18fr 1fr;
+  grid-template-columns:1.16fr 1fr;
   gap:5px;
   width:100%;
-  height:320px;
+  height:clamp(225px,36dvh,285px);
   margin:2px 0 6px;
   z-index:5;
+  flex-shrink:0;
 }
 .lr-stage-grid.solo-only{grid-template-columns:1fr}
 .lr-main-box{
   position:relative;
   border-radius:12px;
-  background:#2d2f3b;
-  border:1px solid rgba(255,255,255,.12);
+  background:rgba(32,35,48,.48);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.04);
   overflow:hidden;
   display:flex;
   align-items:center;
@@ -170,18 +156,13 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
   cursor:pointer;
 }
 .lr-main-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
-.lr-right-8grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:repeat(4,1fr);
-  gap:5px;
-  height:100%;
-}
+.lr-right-8grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,1fr);gap:5px;height:100%}
 .lr-slot-card{
   position:relative;
   border-radius:10px;
-  background:rgba(48,50,64,.82);
-  border:1px solid rgba(255,255,255,.09);
+  background:rgba(38,41,58,.42);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.035);
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -191,106 +172,51 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
   padding:4px;
   transition:.15s;
 }
-.lr-slot-card:hover{border-color:rgba(255,255,255,.3)}
-.lr-slot-card.empty-slot{background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.15)}
-.lr-pts-tag{
-  position:absolute;top:4px;left:4px;z-index:3;
-  background:rgba(0,0,0,.55);padding:1px 6px;border-radius:99px;
-  font-size:.54rem;font-weight:800;color:#fff;display:inline-flex;align-items:center;gap:3px;
-}
-.lr-pts-dot{width:7px;height:7px;border-radius:50%;background:#00d2ff;display:inline-block}
-.lr-circle-av{
-  width:42px;height:42px;border-radius:50%;
-  background-size:cover;background-position:center;
-  border:1.5px solid rgba(255,255,255,.35);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.25rem;background-color:#1c1f2b;
-}
-.lr-main-box .lr-circle-av{width:86px;height:86px;font-size:2.2rem}
-.lr-name-bot{
-  position:absolute;bottom:3px;left:5px;right:18px;z-index:3;
-  font-size:.54rem;font-weight:700;color:#fff;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;
-}
-.lr-mic-ico{
-  position:absolute;bottom:3px;right:4px;z-index:3;
-  font-size:.58rem;opacity:.85;
-}
+.lr-slot-card:hover{border-color:rgba(255,255,255,.15);background:rgba(48,52,72,.55)}
+.lr-slot-card.empty-slot{background:rgba(255,255,255,.025);border:1px dashed rgba(255,255,255,.06)}
+.lr-pts-tag{position:absolute;top:4px;left:4px;z-index:3;background:rgba(0,0,0,.42);padding:1px 6px;border-radius:99px;font-size:.53rem;font-weight:800;color:#fff;display:inline-flex;align-items:center;gap:3px}
+.lr-pts-dot{width:6px;height:6px;border-radius:50%;background:#00d2ff;display:inline-block}
+.lr-circle-av{width:38px;height:38px;border-radius:50%;background-size:cover;background-position:center;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:1.15rem;background-color:rgba(20,23,34,.65)}
+.lr-main-box .lr-circle-av{width:78px;height:78px;font-size:2rem}
+.lr-name-bot{position:absolute;bottom:3px;left:5px;right:18px;z-index:3;font-size:.53rem;font-weight:700;color:rgba(255,255,255,.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.lr-mic-ico{position:absolute;bottom:3px;right:4px;z-index:3;font-size:.55rem;opacity:.8}
 
-/* TRANSPARENTER LIVE-CHAT UNTER DEM GITTER (WIE BILD 1 & 2) */
+/* DEUTLICH BESSER SICHTBARER & HÖHERER LIVE-CHAT */
+.lr-chat-section{display:flex;flex-direction:column;justify-content:flex-end;flex:1;min-height:155px;z-index:5;overflow:hidden}
 .lr-chat-wrap{
   position:relative;z-index:5;
-  display:flex;flex-direction:column;gap:4px;
-  max-height:135px;overflow-y:auto;
-  padding:2px 4px;scrollbar-width:none;
-  mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 100%);
-  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 100%);
+  display:flex;flex-direction:column;gap:5px;
+  flex:1;max-height:185px;min-height:125px;overflow-y:auto;
+  padding:6px 4px;scrollbar-width:none;
+  mask-image:linear-gradient(180deg,transparent 0%,#000 10%,#000 100%);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 10%,#000 100%);
 }
 .lr-chat-wrap::-webkit-scrollbar{display:none}
-.lr-join-pill{
-  align-self:flex-start;
-  background:linear-gradient(90deg,rgba(59,130,246,.65),rgba(37,99,235,.35));
-  border:1px solid rgba(96,165,250,.4);
-  padding:3px 10px;border-radius:99px;font-size:.64rem;font-weight:800;color:#fff;
-}
-.lr-msg-row{display:flex;align-items:flex-start;gap:6px;font-size:.68rem;line-height:1.3;text-shadow:0 1px 3px rgba(0,0,0,.85)}
-.lr-msg-av{width:22px;height:22px;border-radius:50%;background:#262936;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;cursor:pointer}
+.lr-join-pill{align-self:flex-start;background:linear-gradient(90deg,rgba(59,130,246,.55),rgba(37,99,235,.28));border:1px solid rgba(96,165,250,.25);padding:3px 10px;border-radius:99px;font-size:.64rem;font-weight:800;color:#fff}
+.lr-msg-row{display:flex;align-items:flex-start;gap:6px;font-size:.7rem;line-height:1.32;text-shadow:0 1px 3px rgba(0,0,0,.9);background:rgba(0,0,0,.16);padding:3px 7px;border-radius:10px;align-self:flex-start;max-width:95%}
+.lr-msg-av{width:22px;height:22px;border-radius:50%;background:rgba(38,41,54,.8);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;cursor:pointer}
 .lr-lvl-bdg{background:linear-gradient(90deg,#4f46e5,#7c3aed);color:#fff;font-size:.52rem;font-weight:900;padding:1px 5px;border-radius:4px;display:inline-flex;align-items:center;gap:2px;margin-right:3px}
-.lr-host-bdg{background:rgba(255,255,255,.2);color:#fff;font-size:.52rem;font-weight:800;padding:1px 5px;border-radius:4px;margin-left:3px}
+.lr-host-bdg{background:rgba(255,255,255,.18);color:#fff;font-size:.52rem;font-weight:800;padding:1px 5px;border-radius:4px;margin-left:3px}
 
-/* UNTERE INTERAKTIONS- & SCHNELLGESCHENK-LEISTE */
-.lr-bottom-bar{
-  position:relative;z-index:6;
-  display:flex;align-items:center;gap:6px;
-  margin-top:6px;padding-top:4px;
-}
-.lr-chat-inp-box{
-  flex:1;display:flex;align-items:center;
-  background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14);
-  border-radius:99px;padding:6px 11px;gap:6px;
-}
-.lr-chat-inp-box input{
-  flex:1;background:none;border:none;color:#fff;font-size:.7rem;outline:none;
-}
-.lr-quick-ico{
-  width:34px;height:34px;border-radius:50%;
-  background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1rem;cursor:pointer;flex-shrink:0;transition:.15s;
-}
+/* UNTERE INTERAKTIONS-LEISTE (JETZT KOMPLETT FREI & UNVERDECKT!) */
+.lr-bottom-bar{position:relative;z-index:6;display:flex;align-items:center;gap:6px;margin-top:6px;padding-top:4px;flex-shrink:0}
+.lr-chat-inp-box{flex:1;display:flex;align-items:center;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.08);border-radius:99px;padding:7px 12px;gap:6px}
+.lr-chat-inp-box input{flex:1;background:none;border:none;color:#fff;font-size:.72rem;outline:none}
+.lr-quick-ico{width:35px;height:35px;border-radius:50%;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;flex-shrink:0;transition:.15s}
 .lr-quick-ico:hover{transform:scale(1.08);border-color:var(--acc)}
 .lr-quick-ico.gift-main{background:linear-gradient(135deg,#ff2a5f,#ff6b00);border:none}
 
-/* WEISSES PROFIL-SHOWCASE POPUP IM LIVE-STREAM (WIE BILD 3) */
-.lr-profile-sheet{
-  position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
-  z-index:245;display:none;align-items:center;justify-content:center;padding:14px;
-}
-.lr-sheet-card{
-  background:#ffffff;color:#111111;border-radius:24px;
-  width:100%;max-width:350px;padding:18px;
-  box-shadow:0 18px 45px rgba(0,0,0,.55);
-}
+.lr-profile-sheet{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);z-index:245;display:none;align-items:center;justify-content:center;padding:14px}
+.lr-sheet-card{background:#ffffff;color:#111111;border-radius:24px;width:100%;max-width:350px;padding:18px;box-shadow:0 18px 45px rgba(0,0,0,.55)}
 
-/* GROSSES PROFIL-HINTERGRUNDBILD (VOLLER HINTERGRUND) */
-.prof-hero-card{
-  position:relative;border-radius:22px;overflow:hidden;margin-bottom:10px;
-  min-height:290px;padding:22px 14px 18px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;
-  background-image:var(--prof-banner-bg,url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85'));
-  background-size:cover;background-position:center;border:1px solid var(--bdr2);
-  box-shadow:0 12px 32px rgba(0,0,0,.35);
-}
-.prof-hero-card::before{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(8,10,16,.22) 0%,rgba(8,10,16,.58) 50%,rgba(8,10,16,.88) 100%);
-  pointer-events:none;z-index:1;
-}
+/* PROFIL & SEITENMENÜ */
+.prof-hero-card{position:relative;border-radius:22px;overflow:hidden;margin-bottom:10px;min-height:290px;padding:22px 14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background-image:var(--prof-banner-bg,url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85'));background-size:cover;background-position:center;border:1px solid var(--bdr);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.prof-hero-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,16,.22) 0%,rgba(8,10,16,.58) 50%,rgba(8,10,16,.88) 100%);pointer-events:none;z-index:1}
 .prof-top-bar{position:absolute;top:10px;left:10px;right:10px;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:6px}
-.prof-banner-edit{background:rgba(15,18,26,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);padding:5px 11px;border-radius:99px;font-size:.64rem;font-weight:800;color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.prof-banner-edit{background:rgba(15,18,26,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);padding:5px 11px;border-radius:99px;font-size:.64rem;font-weight:800;color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
 .prof-top-right{display:flex;align-items:center;gap:6px}
-.prof-qr-trig{background:rgba(15,18,26,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:99px;font-size:.64rem;font-weight:800;color:#b8ff01;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
-.prof-menu-trig{width:34px;height:34px;border-radius:50%;background:rgba(15,18,26,.65);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.prof-qr-trig{background:rgba(15,18,26,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);padding:5px 10px;border-radius:99px;font-size:.64rem;font-weight:800;color:#b8ff01;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.prof-menu-trig{width:34px;height:34px;border-radius:50%;background:rgba(15,18,26,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .prof-hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:16px}
 .p-av-wrap{position:relative;margin-bottom:9px}
 .p-av{width:92px;height:92px;border-radius:50%;background:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80') center/cover;transition:.3s}
@@ -298,13 +224,12 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 .aura-0{border:2.5px solid var(--acc)}.aura-1{border:2.5px solid #b8ff01;box-shadow:0 0 16px rgba(184,255,1,.5)}.aura-2{border:2.5px solid #00f2fe;box-shadow:0 0 18px rgba(0,242,254,.55)}.aura-3{border:3px solid #ffd700;box-shadow:0 0 22px rgba(255,215,0,.7)}
 .p-name-row{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:2px;flex-wrap:wrap}
 .p-name-big{font-size:1.14rem;font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}
-.p-edit-chip{background:rgba(255,255,255,.18);border:none;border-radius:99px;padding:3px 9px;font-size:.7rem;color:#fff;cursor:pointer}
+.p-edit-chip{background:rgba(255,255,255,.16);border:none;border-radius:99px;padding:3px 9px;font-size:.7rem;color:#fff;cursor:pointer}
 .p-stats-row{display:flex;align-items:center;justify-content:center;gap:18px;margin:11px 0;width:100%;flex-wrap:wrap}
 .stat-col{display:flex;flex-direction:column;align-items:center}
 .stat-num{font-size:.95rem;font-weight:900;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
 .stat-lbl{font-size:.64rem;color:#d0d6e2;margin-top:1px}
 
-/* RECHTES AUFKLAPPBARES SEITENMENÜ */
 .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);z-index:210;opacity:0;pointer-events:none;transition:opacity .24s ease}
 .drawer-backdrop.open{opacity:1;pointer-events:auto}
 .right-drawer{position:fixed;top:0;right:0;width:78%;max-width:360px;height:100dvh;background:var(--drawer);border-left:1px solid var(--bdr2);box-shadow:-12px 0 36px rgba(0,0,0,.55);z-index:220;transform:translateX(100%);transition:transform .26s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;overflow-y:auto;padding:18px 16px 32px}
@@ -317,31 +242,30 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 .drw-ico{font-size:1.05rem;width:22px;text-align:center}
 .drw-val{font-size:.76rem;color:var(--mut);font-weight:600;display:flex;align-items:center;gap:6px}
 
-/* GUTHABEN / COIN-AUFLADE-GRID */
 .coin-shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
-.coin-pkg-card{background:rgba(0,0,0,.32);border:1px solid var(--bdr2);border-radius:14px;padding:11px;text-align:center;cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:3px;position:relative;overflow:hidden}
+.coin-pkg-card{background:rgba(0,0,0,.26);border:1px solid var(--bdr2);border-radius:14px;padding:11px;text-align:center;cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:3px;position:relative;overflow:hidden}
 .coin-pkg-card:hover{border-color:var(--acc);transform:translateY(-2px)}
-.coin-pkg-card.popular{border-color:rgba(255,215,0,.45);background:radial-gradient(circle at top,rgba(255,215,0,.09),rgba(0,0,0,.35))}
+.coin-pkg-card.popular{border-color:rgba(255,215,0,.35);background:radial-gradient(circle at top,rgba(255,215,0,.08),rgba(0,0,0,.3))}
 .pkg-coins{font-size:.92rem;font-weight:900;color:#ffd700}
 .pkg-price{font-size:.85rem;font-weight:900;color:var(--txt)}
 .pkg-save{font-size:.58rem;font-weight:800;color:#2af598}
 
 .founder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:8px}
-.founder-card{border-radius:14px;padding:10px;background:rgba(0,0,0,.28);border:1px solid var(--bdr2);position:relative}
-.founder-card.gold-evo{background:radial-gradient(circle at top right,rgba(255,215,0,.22),transparent 65%),rgba(20,16,6,.65);border-color:rgba(255,215,0,.55)}
+.founder-card{border-radius:14px;padding:10px;background:rgba(0,0,0,.24);border:1px solid var(--bdr2);position:relative}
+.founder-card.gold-evo{background:radial-gradient(circle at top right,rgba(255,215,0,.18),transparent 65%),rgba(20,16,6,.55);border-color:rgba(255,215,0,.4)}
 
-.legal-details{background:rgba(0,0,0,.22);border:1px solid var(--bdr2);border-radius:11px;padding:9px 11px;margin-bottom:7px;font-size:.7rem;color:var(--mut);line-height:1.45}
+.legal-details{background:rgba(0,0,0,.2);border:1px solid var(--bdr2);border-radius:11px;padding:9px 11px;margin-bottom:7px;font-size:.7rem;color:var(--mut);line-height:1.45}
 .legal-details summary{font-weight:800;color:var(--txt);cursor:pointer;font-size:.74rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
 .legal-details summary::after{content:"▾";color:var(--acc)}
 .legal-details[open] summary::after{content:"▴"}
 
-.ref-hero{background:radial-gradient(circle at top right,rgba(255,215,0,.16),transparent 60%),radial-gradient(circle at bottom left,var(--soft),transparent 60%),var(--card);border:1px solid rgba(255,215,0,.18);position:relative}
+.ref-hero{background:radial-gradient(circle at top right,rgba(255,215,0,.14),transparent 60%),radial-gradient(circle at bottom left,var(--soft),transparent 60%),var(--card);border:1px solid rgba(255,215,0,.14);position:relative}
 .ref-steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
-.ref-step-box{background:rgba(0,0,0,.28);border:1px solid var(--bdr2);border-radius:14px;padding:10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
-.ref-coin-big{font-size:1.15rem;font-weight:900;color:#ffd700;text-shadow:0 0 12px rgba(255,215,0,.35)}
+.ref-step-box{background:rgba(0,0,0,.24);border:1px solid var(--bdr2);border-radius:14px;padding:10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
+.ref-coin-big{font-size:1.15rem;font-weight:900;color:#ffd700}
 .ref-step-sub{font-size:.65rem;color:var(--mut);line-height:1.25}
 
-.mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:rgba(0,0,0,.22);padding:4px;border-radius:13px;margin-bottom:10px;border:1px solid var(--bdr)}
+.mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:rgba(0,0,0,.2);padding:4px;border-radius:13px;margin-bottom:10px;border:1px solid var(--bdr)}
 .cam-box{position:relative;width:100%;height:calc(100dvh - 335px);min-height:240px;max-height:450px;border-radius:16px;background:#06070b;border:1px solid var(--bdr2);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:9px}
 .cam-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .cam-box img.cam-photo-prev{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;display:none}
@@ -349,12 +273,12 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 .sub-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
 .sub-btn{padding:8px 4px;border-radius:10px;border:1px solid var(--bdr);background:rgba(255,255,255,.03);color:var(--mut);font-size:.68rem;font-weight:800;cursor:pointer}
 .sub-btn.active{background:var(--acc);color:#000;border-color:transparent}
-.xp-box{background:rgba(0,0,0,.22);border:1px solid var(--bdr);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.xp-box{background:rgba(0,0,0,.2);border:1px solid var(--bdr);border-radius:12px;padding:10px 12px;margin-bottom:8px}
 .xp-bg{width:100%;height:7px;background:rgba(128,128,128,.16);border-radius:99px;overflow:hidden;margin:5px 0}
 .xp-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .3s}
 .xp-fill.str{background:linear-gradient(90deg,#ffd700,#ff2a5f)}
-.holo{border-radius:14px;padding:12px;background:radial-gradient(circle at top right,var(--soft),transparent 60%),rgba(0,0,0,.26);border:1px solid var(--bdr)}
-.badge{font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid var(--bdr2);color:var(--acc);display:inline-block}
+.holo{border-radius:14px;padding:12px;background:radial-gradient(circle at top right,var(--soft),transparent 60%),rgba(0,0,0,.22);border:1px solid var(--bdr)}
+.badge{font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,.06);border:1px solid var(--bdr2);color:var(--acc);display:inline-block}
 .m-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px}
 .m-grid-lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:7px}
 .m-item{height:142px;border-radius:13px;background-size:cover;background-position:center;position:relative;overflow:hidden;border:1px solid var(--bdr);display:flex;flex-direction:column;justify-content:flex-end;padding:7px;cursor:pointer;background-color:#0b0c10}
@@ -372,7 +296,6 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 .toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:260;background:rgba(20,23,34,.96);border:1px solid var(--bdr2);color:#fff;padding:7px 14px;border-radius:99px;font-size:.72rem;font-weight:800;display:none;max-width:92vw;text-align:center}
 .fx{position:fixed;inset:0;pointer-events:none;z-index:250;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,.45)}
 .gold-rain{position:fixed;inset:0;pointer-events:none;z-index:230;display:none;background:radial-gradient(circle,rgba(255,215,0,.28),transparent 70%)}
-
 .qr-visual{width:150px;height:150px;margin:10px auto;border-radius:14px;padding:10px;background:#fff;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);gap:3px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .qr-cell{background:#111;border-radius:2px}.qr-cell.w{background:transparent}.qr-cell.acc{background:#ff2a5f}
 </style>
@@ -383,9 +306,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 <div id="fx" class="fx"><div id="fxEmo" style="font-size:4.8rem">🐉</div><div id="fxTxt" style="font-size:.92rem;font-weight:900;color:#ffd700;margin-top:6px;text-align:center;padding:0 12px"></div></div>
 <div id="goldRain" class="gold-rain"></div>
 
-<!-- =========================================================
-     WEISSES PROFIL-SHOWCASE POPUP IM LIVE-STREAM (WIE BILD 3)
-     ========================================================= -->
+<!-- WEISSES PROFIL-SHOWCASE POPUP IM LIVE-STREAM -->
 <div id="liveUserSheet" class="lr-profile-sheet" onclick="if(event.target===this)closeLiveUserSheet()">
   <div class="lr-sheet-card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
@@ -398,10 +319,8 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
       </div>
       <button onclick="closeLiveUserSheet()" style="width:32px;height:32px;border-radius:50%;border:none;background:#f3f4f6;font-weight:900;cursor:pointer">👑</button>
     </div>
-
     <div style="font-size:.76rem;font-weight:800;color:#111;margin-bottom:4px">2888 Follower*innen · 4785 folge ich</div>
     <div style="font-size:.72rem;color:#4b5563;margin-bottom:12px">@⚜️☕INFINITY☕⚜️ #glücklichvergeben🩷</div>
-
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
       <div style="background:#fff1f2;border-radius:14px;padding:10px">
         <div style="font-size:1.2rem">❤️</div>
@@ -412,7 +331,6 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
         <div style="font-size:.75rem;font-weight:800;color:#7c3aed" id="shLvlTxt">Lvl. 26</div>
       </div>
     </div>
-
     <div style="background:#fdf2f8;border-radius:14px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
       <div>
         <div style="font-size:.74rem;font-weight:800;color:#db2777">📦 D2 Geschenkgalerie 0/10</div>
@@ -420,19 +338,17 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
       </div>
       <span style="color:#9ca3af">›</span>
     </div>
-
-    <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:14px;padding:11px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;font-weight:800;cursor:pointer" onclick="closeLiveUserSheet();openView('profile');swProf('shop')">
+    <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:14px;padding:11px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;font-weight:800;cursor:pointer" onclick="closeLiveUserSheet();stopLiveAndReturnToSetup();openView('profile');swProf('shop')">
       <span id="shShowcaseTxt">Showcase von 🍝Nudel King🍝</span><span>›</span>
     </div>
-
     <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:14px;padding:11px 12px;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;font-weight:800">
       <span>Gruppenchats</span><span style="color:#6b7280">1 ›</span>
     </div>
   </div>
 </div>
 
-<!-- GESCHENK-AUSWAHL POPUP FÜR DEN LIVE-STREAM -->
-<div id="liveGiftModal" class="modal" onclick="if(event.target===this)$('liveGiftModal').style.display='none'">
+<!-- GESCHENK-MODAL FÜR DEN LIVE-STREAM -->
+<div id="liveGiftModal" class="modal" onclick="if(event.target===this)showEl('liveGiftModal',false)">
   <div class="m-box">
     <div class="c-tit"><span>🎁 Geschenk im Live senden</span><span style="color:#ffd700;font-size:.75rem">🪙 <span id="modGiftCoins">7.550</span></span></div>
     <p style="font-size:.68rem;color:var(--mut);margin-bottom:8px">Jedes Geschenk füllt die 2% Live-Schatzkiste, gibt dem Host 50% XP & sammelt Mod-Coins!</p>
@@ -445,8 +361,8 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
       <button class="btn hot" onclick="sendGift('🐉 Drache',2500,'🐉')">🐉 Drache (2.5k)</button>
     </div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--bdr);padding-top:8px">
-      <button class="btn gold" style="flex:1" onclick="recvGift(1000,false);$('liveGiftModal').style.display='none'">🎙️ Mir +1.000 🪙 schenken</button>
-      <button class="btn sec" style="flex:1" onclick="recvGift(1000,true);$('liveGiftModal').style.display='none'">👥 Gast +1.000 🪙 schenken</button>
+      <button class="btn gold" style="flex:1" onclick="recvGift(1000,false);showEl('liveGiftModal',false)">🎙️ Mir +1.000 🪙 schenken</button>
+      <button class="btn sec" style="flex:1" onclick="recvGift(1000,true);showEl('liveGiftModal',false)">👥 Gast +1.000 🪙 schenken</button>
     </div>
   </div>
 </div>
@@ -458,7 +374,6 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
     <strong style="font-size:.92rem;color:var(--txt)">Menü & Konto</strong>
     <button class="btn sec" style="padding:4px 9px;font-size:.7rem" onclick="toggleRightDrawer(false)">✕</button>
   </div>
-
   <div class="drw-sec-title">Assets</div>
   <div class="drw-item" onclick="openAccountSection('wallet')">
     <div class="drw-item-left"><span class="drw-ico">👛</span><span>Guthaben & Coins aufladen</span></div>
@@ -468,13 +383,11 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
     <div class="drw-item-left"><span class="drw-ico">🎁</span><span>Freunde einladen</span></div>
     <div class="drw-val"><span style="color:#ffd700;font-weight:800">+1.400 🪙</span><span>›</span></div>
   </div>
-
   <div class="drw-sec-title">Persönliche Tools</div>
   <div class="drw-item" onclick="openAccountSection('design')">
     <div class="drw-item-left"><span class="drw-ico">🎨</span><span>Hintergrund & Stimmung</span></div>
     <div class="drw-val"><span>›</span></div>
   </div>
-
   <div class="drw-sec-title">Erstellungs- und Business-Tools</div>
   <div class="drw-item" onclick="toggleRightDrawer(false);openView('camera');switchStudioMode('live')">
     <div class="drw-item-left"><span class="drw-ico">🎥</span><span>VYBE Studio (Live Setup)</span></div>
@@ -515,7 +428,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
   <div class="m-box">
     <div class="c-tit"><span style="color:var(--acc)">⚡ VYBE – ALLE EXKLUSIVEN FEATURES</span><button class="btn sec" onclick="toggleInfo(false)">✖</button></div>
     <div style="font-size:.73rem;color:var(--mut);line-height:1.45;display:flex;flex-direction:column;gap:7px">
-      <div class="xp-box"><strong style="color:#ffd700">🎛️ 1. Vorab-Setup & Vollbild-Multi-Live:</strong><br/>Stelle vor dem Start deinen Host-Anteil (0–20 %) und Moderator-Bonus (0–5 % in Coins) ein. Sobald du das Live startest, verschwinden alle Einstellungs-Menüs und du hast vollen Platz für das große Hauptfenster links, die 8 Gäste-Plätze rechts und den Live-Chat!</div>
+      <div class="xp-box"><strong style="color:#ffd700">🎛️ 1. Vorab-Setup & Freier Live-Screen:</strong><br/>Stelle vor dem Start deinen Host-Anteil (0–20 %) und Moderator-Bonus (0–5 % in Coins) ein. Im laufenden Live-Stream blendet sich die untere Hauptleiste automatisch aus, damit Chat und Geschenke komplett frei liegen!</div>
       <div class="xp-box"><strong style="color:var(--acc)">💥 2. Live-Schatzkiste (2-%-Topf) & Entdecker-Karten:</strong><br/>Von jedem Geschenk wandern 2 % in die Raum-Schatzkiste (100 Coins Topf bei 5.000 verschenkten Coins). Frühe Supporter kleiner Creator erhalten im Club die Gründer-Entdeckerkarte (+10 % XP ab LVL 20).</div>
       <div class="xp-box"><strong style="color:#00f2fe">🛡️ 3. Moderator-Coins & 50 % Host-XP:</strong><br/>Moderatoren erhalten ihren Anteil beim Beenden des Streams direkt in Coins ausgezahlt, und Hosts erhalten 50 % aller Geschenke als Level-XP!</div>
     </div>
@@ -524,20 +437,20 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 
 <!-- HEADER -->
 <header class="top-hdr">
-  <div class="brand" onclick="openView('feed')">
+  <div class="brand" onclick="if(state.liveRunning)stopLiveAndReturnToSetup();openView('feed')">
     <div class="b-ico">*</div>
     <div><div class="b-tit">VYBE</div><div class="b-sub">SHORT VIDEO CLUB</div></div>
   </div>
-  <div class="h-srch"><span>⚲</span><input placeholder="Creator, Sounds oder Trends suchen" onfocus="openView('search')" oninput="filterSearch(this.value)"/></div>
+  <div class="h-srch"><span>⚲</span><input placeholder="Creator, Sounds oder Trends suchen" onfocus="if(state.liveRunning)stopLiveAndReturnToSetup();openView('search')" oninput="filterSearch(this.value)"/></div>
   <div class="h-acts">
     <button class="h-btn" onclick="toggleInfo(true)">ℹ️</button>
-    <button class="h-btn" onclick="openView('club')">♣<span class="dot"></span></button>
+    <button class="h-btn" onclick="if(state.liveRunning)stopLiveAndReturnToSetup();openView('club')">♣<span class="dot"></span></button>
     <button class="h-btn" onclick="nextClip()">♫</button>
-    <div class="h-av" onclick="openView('profile')" title="Profil"></div>
+    <div class="h-av" onclick="if(state.liveRunning)stopLiveAndReturnToSetup();openView('profile')" title="Profil"></div>
   </div>
 </header>
 
-<!-- SCHWEBENDE UNTERE LEISTE -->
+<!-- SCHWEBENDE UNTERE LEISTE (WIRD IM LIVE AUTOMATISCH AUSGEBLENDET) -->
 <nav class="b-nav">
   <button class="b-nav-btn active" id="bn-feed" onclick="openView('feed')"><span>⌂</span><span class="lbl">Home</span></button>
   <button class="b-nav-btn" id="bn-search" onclick="openView('search')"><span>⚲</span><span class="lbl">Suchen</span></button>
@@ -597,7 +510,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
       </div>
     </section>
 
-    <!-- 3. KAMERA & LIVE (MIT VORAB-SETUP -> DANN SAUBERER VOLLBILD-STREAM WIE AUF DEN SCREENSHOTS!) -->
+    <!-- 3. KAMERA & LIVE -->
     <section id="view-camera" class="view">
       <div class="mode-switch" id="studioTopSwitch">
         <button class="sub-btn active" id="btnModeClip" onclick="switchStudioMode('clip')">🎬 Video / Upload</button>
@@ -627,9 +540,9 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
         </div>
 
         <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
-          <button class="btn sec" onclick="$('camMask').textContent=''">🚫 Keine</button>
-          <button class="btn sec" onclick="$('camMask').textContent='🐸'">🐸 Frosch</button>
-          <button class="btn sec" onclick="$('camMask').textContent='🤡'">🤡 Clown</button>
+          <button class="btn sec" onclick="setTxt('camMask','')">🚫 Keine</button>
+          <button class="btn sec" onclick="setTxt('camMask','🐸')">🐸 Frosch</button>
+          <button class="btn sec" onclick="setTxt('camMask','🤡')">🤡 Clown</button>
           <button class="btn sec" onclick="cycleFilter()">🎨 KI-Filter</button>
         </div>
 
@@ -652,18 +565,14 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 
         <div id="liveAct" style="display:none">
 
-          <!-- =========================================================
-               SCHRITT 1: VORAB-EINSTELLUNGEN (PRE-LIVE SETUP)
-               Wird VOR dem Starten des Streams angezeigt. Sobald man startet,
-               verschwindet diese Box komplett für maximalen Platz!
-               ========================================================= -->
+          <!-- SCHRITT 1: VORAB-SETUP VOR DEM START -->
           <div id="preLiveSetupCard" class="card">
             <div class="c-tit">
               <span>🎛️ 1. Live-Stream vorab einstellen</span>
               <span class="badge">Vor dem Start konfigurieren</span>
             </div>
             <p style="font-size:.71rem;color:var(--mut);margin-bottom:10px">
-              Stelle hier vorab alle Quoten und die Raum-Größe ein. Sobald du startest, werden diese Einstellungen ausgeblendet, damit du vollen Platz im Live-Stream hast!
+              Stelle hier vorab alle Quoten und die Raum-Größe ein. Sobald du startest, verschwinden diese Einstellungen und die untere Navigationsleiste komplett!
             </p>
 
             <label style="font-size:.68rem;color:var(--mut);font-weight:700">✨ Stream-Spruch / Titel über dem Gitter:</label>
@@ -672,24 +581,21 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
             <div class="xp-box">
               <div style="font-size:.72rem;font-weight:800;margin-bottom:5px">👥 Layout & aktive Plätze wählen:</div>
               <div class="pills" id="slotBtns" style="margin-top:0">
-                <button class="pill" onclick="setSlots(1,this)">👤 Solo (Nur Hauptfenster)</button>
-                <button class="pill" onclick="setSlots(3,this)">👥 3 aktive Leute (+ Einladen)</button>
-                <button class="pill" onclick="setSlots(5,this)">👥 5 aktive Leute</button>
-                <button class="pill active" onclick="setSlots(9,this)">🔥 Volles 9er Panel (Wie Bild 1)</button>
+                <button class="pill" onclick="setSlots(1,this)">👤 Solo</button>
+                <button class="pill" onclick="setSlots(3,this)">👥 3 aktive Leute</button>
+                <button class="pill" onclick="setSlots(7,this)">👥 7 aktive Leute</button>
+                <button class="pill active" onclick="setSlots(9,this)">🔥 Volles 9er Panel</button>
               </div>
             </div>
 
             <div class="xp-box">
               <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.72rem;margin-bottom:8px">
                 <span>👑 <strong>Dein Host-Anteil bei Gäste-Geschenken:</strong> <strong style="color:#ffae00" id="hostCutLbl">20 %</strong></span>
-                <input type="range" min="0" max="20" value="20" style="width:115px;accent-color:var(--acc)" oninput="state.hostCut=+this.value;$('hostCutLbl').textContent=this.value+' %'"/>
+                <input type="range" min="0" max="20" value="20" style="width:115px;accent-color:var(--acc)" oninput="state.hostCut=+this.value;setTxt('hostCutLbl',this.value+' %')"/>
               </div>
               <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.72rem;border-top:1px solid var(--bdr);padding-top:8px">
                 <span>🛡️ <strong>Moderator-Bonus (@Mod_Alex):</strong> <strong style="color:#00f2fe" id="modCutLbl">3 % (in Coins)</strong></span>
-                <input type="range" min="0" max="5" value="3" style="width:115px;accent-color:#00f2fe" oninput="state.modCut=+this.value;$('modCutLbl').textContent=this.value+' % (in Coins)'"/>
-              </div>
-              <div style="font-size:.63rem;color:var(--mut);margin-top:5px">
-                💡 Info: Du erhältst als Host automatisch <strong>50 % der Geschenke als Level-XP</strong>. Die <strong>2 % Live-Schatzkiste</strong> für Zuschauer läuft automatisch mit.
+                <input type="range" min="0" max="5" value="3" style="width:115px;accent-color:#00f2fe" oninput="state.modCut=+this.value;setTxt('modCutLbl',this.value+' % (in Coins)')"/>
               </div>
             </div>
 
@@ -702,23 +608,18 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
             </div>
 
             <button class="btn hot full" style="padding:12px;font-size:.85rem;margin-top:4px" onclick="launchCleanLiveStream()">
-              🔴 JETZT LIVE STARTEN (Vollbild-Ansicht öffnen)
+              🔴 JETZT LIVE STARTEN (Vollbild ohne untere Leiste)
             </button>
           </div>
 
-          <!-- =========================================================
-               SCHRITT 2: AKTIVER VOLLBILD-LIVE-STREAM (WIE BILD 1, 2 & 3)
-               Keine störenden Einstellungs-Boxen mehr – 100% Fokus auf Stream & Chat!
-               ========================================================= -->
+          <!-- SCHRITT 2: VOLLBILD-LIVE-RAUM (OHNE UNTERE LEISTE, TRANSPARENTE RAHMEN, GRÖSSERER CHAT) -->
           <div id="activeLiveRoomScreen" class="live-room-screen" style="display:none">
-
-            <!-- 1. OBEN: HOST-INFO + FOLGEN + ZUSCHAUER + BEENDEN -->
             <div>
               <div class="lr-top-row">
                 <div class="lr-host-pill" onclick="openLiveUserSheet('host')">
                   <div class="lr-host-av" id="lrTopHostAv"></div>
                   <div>
-                    <div style="font-size:.72rem;font-weight:900;line-height:1.1" id="lrTopHostName">jyunii011</div>
+                    <div style="font-size:.72rem;font-weight:900;line-height:1.1" id="lrTopHostName">Mila Moves</div>
                     <div style="font-size:.58rem;color:#cbd5e1">🤍 13.7K</div>
                   </div>
                   <button class="lr-follow-btn" onclick="event.stopPropagation();this.textContent=this.textContent.includes('✓')?'+ Folgen':'✓ Gefolgt'">+ Folgen</button>
@@ -732,26 +633,24 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
                 </div>
               </div>
 
-              <!-- 2. SUB-LEISTE: RANGLISTE, SCHATZKISTE (2%) & STREAMER-LEVEL -->
               <div class="lr-sub-row">
                 <span class="lr-chip" onclick="toast('🔥 Platz #4 in der täglichen VYBE-Rangliste!')">🔥 Tägliche Rangliste</span>
-                <span class="lr-chip" id="lrChestChip" onclick="grabLiveChest()" style="border-color:rgba(255,215,0,.4);color:#ffd700">
+                <span class="lr-chip" id="lrChestChip" onclick="grabLiveChest()" style="border-color:rgba(255,215,0,.3);color:#ffd700">
                   💥 Kiste: <strong id="chestProgTxt">0%</strong>
                 </span>
-                <span class="lr-chip" onclick="openAccountSection('wallet')">
+                <span class="lr-chip" onclick="stopLiveAndReturnToSetup();openAccountSection('wallet')">
                   💎 LVL. <span id="lrStrLvlChip">5</span> • 🛡️ Mod: <span id="modPoolTxt">0</span> 🪙
                 </span>
               </div>
 
-              <!-- 3. LEUCHTENDER SPRUCH ÜBER DEM GITTER (WIE BILD 1) -->
               <div class="lr-neon-banner" id="lrNeonBannerTxt">Keep gifting 🩷 box battle 1k</div>
             </div>
 
-            <!-- 4. MULTI-LIVE STAGE: LINKS GROSSES FENSTER + RECHTS 2x4 GÄSTE-GITTER (WIE BILD 1 & 2) -->
+            <!-- MULTI-LIVE STAGE -->
             <div id="lrStageGrid" class="lr-stage-grid"></div>
 
-            <!-- 5. TRANSPARENTER LIVE-CHAT UNTER DEM GITTER (WIE BILD 1 & 2) -->
-            <div>
+            <!-- GRÖSSERER TRANSPARENTER CHAT + FREIE EINGABELEISTE UNTEN -->
+            <div class="lr-chat-section">
               <div class="lr-chat-wrap" id="lrChatList">
                 <div class="lr-join-pill" id="lrJoinBanner">💎 26 🍝Nudel King🍝 ist beigetreten</div>
                 <div class="lr-msg-row" onclick="openLiveUserSheet('host')">
@@ -761,6 +660,10 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
                 <div class="lr-msg-row" onclick="openLiveUserSheet('guest',3)">
                   <div class="lr-msg-av">🎩</div>
                   <div><span class="lr-lvl-bdg">💎 27</span><strong style="color:#f9a8d4">💕Monika💕</strong> <span style="background:rgba(244,63,94,.25);color:#fda4af;font-size:.5rem;padding:1px 4px;border-radius:4px">🏅 Nr. 2</span><br/>🥰🥰🥰</div>
+                </div>
+                <div class="lr-msg-row" onclick="openLiveUserSheet('guest',1)">
+                  <div class="lr-msg-av">🤳</div>
+                  <div><span class="lr-lvl-bdg">💎 18</span><strong style="color:#93c5fd">Denis</strong><br/>Starkes Panel heute! 🔥🔥🔥</div>
                 </div>
                 <div class="lr-msg-row">
                   <div class="lr-msg-av">↗</div>
@@ -772,22 +675,21 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
                 </div>
               </div>
 
-              <!-- 6. UNTERE LEISTE: TIPPEN, EMOJI, GAST EINLADEN, SCHNELLGESCHENKE & GESCHENK-BOX (WIE BILD 1) -->
               <div class="lr-bottom-bar">
                 <div class="lr-chat-inp-box">
                   <input id="lrChatInp" placeholder="Tippen ..." onkeydown="if(event.key==='Enter')sendLiveChatMsg()"/>
-                  <span style="cursor:pointer;opacity:.8" onclick="sendLiveChatMsg()">😊</span>
+                  <span style="cursor:pointer;opacity:.85" onclick="sendLiveChatMsg()">😊</span>
                 </div>
                 <div class="lr-quick-ico" onclick="inviteNextGuestSlot()" title="Gast einladen">👥</div>
                 <div class="lr-quick-ico" onclick="sendGift('🌹 Rose',10,'🌹')" title="Rose (10)">🌹</div>
                 <div class="lr-quick-ico" onclick="sendGift('🫰 Fingerherz',25,'🫰')" title="Fingerherz (25)">🫰</div>
                 <div class="lr-quick-ico" onclick="sendGift('🍩 Donut',50,'🍩')" title="Donut (50)">🍩</div>
-                <div class="lr-quick-ico gift-main" onclick="$('modGiftCoins').textContent=state.coins.toLocaleString('de-DE');$('liveGiftModal').style.display='flex'" title="Alle Geschenke">🎁</div>
+                <div class="lr-quick-ico gift-main" onclick="setTxt('modGiftCoins',state.coins.toLocaleString('de-DE'));showEl('liveGiftModal',true,'flex')" title="Alle Geschenke">🎁</div>
                 <div class="lr-quick-ico" onclick="shareLiveStream()" title="Live teilen">↗</div>
               </div>
             </div>
-
           </div>
+
         </div>
       </div>
     </section>
@@ -1053,7 +955,7 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
           </div>
         </div>
         <div class="xp-box" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;margin-bottom:9px">
-          <span>👥 Freunde: <strong id="refCountTxt" style="color:var(--acc)">2</strong></span>
+          <span>👥 Freunde: <strong id="refCountTxt" style="color:var(--acc)">2 Freunde</strong></span>
           <span>🪙 Prämie: <strong id="refEarnedTxt" style="color:#ffd700">1.800 Coins</strong></span>
         </div>
         <div style="display:flex;gap:6px;margin-bottom:8px">
@@ -1153,18 +1055,26 @@ html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--ap
 </div>
 
 <script>
+/* =========================================================
+   ROBUSTE & ABSTURZSICHERE DOM-ENGINE
+   ========================================================= */
 const $ = id => document.getElementById(id);
+const setTxt = (id, val) => { const el = $(id); if(el) el.textContent = val; };
+const setHtml = (id, val) => { const el = $(id); if(el) el.innerHTML = val; };
+const showEl = (id, show, mode='block') => { const el = $(id); if(el) el.style.display = show ? mode : 'none'; };
+
 const CFG = {
   mXp: [250,600,1500,17500,40000,100000,250000],
   sXp: [1000,2500,5000,50000,125000,300000,750000],
   rates: s => s<=10 ? .85 : s<=30 ? .70 : s<=40 ? .60 : .50
 };
+
 const state = {
   coins: 7550,
   diamonds: 0,
   mLvl: 5, mXp: 0, sLvl: 1, sXp: 0,
   onlineMins: 9, vClaim: [false,false,false], watched: 4, wClaimed: false,
-  slots: 9, // 1 Hauptfenster links + bis zu 8 rechte Plätze (wie auf Bild 1 & 2)
+  slots: 9,
   liveRunning: false,
   liveTitle: 'Keep gifting 🩷 box battle 1k',
   hostCut: 20,
@@ -1179,7 +1089,6 @@ const state = {
     {id:3, name:'@street_leo', lvl:20, supported:true, gold:true}
   ],
   prods: [{name:'VYBE Limited Cap',price:'29,90 €'}],
-  // Die 8 rechten Plätze wie auf deinen Screenshots
   guests: [
     {n:'jyunii011',e:'👩‍🦰',s:'Host',lvl:24,sub:'Host • 13.7K'},
     {n:'Denis...',e:'🤳',s:150,lvl:18,sub:'Creator'},
@@ -1199,48 +1108,48 @@ const state = {
     favs: [{t:'Golden Hour Beach',v:'⭐ @luna.vibe',bg:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80',type:'img'}]
   }
 };
+
 const clips = [
   {tag:'<span style="color:#ffd700">✦</span> MORNING RESET',snd:'♫ Originalton · mila.moves',n:'Mila Moves',h:'@mila.moves',t:'Kleiner Reminder: Du musst nicht jeden Tag alles',s:'Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿',g:'#minivlog #slowmorning #mindset',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85',vidUrl:null},
-  {tag:'<span style="color:#b8ff01">⚡</span> 9ER PANEL LIVE',snd:'♫ Cyber Synth · jyunii011',n:'jyunii011',h:'@jyunii011',t:'Neues Multi-Live Panel + Vorab-Setup aktiv!',s:'Tippe unten auf + und starte dein sauberes Vollbild-Live! 🔥',g:'#vybeclub #multilive #boxbattle',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null},
+  {tag:'<span style="color:#b8ff01">⚡</span> 9ER PANEL LIVE',snd:'♫ Cyber Synth · jyunii011',n:'jyunii011',h:'@jyunii011',t:'Neues Multi-Live Panel ohne störende untere Leiste!',s:'Tippe unten auf + und starte dein sauberes Vollbild-Live! 🔥',g:'#vybeclub #multilive #boxbattle',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null},
   {tag:'<span style="color:#ff7e5f">🌅</span> GOLDEN HOUR',snd:'♫ Ocean Breeze · luna.vibe',n:'Luna Vibe',h:'@luna.vibe',t:'Entdecker-Karten im Club sichern (+10% XP)',s:'Coin-Pakete ab 50 Coins unter ⚙ Konto ✨',g:'#sunset #watchtoearn #vybe',bg:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85',vidUrl:null}
 ];
 let cIdx = 0;
 
-/* =========================================================
-   NEU: VORAB-SETUP STARTEN & VOLLBILD-LIVE-RAUM STEUERN
-   ========================================================= */
+/* LIVE STARTEN (BLENDET DIE UNTERE LEISTE AUTOMATISCH AUS) */
 function launchCleanLiveStream(){
   state.liveRunning = true;
-  $('preLiveSetupCard').style.display = 'none';
-  $('studioTopSwitch').style.display = 'none';
-  $('activeLiveRoomScreen').style.display = 'flex';
-  $('lrNeonBannerTxt').textContent = state.liveTitle || 'Keep gifting 🩷 box battle 1k';
+  document.body.classList.add('in-live');
+  showEl('preLiveSetupCard', false);
+  showEl('studioTopSwitch', false);
+  showEl('activeLiveRoomScreen', true, 'flex');
+  setTxt('lrNeonBannerTxt', state.liveTitle || 'Keep gifting 🩷 box battle 1k');
   renderLiveGrid();
   if(!state.stream) startMedia();
-  toast('🔴 Live-Stream gestartet! Alle Einstellungen sind gespeichert.');
+  toast('🔴 Vollbild-Live gestartet! (Untere Leiste ausgeblendet)');
 }
 
 function stopLiveAndReturnToSetup(){
   state.liveRunning = false;
-  $('activeLiveRoomScreen').style.display = 'none';
-  $('preLiveSetupCard').style.display = 'block';
-  $('studioTopSwitch').style.display = 'grid';
+  document.body.classList.remove('in-live');
+  showEl('activeLiveRoomScreen', false);
+  showEl('preLiveSetupCard', true, 'block');
+  showEl('studioTopSwitch', true, 'grid');
 
   if(state.modCoinsPool > 0){
     const paid = state.modCoinsPool;
     state.modCoinsPool = 0;
     fx('🛡️', `Live beendet! Moderator @Mod_Alex hat ${paid.toLocaleString('de-DE')} Coins (🪙) ausgezahlt bekommen!`);
   } else {
-    toast('⏹️ Live-Stream beendet. Du bist zurück in den Vorab-Einstellungen.');
+    toast('⏹️ Live-Stream beendet.');
   }
   updateUI();
 }
 
-/* RENDERT DAS 1-GROSS-LINKS + 2x4-RECHTS PANEL WIE AUF BILD 1 & 2 */
 function renderLiveGrid(){
   const stage = $('lrStageGrid'); if(!stage) return;
   const hName = $('inName') ? $('inName').value : 'Mila Moves';
-  $('lrTopHostName').textContent = hName;
+  setTxt('lrTopHostName', hName);
 
   if(state.slots === 1){
     stage.className = 'lr-stage-grid solo-only';
@@ -1254,18 +1163,17 @@ function renderLiveGrid(){
       </div>`;
   } else {
     stage.className = 'lr-stage-grid';
-    const activeGuestsCount = state.slots - 1; // bis zu 8 rechte Boxen
+    const activeGuestsCount = state.slots - 1;
     let rightHtml = '';
     for(let i=0; i<8; i++){
       if(i < activeGuestsCount){
         const u = state.guests[i];
         const isShopSlot = (i === 7 && state.prods[state.pinIdx]);
         if(isShopSlot){
-          const pr = state.prods[state.pinIdx];
           rightHtml += `
-            <div class="lr-slot-card" style="background:rgba(30,41,59,.9)" onclick="recvGift(500,false)">
-              <div class="lr-circle-av" style="width:36px;height:36px;font-size:1rem">🛍️</div>
-              <span style="background:#fff;color:#000;font-size:.52rem;font-weight:900;padding:2px 7px;border-radius:99px;margin-top:4px">Schnapp dir das</span>
+            <div class="lr-slot-card" onclick="recvGift(500,false)">
+              <div class="lr-circle-av" style="width:34px;height:34px;font-size:.95rem">🛍️</div>
+              <span style="background:#fff;color:#000;font-size:.5rem;font-weight:900;padding:2px 7px;border-radius:99px;margin-top:4px">Schnapp dir das</span>
             </div>`;
         } else {
           rightHtml += `
@@ -1277,11 +1185,10 @@ function renderLiveGrid(){
             </div>`;
         }
       } else {
-        // Freier Platz wie auf Bild 2 ("+ Einladen")
         rightHtml += `
           <div class="lr-slot-card empty-slot" onclick="inviteNextGuestSlot()">
-            <div style="font-size:1.25rem;color:rgba(255,255,255,.75);line-height:1">+</div>
-            <div style="font-size:.58rem;color:rgba(255,255,255,.75);font-weight:700;margin-top:2px">Einladen</div>
+            <div style="font-size:1.15rem;color:rgba(255,255,255,.7);line-height:1">+</div>
+            <div style="font-size:.56rem;color:rgba(255,255,255,.7);font-weight:700;margin-top:2px">Einladen</div>
           </div>`;
       }
     }
@@ -1310,15 +1217,13 @@ function inviteNextGuestSlot(){
     renderLiveGrid();
     toast('👥 Weiterer Gast-Platz im Panel aktiviert!');
   } else {
-    toast('✅ Alle 9 Plätze im Multi-Live sind bereits voll besetzt!');
+    toast('✅ Alle 9 Plätze sind bereits aktiv!');
   }
 }
 
-/* CHAT-NACHRICHT IM LIVE SENDEN */
 function sendLiveChatMsg(){
-  const inp = $('lrChatInp');
-  const txt = inp.value.trim();
-  if(!txt) return;
+  const inp = $('lrChatInp'); if(!inp) return;
+  const txt = inp.value.trim(); if(!txt) return;
   const hName = $('inName') ? $('inName').value : 'Mila Moves';
   appendLiveChatRow('👑', hName, state.mLvl, txt, true);
   inp.value = '';
@@ -1340,41 +1245,30 @@ function appendLiveChatRow(emo, name, lvl, text, isHost = false){
   list.scrollTop = list.scrollHeight;
 }
 function shareLiveStream(){
-  appendLiveChatRow('↗', $('inName').value||'Mila Moves', state.mLvl, '<strong>hat das LIVE geteilt</strong> 🔥');
+  appendLiveChatRow('↗', $('inName')?$('inName').value:'Mila Moves', state.mLvl, '<strong>hat das LIVE geteilt</strong> 🔥');
   toast('↗ Live-Stream geteilt!');
 }
 
-/* WEISSES PROFIL-SHOWCASE POPUP ÖFFNEN (WIE BILD 3) */
 function openLiveUserSheet(type, idx = 0){
   if(type === 'host'){
     const hName = $('inName') ? $('inName').value : 'Mila Moves';
-    $('shAv').textContent = '👑';
-    $('shName').textContent = hName;
-    $('shSub').textContent = $('inHdl') ? $('inHdl').value : '@mila.moves';
-    $('shLvlTxt').textContent = 'Lvl. ' + state.mLvl;
-    $('shShowcaseTxt').textContent = 'Showcase von ' + hName;
+    setTxt('shAv','👑'); setTxt('shName',hName); setTxt('shSub',$('inHdl')?$('inHdl').value:'@mila.moves');
+    setTxt('shLvlTxt','Lvl. '+state.mLvl); setTxt('shShowcaseTxt','Showcase von '+hName);
   } else {
     const u = state.guests[idx] || state.guests[7];
-    $('shAv').textContent = u.e;
-    $('shName').textContent = u.n;
-    $('shSub').textContent = u.sub || 'VYBE Creator';
-    $('shLvlTxt').textContent = 'Lvl. ' + (u.lvl || 26);
-    $('shShowcaseTxt').textContent = 'Showcase von ' + u.n;
+    setTxt('shAv',u.e); setTxt('shName',u.n); setTxt('shSub',u.sub||'VYBE Creator');
+    setTxt('shLvlTxt','Lvl. '+(u.lvl||26)); setTxt('shShowcaseTxt','Showcase von '+u.n);
   }
-  $('liveUserSheet').style.display = 'flex';
+  showEl('liveUserSheet', true, 'flex');
 }
-function closeLiveUserSheet(){
-  $('liveUserSheet').style.display = 'none';
-}
+function closeLiveUserSheet(){ showEl('liveUserSheet', false); }
 
-/* COIN-PAKET KAUFEN */
 function buyCoinPackage(amount, priceEur){
   state.coins += amount;
   fx('🪙', `+${amount.toLocaleString('de-DE')} Coins für ${priceEur.toFixed(2).replace('.',',')} € aufgeladen!`);
   updateUI();
 }
 
-/* LIVE-SCHATZKISTE (2% AUS GESCHENKEN, MAX 100 COINS TOPF) */
 function addGiftToLiveChest(giftCoins){
   state.chestGiftCoins += giftCoins;
   if(state.chestGiftCoins >= 5000 && state.chestReadyPool === 0){
@@ -1395,34 +1289,25 @@ function grabLiveChest(){
   updateUI();
 }
 
-/* ENTDECKER-KARTEN */
 function getFounderXpMultiplier(){
   return state.founders.some(f => f.supported && f.gold) ? 1.10 : 1.0;
 }
 function supportNewcomer(id){
-  const f = state.founders.find(x => x.id === id);
-  if(!f) return;
+  const f = state.founders.find(x => x.id === id); if(!f) return;
   if(state.coins < 50){ toast('⚠️ 50 Coins zum Unterstützen benötigt!'); return; }
-  state.coins -= 50;
-  f.supported = true;
-  addMXp(50);
-  fx('🌱', `Gründer-Entdeckerkarte von ${f.name} gesichert!`);
-  updateUI();
+  state.coins -= 50; f.supported = true; addMXp(50);
+  fx('🌱', `Gründer-Entdeckerkarte von ${f.name} gesichert!`); updateUI();
 }
 function simulateCreatorLvl20(id){
-  const f = state.founders.find(x => x.id === id);
-  if(!f) return;
+  const f = state.founders.find(x => x.id === id); if(!f) return;
   f.lvl = 20;
-  if(f.supported){
-    f.gold = true;
-    fx('👑', `${f.name} hat LVL 20 erreicht! Deine Karte ist jetzt eine GOLD-GRÜNDERKARTE (+10% XP)!`);
-  }
+  if(f.supported){ f.gold = true; fx('👑', `${f.name} hat LVL 20 erreicht! GOLD-GRÜNDERKARTE (+10% XP)!`); }
   updateUI();
 }
 function renderFounderCards(){
   const box = $('founderCardsGrid'); if(!box) return;
   const hasGold = state.founders.some(f => f.supported && f.gold);
-  $('founderBonusBdg').textContent = hasGold ? '👑 Gold-Bonus: +10 % XP aktiv!' : 'XP-Bonus: +0 %';
+  setTxt('founderBonusBdg', hasGold ? '👑 Gold-Bonus: +10 % XP aktiv!' : 'XP-Bonus: +0 %');
   box.innerHTML = state.founders.map(f => `
     <div class="founder-card ${f.gold ? 'gold-evo' : ''}">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
@@ -1443,13 +1328,12 @@ function renderFounderCards(){
 }
 
 function toggleRightDrawer(open){
-  $('drawerBackdrop').classList.toggle('open', open);
-  $('rightDrawer').classList.toggle('open', open);
+  $('drawerBackdrop')?.classList.toggle('open', open);
+  $('rightDrawer')?.classList.toggle('open', open);
 }
-function toggleQrModal(open){
-  $('qrMod').style.display = open ? 'flex' : 'none';
-}
+function toggleQrModal(open){ showEl('qrMod', open, 'flex'); }
 function openAccountSection(secKey){
+  if(state.liveRunning) stopLiveAndReturnToSetup();
   toggleRightDrawer(false);
   openView('settings');
   const el = $(`accSec-${secKey}`);
@@ -1501,17 +1385,17 @@ function loadSavedMediaFromDB(){
           vidUrl:it.type==='video'?url:null
         });
       });
-      if(items.length > 0){ cIdx = 0; showClipAtIndex(0, $('view-feed').classList.contains('active')); renderLib(); }
+      if(items.length > 0){ cIdx = 0; showClipAtIndex(0, $('view-feed')?.classList.contains('active')); renderLib(); }
     };
   }catch(err){}
 }
 
 try{
   const sBanner = localStorage.getItem('vybe_banner');
-  if(sBanner) $('profBannerBox').style.setProperty('--prof-banner-bg', `url('${sBanner}')`);
+  if(sBanner) $('profBannerBox')?.style.setProperty('--prof-banner-bg', `url('${sBanner}')`);
   const sAvatar = localStorage.getItem('vybe_avatar');
   if(sAvatar){
-    $('profAv').style.backgroundImage = `url('${sAvatar}')`;
+    if($('profAv')) $('profAv').style.backgroundImage = `url('${sAvatar}')`;
     document.querySelectorAll('.h-av,.c-av,#lrTopHostAv').forEach(el => el.style.backgroundImage = `url('${sAvatar}')`);
   }
   const sMood = localStorage.getItem('vybe_mood');
@@ -1523,10 +1407,11 @@ const reqS = l => CFG.sXp[l<5?0:l<10?1:l<15?2:l<20?3:l<30?4:l<40?5:6];
 
 function switchStudioMode(m){
   stopAllVideoAudio(false);
-  $('btnModeClip').classList.toggle('active', m==='clip');
-  $('btnModeLive').classList.toggle('active', m==='live');
-  $('studioClipBox').style.display = m==='clip' ? 'block' : 'none';
-  $('studioLiveBox').style.display = m==='live' ? 'block' : 'none';
+  if(m==='clip' && state.liveRunning) stopLiveAndReturnToSetup();
+  $('btnModeClip')?.classList.toggle('active', m==='clip');
+  $('btnModeLive')?.classList.toggle('active', m==='live');
+  showEl('studioClipBox', m==='clip');
+  showEl('studioLiveBox', m==='live');
   if(m==='live' && state.mLvl>=5) renderLiveGrid();
   if(m==='clip') startMedia();
 }
@@ -1546,7 +1431,7 @@ function addLiveHours(h){
 }
 setInterval(()=>{
   state.onlineMins++;
-  if($('view-camera').classList.contains('active') && state.liveRunning && state.mLvl>=5 && isLiveTimeValid()){
+  if($('view-camera')?.classList.contains('active') && state.liveRunning && state.mLvl>=5 && isLiveTimeValid()){
     state.wkHours = +(state.wkHours + (1/60)).toFixed(2);
   }
   updateUI();
@@ -1554,10 +1439,10 @@ setInterval(()=>{
 
 async function startMedia(){
   stopAllVideoAudio(false);
-  $('camPhotoPrev').style.display='none';
+  showEl('camPhotoPrev', false);
   if(state.stream){
-    const cp = $('camPrev'); cp.muted = true; cp.controls = false; cp.srcObject = state.stream; cp.play().catch(()=>{});
-    $('camPh').style.display='none'; return;
+    const cp = $('camPrev'); if(cp){ cp.muted = true; cp.controls = false; cp.srcObject = state.stream; cp.play().catch(()=>{}); }
+    showEl('camPh', false); return;
   }
   if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ toast('⚠️ Bitte über https:// öffnen!'); return; }
   try{
@@ -1573,8 +1458,8 @@ function attachStream(s,aud){
   const cp = $('camPrev');
   if(cp){ cp.muted = true; cp.controls = false; cp.srcObject = s; cp.play().catch(()=>{}); }
   if($('liveHostVid')){$('liveHostVid').srcObject=s;$('liveHostVid').play().catch(()=>{});}
-  $('camPh').style.display='none';
-  $('camStat').textContent = aud ? '✅ Cam & Mic AN' : '📷 Cam AN';
+  showEl('camPh', false);
+  setTxt('camStat', aud ? '✅ Cam & Mic AN' : '📷 Cam AN');
   updateUI();
 }
 
@@ -1588,8 +1473,8 @@ function sendGift(name,cost,emo){
   if(state.coins<cost){ toast(`⚠️ Nicht genug Coins (${cost} 🪙 benötigt)!`); return; }
   state.coins -= cost;
   addGiftToLiveChest(cost);
-  appendLiveChatRow(emo, $('inName').value||'Mila Moves', state.mLvl, `hat <strong>${name}</strong> gesendet ${emo} × 1`);
-  $('liveGiftModal').style.display='none';
+  appendLiveChatRow(emo, $('inName')?$('inName').value:'Mila Moves', state.mLvl, `hat <strong>${name}</strong> gesendet ${emo} × 1`);
+  showEl('liveGiftModal', false);
   fx(emo, `${name} gesendet!`);
   addMXp(cost);
 }
@@ -1622,14 +1507,14 @@ function addMXp(baseXp){
   state.mXp += totalXp;
   while(state.mLvl<50 && state.mXp>=reqM(state.mLvl)){
     state.mXp -= reqM(state.mLvl); state.mLvl++;
-    if(state.mLvl===50){ $('goldRain').style.display='block'; setTimeout(()=>$('goldRain').style.display='none',3500); }
+    if(state.mLvl===50){ showEl('goldRain',true); setTimeout(()=>showEl('goldRain',false),3500); }
     fx('🎉', `LEVEL ${state.mLvl} ERREICHT!`);
   }
   updateUI();
 }
 
 function copyRefLink(){
-  const val = $('refLinkInp').value;
+  const val = $('refLinkInp') ? $('refLinkInp').value : 'https://vybe.club/join';
   navigator.clipboard?.writeText(val);
   toast('📋 Einladungslink kopiert!');
 }
@@ -1658,7 +1543,7 @@ function openBooster(){
   state.coins -= 250;
   const pulls = ['🔮 CYBER HOLO: @neon.jay','★ EPISCH: @mila.moves','💎 DIAMANT HOLO: @luna.vibe','👑 1OF1 BOSS-KARTE'];
   const p = pulls[Math.floor(Math.random()*pulls.length)];
-  $('boosterResultTxt').textContent = `🎉 Gezogen: ${p}`;
+  setTxt('boosterResultTxt', `🎉 Gezogen: ${p}`);
   fx('🃏', p); addMXp(250);
 }
 
@@ -1676,7 +1561,7 @@ function payoutDiamonds(){
 }
 
 function exportUserData(){
-  const data = JSON.stringify({name:$('inName').value, handle:$('inHdl').value, coins:state.coins, diamonds:state.diamonds, level:state.mLvl}, null, 2);
+  const data = JSON.stringify({name:$('inName')?.value, handle:$('inHdl')?.value, coins:state.coins, diamonds:state.diamonds, level:state.mLvl}, null, 2);
   navigator.clipboard?.writeText(data);
   toast('📥 DSGVO-Datenexport in die Zwischenablage kopiert!');
 }
@@ -1686,37 +1571,35 @@ function deleteLocalAccountData(){
 }
 
 function openView(v){
+  if(v !== 'camera' && state.liveRunning) stopLiveAndReturnToSetup();
   const isFeed = (v === 'feed');
   stopAllVideoAudio(isFeed);
   document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
-  $(`view-${v}`).classList.add('active');
+  $(`view-${v}`)?.classList.add('active');
   document.querySelectorAll('.b-nav .b-nav-btn').forEach(b=>b.classList.remove('active'));
-  const nb = $(`bn-${v}`); if(nb) nb.classList.add('active');
+  $(`bn-${v}`)?.classList.add('active');
   if(isFeed){ showClipAtIndex(cIdx, true); }
   else if(v==='camera'){ startMedia(); }
 }
 
-function swProf(t){ ['level','edit','shop'].forEach(k=>{ $(`pt-${k}`).style.display=k===t?'block':'none'; $(`pb-${k}`).classList.toggle('active',k===t); }); }
-function swLib(t){ state.libTab=t; ['videos','saved','favs'].forEach(k=>$(`mt-${k}`).classList.toggle('active',k===t)); renderLib(); }
+function swProf(t){ ['level','edit','shop'].forEach(k=>{ showEl(`pt-${k}`, k===t); $(`pb-${k}`)?.classList.toggle('active',k===t); }); }
+function swLib(t){ state.libTab=t; ['videos','saved','favs'].forEach(k=>$(`mt-${k}`)?.classList.toggle('active',k===t)); renderLib(); }
 
 function renderLib(){
   const l = state.lib;
-  $('cVid').textContent = l.videos.length;
-  $('cSav').textContent = l.saved.length;
-  $('cFav').textContent = l.favs.length;
-  $('libGrid').innerHTML = l[state.libTab].map((x,idx)=>{
+  setTxt('cVid', l.videos.length); setTxt('cSav', l.saved.length); setTxt('cFav', l.favs.length);
+  setHtml('libGrid', l[state.libTab].map((x,idx)=>{
     const mediaHtml = x.type==='video' ? `<video src="${x.bg}" muted loop playsinline></video>` : '';
     return `<div class="m-item" style="${x.type!=='video'?`background-image:url('${x.bg}')`:''}" onclick="playMediaFromLib(${idx})">
       ${mediaHtml}
       <div style="position:relative;z-index:2;font-size:.64rem;font-weight:800;color:#fff">${x.t}</div>
       <div style="position:relative;z-index:2;font-size:.56rem;color:#b8ff01">${x.v}</div>
     </div>`;
-  }).join('');
+  }).join(''));
 }
 
 function playMediaFromLib(idx){
-  const item = state.lib[state.libTab][idx];
-  if(!item) return;
+  const item = state.lib[state.libTab][idx]; if(!item) return;
   clips.unshift({
     tag:'<span style="color:var(--acc)">★</span> MEDIATHEK',
     snd:'♫ Originalton · ' + ($('inHdl')?$('inHdl').value:'@mila.moves'),
@@ -1731,15 +1614,15 @@ function playMediaFromLib(idx){
 
 function showClipAtIndex(i, allowPlay = true){
   const c = clips[i]; if(!c) return;
-  $('cTag').innerHTML = c.tag; $('cSnd').textContent = c.snd; $('cName').textContent = c.n;
-  $('cHdl').textContent = c.h; $('cTit').textContent = c.t; $('cSub').textContent = c.s; $('cTags').textContent = c.g;
-  const fVid = $('feedRealVideo');
+  setHtml('cTag', c.tag); setTxt('cSnd', c.snd); setTxt('cName', c.n);
+  setTxt('cHdl', c.h); setTxt('cTit', c.t); setTxt('cSub', c.s); setTxt('cTags', c.g);
+  const fVid = $('feedRealVideo'); if(!fVid) return;
   if(c.vidUrl){
     fVid.src = c.vidUrl; fVid.style.display = 'block';
-    if(allowPlay && $('view-feed').classList.contains('active')){
+    if(allowPlay && $('view-feed')?.classList.contains('active')){
       fVid.muted = false; fVid.play().catch(()=>{ fVid.muted = true; fVid.play().catch(()=>{}); });
     } else { fVid.pause(); fVid.muted = true; }
-  } else { fVid.pause(); fVid.muted = true; fVid.style.display = 'none'; $('heroVid').style.setProperty('--feed-bg',`url('${c.bg}')`); }
+  } else { fVid.pause(); fVid.muted = true; fVid.style.display = 'none'; $('heroVid')?.style.setProperty('--feed-bg',`url('${c.bg}')`); }
 }
 
 function nextClip(){
@@ -1749,25 +1632,27 @@ function nextClip(){
 function switchFeedTab(b){ b.parentElement.querySelectorAll('.f-tab').forEach(x=>x.classList.remove('active')); b.classList.add('active'); nextClip(); }
 
 function favClip(){
-  $('shock').classList.remove('boom'); void $('shock').offsetWidth; $('shock').classList.add('boom');
-  $('likeCir').style.color='var(--acc)'; const c = clips[cIdx];
+  const sh = $('shock'); if(sh){ sh.classList.remove('boom'); void sh.offsetWidth; sh.classList.add('boom'); }
+  if($('likeCir')) $('likeCir').style.color='var(--acc)';
+  const c = clips[cIdx];
   if(!state.lib.favs.some(x=>x.t===c.t)){ state.lib.favs.unshift({t:c.t,v:'⭐ '+c.h,bg:c.vidUrl||c.bg,type:c.vidUrl?'video':'img'}); renderLib(); }
   addMXp(10); toast('⭐ Zu Favoriten (+10 XP)');
 }
 function saveClip(){
-  $('saveCir').style.color='var(--acc)'; const c = clips[cIdx];
+  if($('saveCir')) $('saveCir').style.color='var(--acc)';
+  const c = clips[cIdx];
   if(!state.lib.saved.some(x=>x.t===c.t)){ state.lib.saved.unshift({t:c.t,v:'🔖 '+c.h,bg:c.vidUrl||c.bg,type:c.vidUrl?'video':'img'}); renderLib(); }
   toast('🔖 Unter Gespeichert abgelegt!');
 }
-function commClip(){ $('commTxt').textContent = +$('commTxt').textContent + 1; addMXp(5); toast('💬 Kommentar (+5 XP)'); }
+function commClip(){ setTxt('commTxt', (+($('commTxt')?.textContent||382)) + 1); addMXp(5); toast('💬 Kommentar (+5 XP)'); }
 
 function uploadClip(e){
   const file = e.target.files && e.target.files[0]; if(!file) return;
   const fName = file.name.replace(/\.[^/.]+$/, ""); const blobUrl = URL.createObjectURL(file);
-  stopAllVideoAudio(false); $('camPhotoPrev').style.display='none'; $('camPh').style.display='none';
-  const cp = $('camPrev'); cp.srcObject = null; cp.src = blobUrl; cp.muted = false; cp.controls = true; cp.play().catch(()=>{});
+  stopAllVideoAudio(false); showEl('camPhotoPrev',false); showEl('camPh',false);
+  const cp = $('camPrev'); if(cp){ cp.srcObject = null; cp.src = blobUrl; cp.muted = false; cp.controls = true; cp.play().catch(()=>{}); }
   state.lib.videos.unshift({t:fName, v:'🎬 Gespeichert', bg:blobUrl, type:'video'});
-  clips.unshift({tag:'<span style="color:var(--acc)">🎬</span> NEUES VIDEO', snd:'♫ Originalton', n:$('inName').value||'Mila Moves', h:$('inHdl').value||'@mila.moves', t:fName, s:'Hochgeladen!', g:'#vybe', bg:clips[0].bg, vidUrl:blobUrl});
+  clips.unshift({tag:'<span style="color:var(--acc)">🎬</span> NEUES VIDEO', snd:'♫ Originalton', n:$('inName')?.value||'Mila Moves', h:$('inHdl')?.value||'@mila.moves', t:fName, s:'Hochgeladen!', g:'#vybe', bg:clips[0].bg, vidUrl:blobUrl});
   cIdx = 0; showClipAtIndex(0, false); renderLib();
   saveMediaItemToDB({title:fName, sub:'🎬 Gespeichert', blob:file, type:'video'});
   toast(`🎬 Video „${fName}“ gespeichert!`); e.target.value = '';
@@ -1775,13 +1660,13 @@ function uploadClip(e){
 
 function uploadPhotoFromGallery(e){
   const file = e.target.files && e.target.files[0]; if(!file) return;
-  stopAllVideoAudio(false); document.querySelectorAll('#camModePills .pill').forEach(x=>x.classList.remove('active')); $('photoPillBtn').classList.add('active');
+  stopAllVideoAudio(false); document.querySelectorAll('#camModePills .pill').forEach(x=>x.classList.remove('active')); $('photoPillBtn')?.classList.add('active');
   const fName = file.name.replace(/\.[^/.]+$/, ""); const reader = new FileReader();
   reader.onload = function(evt){
-    const dataUrl = evt.target.result; $('camPh').style.display='none';
-    const imgPrev = $('camPhotoPrev'); imgPrev.src = dataUrl; imgPrev.style.display = 'block';
+    const dataUrl = evt.target.result; showEl('camPh',false);
+    const imgPrev = $('camPhotoPrev'); if(imgPrev){ imgPrev.src = dataUrl; imgPrev.style.display = 'block'; }
     state.lib.videos.unshift({t:fName, v:'📸 Galerie-Foto', bg:dataUrl, type:'img'});
-    clips.unshift({tag:'<span style="color:#ffd700">📸</span> FOTO POST', snd:'♫ Originalton', n:$('inName').value||'Mila Moves', h:$('inHdl').value||'@mila.moves', t:fName, s:'Aus Galerie', g:'#foto', bg:dataUrl, vidUrl:null});
+    clips.unshift({tag:'<span style="color:#ffd700">📸</span> FOTO POST', snd:'♫ Originalton', n:$('inName')?.value||'Mila Moves', h:$('inHdl')?.value||'@mila.moves', t:fName, s:'Aus Galerie', g:'#foto', bg:dataUrl, vidUrl:null});
     cIdx = 0; showClipAtIndex(0, false); renderLib();
     saveMediaItemToDB({title:fName, sub:'📸 Galerie-Foto', dataUrl:dataUrl, type:'img'});
     toast(`📸 Foto „${fName}“ gespeichert!`);
@@ -1793,7 +1678,7 @@ function uploadBanner(e){
   const file = e.target.files && e.target.files[0]; if(!file) return;
   const reader = new FileReader();
   reader.onload = function(evt){
-    $('profBannerBox').style.setProperty('--prof-banner-bg', `url('${evt.target.result}')`);
+    $('profBannerBox')?.style.setProperty('--prof-banner-bg', `url('${evt.target.result}')`);
     try{ localStorage.setItem('vybe_banner', evt.target.result); }catch(err){}
     toast('🖼️ Großes Profil-Hintergrundbild gespeichert!');
   };
@@ -1803,7 +1688,7 @@ function uploadAvatar(e){
   const file = e.target.files && e.target.files[0]; if(!file) return;
   const reader = new FileReader();
   reader.onload = function(evt){
-    $('profAv').style.backgroundImage = `url('${evt.target.result}')`;
+    if($('profAv')) $('profAv').style.backgroundImage = `url('${evt.target.result}')`;
     document.querySelectorAll('.h-av,.c-av,#lrTopHostAv').forEach(el => el.style.backgroundImage = `url('${evt.target.result}')`);
     try{ localStorage.setItem('vybe_avatar', evt.target.result); }catch(err){}
     toast('👤 Profilbild aktualisiert!');
@@ -1812,15 +1697,17 @@ function uploadAvatar(e){
 }
 
 function updIdent(){
-  $('pNameHdr').textContent = $('cOwnName').textContent = $('cName').textContent = $('qrNameTxt').textContent = $('inName').value;
-  $('pHdlHdr').textContent = $('cHdl').textContent = $('inHdl').value;
-  $('qrHdlTxt').textContent = 'vybe.club/' + $('inHdl').value;
-  $('pBioHdr').textContent = $('inBio').value; renderLiveGrid();
+  const n = $('inName')?.value || 'Mila Moves';
+  const h = $('inHdl')?.value || '@mila.moves';
+  setTxt('pNameHdr',n); setTxt('cOwnName',n); setTxt('cName',n); setTxt('qrNameTxt',n);
+  setTxt('pHdlHdr',h); setTxt('cHdl',h); setTxt('qrHdlTxt','vybe.club/'+h);
+  setTxt('pBioHdr', $('inBio')?.value || '');
+  renderLiveGrid();
 }
 function setBg(u,el){
   document.querySelectorAll('#gSel .g-th').forEach(x=>x.classList.remove('active')); el.classList.add('active');
   document.body.style.setProperty('--app-bg', u?`url('${u}')`:'none');
-  if(u){ $('profBannerBox').style.setProperty('--prof-banner-bg', `url('${u}')`); $('heroVid').style.setProperty('--feed-bg',`url('${u}')`); }
+  if(u){ $('profBannerBox')?.style.setProperty('--prof-banner-bg', `url('${u}')`); $('heroVid')?.style.setProperty('--feed-bg',`url('${u}')`); }
   toast('🖼️ Hintergrund & großes Profil-Banner angepasst!');
 }
 function setMood(m,b){
@@ -1830,88 +1717,84 @@ function setMood(m,b){
   toast(m==='light' ? '☀️ Vollbild-Weiß aktiviert!' : '🎨 Stimmung geändert!');
 }
 function selPill(b,m){
-  stopAllVideoAudio(false); $('camPhotoPrev').style.display='none';
-  if(state.stream){ const cp = $('camPrev'); cp.muted = true; cp.controls = false; cp.srcObject = state.stream; cp.play().catch(()=>{}); }
+  stopAllVideoAudio(false); showEl('camPhotoPrev',false);
+  if(state.stream){ const cp = $('camPrev'); if(cp){ cp.muted = true; cp.controls = false; cp.srcObject = state.stream; cp.play().catch(()=>{}); } }
   b.parentElement.querySelectorAll('.pill').forEach(x=>x.classList.remove('active')); b.classList.add('active');
   toast('🎞️ Modus: '+m);
 }
-function cycleFilter(){ const f=['none','hue-rotate(90deg)','contrast(1.3) saturate(1.5)','sepia(.6)']; state.fIdx=((state.fIdx||0)+1)%f.length; $('camStage').style.filter=f[state.fIdx]; }
+function cycleFilter(){ const f=['none','hue-rotate(90deg)','contrast(1.3) saturate(1.5)','sepia(.6)']; state.fIdx=((state.fIdx||0)+1)%f.length; if($('camStage')) $('camStage').style.filter=f[state.fIdx]; }
 function addProd(){
   if(state.mLvl<5){ toast('🔒 Erst ab Level 5!'); return; }
-  state.prods.push({name:$('pNameIn').value||'VYBE Merch',price:$('pPriceIn').value||'29,90 €'});
+  state.prods.push({name:$('pNameIn')?.value||'VYBE Merch',price:$('pPriceIn')?.value||'29,90 €'});
   state.pinIdx=state.prods.length-1; updateUI(); toast('🛍️ Produkt gepinnt!');
 }
 function filterSearch(q=''){
   const rooms=[{h:'@jyunii011',l:24,t:'🔥 9er Panel Box Battle',c:'#1042',s:9},{h:'@Nudel_King',l:26,t:'🍝 Multi-Live + Einladen',c:'#4829',s:3},{h:'@luna.vibe',l:42,t:'👑 Solo-Talk',c:'#9910',s:1}];
-  $('srchList').innerHTML = rooms.filter(r=>r.h.includes(q.toLowerCase())||r.t.toLowerCase().includes(q.toLowerCase())).map(r=>`<div class="xp-box" style="margin:0"><div style="font-size:.62rem;color:var(--acc);font-weight:800">● ${r.s}er LIVE • ${r.c}</div><div style="font-weight:800;font-size:.78rem;margin:2px 0">${r.h}</div><div style="font-size:.68rem;color:var(--mut);margin-bottom:6px">${r.t}</div><button class="btn sec full" onclick="setSlots(${r.s});openView('camera');switchStudioMode('live');launchCleanLiveStream()">Direkt beitreten</button></div>`).join('');
+  setHtml('srchList', rooms.filter(r=>r.h.toLowerCase().includes(q.toLowerCase())||r.t.toLowerCase().includes(q.toLowerCase())).map(r=>`<div class="xp-box" style="margin:0"><div style="font-size:.62rem;color:var(--acc);font-weight:800">● ${r.s}er LIVE • ${r.c}</div><div style="font-weight:800;font-size:.78rem;margin:2px 0">${r.h}</div><div style="font-size:.68rem;color:var(--mut);margin-bottom:6px">${r.t}</div><button class="btn sec full" onclick="setSlots(${r.s});openView('camera');switchStudioMode('live');launchCleanLiveStream()">Direkt beitreten</button></div>`).join(''));
 }
 
 function updateUI(){
   const l = state.mLvl, sl = state.sLvl, isStr = l>=20, canL = l>=5, rm = reqM(l), rs = reqS(sl);
   const cStr = state.coins.toLocaleString('de-DE');
   const dStr = state.diamonds.toLocaleString('de-DE');
-  $('profCoins').textContent = $('clubCoins').textContent = cStr;
-  $('profDiamonds').textContent = dStr;
-  $('drwCoinsTxt').textContent = cStr + ' 🪙';
-  $('walletCoinsTxt').textContent = cStr;
-  $('profAv').className = `p-av aura-${l>=50?3:l>=10?2:l>=5?1:0}`;
-  $('pMemBdg').textContent = `LVL ${l} • ${l>=20?'Elite':l>=5?'Vibe':'Rookie'}`;
-  $('pStrBdg').style.display = isStr ? 'inline-block' : 'none';
-  if(isStr) $('pStrBdg').textContent = `👑 S-LVL ${sl}`;
-  if($('lrStrLvlChip')) $('lrStrLvlChip').textContent = l;
 
-  $('b1Lbl').textContent = `⚡ HAUPT-RANG: LVL ${l}`;
-  $('b1Xp').textContent = `${state.mXp.toLocaleString('de-DE')} / ${rm.toLocaleString('de-DE')} XP`;
-  $('b1Fill').style.width = `${Math.min(100,(state.mXp/rm)*100)}%`;
+  setTxt('profCoins', cStr); setTxt('clubCoins', cStr);
+  setTxt('profDiamonds', dStr); setTxt('drwCoinsTxt', cStr + ' 🪙'); setTxt('walletCoinsTxt', cStr);
+  if($('profAv')) $('profAv').className = `p-av aura-${l>=50?3:l>=10?2:l>=5?1:0}`;
+  setTxt('pMemBdg', `LVL ${l} • ${l>=20?'Elite':l>=5?'Vibe':'Rookie'}`);
+  showEl('pStrBdg', isStr, 'inline-block');
+  if(isStr) setTxt('pStrBdg', `👑 S-LVL ${sl}`);
+  setTxt('lrStrLvlChip', l);
 
-  $('b2Lbl').textContent = isStr ? `👑 STREAMER: S-LVL ${sl}` : '🔒 STREAMER-RANG (Ab LVL 20)';
-  $('b2Xp').textContent = isStr ? `${state.sXp.toLocaleString('de-DE')} / ${rs.toLocaleString('de-DE')} S-XP` : `Noch ${20-l} Lvl`;
-  $('b2Fill').style.width = isStr ? `${Math.min(100,(state.sXp/rs)*100)}%` : '0%';
+  setTxt('b1Lbl', `⚡ HAUPT-RANG: LVL ${l}`);
+  setTxt('b1Xp', `${state.mXp.toLocaleString('de-DE')} / ${rm.toLocaleString('de-DE')} XP`);
+  if($('b1Fill')) $('b1Fill').style.width = `${Math.min(100,(state.mXp/rm)*100)}%`;
 
-  $('cPowTxt').textContent = `⚡ POWER ${100 + l*25 + (isStr?sl*30:0)}`;
-  $('cRanksTxt').textContent = isStr ? `💎 LVL ${l} • 👑 S-LVL ${sl}` : `Mitglieds-Rang LVL ${l}`;
-  $('cGlobStat').textContent = isStr ? '🔥 Im globalen Booster!' : 'Nur im Profil';
+  setTxt('b2Lbl', isStr ? `👑 STREAMER: S-LVL ${sl}` : '🔒 STREAMER-RANG (Ab LVL 20)');
+  setTxt('b2Xp', isStr ? `${state.sXp.toLocaleString('de-DE')} / ${rs.toLocaleString('de-DE')} S-XP` : `Noch ${20-l} Lvl`);
+  if($('b2Fill')) $('b2Fill').style.width = isStr ? `${Math.min(100,(state.sXp/rs)*100)}%` : '0%';
+
+  setTxt('cPowTxt', `⚡ POWER ${100 + l*25 + (isStr?sl*30:0)}`);
+  setTxt('cRanksTxt', isStr ? `💎 LVL ${l} • 👑 S-LVL ${sl}` : `Mitglieds-Rang LVL ${l}`);
+  setTxt('cGlobStat', isStr ? '🔥 Im globalen Booster!' : 'Nur im Profil');
 
   const chestPct = state.chestReadyPool > 0 ? 100 : Math.min(100, Math.round((state.chestGiftCoins / 5000) * 100));
-  if($('chestProgTxt')){
-    $('chestProgTxt').textContent = state.chestReadyPool > 0
-      ? `GREIFEN (${state.chestReadyPool}🪙)`
-      : `${chestPct}%`;
-  }
-  if($('modPoolTxt')) $('modPoolTxt').textContent = state.modCoinsPool.toLocaleString('de-DE');
+  setTxt('chestProgTxt', state.chestReadyPool > 0 ? `GREIFEN (${state.chestReadyPool}🪙)` : `${chestPct}%`);
+  setTxt('modPoolTxt', state.modCoinsPool.toLocaleString('de-DE'));
 
   renderFounderCards();
 
-  if($('refCountTxt')) $('refCountTxt').textContent = `${state.refCount} Freunde`;
-  if($('refEarnedTxt')) $('refEarnedTxt').textContent = `${state.refEarned.toLocaleString('de-DE')} Coins`;
+  setTxt('refCountTxt', `${state.refCount} Freunde`);
+  setTxt('refEarnedTxt', `${state.refEarned.toLocaleString('de-DE')} Coins`);
 
-  $('onMinsTxt').textContent = `${state.onlineMins} Min.`;
-  [30,90,180].forEach((t,i)=>{ $(`vSlot${i+1}`).innerHTML = state.vClaim[i] ? `✅ ${i+1}. Spin<br/>Offen` : (state.onlineMins>=t ? `🔓 ${i+1}. Spin<br/><strong style="color:var(--acc)">BEREIT</strong>` : `🔒 ${i+1}. Spin<br/>ab ${t}m`); });
-  $('wProgTxt').textContent = `${state.watched} / 10 Videos`;
-  $('mixTxt').textContent = `DAILY MIX (${state.watched}/10)`;
-  $('wBarFill').style.width = `${(state.watched/10)*100}%`;
+  setTxt('onMinsTxt', `${state.onlineMins} Min.`);
+  [30,90,180].forEach((t,i)=>{ setHtml(`vSlot${i+1}`, state.vClaim[i] ? `✅ ${i+1}. Spin<br/>Offen` : (state.onlineMins>=t ? `🔓 ${i+1}. Spin<br/><strong style="color:var(--acc)">BEREIT</strong>` : `🔒 ${i+1}. Spin<br/>ab ${t}m`)); });
+  setTxt('wProgTxt', `${state.watched} / 10 Videos`);
+  setTxt('mixTxt', `DAILY MIX (${state.watched}/10)`);
+  if($('wBarFill')) $('wBarFill').style.width = `${(state.watched/10)*100}%`;
 
-  $('lockLvlTxt').textContent = `LVL ${l}`;
-  $('liveLock').style.display = canL ? 'none' : 'block';
-  $('liveAct').style.display = canL ? 'block' : 'none';
+  setTxt('lockLvlTxt', `LVL ${l}`);
+  showEl('liveLock', !canL);
+  showEl('liveAct', canL);
 
-  $('btnTogMic').textContent = state.micOn ? '🎙️ Mikro AN' : '🔇 Mikro AUS!';
-  $('wkHoursTxt').textContent = $('setWkTxt').textContent = `${state.wkHours} / 15.0 Std.`;
+  setTxt('btnTogMic', state.micOn ? '🎙️ Mikro AN' : '🔇 Mikro AUS!');
+  setTxt('wkHoursTxt', `${state.wkHours} / 15.0 Std.`);
+  setTxt('setWkTxt', `${state.wkHours} / 15.0 Std.`);
 
   if(canL) renderLiveGrid();
 
-  $('shopLimBdg').textContent = !canL ? '🔒 Ab LVL 5' : `${state.prods.length}/${isStr?'∞':'3'} Produkte`;
-  $('prodList').innerHTML = state.prods.map((p,i)=>`<div style="display:flex;justify-content:space-between;font-size:.72rem;padding:5px 0"><span>🛍️ ${p.name} (${p.price})</span><button class="btn sec" style="padding:2px 6px;font-size:.62rem" onclick="state.pinIdx=${i};updateUI()">Pinnen</button></div>`).join('');
+  setTxt('shopLimBdg', !canL ? '🔒 Ab LVL 5' : `${state.prods.length}/${isStr?'∞':'3'} Produkte`);
+  setHtml('prodList', state.prods.map((p,i)=>`<div style="display:flex;justify-content:space-between;font-size:.72rem;padding:5px 0"><span>🛍️ ${p.name} (${p.price})</span><button class="btn sec" style="padding:2px 6px;font-size:.62rem" onclick="state.pinIdx=${i};updateUI()">Pinnen</button></div>`).join(''));
 
   const r = CFG.rates(sl), raw = state.diamonds/100;
-  $('setSplitBdg').textContent = `👑 S-LVL ${sl}`;
-  $('setDiamondsTxt').textContent = `${dStr} 💎`;
-  $('setStrEur').textContent = `${(raw*r).toFixed(2).replace('.',',')} €`;
+  setTxt('setSplitBdg', `👑 S-LVL ${sl}`);
+  setTxt('setDiamondsTxt', `${dStr} 💎`);
+  setTxt('setStrEur', `${(raw*r).toFixed(2).replace('.',',')} €`);
 }
 
-function toggleInfo(s){ $('infoMod').style.display = s ? 'flex' : 'none'; }
-function toast(m){ const t=$('toast'); t.textContent=m; t.style.display='block'; clearTimeout(window._t); window._t=setTimeout(()=>t.style.display='none',2800); }
-function fx(e,t){ $('fxEmo').textContent=e; $('fxTxt').textContent=t; $('fx').style.display='flex'; clearTimeout(window._f); window._f=setTimeout(()=>$('fx').style.display='none',1800); }
+function toggleInfo(s){ showEl('infoMod', s, 'flex'); }
+function toast(m){ const t=$('toast'); if(!t) return; t.textContent=m; t.style.display='block'; clearTimeout(window._t); window._t=setTimeout(()=>t.style.display='none',2800); }
+function fx(e,t){ setTxt('fxEmo',e); setTxt('fxTxt',t); showEl('fx',true,'flex'); clearTimeout(window._f); window._f=setTimeout(()=>showEl('fx',false),1800); }
 
 initMediaDB(); filterSearch(); renderLib(); updateUI();
 </script>
