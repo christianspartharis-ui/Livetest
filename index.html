@@ -46,8 +46,6 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 .hero-vid::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.15),transparent 40%,rgba(0,0,0,.78));pointer-events:none}
 .g-pill,.badge,.pill{background:var(--in);backdrop-filter:blur(6px);border:none;padding:4px 9px;border-radius:99px;font-size:.63rem;font-weight:800;color:var(--txt);display:inline-flex;align-items:center;gap:4px;cursor:pointer}
 .badge{color:var(--acc);font-size:.58rem}.pill.active,.sub-btn.active{background:var(--acc);color:#000}
-
-/* RECHTE FEED-BUTTONS MIT AKTIVEM FARBWECHSEL FÜR HERZ & MERKEN */
 .r-acts{position:absolute;right:10px;bottom:18px;z-index:3;display:flex;flex-direction:column;gap:11px;align-items:center}
 .a-itm{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
 .a-cir{width:40px;height:40px;border-radius:50%;background:rgba(18,20,28,.45);backdrop-filter:blur(6px);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;transition:.2s}
@@ -57,7 +55,6 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 .sub-b{background:rgba(255,255,255,.14);border:none;color:#b8ff01;padding:3px 9px;border-radius:99px;font-size:.62rem;font-weight:800;cursor:pointer}
 .shock{position:absolute;top:50%;left:50%;width:20px;height:20px;border-radius:50%;border:4px solid var(--acc);transform:translate(-50%,-50%) scale(0);opacity:0;pointer-events:none;z-index:4}
 .shock.boom{animation:sBoom .7s ease-out}@keyframes sBoom{0%{transform:translate(-50%,-50%) scale(.5);opacity:1}100%{transform:translate(-50%,-50%) scale(20);opacity:0}}
-
 .card{background:var(--card);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:20px;padding:13px;margin-bottom:10px}
 .xp-box,.holo,.founder-card,.ref-step-box,.coin-pkg-card,.legal-details{background:var(--in);backdrop-filter:blur(4px);border-radius:14px;padding:10px;margin-bottom:7px}
 .btn{border:none;border-radius:11px;padding:8px 12px;font-weight:800;font-size:.72rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;background:var(--acc);color:#000}
@@ -79,8 +76,6 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 .m-item{height:135px;border-radius:13px;background:var(--in) center/cover;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:7px;cursor:pointer}
 .m-item video,.cam-box video,.cam-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cam-box{position:relative;width:100%;max-width:350px;margin:0 auto 9px;height:340px;border-radius:16px;background:var(--in);display:flex;align-items:center;justify-content:center;overflow:hidden}
-
-/* POSTEINGANG & DIREKT-CHAT */
 .dm-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px;border-radius:14px;background:var(--in);margin-bottom:6px;cursor:pointer}
 .dm-item.active{outline:1.5px solid var(--acc)}
 .dm-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:rgba(255,255,255,.08);position:relative;flex-shrink:0}
@@ -89,8 +84,6 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 .dm-bub{max-width:78%;padding:7px 11px;border-radius:14px;font-size:.73rem;line-height:1.35}
 .dm-bub.them{align-self:flex-start;background:rgba(255,255,255,.1)}
 .dm-bub.me{align-self:flex-end;background:var(--acc);color:#000;font-weight:700}
-
-/* VOLLBILD LIVE-RAUM */
 .live-room-screen{position:relative;width:100%;height:100dvh;background:radial-gradient(circle at 50% 25%,rgba(22,26,42,.45),rgba(5,6,10,.84) 70%);display:flex;flex-direction:column;justify-content:space-between;padding:8px 10px 10px;color:#fff;overflow:hidden}
 .lr-top-row,.lr-sub-row{display:flex;justify-content:space-between;align-items:center;gap:5px;z-index:10;flex-wrap:wrap}
 .lr-host-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);padding:3px 6px 3px 3px;border-radius:99px;cursor:pointer}
@@ -176,13 +169,13 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 <div id="liveUserSheet" class="modal" onclick="if(event.target===this)showEl('liveUserSheet',false)">
   <div class="m-box" style="background:#fff;color:#111;max-width:340px;border-radius:24px">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <div style="display:flex;align-items:center;gap:10px"><div id="shAv" style="width:50px;height:50px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff">🍝</div><div><div style="font-size:1rem;font-weight:900" id="shName">🍝Nudel King🍝</div><div style="font-size:.7rem;color:#6b7280" id="shSub">reckpunkt</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px"><div id="shAv" style="width:50px;height:50px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff">🦊</div><div><div style="font-size:1rem;font-weight:900" id="shName">@NovaFox</div><div style="font-size:.7rem;color:#6b7280" id="shSub">VYBE Creator</div></div></div>
       <button onclick="showEl('liveUserSheet',false)" style="border:none;background:#f3f4f6;width:30px;height:30px;border-radius:50%;cursor:pointer">👑</button>
     </div>
-    <div style="font-size:.74rem;font-weight:800;margin-bottom:10px">2888 Follower*innen · 4785 folge ich</div>
+    <div style="font-size:.74rem;font-weight:800;margin-bottom:10px">120 Follower*innen · 85 folge ich</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-      <div style="background:#fff1f2;border-radius:12px;padding:9px;font-size:.74rem;font-weight:800;color:#e11d48">❤️ Community (7)</div>
-      <div style="background:#f5f3ff;border-radius:12px;padding:9px;font-size:.74rem;font-weight:800;color:#7c3aed" id="shLvlTxt">💎 Lvl. 26</div>
+      <div style="background:#fff1f2;border-radius:12px;padding:9px;font-size:.74rem;font-weight:800;color:#e11d48">❤️ Crew LVL 1</div>
+      <div style="background:#f5f3ff;border-radius:12px;padding:9px;font-size:.74rem;font-weight:800;color:#7c3aed" id="shLvlTxt">💎 Lvl. 1</div>
     </div>
     <div style="display:flex;gap:6px">
       <button class="btn full" style="background:#ff2a5f;color:#fff" onclick="showEl('liveUserSheet',false);stopLiveAndReturnToSetup();openDmWith($('shName').textContent)">💬 Nachricht senden</button>
@@ -193,7 +186,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 
 <div id="liveGiftModal" class="modal" onclick="if(event.target===this)showEl('liveGiftModal',false)">
   <div class="m-box">
-    <div class="c-tit"><span>🎁 Geschenk senden</span><span style="color:#ffd700">🪙 <span id="modGiftCoins">6.750</span></span></div>
+    <div class="c-tit"><span>🎁 Geschenk senden</span><span style="color:#ffd700">🪙 <span id="modGiftCoins">1.000</span></span></div>
     <div id="giftBtnsGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"></div>
     <div style="display:flex;gap:6px"><button class="btn gold" style="flex:1" onclick="recvGift(1000,false);showEl('liveGiftModal',false)">🎙️ Mir +1.000 🪙</button><button class="btn sec" style="flex:1" onclick="recvGift(1000,true);showEl('liveGiftModal',false)">👥 Gast +1.000 🪙</button></div>
   </div>
@@ -203,7 +196,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
   <div class="m-box" style="text-align:center;max-width:320px">
     <div class="c-tit"><span>🏁 Dein VYBE QR-Code</span><button class="btn sec" onclick="showEl('qrMod',false)">✖</button></div>
     <div id="qrGridBox" style="width:130px;height:130px;margin:10px auto;padding:8px;background:#fff;border-radius:12px;display:grid;grid-template-columns:repeat(7,1fr);gap:2px"></div>
-    <div style="font-weight:900" id="qrNameTxt">Mila Moves</div><div style="font-size:.72rem;color:var(--acc);margin-bottom:8px" id="qrHdlTxt">vybe.club/@mila.moves</div>
+    <div style="font-weight:900" id="qrNameTxt">Alex Vibe</div><div style="font-size:.72rem;color:var(--acc);margin-bottom:8px" id="qrHdlTxt">vybe.club/@alex.vibe</div>
     <button class="btn full" onclick="copyRefLink();showEl('qrMod',false)">📋 Link kopieren</button>
   </div>
 </div>
@@ -223,7 +216,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
   <div id="drawerItemsBox"></div>
 </aside>
 
-<!-- HEADER & UNTERE LEISTE (INKL. NEUEM POSTEINGANG) -->
+<!-- HEADER & UNTERE LEISTE -->
 <header class="top-hdr">
   <div class="brand" onclick="handleLogoTap()"><div class="b-ico">*</div><div><div class="b-tit">VYBE</div><div class="b-sub">SHORT VIDEO CLUB</div></div></div>
   <div class="h-srch"><span>⚲</span><input id="topSearchInp" placeholder="Creator, #admin oder Trends suchen" onfocus="if(state.liveRunning)stopLiveAndReturnToSetup();openView('search')" oninput="filterSearch(this.value)"/></div>
@@ -245,28 +238,28 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 </nav>
 
 <div class="work"><main class="stage">
-  <!-- 1. FEED (MIT LEUCHTENDEM FARBWECHSEL BEI HERZ & MERKEN) -->
+  <!-- 1. FEED -->
   <section id="view-feed" class="view active">
-    <div class="f-nav"><div><button class="f-tab active" onclick="nextClip()">Für dich</button><button class="f-tab" onclick="nextClip()">Abonniert</button></div><span class="g-pill" onclick="nextClip()" id="mixTxt">DAILY MIX (4/10)</span></div>
+    <div class="f-nav"><div><button class="f-tab active" onclick="nextClip()">Für dich</button><button class="f-tab" onclick="nextClip()">Abonniert</button></div><span class="g-pill" onclick="nextClip()" id="mixTxt">DAILY MIX (0/10)</span></div>
     <div class="hero-vid" id="heroVid">
       <video id="feedRealVideo" autoplay loop playsinline controls></video>
       <div class="shock" id="shock"></div>
-      <div style="position:relative;z-index:2;display:flex;justify-content:space-between"><span class="g-pill" id="cTag">✦ MORNING RESET</span><span class="g-pill" id="cSnd">♫ Originalton</span></div>
+      <div style="position:relative;z-index:2;display:flex;justify-content:space-between"><span class="g-pill" id="cTag">✦ VYBE START</span><span class="g-pill" id="cSnd">♫ Originalton · alex.vibe</span></div>
       <div class="r-acts">
-        <div class="a-itm" onclick="favClip()"><div class="a-cir" id="likeCir">♥</div><span class="a-lbl" id="likeCntTxt">25 Tsd.</span></div>
-        <div class="a-itm" onclick="commClip()"><div class="a-cir">□</div><span class="a-lbl" id="commTxt">384</span></div>
+        <div class="a-itm" onclick="favClip()"><div class="a-cir" id="likeCir">♥</div><span class="a-lbl" id="likeCntTxt">120</span></div>
+        <div class="a-itm" onclick="commClip()"><div class="a-cir">□</div><span class="a-lbl" id="commTxt">12</span></div>
         <div class="a-itm" onclick="saveClip()"><div class="a-cir" id="saveCir">⚑</div><span class="a-lbl" id="saveLblTxt">Merken</span></div>
         <div class="a-itm" onclick="nextClip()"><div class="a-cir">↗</div><span class="a-lbl">Weiter</span></div>
       </div>
       <div style="position:relative;z-index:2;max-width:82%">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <div class="c-av" onclick="openView('profile')"></div>
-          <div><div style="font-weight:800;color:#fff" id="cName">Mila Moves</div><div style="font-size:.7rem;color:#cbd5e1" id="cHdl">@mila.moves</div></div>
+          <div><div style="font-weight:800;color:#fff" id="cName">Alex Vibe</div><div style="font-size:.7rem;color:#cbd5e1" id="cHdl">@alex.vibe</div></div>
           <button class="sub-b" onclick="this.textContent=this.textContent.includes('✓')?'+ Folgen':'✓ Abonniert'">✓ Abonniert</button>
         </div>
-        <div style="font-size:.94rem;font-weight:800;color:#fff;margin-bottom:3px" id="cTit">Kleiner Reminder</div>
-        <div style="font-size:.74rem;color:#d0d6e2;margin-bottom:3px" id="cSub">Du musst nicht jeden Tag alles schaffen. 🌿</div>
-        <div style="font-size:.74rem;font-weight:800;color:var(--acc)" id="cTags">#vybe #creator</div>
+        <div style="font-size:.94rem;font-weight:800;color:#fff;margin-bottom:3px" id="cTit">Willkommen im VYBE Short Video Club</div>
+        <div style="font-size:.74rem;color:#d0d6e2;margin-bottom:3px" id="cSub">Starte bei Level 1 und lade deine ersten eigenen Clips hoch! 🌿</div>
+        <div style="font-size:.74rem;font-weight:800;color:var(--acc)" id="cTags">#vybe #newcreator</div>
       </div>
     </div>
   </section>
@@ -280,14 +273,14 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
     </div>
   </section>
 
-  <!-- 3. NEU: POSTEINGANG & DIREKT-NACHRICHTEN (INBOX) -->
+  <!-- 3. POSTEINGANG & DIREKT-NACHRICHTEN -->
   <section id="view-inbox" class="view">
     <div class="card">
       <div class="c-tit"><span>💬 Posteingang & Direkt-Nachrichten</span><span class="badge">Online-Freunde</span></div>
       <div id="dmContactsList"></div>
     </div>
     <div class="card">
-      <div class="c-tit"><span id="activeDmTitle">💬 Chat mit ⚜️☕INFINITY☕⚜️</span><button class="btn sec" style="padding:4px 8px;font-size:.64rem" onclick="sendDmGift()">🎁 +50 🪙 senden</button></div>
+      <div class="c-tit"><span id="activeDmTitle">💬 Chat mit @NovaFox</span><button class="btn sec" style="padding:4px 8px;font-size:.64rem" onclick="sendDmGift()">🎁 +50 🪙 senden</button></div>
       <div id="dmMessagesBox" class="dm-chat-box"></div>
       <div style="display:flex;gap:6px">
         <input id="dmInput" class="inp" style="margin:0" placeholder="Nachricht schreiben..." onkeydown="if(event.key==='Enter')sendDirectMsg()"/>
@@ -320,7 +313,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
     <div id="studioLiveBox" style="display:none">
       <div id="preLiveSetupCard" class="card">
         <div class="c-tit"><span>🎛️ 1. Live-Stream vorab einstellen</span><span class="badge">VYBE Setup</span></div>
-        <input id="setupBannerInp" class="inp" value="⚜️☕INFINITY☕⚜️" oninput="state.liveHostLabel=this.value"/>
+        <input id="setupBannerInp" class="inp" value="Alex Vibe" oninput="state.liveHostLabel=this.value"/>
         <div class="xp-box"><div style="font-size:.72rem;font-weight:800;margin-bottom:5px">👥 Start-Layout wählen:</div><div id="setupSlotPills" style="display:flex;gap:5px;flex-wrap:wrap"></div></div>
         <div class="xp-box">
           <div style="display:flex;justify-content:space-between;font-size:.72rem;margin-bottom:6px"><span>👑 Host-Anteil Gäste-Geschenke: <strong id="hostCutLbl" style="color:#ffd700">20 %</strong></span><input type="range" min="0" max="20" value="20" oninput="state.hostCut=+this.value;setTxt('hostCutLbl',this.value+' %')"/></div>
@@ -333,14 +326,14 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
       <div id="activeLiveRoomScreen" class="live-room-screen" style="display:none">
         <div>
           <div class="lr-top-row">
-            <div class="lr-host-pill" onclick="openLiveUserSheet('host')"><div class="h-av" id="lrTopHostAv"></div><div><div style="font-size:.72rem;font-weight:900" id="lrTopHostName">⚜️☕INFINITY☕...</div><div style="font-size:.58rem;color:#cbd5e1">🤍 833</div></div><button class="lr-heart-pill" onclick="event.stopPropagation();toast('🧡 +1 Herz!')">🧡 +46</button></div>
-            <div style="display:flex;align-items:center;gap:5px"><span class="lr-chip" onclick="openLiveUserSheet('guest',0)">🍝 23</span><span class="lr-chip">👥 4</span><button class="lr-quick-ico" style="width:28px;height:28px;background:none" onclick="stopLiveAndReturnToSetup()">✕</button></div>
+            <div class="lr-host-pill" onclick="openLiveUserSheet('host')"><div class="h-av" id="lrTopHostAv"></div><div><div style="font-size:.72rem;font-weight:900" id="lrTopHostName">Alex Vibe</div><div style="font-size:.58rem;color:#cbd5e1">🤍 0</div></div><button class="lr-heart-pill" onclick="event.stopPropagation();toast('🧡 +1 Funke (LVL 1)!')">🧡 LVL 1</button></div>
+            <div style="display:flex;align-items:center;gap:5px"><span class="lr-chip" onclick="openLiveUserSheet('guest',0)">🦊 1</span><span class="lr-chip">👥 4</span><button class="lr-quick-ico" style="width:28px;height:28px;background:none" onclick="stopLiveAndReturnToSetup()">✕</button></div>
           </div>
           <div class="lr-sub-row" style="margin-top:6px">
-            <div style="display:flex;gap:5px"><span class="lr-chip">💎 Liga D2 Top 99%</span><span class="lr-chip" style="color:var(--acc)" onclick="showEl('liveSizeModal',true,'flex')">👥 <strong id="inLiveSlotBtnTxt">Panel (4) ▾</strong></span></div>
-            <div style="display:flex;gap:5px"><span class="lr-chip" style="color:#ffd700" onclick="grabLiveChest()">Galerie 2/11 • 💥 <strong id="chestProgTxt">0%</strong></span><span class="lr-chip">🛡️ <span id="modPoolTxt">0</span>🪙</span></div>
+            <div style="display:flex;gap:5px"><span class="lr-chip">💎 Liga Starter • LVL 1</span><span class="lr-chip" style="color:var(--acc)" onclick="showEl('liveSizeModal',true,'flex')">👥 <strong id="inLiveSlotBtnTxt">Panel (4) ▾</strong></span></div>
+            <div style="display:flex;gap:5px"><span class="lr-chip" style="color:#ffd700" onclick="grabLiveChest()">Schatzkiste • 💥 <strong id="chestProgTxt">0%</strong></span><span class="lr-chip">🛡️ <span id="modPoolTxt">0</span>🪙</span></div>
           </div>
-          <div id="pkBarWrap" class="pk-bar-wrap"><div class="pk-bar"><div style="width:40%;background:#f43f5e;padding-left:6px">12</div><div style="width:60%;background:#0284c7;text-align:right;padding-right:6px">24</div></div></div>
+          <div id="pkBarWrap" class="pk-bar-wrap"><div class="pk-bar"><div style="width:50%;background:#f43f5e;padding-left:6px">0</div><div style="width:50%;background:#0284c7;text-align:right;padding-right:6px">0</div></div></div>
         </div>
         <div class="lr-center-area" onclick="toggleTypingMode(false)"><div id="lrStageGrid" class="lr-stage-grid"></div></div>
         <div class="lr-chat-section">
@@ -350,14 +343,14 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
             <button class="lr-quick-ico" id="lrBtnCam" onclick="togLiveCond('cam')">📷</button>
             <button class="lr-quick-ico" id="lrBtnMic" onclick="togLiveCond('mic')">🎙️</button>
             <button class="lr-quick-ico" onclick="showEl('liveSizeModal',true,'flex')">👥</button>
-            <button class="lr-quick-ico" onclick="sendGift('❤️‍🔥 Teamherz',25,'❤️‍🔥')">❤️‍🔥</button>
+            <button class="lr-quick-ico" onclick="sendGift('❤️‍🔥 VYBE-Funke',25,'❤️‍🔥')">❤️‍🔥</button>
             <button class="lr-quick-ico" style="background:linear-gradient(135deg,#ff2a5f,#ff6b00)" onclick="setTxt('modGiftCoins',state.coins.toLocaleString('de-DE'));showEl('liveGiftModal',true,'flex')">🎁</button>
             <button class="lr-quick-ico" onclick="shareLiveStream()">↗</button>
           </div>
           <div class="lr-white-kb-bar">
             <span style="font-size:1.1rem;cursor:pointer" onclick="toggleTypingMode(false)">✨</span>
             <input id="lrKbRealInp" class="inp" style="margin:0;background:#f3f4f6;color:#111;border-radius:99px" placeholder="Tippen ..." onkeydown="if(event.key==='Enter')sendLiveChatMsg()"/>
-            <span style="font-size:1.1rem;cursor:pointer" onclick="sendGift('❤️‍🔥 Teamherz',25,'❤️‍🔥')">♡</span>
+            <span style="font-size:1.1rem;cursor:pointer" onclick="sendGift('❤️‍🔥 VYBE-Funke',25,'❤️‍🔥')">♡</span>
             <button onclick="sendLiveChatMsg()" style="border:none;background:none;font-size:1.1rem;font-weight:900;cursor:pointer">➤</button>
           </div>
         </div>
@@ -368,18 +361,18 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
   <!-- 5. CLUB -->
   <section id="view-club" class="view">
     <div class="card">
-      <div class="c-tit"><span>🎰 Täglicher Neon-Tresor (3×)</span><span class="badge">⏱️ <span id="onMinsTxt">9 Min.</span></span></div>
+      <div class="c-tit"><span>🎰 Täglicher Neon-Tresor (3×)</span><span class="badge">⏱️ <span id="onMinsTxt">0 Min.</span></span></div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px;text-align:center;font-size:.66rem"><div id="vSlot1" class="xp-box" style="margin:0"></div><div id="vSlot2" class="xp-box" style="margin:0"></div><div id="vSlot3" class="xp-box" style="margin:0"></div></div>
       <div style="display:flex;gap:6px"><button class="btn gold" style="flex:2" onclick="spinVault()">🎰 Tresor öffnen</button><button class="btn sec" style="flex:1" onclick="state.onlineMins+=30;updateUI()">⏩ +30m</button></div>
     </div>
     <div class="card">
-      <div class="c-tit"><span>👀 10 Kurzvideos schauen</span><span class="badge" id="wProgTxt">4 / 10</span></div>
-      <div class="xp-bg"><div class="xp-fill" id="wBarFill" style="width:40%"></div></div>
+      <div class="c-tit"><span>👀 10 Kurzvideos schauen</span><span class="badge" id="wProgTxt">0 / 10</span></div>
+      <div class="xp-bg"><div class="xp-fill" id="wBarFill" style="width:0%"></div></div>
       <div style="display:flex;gap:6px;margin-top:6px"><button class="btn" style="flex:2" onclick="claimWatch()">🎁 50 Coins abholen</button><button class="btn sec" style="flex:1" onclick="if(state.watched<10)state.watched++;updateUI()">+1 Video</button></div>
     </div>
-    <div class="card"><div class="c-tit"><span>🌱➡️👑 Entdecker-Karten</span><span class="badge" id="founderBonusBdg">+10 % XP</span></div><div id="founderCardsGrid" class="founder-grid"></div></div>
+    <div class="card"><div class="c-tit"><span>🌱➡️👑 Entdecker-Karten (Alle LVL 1)</span><span class="badge" id="founderBonusBdg">+0 % XP</span></div><div id="founderCardsGrid" class="founder-grid"></div></div>
     <div class="card">
-      <div class="c-tit"><span>🃏 Holo-Booster & Shop</span><span class="badge" style="color:#ffd700">🪙 <span id="clubCoins">6.750</span></span></div>
+      <div class="c-tit"><span>🃏 Holo-Booster & Shop</span><span class="badge" style="color:#ffd700">🪙 <span id="clubCoins">1.000</span></span></div>
       <div style="display:flex;gap:6px;margin-bottom:7px"><button class="btn hot" style="flex:1" onclick="openBooster()">🃏 Booster (250 🪙)</button><button class="btn sec" style="flex:1" onclick="state.coins+=150;toast('⚔️ +150 🪙');updateUI()">⚔️ Duell (+150)</button></div>
       <div id="boosterResultTxt" style="font-size:.72rem;font-weight:800;color:#ffd700;margin-bottom:6px"></div>
       <button class="btn gold full" onclick="openAccountSection('wallet')">👛 Zum Guthaben & Coin-Paketen</button>
@@ -395,15 +388,15 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
       </div>
       <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;margin-top:14px">
         <div class="p-av" id="profAv"><label class="p-av-plus">+<input type="file" accept="image/*" style="display:none" onchange="uploadImgStore(event,'vybe_avatar')"/></label></div>
-        <div style="display:flex;align-items:center;gap:6px;margin-top:8px"><strong style="font-size:1.1rem;color:#fff" id="pNameHdr">Mila Moves</strong><span class="badge" id="pMemBdg">LVL 5</span><span class="badge" id="pStrBdg" style="display:none;color:#ffd700">👑 S-LVL 1</span></div>
-        <div style="font-size:.73rem;color:#cbd5e1" id="pHdlHdr">@mila.moves</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:8px"><strong style="font-size:1.1rem;color:#fff" id="pNameHdr">Alex Vibe</strong><span class="badge" id="pMemBdg">LVL 1</span><span class="badge" id="pStrBdg" style="color:#ffd700">👑 S-LVL 1</span></div>
+        <div style="font-size:.73rem;color:#cbd5e1" id="pHdlHdr">@alex.vibe</div>
         <div style="display:flex;gap:16px;margin:10px 0;color:#fff;font-size:.86rem;font-weight:900">
-          <div>4.785 <span style="font-size:.6rem;font-weight:400;display:block">Gefolgt</span></div>
-          <div>2.888 <span style="font-size:.6rem;font-weight:400;display:block">Follower</span></div>
-          <div style="color:#ffd700"><span id="profCoins">6.750</span> <span style="font-size:.6rem;font-weight:400;display:block;color:#fff">Coins 🪙</span></div>
+          <div>0 <span style="font-size:.6rem;font-weight:400;display:block">Gefolgt</span></div>
+          <div>0 <span style="font-size:.6rem;font-weight:400;display:block">Follower</span></div>
+          <div style="color:#ffd700"><span id="profCoins">1.000</span> <span style="font-size:.6rem;font-weight:400;display:block;color:#fff">Coins 🪙</span></div>
           <div style="color:#00f2fe"><span id="profDiamonds">0</span> <span style="font-size:.6rem;font-weight:400;display:block;color:#fff">Diamanten 💎</span></div>
         </div>
-        <div style="font-size:.74rem;color:#fff" id="pBioHdr">Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿</div>
+        <div style="font-size:.74rem;color:#fff" id="pBioHdr">Willkommen auf meinem VYBE-Profil! 🌿</div>
       </div>
     </div>
     <div class="sub-bar">
@@ -413,14 +406,14 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
     </div>
     <div id="pt-level">
       <div class="card">
-        <div class="c-tit"><span>📈 Deine 2 Level-Balken</span><span class="badge">Host = 50% XP!</span></div>
-        <div class="xp-box"><div style="display:flex;justify-content:space-between;font-size:.72rem;font-weight:800"><span id="b1Lbl">⚡ LVL 5</span><span id="b1Xp">0 / 600 XP</span></div><div class="xp-bg"><div class="xp-fill" id="b1Fill"></div></div></div>
-        <div class="xp-box" style="margin:0"><div style="display:flex;justify-content:space-between;font-size:.72rem;font-weight:800"><span id="b2Lbl">🔒 STREAMER (Ab LVL 20)</span><span id="b2Xp">Noch 15 Lvl</span></div><div class="xp-bg"><div class="xp-fill" id="b2Fill"></div></div></div>
+        <div class="c-tit"><span>📈 Deine Level-Balken (Alle auf LVL 1)</span><span class="badge">Host = 50% XP!</span></div>
+        <div class="xp-box"><div style="display:flex;justify-content:space-between;font-size:.72rem;font-weight:800"><span id="b1Lbl">⚡ HAUPT-RANG: LVL 1</span><span id="b1Xp">0 / 250 XP</span></div><div class="xp-bg"><div class="xp-fill" id="b1Fill"></div></div></div>
+        <div class="xp-box" style="margin:0"><div style="display:flex;justify-content:space-between;font-size:.72rem;font-weight:800"><span id="b2Lbl">👑 STREAMER-RANG: S-LVL 1</span><span id="b2Xp">0 / 1.000 S-XP</span></div><div class="xp-bg"><div class="xp-fill" id="b2Fill"></div></div></div>
       </div>
-      <div class="card"><div class="c-tit"><span>🃏 VYBE Holo-Sammlerkarte</span><span class="badge" id="cPowTxt">⚡ POWER 225</span></div><div class="holo"><strong id="cOwnName">Mila Moves</strong><div style="font-size:.7rem;color:var(--acc)" id="cRanksTxt">Mitglieds-Rang LVL 5</div></div></div>
+      <div class="card"><div class="c-tit"><span>🃏 VYBE Holo-Sammlerkarte</span><span class="badge" id="cPowTxt">⚡ POWER 125</span></div><div class="holo"><strong id="cOwnName">Alex Vibe</strong><div style="font-size:.7rem;color:var(--acc)" id="cRanksTxt">Mitglieds-Rang LVL 1 • S-LVL 1</div></div></div>
     </div>
     <div id="pt-edit" style="display:none" class="card">
-      <input id="inName" class="inp" value="Mila Moves" oninput="updIdent()"/><input id="inHdl" class="inp" value="@mila.moves" oninput="updIdent()"/><input id="inBio" class="inp" value="Kleiner Reminder: Du musst nicht jeden Tag alles schaffen. 🌿" oninput="updIdent()"/>
+      <input id="inName" class="inp" value="Alex Vibe" oninput="updIdent()"/><input id="inHdl" class="inp" value="@alex.vibe" oninput="updIdent()"/><input id="inBio" class="inp" value="Willkommen auf meinem VYBE-Profil! 🌿" oninput="updIdent()"/>
       <button class="btn full" onclick="swProf('level');toast('✅ Gespeichert!')">💾 Speichern</button>
     </div>
     <div id="pt-shop" style="display:none" class="card">
@@ -428,7 +421,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
       <button class="btn full" onclick="addProd()">➕ Anlegen & pinnen</button><div id="prodList" style="margin-top:8px"></div>
     </div>
     <div class="card">
-      <div class="m-tabs"><button class="sub-btn active" id="mt-videos" onclick="swLib('videos')">🎬 Videos (<span id="cVid">2</span>)</button><button class="sub-btn" id="mt-saved" onclick="swLib('saved')">🔖 Gespeichert (<span id="cSav">1</span>)</button><button class="sub-btn" id="mt-favs" onclick="swLib('favs')">⭐ Favoriten (<span id="cFav">1</span>)</button></div>
+      <div class="m-tabs"><button class="sub-btn active" id="mt-videos" onclick="swLib('videos')">🎬 Videos (<span id="cVid">0</span>)</button><button class="sub-btn" id="mt-saved" onclick="swLib('saved')">🔖 Gespeichert (<span id="cSav">0</span>)</button><button class="sub-btn" id="mt-favs" onclick="swLib('favs')">⭐ Favoriten (<span id="cFav">0</span>)</button></div>
       <div class="m-grid-lib" id="libGrid"></div>
     </div>
   </section>
@@ -437,7 +430,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
   <section id="view-settings" class="view">
     <div style="display:flex;justify-content:space-between;margin-bottom:8px"><button class="btn sec" onclick="toggleRightDrawer(true)">☰ Menü rechts</button><button class="btn sec" onclick="openView('profile')">👤 Zum Profil</button></div>
     <div id="accSec-wallet" class="card">
-      <div class="c-tit"><span>👛 Guthaben & Coins aufladen</span><span class="badge" style="color:#ffd700">🪙 <span id="walletCoinsTxt">6.750</span></span></div>
+      <div class="c-tit"><span>👛 Guthaben & Coins aufladen</span><span class="badge" style="color:#ffd700">🪙 <span id="walletCoinsTxt">1.000</span></span></div>
       <div id="coinShopGridBox" class="coin-shop-grid"></div>
       <div class="c-tit" style="margin-top:8px"><span>💎 Streamer-Guthaben & Auszahlung</span><span class="badge" id="setSplitBdg">S-LVL 1</span></div>
       <div class="xp-box" style="font-size:.72rem">
@@ -450,11 +443,11 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
     <div id="accSec-referral" class="card">
       <div class="c-tit"><span>🎁 Freunde einladen</span><span class="badge" style="color:#ffd700">🔥 +1.400 🪙</span></div>
       <div class="ref-steps"><div class="ref-step-box"><span class="badge">⚡ SOFORT</span><div class="ref-coin-big">+400 🪙</div><div style="font-size:.7rem">Für DICH & Freund</div></div><div class="ref-step-box"><span class="badge">🏆 LVL 15</span><div class="ref-coin-big">+1.000 🪙</div><div style="font-size:.7rem">Extra für DICH</div></div></div>
-      <div style="display:flex;gap:6px;margin-bottom:6px"><input id="refLinkInp" class="inp" style="margin:0" readonly value="https://vybe.club/join?ref=mila_moves"/><button class="btn gold" onclick="copyRefLink()">Kopieren</button></div>
+      <div style="display:flex;gap:6px;margin-bottom:6px"><input id="refLinkInp" class="inp" style="margin:0" readonly value="https://vybe.club/join?ref=alex_vibe"/><button class="btn gold" onclick="copyRefLink()">Kopieren</button></div>
       <div style="display:flex;gap:6px"><button class="btn sec" style="flex:1" onclick="triggerRefReward(400,true)">➕ Freund (+400)</button><button class="btn gold" style="flex:1" onclick="triggerRefReward(1000,false)">🏆 LVL 15 (+1.000)</button></div>
     </div>
     <div id="accSec-design" class="card"><div class="c-tit"><span>🎨 Hintergrund & Stimmung</span></div><div id="gSel" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"></div><div id="mSel" style="display:flex;gap:5px;flex-wrap:wrap;margin-top:8px"></div></div>
-    <div id="accSec-privacy" class="card"><div class="c-tit"><span>⚙️ Einstellungen & Datenschutz</span><span class="badge">DSGVO & DDG</span></div><input class="inp" value="mila.moves@vybe.club"/><div id="legalBox"></div><div style="display:flex;gap:6px;margin-top:6px"><button class="btn" style="flex:1" onclick="toast('✅ Gesichert!')">💾 Speichern</button><button class="btn hot" style="flex:1" onclick="localStorage.clear();indexedDB.deleteDatabase('VYBE_LocalMediaDB');toast('🗑️ Gelöscht!')">🗑️ Reset</button></div></div>
+    <div id="accSec-privacy" class="card"><div class="c-tit"><span>⚙️ Einstellungen & Datenschutz</span><span class="badge">DSGVO & DDG</span></div><input class="inp" value="alex.vibe@vybe.club"/><div id="legalBox"></div><div style="display:flex;gap:6px;margin-top:6px"><button class="btn" style="flex:1" onclick="toast('✅ Gesichert!')">💾 Speichern</button><button class="btn hot" style="flex:1" onclick="wipeAllMediaAndReset()">🗑️ Alles auf 0 setzen</button></div></div>
   </section>
 </main></div>
 
@@ -467,33 +460,76 @@ const CFG = {
   road:[['🔥 Vorregistrierungs-Bonus','+25 % Coins ab 100k / +50 % ab 500k Nutzern','Launch'],['⚡ VYBE-Funke (Tages-System)','1-Coin-Funke + 3× Chat + 5m Schauen = Extra-XP','Update 1.1'],['🎡 Live-Aktionsrad','4 Streamer-Aufgaben bei Geschenk-Zielen','Update 1.2'],['🏦 Deine Betreiber-Marge','S-LVL 1–10: 15% | 11–30: 30% | 31–40: 40% | 41–50: 50%','Intern aktiv']],
   bgs:[['🌲 Forest','1511497584788-876760111969'],['🏜️ Canyon','1469854523086-cc02fe5d8800'],['🌃 Tokyo','1518709268805-4e9042af9f23'],['🌅 Beach','1507525428034-b723cf961d3e'],['🌌 Space','1534447677768-be436bb09401'],['⬛ Dark','']],
   moods:[['lime','✳️ Lime'],['light','☀️ Light White'],['night','🌙 Cyber'],['chill','🌿 Mint'],['hype','🔥 Pink'],['cyber','🤖 Aqua'],['sunset','🌅 Sunset'],['lava','🌋 Lava'],['arctic','❄️ Arctic'],['sakura','🌸 Sakura'],['gold','👑 Gold'],['galaxy','🌌 Galaxy']],
-  gifts:[['🍪 Keks',10,'🍪'],['❤️‍🔥 Teamherz',25,'❤️‍🔥'],['💖 Familie',50,'💖'],['🐸 Frosch',100,'🐸'],['⚡ Blitz',500,'⚡'],['🐉 Drache',2500,'🐉']]
+  gifts:[['🍪 Keks',10,'🍪'],['❤️‍🔥 Funke',25,'❤️‍🔥'],['💖 Crew-Herz',50,'💖'],['🐸 Frosch',100,'🐸'],['⚡ Blitz',500,'⚡'],['🐉 Drache',2500,'🐉']]
 };
+
+/* KOMPLETTER RESET AUF LEVEL 1, NEUE ERFUNDENE NAMEN & 0 HOCHGELADENE VIDEOS */
 const state = {
-  coins:6750, diamonds:0, mLvl:5, mXp:0, sLvl:1, sXp:0, onlineMins:9, vClaim:[false,false,false], watched:4, wClaimed:false,
-  slots:5, liveRunning:false, liveHostLabel:'⚜️☕INFINITY☕⚜️', hostCut:20, modCut:3, modCoinsPool:0, chestGiftCoins:0, chestReadyPool:0,
-  wkHours:0, isOwnLive:true, camBright:true, micOn:true, stream:null, libTab:'videos', pinIdx:0, refCount:2, refEarned:1800, logoTaps:0,
+  coins:1000, diamonds:0, mLvl:1, mXp:0, sLvl:1, sXp:0, onlineMins:0, vClaim:[false,false,false], watched:0, wClaimed:false,
+  slots:5, liveRunning:false, liveHostLabel:'Alex Vibe', hostCut:20, modCut:3, modCoinsPool:0, chestGiftCoins:0, chestReadyPool:0,
+  wkHours:0, isOwnLive:true, camBright:true, micOn:true, stream:null, libTab:'videos', pinIdx:0, refCount:0, refEarned:0, logoTaps:0,
   admNotes:['VIP & SVIP mit 85% Sofort-Coins testen','Vorregistrierungs-Bonus (100k/500k) für Launch bereit'],
   activeDmIdx:0,
   dms:[
-    {name:'⚜️☕INFINITY☕⚜️',emo:'👑',unread:1,msgs:[{me:false,t:'Hey! Kommst du heute Abend wieder mit ins 8er Battlebox-Live? 🔥'},{me:true,t:'Ja klar, bin ab 20 Uhr am Start! 🙌'}]},
-    {name:'🍝Nudel King🍝',emo:'🍝',unread:1,msgs:[{me:false,t:'Danke für die Geschenke vorhin im Stream! ❤️‍🔥'}]},
-    {name:'💜ℒℴ𝓀ℴ🧸𝒜𝓃𝒾™💜',emo:'👩🏻',unread:0,msgs:[{me:false,t:'Guten Morgen! Dein neues Video im Feed ist mega geworden 🎬'}]},
-    {name:'@neon.jay',emo:'🎧',unread:0,msgs:[{me:false,t:'Lass später mal zusammen 2er-Battle testen!'}]}
+    {name:'@NovaFox',emo:'🦊',unread:1,msgs:[{me:false,t:'Hey! Willkommen bei VYBE, lass später mal das Multi-Live testen! 🔥'}]},
+    {name:'@LucaBeat',emo:'🎧',unread:1,msgs:[{me:false,t:'Coole App-Optik! Schreib mir, wenn du online bist 🙌'}]},
+    {name:'@MiaGlow',emo:'🌸',unread:0,msgs:[{me:false,t:'Hallo! Viel Erfolg beim Leveln ab Level 1 ✨'}]},
+    {name:'@KaiWave',emo:'⚡',unread:0,msgs:[{me:false,t:'Bereit für die nächste Live-Runde!'}]}
   ],
-  founders:[{id:1,name:'@kleiner_max',lvl:6,supported:true,gold:false},{id:2,name:'@melody_mia',lvl:8,supported:false,gold:false},{id:3,name:'@street_leo',lvl:20,supported:true,gold:true}],
-  prods:[{name:'VYBE Limited Cap',price:'29,90 €'}],
-  guests:[{n:'🍝Nudel King...',e:'🍝',s:20,lvl:26,bg:'#1f1624'},{n:'ℒℴ𝓃𝒾 ✝ ℒ𝒶𝓃',e:'👩‍❤️‍👨',s:20,lvl:21,bg:'#3b1229'},{n:'💜ℒℴ𝓀ℴ🧸...',e:'👩🏻',s:118,lvl:34,bg:'#132a2e'},{n:'Guten Mor...',e:'G',s:20,lvl:14,bg:'#9333ea'},{n:'Shahya...',e:'🧢',s:2,lvl:9,bg:'#1e293b'},{n:'Abbas...',e:'👦🏻',s:2,lvl:11,bg:'#1e293b'},{n:'srkl edits',e:'🙇🏻',s:0,lvl:7,bg:'#1e293b'},{n:'Amir 🔥',e:'🔥',s:50,lvl:26,bg:'#311010'}],
-  lib:{videos:[{t:'Morning Reset',v:'25,4 Tsd.',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80',type:'img'},{t:'Forest Walk',v:'12,1 Tsd.',bg:'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=400&q=80',type:'img'}],saved:[{t:'Tokyo Drift',v:'🔖 @neon.jay',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',type:'img'}],favs:[{t:'Golden Beach',v:'⭐ @luna.vibe',bg:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80',type:'img'}]}
+  founders:[
+    {id:1,name:'@robin_art',lvl:1,supported:false,gold:false},
+    {id:2,name:'@lara_sound',lvl:1,supported:false,gold:false},
+    {id:3,name:'@nico_flow',lvl:1,supported:false,gold:false}
+  ],
+  prods:[{name:'VYBE Starter Shirt',price:'24,90 €'}],
+  guests:[
+    {n:'@NovaFox',e:'🦊',s:0,lvl:1,bg:'#1f1624'},{n:'@LucaBeat',e:'🎧',s:0,lvl:1,bg:'#3b1229'},
+    {n:'@MiaGlow',e:'🌸',s:0,lvl:1,bg:'#132a2e'},{n:'@KaiWave',e:'⚡',s:0,lvl:1,bg:'#3b1d5e'},
+    {n:'@ZoeStar',e:'⭐',s:0,lvl:1,bg:'#1e293b'},{n:'@LeoPulse',e:'🦁',s:0,lvl:1,bg:'#1e293b'},
+    {n:'@NinaSky',e:'🌙',s:0,lvl:1,bg:'#1e293b'},{n:'@TimonX',e:'🚀',s:0,lvl:1,bg:'#311010'}
+  ],
+  lib:{videos:[],saved:[],favs:[]}
 };
+
 const clips = [
-  {tag:'✦ MORNING RESET',snd:'♫ Originalton · mila.moves',n:'Mila Moves',h:'@mila.moves',t:'Kleiner Reminder: Du musst nicht jeden Tag alles',s:'Du musst nicht jeden Tag alles schaffen. 🌿',g:'#minivlog #mindset',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false},
-  {tag:'⚡ VYBE PANEL LIVE',snd:'♫ Originalton · INFINITY',n:'⚜️☕INFINITY☕⚜️',h:'@infinity.vybe',t:'Neuer Posteingang + Farbwechsel bei Herz & Merken!',s:'Tippe unten auf 💬 Post um Freunden direkt zu schreiben 🔥',g:'#vybe #posteingang #live',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false}
+  {tag:'✦ VYBE START',snd:'♫ Originalton · alex.vibe',n:'Alex Vibe',h:'@alex.vibe',t:'Willkommen im VYBE Short Video Club',s:'Alle Level auf LVL 1 & Mediathek auf 0 zurückgesetzt! 🌿',g:'#vybe #start',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false},
+  {tag:'⚡ MULTI-LIVE CLUB',snd:'♫ Synthwave · nova.fox',n:'Nova Fox',h:'@nova.fox',t:'Starte dein eigenes Live-Panel im Studio!',s:'Schreibe Freunden direkt über den neuen Posteingang 💬',g:'#vybeclub #live',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false}
 ];
 let cIdx = 0, vybeDb = null;
 const reqM = l => CFG.mXp[l<5?0:l<10?1:l<15?2:l<20?3:l<30?4:l<40?5:6], reqS = l => CFG.sXp[l<5?0:l<10?1:l<15?2:l<20?3:l<30?4:l<40?5:6];
 
-/* POSTEINGANG & DIREKT-CHAT LOGIK */
+/* AUTOMATISCHES LÖSCHEN DER ALTEN HOCHGELADENEN VIDEOS BEIM START */
+function initCleanMediaDB(){
+  try{
+    if(!localStorage.getItem('vybe_clean_reset_v3')){
+      indexedDB.deleteDatabase('VYBE_LocalMediaDB');
+      localStorage.removeItem('vybe_dms');
+      localStorage.setItem('vybe_clean_reset_v3','1');
+    }
+    const req = indexedDB.open('VYBE_LocalMediaDB',1);
+    req.onupgradeneeded = e => { const db=e.target.result; if(!db.objectStoreNames.contains('uploads')) db.createObjectStore('uploads',{keyPath:'id',autoIncrement:true}); };
+    req.onsuccess = e => {
+      vybeDb = e.target.result;
+      const r2 = vybeDb.transaction('uploads','readonly').objectStore('uploads').getAll();
+      r2.onsuccess = () => {
+        (r2.result||[]).forEach(it=>{
+          const url = it.blob ? URL.createObjectURL(it.blob) : it.dataUrl; if(!url) return;
+          state.lib.videos.unshift({t:it.title,v:it.sub,bg:url,type:it.type});
+          clips.unshift({tag:'★ UPLOAD',snd:'♫ Originalton',n:$('inName')?.value||'Alex Vibe',h:$('inHdl')?.value||'@alex.vibe',t:it.title,s:it.sub,g:'#vybe',bg:it.type==='img'?url:clips[0].bg,vidUrl:it.type==='video'?url:null,liked:false,saved:false});
+        });
+        renderLib();
+      };
+    };
+  }catch(e){}
+}
+function wipeAllMediaAndReset(){
+  try{ indexedDB.deleteDatabase('VYBE_LocalMediaDB'); localStorage.clear(); }catch(e){}
+  state.lib.videos=[]; state.lib.saved=[]; state.lib.favs=[];
+  state.mLvl=1; state.mXp=0; state.sLvl=1; state.sXp=0;
+  renderLib(); updateUI(); toast('🗑️ Alle Videos gelöscht & Level auf 1 gesetzt!');
+}
+
+/* POSTEINGANG & DIREKT-CHAT */
 function renderInbox(){
   const unreadTotal = state.dms.reduce((a,b)=>a+(b.unread||0),0);
   showEl('hdrMsgBdg',unreadTotal>0,'inline-block'); setTxt('hdrMsgBdg',unreadTotal);
@@ -519,7 +555,6 @@ function openDmWith(name){
 function sendDirectMsg(){
   const inp=$('dmInput'); const txt=inp?inp.value.trim():''; if(!txt)return;
   const cur=state.dms[state.activeDmIdx]; cur.msgs.push({me:true,t:txt}); inp.value='';
-  try{localStorage.setItem('vybe_dms',JSON.stringify(state.dms))}catch(e){}
   renderInbox(); addMXp(5);
 }
 function sendDmGift(){
@@ -527,26 +562,6 @@ function sendDmGift(){
   state.coins-=50; const cur=state.dms[state.activeDmIdx];
   cur.msgs.push({me:true,t:'🎁 Ich habe dir +50 Coins im Chat geschickt! 🪙❤️'});
   renderInbox(); addMXp(50); toast('🎁 +50 Coins im Chat gesendet!');
-}
-
-/* INDEXED-DB FÜR DAUERHAFTE VIDEO- & FOTO-UPLOADS */
-function initMediaDB(){
-  try{
-    const req = indexedDB.open('VYBE_LocalMediaDB',1);
-    req.onupgradeneeded = e => { const db=e.target.result; if(!db.objectStoreNames.contains('uploads')) db.createObjectStore('uploads',{keyPath:'id',autoIncrement:true}); };
-    req.onsuccess = e => {
-      vybeDb = e.target.result;
-      const r2 = vybeDb.transaction('uploads','readonly').objectStore('uploads').getAll();
-      r2.onsuccess = () => {
-        (r2.result||[]).forEach(it=>{
-          const url = it.blob ? URL.createObjectURL(it.blob) : it.dataUrl; if(!url) return;
-          state.lib.videos.unshift({t:it.title,v:it.sub,bg:url,type:it.type});
-          clips.unshift({tag:'★ UPLOAD',snd:'♫ Originalton',n:$('inName')?.value||'Mila Moves',h:$('inHdl')?.value||'@mila.moves',t:it.title,s:it.sub,g:'#vybe',bg:it.type==='img'?url:clips[0].bg,vidUrl:it.type==='video'?url:null,liked:false,saved:false});
-        });
-        if((r2.result||[]).length>0){ cIdx=0; showClipAtIndex(0,true); renderLib(); }
-      };
-    };
-  }catch(e){}
 }
 
 function handleLogoTap(){
@@ -586,12 +601,11 @@ function initStaticUI(){
   ].map(l=>`<details class="legal-details"><summary>${l[0]}</summary><p style="margin-top:4px;font-size:.68rem">${l[1]}</p></details>`).join(''));
   setHtml('qrGridBox', [1,1,1,0,1,1,1,1,2,1,1,1,2,1,1,1,1,0,1,1,1,0,1,0,2,0,1,0,1,1,1,0,1,2,1,1,2,1,1,0,1,1,1,1,1,0,1,1,1].map(c=>`<div style="border-radius:2px;background:${c===0?'transparent':c===2?'#ff2a5f':'#111'}"></div>`).join(''));
   setHtml('lrChatList', [
-    ['G','Guten Morgen',''],
-    ['🎁','⚜️☕INFINITY☕⚜️','hat Guten Morgen Schatzi <strong>Schokoladenkeks 🍪 ×4</strong> gesendet',21],
-    ['👩🏻','💜ℒℴ𝓀ℴ🧸𝒜𝓃𝒾™💜','@Justine.zeitlinger Guten Morgen ❤️',34],
-    ['🎁','Amir 🔥','hat 💜ℒℴ𝓀ℴ🧸𝒜𝓃𝒾™💜 <strong>Familie 💖 ×1</strong> gesendet',26],
-    ['👋','Guido NRW','<strong>ist beigetreten</strong>',18]
-  ].map(m=>`<div class="lr-msg-row"><div class="lr-msg-av">${m[0]}</div><div>${m[3]?`<span class="lr-lvl-bdg">💎 ${m[3]}</span>`:''}<strong style="color:#fff">${m[1]}</strong> ${m[2]}</div></div>`).join(''));
+    ['🦊','@NovaFox','Willkommen im neuen Live-Stream! 🔥',1],
+    ['🎧','@LucaBeat','hat <strong>Keks 🍪 ×1</strong> gesendet',1],
+    ['🌸','@MiaGlow','Hallo zusammen! ❤️',1],
+    ['⚡','@KaiWave','<strong>ist beigetreten</strong>',1]
+  ].map(m=>`<div class="lr-msg-row"><div class="lr-msg-av">${m[0]}</div><div><span class="lr-lvl-bdg">💎 ${m[3]}</span><strong style="color:#fff">${m[1]}</strong> ${m[2]}</div></div>`).join(''));
 }
 
 function launchCleanLiveStream(){ state.liveRunning=true; document.body.classList.add('in-live'); showEl('preLiveSetupCard',false); showEl('studioTopSwitch',false); showEl('activeLiveRoomScreen',true,'flex'); renderLiveGrid(); if(!state.stream)startMedia(); }
@@ -604,11 +618,11 @@ function stopLiveAndReturnToSetup(){
 function toggleTypingMode(on){ $('activeLiveRoomScreen')?.classList.toggle('typing-active',on); if(on)setTimeout(()=>$('lrKbRealInp')?.focus(),60); }
 function renderLiveGrid(){
   const st=$('lrStageGrid'); if(!st)return;
-  const hL=state.liveHostLabel||($('inName')?.value||'⚜️☕INFINITY☕⚜️'); setTxt('lrTopHostName',hL);
+  const hL=state.liveHostLabel||($('inName')?.value||'Alex Vibe'); setTxt('lrTopHostName',hL);
   setTxt('inLiveSlotBtnTxt', state.slots===1?'Solo (1) ▾':state.slots===2?'2er Battle ▾':`Panel (${state.slots-1}) ▾`);
   showEl('pkBarWrap', state.slots===2, 'flex');
   const vOn = state.stream && state.camBright;
-  const hBox = `<div class="lr-main-box" onclick="openLiveUserSheet('host')"><video id="liveHostVid" autoplay playsinline muted style="${vOn?'display:block':'display:none'}"></video><span class="lr-pts-tag">Host</span><div style="${vOn?'display:none':''}"><div style="font-size:.75rem;font-weight:900;color:#38bdf8">INFINITY Isy</div><div style="font-size:1.15rem;font-weight:900;color:#fff;text-shadow:0 0 10px #ec4899">BATTLEBOX</div><div style="font-size:.68rem;color:#fde047">loni • markus<br/>Nudelking • Loko</div></div><span class="lr-name-bot">${hL}</span></div>`;
+  const hBox = `<div class="lr-main-box" onclick="openLiveUserSheet('host')"><video id="liveHostVid" autoplay playsinline muted style="${vOn?'display:block':'display:none'}"></video><span class="lr-pts-tag">Host • LVL 1</span><div style="${vOn?'display:none':''}"><div style="font-size:.75rem;font-weight:900;color:#38bdf8">VYBE CLUB</div><div style="font-size:1.15rem;font-weight:900;color:#fff;text-shadow:0 0 10px #ec4899">LIVE STAGE</div><div style="font-size:.68rem;color:#fde047">Talk • Musik • Gaming</div></div><span class="lr-name-bot">${hL}</span></div>`;
   if(state.slots===1){ st.className='lr-stage-grid solo-only'; st.innerHTML=hBox; }
   else if(state.slots===2){ const u=state.guests[0]; st.className='lr-stage-grid battle-2'; st.innerHTML=hBox+`<div class="lr-main-box" style="background:rgba(32,35,46,.55)" onclick="openLiveUserSheet('guest',0)"><span class="lr-pts-tag">🔵 ${u.s}</span><div class="lr-circle-av" style="width:64px;height:64px;font-size:1.6rem;background:${u.bg}">${u.e}</div><span class="lr-name-bot">${u.n}</span></div>`; }
   else {
@@ -630,7 +644,7 @@ function appendLiveChatRow(emo,name,lvl,txt){
   d.innerHTML=`<div class="lr-msg-av">${emo}</div><div><span class="lr-lvl-bdg">💎 ${lvl}</span><strong style="color:#fff">${name}</strong><br/>${txt}</div>`;
   l.appendChild(d); l.scrollTop=l.scrollHeight;
 }
-function shareLiveStream(){ appendLiveChatRow('🔁',$('inName')?.value||'Mila',state.mLvl,'<strong>erneut veröffentlicht</strong> 🔥'); toast('↗ Geteilt!'); }
+function shareLiveStream(){ appendLiveChatRow('🔁',$('inName')?.value||'Alex Vibe',state.mLvl,'<strong>hat das Live geteilt</strong> 🔥'); toast('↗ Geteilt!'); }
 function openLiveUserSheet(t,i=0){
   const u = t==='host'?{e:'👑',n:state.liveHostLabel,lvl:state.mLvl}:(state.guests[i]||state.guests[0]);
   setTxt('shAv',u.e); setTxt('shName',u.n); setTxt('shLvlTxt','💎 Lvl. '+u.lvl); showEl('liveUserSheet',true,'flex');
@@ -654,7 +668,7 @@ function recvGift(coins,guest){
   addGiftToLiveChest(coins); const gross = guest?Math.round(coins*.98*(state.hostCut/100)):Math.round(coins*.98);
   const mC = Math.round(gross*(state.modCut/100)); state.modCoinsPool+=mC; const dia = Math.max(1,gross-mC); state.diamonds+=dia;
   addMXp(Math.floor(gross*.5)); if(state.mLvl>=20){state.sXp+=dia;while(state.sLvl<50&&state.sXp>=reqS(state.sLvl)){state.sXp-=reqS(state.sLvl);state.sLvl++;}}
-  appendLiveChatRow('🎁','🍝Nudel King🍝',26,`hat <strong>+${coins} 🪙</strong> gesendet`); toast(`💎 +${dia} Diamanten | 🛡️ +${mC} Mod-Coins`); updateUI();
+  appendLiveChatRow('🎁','@NovaFox',1,`hat <strong>+${coins} 🪙</strong> gesendet`); toast(`💎 +${dia} Diamanten | 🛡️ +${mC} Mod-Coins`); updateUI();
 }
 function addMXp(b){ if(state.mLvl>=50)return; state.mXp+=Math.round(b*(state.founders.some(f=>f.supported&&f.gold)?1.1:1)); while(state.mLvl<50&&state.mXp>=reqM(state.mLvl)){state.mXp-=reqM(state.mLvl);state.mLvl++;fx('🎉',`LEVEL ${state.mLvl}!`);} updateUI(); }
 function copyRefLink(){ navigator.clipboard?.writeText($('refLinkInp')?.value||'https://vybe.club'); toast('📋 Kopiert!'); }
@@ -677,11 +691,13 @@ function swProf(t){ ['level','edit','shop'].forEach(k=>{showEl(`pt-${k}`,k===t);
 function swLib(t){ state.libTab=t; ['videos','saved','favs'].forEach(k=>$(`mt-${k}`)?.classList.toggle('active',k===t)); renderLib(); }
 function renderLib(){
   const l=state.lib; setTxt('cVid',l.videos.length); setTxt('cSav',l.saved.length); setTxt('cFav',l.favs.length);
-  setHtml('libGrid',l[state.libTab].map((x,i)=>`<div class="m-item" style="${x.type!=='video'?`background-image:url('${x.bg}')`:''}" onclick="playMediaFromLib(${i})">${x.type==='video'?`<video src="${x.bg}" muted loop playsinline></video>`:''}<div style="position:relative;z-index:2;font-size:.64rem;font-weight:800;color:#fff">${x.t}</div><div style="position:relative;z-index:2;font-size:.55rem;color:var(--acc)">${x.v}</div></div>`).join(''));
+  const items = l[state.libTab];
+  if(!items.length){ setHtml('libGrid',`<div class="xp-box" style="grid-column:1/-1;text-align:center;font-size:.7rem;color:var(--mut);margin:0">Noch keine Videos vorhanden (0)</div>`); return; }
+  setHtml('libGrid',items.map((x,i)=>`<div class="m-item" style="${x.type!=='video'?`background-image:url('${x.bg}')`:''}" onclick="playMediaFromLib(${i})">${x.type==='video'?`<video src="${x.bg}" muted loop playsinline></video>`:''}<div style="position:relative;z-index:2;font-size:.64rem;font-weight:800;color:#fff">${x.t}</div><div style="position:relative;z-index:2;font-size:.55rem;color:var(--acc)">${x.v}</div></div>`).join(''));
 }
 function playMediaFromLib(i){
   const it=state.lib[state.libTab][i]; if(!it)return;
-  clips.unshift({tag:'★ MEDIATHEK',snd:'♫ Originalton',n:$('inName')?.value||'Mila Moves',h:$('inHdl')?.value||'@mila.moves',t:it.t,s:it.v,g:'#vybe',bg:it.type==='video'?clips[0].bg:it.bg,vidUrl:it.type==='video'?it.bg:null,liked:false,saved:false});
+  clips.unshift({tag:'★ MEDIATHEK',snd:'♫ Originalton',n:$('inName')?.value||'Alex Vibe',h:$('inHdl')?.value||'@alex.vibe',t:it.t,s:it.v,g:'#vybe',bg:it.type==='video'?clips[0].bg:it.bg,vidUrl:it.type==='video'?it.bg:null,liked:false,saved:false});
   cIdx=0; openView('feed');
 }
 function showClipAtIndex(i,play=true){
@@ -696,7 +712,6 @@ function showClipAtIndex(i,play=true){
 }
 function nextClip(){ cIdx=(cIdx+1)%clips.length; showClipAtIndex(cIdx,true); if(state.watched<10)state.watched++; updateUI(); }
 
-/* FARBWECHSEL BEI GEFÄLLT MIR (HERZ) & VIDEO MERKEN */
 function favClip(){
   const c=clips[cIdx]; c.liked=!c.liked;
   $('likeCir')?.classList.toggle('liked',c.liked);
@@ -709,37 +724,37 @@ function saveClip(){
   setTxt('saveLblTxt',c.saved?'Gemerkt':'Merken');
   if(c.saved && !state.lib.saved.some(x=>x.t===c.t)){ state.lib.saved.unshift({t:c.t,v:'🔖 '+c.h,bg:c.vidUrl||c.bg,type:c.vidUrl?'video':'img'}); renderLib(); toast('🔖 Video unter Gespeichert gemerkt!'); }
 }
-function commClip(){ setTxt('commTxt',(+($('commTxt')?.textContent||384))+1); addMXp(5); toast('💬 +5 XP'); }
+function commClip(){ setTxt('commTxt',(+($('commTxt')?.textContent||12))+1); addMXp(5); toast('💬 +5 XP'); }
 
 function uploadMediaFile(e,type){
   const f=e.target.files?.[0]; if(!f)return; const u=URL.createObjectURL(f), n=f.name.replace(/\.[^/.]+$/,"");
   state.lib.videos.unshift({t:n,v:type==='video'?'🎬 Gespeichert':'📸 Foto',bg:u,type});
-  clips.unshift({tag:'★ UPLOAD',snd:'♫ Originalton',n:$('inName')?.value||'Mila Moves',h:$('inHdl')?.value||'@mila.moves',t:n,s:type==='video'?'🎬 Gespeichert':'📸 Foto',g:'#vybe',bg:type==='img'?u:clips[0].bg,vidUrl:type==='video'?u:null,liked:false,saved:false});
+  clips.unshift({tag:'★ UPLOAD',snd:'♫ Originalton',n:$('inName')?.value||'Alex Vibe',h:$('inHdl')?.value||'@alex.vibe',t:n,s:type==='video'?'🎬 Gespeichert':'📸 Foto',g:'#vybe',bg:type==='img'?u:clips[0].bg,vidUrl:type==='video'?u:null,liked:false,saved:false});
   if(vybeDb){ try{vybeDb.transaction('uploads','readwrite').objectStore('uploads').add({title:n,sub:type==='video'?'🎬 Gespeichert':'📸 Foto',blob:f,type});}catch(err){} }
-  cIdx=0; renderLib(); toast(`✅ „${n}“ dauerhaft gespeichert!`);
+  cIdx=0; renderLib(); toast(`✅ „${n}“ gespeichert!`);
 }
 function uploadImgStore(e,key){
   const f=e.target.files?.[0]; if(!f)return; const r=new FileReader();
   r.onload=ev=>{ const u=ev.target.result; if(key==='vybe_banner')$('profBannerBox')?.style.setProperty('--prof-banner-bg',`url('${u}')`); else document.querySelectorAll('#profAv,.h-av,.c-av,#lrTopHostAv').forEach(el=>el.style.backgroundImage=`url('${u}')`); try{localStorage.setItem(key,u)}catch(err){} toast('✅ Bild gespeichert!'); };
   r.readAsDataURL(f);
 }
-function updIdent(){ const n=$('inName')?.value||'Mila Moves', h=$('inHdl')?.value||'@mila.moves'; setTxt('pNameHdr',n); setTxt('cOwnName',n); setTxt('qrNameTxt',n); setTxt('pHdlHdr',h); setTxt('qrHdlTxt','vybe.club/'+h); setTxt('pBioHdr',$('inBio')?.value||''); renderLiveGrid(); }
+function updIdent(){ const n=$('inName')?.value||'Alex Vibe', h=$('inHdl')?.value||'@alex.vibe'; setTxt('pNameHdr',n); setTxt('cOwnName',n); setTxt('qrNameTxt',n); setTxt('pHdlHdr',h); setTxt('qrHdlTxt','vybe.club/'+h); setTxt('pBioHdr',$('inBio')?.value||''); renderLiveGrid(); }
 function setBg(u){ document.body.style.setProperty('--app-bg',u?`url('${u}')`:'none'); if(u)$('profBannerBox')?.style.setProperty('--prof-banner-bg',`url('${u}')`); toast('🖼️ Hintergrund aktiv!'); }
 function setMood(m){ document.documentElement.setAttribute('data-mood',m); try{localStorage.setItem('vybe_mood',m)}catch(e){} toast('🎨 Stimmung aktiv!'); }
 function cycleFilter(){ const f=['none','hue-rotate(90deg)','contrast(1.3) saturate(1.5)','sepia(.6)']; state.fIdx=((state.fIdx||0)+1)%f.length; if($('camStage'))$('camStage').style.filter=f[state.fIdx]; }
-function addProd(){ state.prods.push({name:$('pNameIn')?.value||'VYBE Merch',price:$('pPriceIn')?.value||'29,90 €'}); updateUI(); toast('🛍️ Gepinnt!'); }
+function addProd(){ state.prods.push({name:$('pNameIn')?.value||'VYBE Merch',price:$('pPriceIn')?.value||'24,90 €'}); updateUI(); toast('🛍️ Gepinnt!'); }
 function filterSearch(q=''){
   if(q.trim().toLowerCase()==='#admin'){ if($('topSearchInp'))$('topSearchInp').value=''; if($('mainSearchInp'))$('mainSearchInp').value=''; openAdminPinPrompt(); return; }
-  const rooms=[{h:'⚜️☕INFINITY☕⚜️',t:'🔥 Battlebox Multi-Panel',s:5},{h:'🍝Nudel King🍝',t:'👥 Panel + Einladen',s:3},{h:'@Leonie',t:'⚔️ 2er Battle Live',s:2}];
+  const rooms=[{h:'@NovaFox',t:'🔥 Multi-Panel Live (LVL 1)',s:5},{h:'@LucaBeat',t:'👥 Panel + Einladen (LVL 1)',s:3},{h:'@MiaGlow',t:'⚔️ 2er Battle Live (LVL 1)',s:2}];
   setHtml('srchList',rooms.filter(r=>r.h.toLowerCase().includes(q.toLowerCase())||r.t.toLowerCase().includes(q.toLowerCase())).map(r=>`<div class="xp-box" style="margin:0"><div style="font-weight:800;font-size:.78rem">${r.h}</div><div style="font-size:.68rem;color:var(--mut);margin:4px 0">${r.t}</div><button class="btn sec full" onclick="setSlots(${r.s});openView('camera');switchStudioMode('live');launchCleanLiveStream()">Beitreten</button></div>`).join(''));
 }
 function updateUI(){
-  const l=state.mLvl, sl=state.sLvl, isStr=l>=20, rm=reqM(l), rs=reqS(sl), cStr=state.coins.toLocaleString('de-DE'), dStr=state.diamonds.toLocaleString('de-DE');
+  const l=state.mLvl, sl=state.sLvl, rm=reqM(l), rs=reqS(sl), cStr=state.coins.toLocaleString('de-DE'), dStr=state.diamonds.toLocaleString('de-DE');
   setTxt('profCoins',cStr); setTxt('clubCoins',cStr); setTxt('profDiamonds',dStr); setTxt('walletCoinsTxt',cStr);
-  setTxt('pMemBdg',`LVL ${l}`); showEl('pStrBdg',isStr,'inline-block'); setTxt('pStrBdg',`👑 S-LVL ${sl}`);
+  setTxt('pMemBdg',`LVL ${l}`); showEl('pStrBdg',true,'inline-block'); setTxt('pStrBdg',`👑 S-LVL ${sl}`);
   setTxt('b1Lbl',`⚡ HAUPT-RANG: LVL ${l}`); setTxt('b1Xp',`${state.mXp} / ${rm} XP`); if($('b1Fill'))$('b1Fill').style.width=`${Math.min(100,(state.mXp/rm)*100)}%`;
-  setTxt('b2Lbl',isStr?`👑 STREAMER: S-LVL ${sl}`:'🔒 STREAMER (Ab LVL 20)'); setTxt('b2Xp',isStr?`${state.sXp} / ${rs} S-XP`:`Noch ${20-l} Lvl`); if($('b2Fill'))$('b2Fill').style.width=isStr?`${Math.min(100,(state.sXp/rs)*100)}%`:'0%';
-  setTxt('cPowTxt',`⚡ POWER ${100+l*25}`); setTxt('cRanksTxt',`Mitglieds-Rang LVL ${l}`);
+  setTxt('b2Lbl',`👑 STREAMER-RANG: S-LVL ${sl}`); setTxt('b2Xp',`${state.sXp} / ${rs} S-XP`); if($('b2Fill'))$('b2Fill').style.width=`${Math.min(100,(state.sXp/rs)*100)}%`;
+  setTxt('cPowTxt',`⚡ POWER ${100+l*25}`); setTxt('cRanksTxt',`Mitglieds-Rang LVL ${l} • S-LVL ${sl}`);
   const cPct = state.chestReadyPool>0?100:Math.min(100,Math.round((state.chestGiftCoins/5000)*100));
   setTxt('chestProgTxt',state.chestReadyPool>0?`GREIFEN (${state.chestReadyPool}🪙)`:`${cPct}%`); setTxt('modPoolTxt',state.modCoinsPool);
   renderFounderCards(); renderInbox(); setTxt('onMinsTxt',`${state.onlineMins} Min.`);
@@ -754,13 +769,10 @@ function toast(m){ const t=$('toast'); if(!t)return; t.textContent=m; t.style.di
 function fx(e,t){ setTxt('fxEmo',e); setTxt('fxTxt',t); showEl('fx',true,'flex'); clearTimeout(window._f); window._f=setTimeout(()=>showEl('fx',false),1600); }
 
 try{
-  const sB=localStorage.getItem('vybe_banner'); if(sB)$('profBannerBox')?.style.setProperty('--prof-banner-bg',`url('${sB}')`);
-  const sA=localStorage.getItem('vybe_avatar'); if(sA)document.querySelectorAll('#profAv,.h-av,.c-av,#lrTopHostAv').forEach(el=>el.style.backgroundImage=`url('${sA}')`);
   const sM=localStorage.getItem('vybe_mood'); if(sM)document.documentElement.setAttribute('data-mood',sM);
   const sN=localStorage.getItem('vybe_adm_notes'); if(sN)state.admNotes=JSON.parse(sN);
-  const sD=localStorage.getItem('vybe_dms'); if(sD)state.dms=JSON.parse(sD);
 }catch(e){}
-initStaticUI(); initMediaDB(); filterSearch(); renderLib(); updateUI();
+initStaticUI(); initCleanMediaDB(); filterSearch(); renderLib(); updateUI();
 </script>
 </body>
 </html>
