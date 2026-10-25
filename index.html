@@ -17,7 +17,6 @@ html[data-mood="light"] .pkg-coins,html[data-mood="light"] .ref-coin-big{color:#
 html,body{width:100%;height:100dvh;overflow:hidden;background:var(--bg) var(--app-bg,url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=80')) center/cover fixed;color:var(--txt);display:flex;flex-direction:column}
 .bg-ov{position:fixed;inset:0;background:rgba(8,10,15,.46);pointer-events:none;z-index:0}
 
-/* FLIEGENDE VYBE-FUNKEN BEIM TIPPEN IM LIVE */
 .spark-float{position:fixed;pointer-events:none;z-index:190;font-size:1.55rem;animation:fltUp 1.4s ease-out forwards;filter:drop-shadow(0 0 8px var(--acc))}
 @keyframes fltUp{0%{transform:translateY(0) scale(.5) rotate(0deg);opacity:1}50%{transform:translateY(-85px) scale(1.25) rotate(14deg);opacity:.95}100%{transform:translateY(-185px) scale(.75) rotate(-14deg);opacity:0}}
 
@@ -95,7 +94,6 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 .dm-bub.them{align-self:flex-start;background:rgba(255,255,255,.1)}
 .dm-bub.me{align-self:flex-end;background:var(--acc);color:#000;font-weight:700}
 
-/* VOLLBILD LIVE-RAUM MIT GRÖSSEN-UMSCHALTER (HOST GROSS / NORMAL GLEICH GROSS / GAST GROSS) */
 .live-room-screen{position:relative;width:100%;height:100dvh;background:radial-gradient(circle at 50% 25%,rgba(22,26,42,.45),rgba(5,6,10,.84) 70%);display:flex;flex-direction:column;justify-content:space-between;padding:8px 10px 10px;color:#fff;overflow:hidden;user-select:none}
 .lr-top-row,.lr-sub-row{display:flex;justify-content:space-between;align-items:center;gap:5px;z-index:10;flex-wrap:wrap}
 .lr-host-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);padding:3px 6px 3px 3px;border-radius:99px;cursor:pointer}
@@ -107,7 +105,6 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 .lr-stage-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:4px;width:100%;max-width:420px;height:clamp(265px,43dvh,345px);margin:0 auto;transition:.2s}
 .lr-stage-grid.solo-only{grid-template-columns:1fr;max-width:300px;height:clamp(290px,46dvh,380px)}
 .lr-stage-grid.battle-2{grid-template-columns:1fr 1fr;max-width:420px}
-/* GLEICH GROSSES RASTER (HOST NORMAL GROSS WIE ALLE ANDEREN) */
 .lr-stage-grid.equal-grid{grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;max-width:420px;height:clamp(265px,43dvh,345px)}
 .lr-main-box{position:relative;border-radius:8px;background:radial-gradient(circle,#ff7e5f,#b5179e 45%,#240b36 90%);overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;text-align:center}
 .lr-main-box video,.lr-slot-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
@@ -227,7 +224,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
   <div class="m-box" style="text-align:center;max-width:320px">
     <div class="c-tit"><span>🏁 Dein VYBE QR-Code</span><button class="btn sec" onclick="showEl('qrMod',false)">✖</button></div>
     <div id="qrGridBox" style="width:130px;height:130px;margin:10px auto;padding:8px;background:#fff;border-radius:12px;display:grid;grid-template-columns:repeat(7,1fr);gap:2px"></div>
-    <div style="font-weight:900" id="qrNameTxt">Alex Vibe</div><div style="font-size:.72rem;color:var(--acc);margin-bottom:8px" id="qrHdlTxt">vybe.club/@alex.vibe</div>
+    <div style="font-weight:900" id="qrNameTxt">Alex Vibe</div><div style="font-size:.7rem;color:var(--acc);margin-bottom:8px;word-break:break-all" id="qrHdlTxt"></div>
     <button class="btn full" onclick="copyRefLink();showEl('qrMod',false)">📋 Link kopieren</button>
   </div>
 </div>
@@ -279,7 +276,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
         <div class="a-itm" onclick="favClip()"><div class="a-cir" id="likeCir">♥</div><span class="a-lbl" id="likeCntTxt">120</span></div>
         <div class="a-itm" onclick="commClip()"><div class="a-cir">□</div><span class="a-lbl" id="commTxt">12</span></div>
         <div class="a-itm" onclick="saveClip()"><div class="a-cir" id="saveCir">⚑</div><span class="a-lbl" id="saveLblTxt">Merken</span></div>
-        <div class="a-itm" onclick="nextClip()"><div class="a-cir">↗</div><span class="a-lbl">Weiter</span></div>
+        <div class="a-itm" onclick="copyRefLink()"><div class="a-cir">↗</div><span class="a-lbl">Weiter</span></div>
       </div>
       <div style="position:relative;z-index:2;max-width:82%">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
@@ -353,7 +350,6 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
         <button class="btn hot full" style="padding:12px;font-size:.85rem" onclick="launchCleanLiveStream()">🔴 JETZT LIVE STARTEN (Vollbild)</button>
       </div>
 
-      <!-- VOLLBILD LIVE-RAUM MIT FUNKEN-FLUG BEIM TIPPEN & BILDGRÖSSEN-UMSCHALTER -->
       <div id="activeLiveRoomScreen" class="live-room-screen" style="display:none" onclick="handleLiveScreenTap(event)">
         <div>
           <div class="lr-top-row">
@@ -429,7 +425,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
     </div>
   </section>
 
-  <!-- 6. PROFIL (STREAMER-RANG ERST AB LEVEL 20 FREIGESCHALTET!) -->
+  <!-- 6. PROFIL -->
   <section id="view-profile" class="view">
     <div class="prof-hero-card" id="profBannerBox">
       <div class="prof-top-bar">
@@ -530,7 +526,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
     <div id="accSec-referral" class="card" style="display:none">
       <div class="c-tit"><span>🎁 Freunde einladen (2-Stufen-Modell)</span><span class="badge" style="color:#ffd700">🔥 +1.400 🪙</span></div>
       <div class="ref-steps"><div class="ref-step-box"><span class="badge">⚡ STUFE 1: SOFORT</span><div class="ref-coin-big">+400 🪙</div><div style="font-size:.7rem">Für DICH & Freund</div></div><div class="ref-step-box"><span class="badge">🏆 STUFE 2: LVL 15</span><div class="ref-coin-big">+1.000 🪙</div><div style="font-size:.7rem">Extra für DICH</div></div></div>
-      <div style="display:flex;gap:6px;margin-bottom:6px"><input id="refLinkInp" class="inp" style="margin:0" readonly value="https://vybe.club/join?ref=alex_vibe"/><button class="btn gold" onclick="copyRefLink()">Kopieren</button></div>
+      <div style="display:flex;gap:6px;margin-bottom:6px"><input id="refLinkInp" class="inp" style="margin:0" readonly value=""/><button class="btn gold" onclick="copyRefLink()">Kopieren</button></div>
       <div style="display:flex;gap:6px"><button class="btn sec" style="flex:1" onclick="triggerRefReward(400,true)">➕ Freund (+400)</button><button class="btn gold" style="flex:1" onclick="triggerRefReward(1000,false)">🏆 LVL 15 (+1.000)</button></div>
     </div>
 
@@ -545,6 +541,12 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 <script>
 const $ = id => document.getElementById(id), setTxt = (id,v) => {if($(id))$(id).textContent=v}, setHtml = (id,v) => {if($(id))$(id).innerHTML=v}, showEl = (id,s,m='block') => {if($(id))$(id).style.display=s?m:'none'};
 const L = (de, en) => state.lang === 'en' ? en : de;
+
+/* ERZEUGT AUTOMATISCH DEN ECHTEN FUNKTIONIERENDEN GITHUB-LINK (NICHT MEHR VYBE.CLUB) */
+function getRealShareUrl(){
+  const base = (location.origin && location.origin !== 'null') ? (location.origin + location.pathname) : 'https://christianspartharis-ui.github.io/';
+  return `${base}?ref=alex_vibe&lang=${state.lang}`;
+}
 
 const CFG = {
   mXp:[315,750,1875,21875,50000,60000,100000,250000],
@@ -733,10 +735,6 @@ let cIdx = 0, vybeDb = null;
 const reqM = l => CFG.mXp[l<5?0:l<10?1:l<15?2:l<20?3:l<25?4:l<30?5:l<40?6:7];
 const reqS = l => CFG.sXp[l<5?0:l<10?1:l<15?2:l<20?3:l<30?4:l<40?5:6];
 
-/* =========================================================
-   NEU: FLIEGENDE VYBE-FUNKEN BEIM TIPPEN AUF DEN LIVE-SCREEN
-   (WIE DIE HERZEN AUF DEM VORLAGEN-SCREENSHOT)
-   ========================================================= */
 function handleLiveScreenTap(e){
   if(e.target.closest('button,input,.lr-quick-ico,.lr-chip,.lr-zoom-btn')) return;
   toggleTypingMode(false);
@@ -772,9 +770,6 @@ function countUpLiveSpark(){
   }
 }
 
-/* =========================================================
-   NEU: HOST-GRÖSSE ÄNDERN (HOST GROSS / ALLE NORMAL GROSS / GAST GROSS)
-   ========================================================= */
 function cycleBoxSizeMode(){
   if(!state.equalGrid && state.spotIdx === -1){
     state.equalGrid = true;
@@ -829,6 +824,9 @@ function applyLangToDOM(){
     bioInp.value = L('Willkommen auf meinem VYBE-Profil! 🌿','Welcome to my VYBE profile! 🌿');
     setTxt('pBioHdr', bioInp.value);
   }
+  const realUrl = getRealShareUrl();
+  if($('refLinkInp')) $('refLinkInp').value = realUrl;
+  setTxt('qrHdlTxt', realUrl);
   setTxt('langHdrBtn', state.lang==='en' ? '🇬🇧' : '🇩🇪');
   document.documentElement.lang = state.lang;
 }
@@ -988,7 +986,6 @@ function stopLiveAndReturnToSetup(){
 }
 function toggleTypingMode(on){ $('activeLiveRoomScreen')?.classList.toggle('typing-active',on); if(on)setTimeout(()=>$('lrKbRealInp')?.focus(),60); }
 
-/* RENDERT DAS LIVE-GITTER MIT HOST GROSS, ALLE NORMAL GLEICH GROSS ODER GAST GROSS */
 function renderLiveGrid(){
   const st=$('lrStageGrid'); if(!st)return;
   const hL=state.liveHostLabel||($('inName')?.value||'Alex Vibe'); setTxt('lrTopHostName',hL);
@@ -998,7 +995,6 @@ function renderLiveGrid(){
   showEl('pkBarWrap', state.slots===2, 'flex');
   const vOn = state.stream && state.camBright;
 
-  // Hilfsfunktion für Host-Inhalt und Gast-Inhalt
   const buildHostInner = (isBig) => `<video id="liveHostVid" autoplay playsinline muted style="${vOn?'display:block':'display:none'}"></video><span class="lr-pts-tag">Host • LVL ${state.mLvl}</span><button class="lr-zoom-btn" onclick="event.stopPropagation();cycleBoxSizeMode()" title="Größe ändern">⤢</button><div style="${vOn?'display:none':''}"><div style="font-size:${isBig?'.75rem':'.55rem'};font-weight:900;color:#38bdf8">VYBE CLUB</div><div style="font-size:${isBig?'1.15rem':'.72rem'};font-weight:900;color:#fff;text-shadow:0 0 10px #ec4899">LIVE STAGE</div></div><span class="lr-name-bot">${hL}</span>`;
   const buildGuestInner = (i, isBig) => {
     const u = state.guests[i];
@@ -1012,7 +1008,6 @@ function renderLiveGrid(){
     st.className='lr-stage-grid battle-2';
     st.innerHTML=`<div class="lr-main-box" onclick="openLiveUserSheet('host')">${buildHostInner(true)}</div><div class="lr-main-box" style="background:rgba(32,35,46,.55)" onclick="openLiveUserSheet('guest',0)">${buildGuestInner(0,true)}</div>`;
   } else if(state.equalGrid){
-    // MODUS: ALLE NORMAL GLEICH GROSS (HOST HAT EXAKT DIESELBE GRÖSSE WIE DIE GÄSTE)
     st.className='lr-stage-grid equal-grid';
     let cells = `<div class="lr-slot-card" style="background:radial-gradient(circle,#ff7e5f,#b5179e 60%,#240b36)" onclick="openLiveUserSheet('host')">${buildHostInner(false)}</div>`;
     for(let i=0;i<8;i++){
@@ -1021,7 +1016,6 @@ function renderLiveGrid(){
     }
     st.innerHTML = cells;
   } else {
-    // MODUS: LINKS GROSSES HAUPTFENSTER (ENTWEDER HOST ODER AUSGEWÄHLTER GAST GROSS) + RECHTS 2x4 GITTER
     st.className='lr-stage-grid';
     const guestInBig = (state.spotIdx >= 0 && state.spotIdx < state.slots-1) ? state.spotIdx : -1;
     const bigBoxHtml = guestInBig === -1
@@ -1032,7 +1026,6 @@ function renderLiveGrid(){
     for(let i=0;i<8;i++){
       if(i<state.slots-1){
         if(i === guestInBig){
-          // Host sitzt im kleinen Platz des vergrößerten Gastes
           rH+=`<div class="lr-slot-card" style="background:radial-gradient(circle,#ff7e5f,#b5179e 70%)" onclick="openLiveUserSheet('host')">${buildHostInner(false)}</div>`;
         } else {
           rH+=`<div class="lr-slot-card" onclick="openLiveUserSheet('guest',${i})">${buildGuestInner(i,false)}</div>`;
@@ -1055,7 +1048,10 @@ function appendLiveChatRow(emo,name,lvl,txt){
   d.innerHTML=`<div class="lr-msg-av">${emo}</div><div><span class="lr-lvl-bdg">💎 ${lvl}</span><strong style="color:#fff">${name}</strong><br/>${txt}</div>`;
   l.appendChild(d); l.scrollTop=l.scrollHeight;
 }
-function shareLiveStream(){ appendLiveChatRow('🔁',$('inName')?.value||'Alex Vibe',state.mLvl,L('<strong>hat das Live geteilt</strong> 🔥','<strong>shared the LIVE</strong> 🔥')); toast(L('↗ Geteilt!','↗ Shared!')); }
+function shareLiveStream(){
+  appendLiveChatRow('🔁',$('inName')?.value||'Alex Vibe',state.mLvl,L('<strong>hat das Live geteilt</strong> 🔥','<strong>shared the LIVE</strong> 🔥'));
+  copyRefLink();
+}
 function openLiveUserSheet(t,i=0){
   const u = t==='host'?{e:'👑',n:state.liveHostLabel,lvl:state.mLvl}:(state.guests[i]||state.guests[0]);
   setTxt('shAv',u.e); setTxt('shName',u.n); setTxt('shLvlTxt','💎 Lvl. '+u.lvl); showEl('liveUserSheet',true,'flex');
@@ -1082,7 +1078,17 @@ function recvGift(coins,guest){
   appendLiveChatRow('🎁','@NovaFox',1,`${L('hat','sent')} <strong>+${coins} 🪙</strong>`); toast(`💎 +${dia} | 🛡️ +${mC} Mod-Coins`); updateUI();
 }
 function addMXp(b){ if(state.mLvl>=50)return; state.mXp+=Math.round(b*(state.founders.some(f=>f.supported&&f.gold)?1.1:1)); while(state.mLvl<50&&state.mXp>=reqM(state.mLvl)){state.mXp-=reqM(state.mLvl);state.mLvl++;fx('🎉',`LEVEL ${state.mLvl}!`);} updateUI(); }
-function copyRefLink(){ navigator.clipboard?.writeText($('refLinkInp')?.value||'https://vybe.club'); toast(L('📋 Kopiert!','📋 Copied!')); }
+
+/* KOPIERT UND TEILT JETZT IMMER DEN ECHTEN FUNKTIONIERENDEN GITHUB-LINK */
+function copyRefLink(){
+  const realUrl = getRealShareUrl();
+  if($('refLinkInp')) $('refLinkInp').value = realUrl;
+  navigator.clipboard?.writeText(realUrl);
+  if(navigator.share){
+    navigator.share({title:'VYBE — Short Video & Live Club', url:realUrl}).catch(()=>{});
+  }
+  toast(L('📋 Echter Link kopiert!','📋 Real link copied!'));
+}
 function triggerRefReward(a,n){ state.coins+=a; state.refEarned+=a; if(n)state.refCount++; fx('🎁',`+${a} Coins!`); updateUI(); }
 function spinVault(){ const i=[30,90,180].findIndex((t,idx)=>!state.vClaim[idx]&&state.onlineMins>=t); if(i===-1){toast(L('⏳ Noch nicht bereit!','⏳ Not ready yet!'));return;} state.vClaim[i]=true; const w=150; state.coins+=w; fx('🎰',`+${w} Coins!`); updateUI(); }
 function claimWatch(){ if(state.wClaimed||state.watched<10){toast(L('⚠️ 10 Videos schauen!','⚠️ Watch 10 videos!'));return;} state.wClaimed=true; state.coins+=50; fx('👀','+50 Coins!'); updateUI(); }
@@ -1152,7 +1158,7 @@ function uploadImgStore(e,key){
   r.onload=ev=>{ const u=ev.target.result; if(key==='vybe_banner')$('profBannerBox')?.style.setProperty('--prof-banner-bg',`url('${u}')`); else document.querySelectorAll('#profAv,.h-av,.c-av,#lrTopHostAv').forEach(el=>el.style.backgroundImage=`url('${u}')`); try{localStorage.setItem(key,u)}catch(err){} toast('✅!'); };
   r.readAsDataURL(f);
 }
-function updIdent(){ const n=$('inName')?.value||'Alex Vibe', h=$('inHdl')?.value||'@alex.vibe'; setTxt('pNameHdr',n); setTxt('cOwnName',n); setTxt('qrNameTxt',n); setTxt('pHdlHdr',h); setTxt('qrHdlTxt','vybe.club/'+h); setTxt('pBioHdr',$('inBio')?.value||''); renderLiveGrid(); }
+function updIdent(){ const n=$('inName')?.value||'Alex Vibe', h=$('inHdl')?.value||'@alex.vibe'; setTxt('pNameHdr',n); setTxt('cOwnName',n); setTxt('qrNameTxt',n); setTxt('pHdlHdr',h); setTxt('pBioHdr',$('inBio')?.value||''); renderLiveGrid(); }
 function setBg(u){ document.body.style.setProperty('--app-bg',u?`url('${u}')`:'none'); if(u)$('profBannerBox')?.style.setProperty('--prof-banner-bg',`url('${u}')`); toast('🖼️!'); }
 function setMood(m){ document.documentElement.setAttribute('data-mood',m); try{localStorage.setItem('vybe_mood',m)}catch(e){} toast('🎨!'); }
 function cycleFilter(){ const f=['none','hue-rotate(90deg)','contrast(1.3) saturate(1.5)','sepia(.6)']; state.fIdx=((state.fIdx||0)+1)%f.length; if($('camStage'))$('camStage').style.filter=f[state.fIdx]; }
@@ -1163,7 +1169,6 @@ function filterSearch(q=''){
   setHtml('srchList',rooms.filter(r=>r.h.toLowerCase().includes(q.toLowerCase())||r.t.toLowerCase().includes(q.toLowerCase())).map(r=>`<div class="xp-box" style="margin:0"><div style="font-weight:800;font-size:.78rem">${r.h}</div><div style="font-size:.68rem;color:var(--mut);margin:4px 0">${r.t}</div><button class="btn sec full" onclick="setSlots(${r.s});openView('camera');switchStudioMode('live');launchCleanLiveStream()">${L('Beitreten','Join')}</button></div>`).join(''));
 }
 
-/* STREAMER-RANG IM PROFIL BLEIBT GESPERRT BIS HAUPT-RANG 20 ERREICHT IST */
 function updateUI(){
   const l=state.mLvl, sl=state.sLvl, isStr=(l>=20), rm=reqM(l), rs=reqS(sl), cStr=state.coins.toLocaleString('de-DE'), dStr=state.diamonds.toLocaleString('de-DE');
   setTxt('profCoins',cStr); setTxt('clubCoins',cStr); setTxt('profDiamonds',dStr); setTxt('walletCoinsTxt',cStr); setTxt('profStrCoinsTxt',cStr+' 🪙');
@@ -1200,6 +1205,9 @@ function toast(m){ const t=$('toast'); if(!t)return; t.textContent=trStr(m); t.s
 function fx(e,t){ setTxt('fxEmo',e); setTxt('fxTxt',trStr(t)); showEl('fx',true,'flex'); clearTimeout(window._f); window._f=setTimeout(()=>showEl('fx',false),1600); }
 
 try{
+  const urlParams = new URLSearchParams(location.search);
+  const qLang = urlParams.get('lang');
+  if(qLang === 'en' || qLang === 'de'){ selectAppLang(qLang); }
   const sM=localStorage.getItem('vybe_mood'); if(sM)document.documentElement.setAttribute('data-mood',sM);
   const sN=localStorage.getItem('vybe_adm_notes'); if(sN)state.admNotes=JSON.parse(sN);
 }catch(e){}
