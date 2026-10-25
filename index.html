@@ -61,8 +61,8 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 .btn.sec{background:var(--in);color:var(--txt)}.btn.hot{background:linear-gradient(90deg,#ff2a5f,#ff6b00);color:#fff}.btn.gold{background:linear-gradient(90deg,#ffd700,#ffae00);color:#000}.btn.full{width:100%}
 .sub-bar,.m-tabs,.mode-switch,.set-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:10px;background:var(--card);padding:4px;border-radius:14px}
 .mode-switch{grid-template-columns:1fr 1fr}
-.set-tabs{grid-template-columns:repeat(5,1fr)}
-.sub-btn{padding:8px 3px;border-radius:10px;border:none;background:var(--in);color:var(--mut);font-size:.63rem;font-weight:800;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.set-tabs{grid-template-columns:repeat(4,1fr)}
+.sub-btn{padding:8px 3px;border-radius:10px;border:none;background:var(--in);color:var(--mut);font-size:.64rem;font-weight:800;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .xp-bg{width:100%;height:7px;background:rgba(128,128,128,.15);border-radius:99px;overflow:hidden;margin:5px 0}
 .xp-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:.3s}
 .prof-hero-card{position:relative;border-radius:22px;overflow:hidden;margin-bottom:10px;min-height:275px;padding:22px 14px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--prof-banner-bg,url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85')) center/cover}
@@ -206,8 +206,8 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
   <div class="m-box">
     <div class="c-tit"><span style="color:var(--acc)">⚡ VYBE – DAS STUFENMODELL</span><button class="btn sec" onclick="showEl('infoMod',false)">✖</button></div>
     <div class="xp-box"><strong>📈 1. Haupt-Level-Stufen (+25% bis LVL 25):</strong><br/>LVL 1–5 (je 315 XP) • LVL 5–10 (je 750 XP) • LVL 10–15 (je 1.875 XP) • LVL 15–20 (je 21.875 XP) • LVL 20–25 (je 50.000 XP). Zuschauer = 100% XP, Live-Host = 50% XP!</div>
-    <div class="xp-box"><strong>👑 2. Streamer-Auszahlungs-Stufen (Ab LVL 20):</strong><br/>S-LVL 1–10: 85% Streamer • S-LVL 11–30: 70% • S-LVL 31–40: 60% • S-LVL 41–50: 50%.</div>
-    <div class="xp-box" style="margin:0"><strong>⚙️ 3. Eigene Einstellungs-Tabs:</strong><br/>Unter ⚙ Konto haben Coins, Live-Stunden & Datenschutz jeweils einen eigenen Tab!</div>
+    <div class="xp-box"><strong>👑 2. Streamer-Zeiten & Umrechnung im Profil:</strong><br/>Direkt im Profil siehst du deine Live-Stunden (0–15 Std.) sowie die Umrechnung Coins ↔ Diamanten ↔ Euro.</div>
+    <div class="xp-box" style="margin:0"><strong>⚙️ 3. Eigene Einstellungs-Tabs:</strong><br/>Unter ⚙ Konto haben Coins, Datenschutz, Freunde & Design jeweils einen eigenen Tab!</div>
   </div>
 </div>
 
@@ -380,7 +380,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
     </div>
   </section>
 
-  <!-- 6. PROFIL -->
+  <!-- 6. PROFIL (JETZT INKLUSIVE STREAMER-LIVE-ZEITEN, DIAMANTEN & UMRECHNUNG!) -->
   <section id="view-profile" class="view">
     <div class="prof-hero-card" id="profBannerBox">
       <div class="prof-top-bar">
@@ -400,19 +400,55 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
         <div style="font-size:.74rem;color:#fff" id="pBioHdr">Willkommen auf meinem VYBE-Profil! 🌿</div>
       </div>
     </div>
+
     <div class="sub-bar">
-      <button class="sub-btn active" id="pb-level" onclick="swProf('level')">📈 Level & Karte</button>
+      <button class="sub-btn active" id="pb-level" onclick="swProf('level')">📈 Level & Streamer</button>
       <button class="sub-btn" id="pb-edit" onclick="swProf('edit')">✏️ Name & Bio</button>
       <button class="sub-btn" id="pb-shop" onclick="swProf('shop')">🛍️ Live-Shop</button>
     </div>
+
     <div id="pt-level">
+      <!-- 1. DIE 2 LEVEL-BALKEN -->
       <div class="card">
-        <div class="c-tit"><span>📈 Deine Level-Balken (+25% XP bis LVL 25)</span><span class="badge">Host = 50% XP!</span></div>
+        <div class="c-tit"><span>📈 Deine 2 Level-Balken (+25% XP bis LVL 25)</span><span class="badge">Host = 50% XP!</span></div>
         <div class="xp-box"><div style="display:flex;justify-content:space-between;font-size:.72rem;font-weight:800"><span id="b1Lbl">⚡ HAUPT-RANG: LVL 1</span><span id="b1Xp">0 / 315 XP</span></div><div class="xp-bg"><div class="xp-fill" id="b1Fill"></div></div></div>
         <div class="xp-box" style="margin:0"><div style="display:flex;justify-content:space-between;font-size:.72rem;font-weight:800"><span id="b2Lbl">👑 STREAMER-RANG: S-LVL 1</span><span id="b2Xp">0 / 1.000 S-XP</span></div><div class="xp-bg"><div class="xp-fill" id="b2Fill"></div></div></div>
       </div>
+
+      <!-- 2. NEU IM PROFIL: STREAMER-LIVE-ZEITEN, DIAMANTEN & UMRECHNUNG COINS <-> DIAMANTEN <-> EURO -->
+      <div class="card" id="profStreamerBox">
+        <div class="c-tit"><span>⏱️ Streamer-Zeiten, Diamanten & Umrechnung</span><span class="badge" id="setSplitBdg" style="color:#ffd700">👑 S-LVL 1 (85%)</span></div>
+        <p style="font-size:.68rem;color:var(--mut);margin-bottom:7px">Voraussetzung für Auszahlung: LVL 20 (S-LVL 5) + 15 Std. Live / Woche (Mo–So) mit Kamera & Mikro.</p>
+
+        <div class="xp-box" style="font-size:.73rem">
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span>📅 <strong>Deine Wochen-Livezeit (Mo–So):</strong></span><strong style="color:var(--acc)" id="setWkTxt">0.0 / 15.0 Std.</strong></div>
+          <div class="xp-bg"><div class="xp-fill" id="setWkBar" style="width:0%"></div></div>
+          <div style="display:flex;justify-content:space-between;margin:6px 0 4px"><span>🪙 <strong>Aktuelle Coins:</strong></span><strong style="color:#ffd700" id="profStrCoinsTxt">1.000 🪙</strong></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>💎 <strong>Gesammelte Diamanten:</strong></span><strong style="color:#00f2fe" id="setDiamondsTxt">0 💎</strong></div>
+          <div style="display:flex;justify-content:space-between"><span>💵 <strong>Auszahlbarer Betrag:</strong></span><strong style="color:var(--acc)" id="setStrEur">0,00 €</strong></div>
+        </div>
+
+        <div style="display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap">
+          <button class="btn sec" style="flex:1" onclick="addLiveHours(3)">⏩ +3 Std. Test</button>
+          <button class="btn sec" style="flex:1.4" onclick="convertToDiamonds()">🔄 100 🪙 in 100 💎 umwandeln</button>
+          <button class="btn gold" style="flex:1.1" onclick="payoutDiamonds()">💸 Auszahlen</button>
+        </div>
+
+        <!-- TABELLE: UMRECHNUNG COINS <-> DIAMANTEN <-> EURO -->
+        <div class="xp-box" style="margin:0;font-size:.68rem;line-height:1.45">
+          <strong style="color:var(--acc)">🔄 Umrechnung Coins & Diamanten (Stufenmodell):</strong><br/>
+          • <strong>Coins ➔ Diamanten:</strong> <span style="color:#ffd700">100 Coins (🪙) = 100 Diamanten (💎)</span> <em>(Direkt-Umwandlung 1:1; bei Geschenken im Stream gehen 2 % in die Zuschauer-Schatzkiste)</em><br/>
+          • <strong>S-LVL 1–10 (85 % Auszahlung):</strong> <span style="color:#00f2fe">100 💎 = 0,85 €</span> • 1.000 💎 = 8,50 € • 10.000 💎 = 85,00 €<br/>
+          • <strong>S-LVL 11–30 (70 % Auszahlung):</strong> <span style="color:#00f2fe">100 💎 = 0,70 €</span> • 1.000 💎 = 7,00 € • 10.000 💎 = 70,00 €<br/>
+          • <strong>S-LVL 31–40 (60 % Auszahlung):</strong> <span style="color:#00f2fe">100 💎 = 0,60 €</span> • 1.000 💎 = 6,00 € • 10.000 💎 = 60,00 €<br/>
+          • <strong>S-LVL 41–50 (50 % Auszahlung):</strong> <span style="color:#00f2fe">100 💎 = 0,50 €</span> • 1.000 💎 = 5,00 € • 10.000 💎 = 50,00 €
+        </div>
+      </div>
+
+      <!-- 3. HOLO-SAMMLERKARTE -->
       <div class="card"><div class="c-tit"><span>🃏 VYBE Holo-Sammlerkarte</span><span class="badge" id="cPowTxt">⚡ POWER 125</span></div><div class="holo"><strong id="cOwnName">Alex Vibe</strong><div style="font-size:.7rem;color:var(--acc)" id="cRanksTxt">Mitglieds-Rang LVL 1 • S-LVL 1</div></div></div>
     </div>
+
     <div id="pt-edit" style="display:none" class="card">
       <input id="inName" class="inp" value="Alex Vibe" oninput="updIdent()"/><input id="inHdl" class="inp" value="@alex.vibe" oninput="updIdent()"/><input id="inBio" class="inp" value="Willkommen auf meinem VYBE-Profil! 🌿" oninput="updIdent()"/>
       <button class="btn full" onclick="swProf('level');toast('✅ Gespeichert!')">💾 Speichern</button>
@@ -427,47 +463,25 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
     </div>
   </section>
 
-  <!-- 7. EINSTELLUNGEN MIT 5 SEPARATEN EXTRA-TABS (COINS | STUNDEN | DATENSCHUTZ | EINLADEN | DESIGN) -->
+  <!-- 7. EINSTELLUNGEN MIT 4 SEPARATEN TABS (COINS | DATENSCHUTZ | FREUNDE | DESIGN) -->
   <section id="view-settings" class="view">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><button class="btn sec" onclick="toggleRightDrawer(true)">☰ Menü rechts</button><button class="btn sec" onclick="openView('profile')">👤 Zum Profil</button></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px"><button class="btn sec" onclick="toggleRightDrawer(true)">☰ Menü rechts</button><button class="btn sec" onclick="openView('profile')">👤 Zum Profil & Live-Zeiten</button></div>
 
     <div class="set-tabs">
       <button class="sub-btn active" id="sb-wallet" onclick="swSet('wallet')">👛 Coins</button>
-      <button class="sub-btn" id="sb-hours" onclick="swSet('hours')">⏱️ Stunden</button>
-      <button class="sub-btn" id="sb-privacy" onclick="swSet('privacy')">🛡️ Schutz</button>
+      <button class="sub-btn" id="sb-privacy" onclick="swSet('privacy')">🛡️ Datenschutz</button>
       <button class="sub-btn" id="sb-referral" onclick="swSet('referral')">🎁 Freunde</button>
       <button class="sub-btn" id="sb-design" onclick="swSet('design')">🎨 Design</button>
     </div>
 
-    <!-- EXTRA TAB 1: NUR COINS AUFLADEN (AB 50 COINS) -->
+    <!-- EXTRA TAB 1: COINS AUFLADEN (AB 50 COINS) -->
     <div id="accSec-wallet" class="card">
       <div class="c-tit"><span>👛 Guthaben & Coins aufladen (Ab 50 Coins)</span><span class="badge" style="color:#ffd700">🪙 <span id="walletCoinsTxt">1.000</span></span></div>
       <div id="coinShopGridBox" class="coin-shop-grid"></div>
+      <button class="btn sec full" style="margin-top:6px" onclick="openView('profile');swProf('level')">⏱️ Zu deinen Streamer-Stunden & Diamanten im Profil ›</button>
     </div>
 
-    <!-- EXTRA TAB 2: GEMACHTE LIVE-STUNDEN, DIAMANTEN & STUFENMODELL -->
-    <div id="accSec-hours" class="card" style="display:none">
-      <div class="c-tit"><span>⏱️ Deine Live-Stunden & Diamanten-Auszahlung</span><span class="badge" id="setSplitBdg">👑 S-LVL 1 (85%)</span></div>
-      <p style="font-size:.68rem;color:var(--mut);margin-bottom:7px">Voraussetzung für Auszahlung: LVL 20 (S-LVL 5) + 15 Std. Live / Woche (Mo–So) mit Kamera & Mikro.</p>
-      <div class="xp-box" style="font-size:.73rem">
-        <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span>📅 <strong>Wochen-Livezeit (Mo–So):</strong></span><strong style="color:var(--acc)" id="setWkTxt">0.0 / 15.0 Std.</strong></div>
-        <div class="xp-bg"><div class="xp-fill" id="setWkBar" style="width:0%"></div></div>
-        <div style="display:flex;justify-content:space-between;margin:6px 0 4px"><span>💎 <strong>Diamanten:</strong></span><strong style="color:#00f2fe" id="setDiamondsTxt">0 💎</strong></div>
-        <div style="display:flex;justify-content:space-between"><span>💵 <strong>Auszahlung:</strong></span><strong style="color:var(--acc)" id="setStrEur">0,00 €</strong></div>
-      </div>
-      <div style="display:flex;gap:6px;margin-bottom:10px">
-        <button class="btn sec" style="flex:1" onclick="addLiveHours(3)">⏩ +3 Std.</button>
-        <button class="btn sec" style="flex:1.3" onclick="convertToDiamonds()">💎 In Diamanten umwandeln</button>
-        <button class="btn gold" style="flex:1.1" onclick="payoutDiamonds()">💸 Auszahlen</button>
-      </div>
-      <div class="xp-box" style="margin:0;font-size:.68rem;line-height:1.45">
-        <strong style="color:#ffd700">📊 Streamer-Stufenmodell (Dein Auszahlungs-Anteil):</strong><br/>
-        • <strong>S-LVL 1–10:</strong> 85 % für Streamer (Auszahlung ab S-LVL 5 frei)<br/>
-        • <strong>S-LVL 11–30:</strong> 70 % für Streamer • <strong>S-LVL 31–40:</strong> 60 % • <strong>S-LVL 41–50:</strong> 50 %
-      </div>
-    </div>
-
-    <!-- EXTRA TAB 3: DATENSCHUTZ & ALLES RECHTLICHE -->
+    <!-- EXTRA TAB 2: DATENSCHUTZ & ALLES RECHTLICHE -->
     <div id="accSec-privacy" class="card" style="display:none">
       <div class="c-tit"><span>🛡️ Datenschutz, Rechtliches & Sicherheit</span><span class="badge">DSGVO & DDG</span></div>
       <input class="inp" value="alex.vibe@vybe.club"/>
@@ -480,7 +494,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
       </div>
     </div>
 
-    <!-- EXTRA TAB 4: FREUNDE EINLADEN (2-STUFEN-MODELL) -->
+    <!-- EXTRA TAB 3: FREUNDE EINLADEN -->
     <div id="accSec-referral" class="card" style="display:none">
       <div class="c-tit"><span>🎁 Freunde einladen (2-Stufen-Modell)</span><span class="badge" style="color:#ffd700">🔥 +1.400 🪙</span></div>
       <div class="ref-steps"><div class="ref-step-box"><span class="badge">⚡ STUFE 1: SOFORT</span><div class="ref-coin-big">+400 🪙</div><div style="font-size:.7rem">Für DICH & Freund</div></div><div class="ref-step-box"><span class="badge">🏆 STUFE 2: LVL 15</span><div class="ref-coin-big">+1.000 🪙</div><div style="font-size:.7rem">Extra für DICH</div></div></div>
@@ -488,7 +502,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
       <div style="display:flex;gap:6px"><button class="btn sec" style="flex:1" onclick="triggerRefReward(400,true)">➕ Freund (+400)</button><button class="btn gold" style="flex:1" onclick="triggerRefReward(1000,false)">🏆 LVL 15 (+1.000)</button></div>
     </div>
 
-    <!-- EXTRA TAB 5: HINTERGRUND & STIMMUNG -->
+    <!-- EXTRA TAB 4: HINTERGRUND & STIMMUNG -->
     <div id="accSec-design" class="card" style="display:none">
       <div class="c-tit"><span>🎨 Hintergrund & Stimmung</span></div>
       <div id="gSel" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"></div>
@@ -500,7 +514,6 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 <script>
 const $ = id => document.getElementById(id), setTxt = (id,v) => {if($(id))$(id).textContent=v}, setHtml = (id,v) => {if($(id))$(id).innerHTML=v}, showEl = (id,s,m='block') => {if($(id))$(id).style.display=s?m:'none'};
 
-/* STUFENMODELL MIT +25% XP BIS LEVEL 25 & STREAMER-AUSZAHLUNGS-STUFEN */
 const CFG = {
   mXp:[315,750,1875,21875,50000,60000,100000,250000],
   sXp:[1000,2500,5000,50000,125000,300000,750000],
@@ -541,17 +554,16 @@ const state = {
 };
 
 const clips = [
-  {tag:'✦ VYBE START',snd:'♫ Originalton · alex.vibe',n:'Alex Vibe',h:'@alex.vibe',t:'Willkommen im VYBE Short Video Club',s:'Stufenmodell (+25% XP bis LVL 25) & eigene Einstellungs-Tabs aktiv! 🌿',g:'#vybe #start',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false},
-  {tag:'⚡ MULTI-LIVE CLUB',snd:'♫ Synthwave · nova.fox',n:'Nova Fox',h:'@nova.fox',t:'Coins, Live-Stunden & Datenschutz in eigenen Tabs!',s:'Öffne ⚙ Konto für die 5 übersichtlichen Tabs 💬',g:'#vybeclub #live',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false}
+  {tag:'✦ VYBE START',snd:'♫ Originalton · alex.vibe',n:'Alex Vibe',h:'@alex.vibe',t:'Willkommen im VYBE Short Video Club',s:'Streamer-Livezeit & Umrechnung Coins/Diamanten jetzt direkt im Profil! 🌿',g:'#vybe #start',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false},
+  {tag:'⚡ MULTI-LIVE CLUB',snd:'♫ Synthwave · nova.fox',n:'Nova Fox',h:'@nova.fox',t:'Schau in dein Profil für deine Live-Stunden & Diamanten!',s:'Unter ⚙ Konto findest du Coins & Datenschutz in eigenen Tabs 💬',g:'#vybeclub #live',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false}
 ];
 let cIdx = 0, vybeDb = null;
 
 const reqM = l => CFG.mXp[l<5?0:l<10?1:l<15?2:l<20?3:l<25?4:l<30?5:l<40?6:7];
 const reqS = l => CFG.sXp[l<5?0:l<10?1:l<15?2:l<20?3:l<30?4:l<40?5:6];
 
-/* SCHALTET DIE 5 SEPARATEN EXTRA-TABS UNTER EINSTELLUNGEN UM */
 function swSet(t){
-  ['wallet','hours','privacy','referral','design'].forEach(k=>{
+  ['wallet','privacy','referral','design'].forEach(k=>{
     showEl(`accSec-${k}`, k===t);
     $(`sb-${k}`)?.classList.toggle('active', k===t);
   });
@@ -647,11 +659,11 @@ function initStaticUI(){
   setHtml('setupSlotPills', sArr.map(s=>`<button class="pill ${s[0]===5?'active':''}" onclick="setSlots(${s[0]})">${s[1]}</button>`).join(''));
   setHtml('liveSizeBtns', sArr.map(s=>`<button class="btn sec" onclick="setSlots(${s[0]});showEl('liveSizeModal',false)">${s[1]}</button>`).join(''));
   setHtml('drawerItemsBox', [
-    ['👛 Coins aufladen (Tab 1)','openAccountSection("wallet")'],
-    ['⏱️ Live-Stunden & Auszahlung (Tab 2)','openAccountSection("hours")'],
-    ['🛡️ Datenschutz & Rechtliches (Tab 3)','openAccountSection("privacy")'],
-    ['🎁 Freunde einladen (Tab 4)','openAccountSection("referral")'],
-    ['🎨 Hintergrund & Stimmung (Tab 5)','openAccountSection("design")'],
+    ['⏱️ Streamer-Zeiten & Diamanten (Profil)','toggleRightDrawer(false);openView("profile");swProf("level")'],
+    ['👛 Coins aufladen (Einstellungen)','openAccountSection("wallet")'],
+    ['🛡️ Datenschutz & Rechtliches','openAccountSection("privacy")'],
+    ['🎁 Freunde einladen (+1.400 🪙)','openAccountSection("referral")'],
+    ['🎨 Hintergrund & Stimmung','openAccountSection("design")'],
     ['💬 Posteingang & Nachrichten','toggleRightDrawer(false);openView("inbox")'],
     ['🎥 VYBE Studio (Live Setup)','toggleRightDrawer(false);openView("camera");switchStudioMode("live")']
   ].map(d=>`<div class="drw-item" onclick='${d[1]}'><span>${d[0]}</span><span>›</span></div>`).join(''));
@@ -720,7 +732,7 @@ function toggleRightDrawer(o){ $('drawerBackdrop')?.classList.toggle('open',o); 
 function openAccountSection(k){ if(state.liveRunning)stopLiveAndReturnToSetup(); toggleRightDrawer(false); openView('settings'); swSet(k); }
 function switchStudioMode(m){ if(m==='clip'&&state.liveRunning)stopLiveAndReturnToSetup(); $('btnModeClip')?.classList.toggle('active',m==='clip'); $('btnModeLive')?.classList.toggle('active',m==='live'); showEl('studioClipBox',m==='clip'); showEl('studioLiveBox',m==='live'); if(m==='live')renderLiveGrid(); }
 function togLiveCond(k){ if(k==='cam')state.camBright=!state.camBright; if(k==='mic')state.micOn=!state.micOn; updateUI(); }
-function addLiveHours(h){ state.wkHours=Math.min(40,+(state.wkHours+h).toFixed(1)); toast(`⏱️ +${h} Std. Live-Zeit gutgeschrieben!`); updateUI(); }
+function addLiveHours(h){ state.wkHours=Math.min(40,+(state.wkHours+h).toFixed(1)); toast(`⏱️ +${h} Std. Live-Zeit im Profil gutgeschrieben!`); updateUI(); }
 async function startMedia(){
   try{ const s=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:true}); state.stream=s; if($('camPrev')){$('camPrev').srcObject=s;$('camPrev').play().catch(()=>{})} showEl('camPh',false); updateUI(); }catch(e){toast('⚠️ Kamera-Berechtigung nötig');}
 }
@@ -738,7 +750,7 @@ function triggerRefReward(a,n){ state.coins+=a; state.refEarned+=a; if(n)state.r
 function spinVault(){ const i=[30,90,180].findIndex((t,idx)=>!state.vClaim[idx]&&state.onlineMins>=t); if(i===-1){toast('⏳ Noch nicht bereit!');return;} state.vClaim[i]=true; const w=150; state.coins+=w; fx('🎰',`+${w} Coins!`); updateUI(); }
 function claimWatch(){ if(state.wClaimed||state.watched<10){toast('⚠️ 10 Videos schauen!');return;} state.wClaimed=true; state.coins+=50; fx('👀','+50 Coins!'); updateUI(); }
 function openBooster(){ if(state.coins<250){toast('⚠️ 250 🪙 nötig!');return;} state.coins-=250; setTxt('boosterResultTxt','🎉 🔮 CYBER HOLO gezogen!'); addMXp(250); }
-function convertToDiamonds(){ if(state.coins<100){toast('ℹ️ Min. 100 Coins.');return;} state.diamonds+=100; state.coins-=100; toast('💎 +100 Diamanten!'); updateUI(); }
+function convertToDiamonds(){ if(state.coins<100){toast('ℹ️ Min. 100 Coins.');return;} state.diamonds+=100; state.coins-=100; toast('💎 100 Coins in 100 Diamanten umgewandelt!'); updateUI(); }
 function payoutDiamonds(){ if(state.mLvl<20||state.sLvl<5||state.wkHours<15||state.diamonds<=0){toast('🔒 Erfordert LVL 20, S-LVL 5 & 15h Live!');return;} const eur=((state.diamonds/100)*CFG.rates(state.sLvl)).toFixed(2).replace('.',','); state.diamonds=0; fx('💸',`${eur} € ausgezahlt!`); updateUI(); }
 
 function openView(v){
@@ -812,7 +824,7 @@ function filterSearch(q=''){
 }
 function updateUI(){
   const l=state.mLvl, sl=state.sLvl, rm=reqM(l), rs=reqS(sl), cStr=state.coins.toLocaleString('de-DE'), dStr=state.diamonds.toLocaleString('de-DE');
-  setTxt('profCoins',cStr); setTxt('clubCoins',cStr); setTxt('profDiamonds',dStr); setTxt('walletCoinsTxt',cStr);
+  setTxt('profCoins',cStr); setTxt('clubCoins',cStr); setTxt('profDiamonds',dStr); setTxt('walletCoinsTxt',cStr); setTxt('profStrCoinsTxt',cStr+' 🪙');
   setTxt('pMemBdg',`LVL ${l}`); showEl('pStrBdg',true,'inline-block'); setTxt('pStrBdg',`👑 S-LVL ${sl}`);
   setTxt('b1Lbl',`⚡ HAUPT-RANG: LVL ${l}`); setTxt('b1Xp',`${state.mXp.toLocaleString('de-DE')} / ${rm.toLocaleString('de-DE')} XP`); if($('b1Fill'))$('b1Fill').style.width=`${Math.min(100,(state.mXp/rm)*100)}%`;
   setTxt('b2Lbl',`👑 STREAMER-RANG: S-LVL ${sl}`); setTxt('b2Xp',`${state.sXp.toLocaleString('de-DE')} / ${rs.toLocaleString('de-DE')} S-XP`); if($('b2Fill'))$('b2Fill').style.width=`${Math.min(100,(state.sXp/rs)*100)}%`;
