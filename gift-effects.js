@@ -15,36 +15,34 @@
     EN_MAP.push(['Sportwagen', 'Sports Car']);
   } catch (e) { return; }
 
-  /* 2. Abdunkelung und Video-Ebenen (Schwarz im Video wird unsichtbar) */
+  /* 2. Abdunkelung und EIN gemeinsames Video (Schwarz im Video wird unsichtbar) */
   var st = document.createElement('style');
   st.textContent =
     '#gfxDim{position:fixed;inset:0;z-index:254;background:rgba(5,5,25,.6);opacity:0;transition:opacity .4s;pointer-events:none}' +
     '#gfxDim.on{opacity:1}' +
-    '.gfxV{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:255;mix-blend-mode:screen;opacity:0;pointer-events:none;transition:opacity .3s}' +
-    '.gfxV.on{opacity:1}';
+    '.gfxV{display:none;position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:255;mix-blend-mode:screen;pointer-events:none}' +
+    '.gfxV.on{display:block;animation:gfxIn .3s}' +
+    '@keyframes gfxIn{from{opacity:0}to{opacity:1}}';
   document.head.appendChild(st);
 
   var dim = document.createElement('div');
   dim.id = 'gfxDim';
   document.body.appendChild(dim);
 
-  var vids = {};
-  FX.forEach(function (f) {
-    var v = document.createElement('video');
-    v.className = 'gfxV';
-    v.src = f.src;
-    v.preload = 'none';
-    v.playsInline = true;
-    v.setAttribute('playsinline', '');
-    document.body.appendChild(v);
-    vids[f.src] = v;
-  });
+  var vid = document.createElement('video');
+  vid.className = 'gfxV';
+  vid.preload = 'auto';
+  vid.playsInline = true;
+  vid.setAttribute('playsinline', '');
+  document.body.appendChild(vid);
 
-  /* Videos erst beim Live-Start laden, damit der Feed schnell bleibt */
+  /* Videos beim Live-Start schon in den Zwischenspeicher laden */
+  var warmed = false;
   function warm() {
-    Object.keys(vids).forEach(function (k) {
-      var v = vids[k];
-      if (v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
+    if (warmed) return;
+    warmed = true;
+    FX.forEach(function (f) {
+      try { fetch(f.src, { cache: 'force-cache' }).catch(function () {}); } catch (e) {}
     });
   }
   var oldLive = window.launchCleanLiveStream;
@@ -55,39 +53,52 @@
     };
   }
 
-  /* 3. Abspielen mit Warteschlange (mehrere Geschenke nacheinander) */
+  /* 3. Abspielen mit Warteschlange. Nach jedem Video wird der Player
+        komplett freigegeben, damit das zweite Geschenk nicht hängt. */
   var busy = false, q = [];
+  function release() {
+    vid.onended = vid.onerror = null;
+    try { vid.pause(); } catch (e) {}
+    vid.removeAttribute('src');
+    try { vid.load(); } catch (e) {}
+    vid.classList.remove('on');
+    dim.classList.remove('on');
+  }
   function run() {
     if (busy || !q.length) return;
     busy = true;
-    var it = q.shift(), v = vids[it.f.src], done = false, tm;
+    var it = q.shift(), done = false, last = -1, still = 0, ticks = 0, tm;
     function end(bad) {
       if (done) return;
       done = true;
-      clearTimeout(tm);
-      v.onended = v.onerror = null;
-      try { v.pause(); } catch (e) {}
-      v.classList.remove('on');
-      dim.classList.remove('on');
+      clearInterval(tm);
+      release();
       if (bad) { try { fx(it.emo, it.name); } catch (e) {} }
       busy = false;
-      setTimeout(run, 300);
+      setTimeout(run, 400);
     }
-    tm = setTimeout(function () { end(false); }, 10000);
-    v.onended = function () { end(false); };
-    v.onerror = function () { end(true); };
+    vid.onended = function () { end(false); };
+    vid.onerror = function () { end(true); };
     dim.classList.add('on');
-    v.classList.add('on');
-    try { v.currentTime = 0; } catch (e) {}
-    v.muted = false;
-    var p = v.play();
+    vid.src = it.f.src;
+    vid.classList.add('on');
+    vid.muted = false;
+    var p = vid.play();
     if (p && p.catch) {
       p.catch(function () {
-        v.muted = true;
-        var p2 = v.play();
+        if (done) return;
+        vid.muted = true;
+        var p2 = vid.play();
         if (p2 && p2.catch) p2.catch(function () { end(true); });
       });
     }
+    /* Wächter: bleibt das Bild stehen, wird der Effekt sauber beendet */
+    tm = setInterval(function () {
+      ticks++;
+      var t = vid.currentTime || 0;
+      if (t > last + 0.01) { last = t; still = 0; } else { still++; }
+      if (still >= (last < 0 ? 16 : 6) || ticks > 30) end(last < 0);
+    }, 500);
   }
 
   /* 4. Geschenk senden: kleine Geschenke wie bisher, große mit Video */
