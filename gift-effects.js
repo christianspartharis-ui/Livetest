@@ -1,8 +1,9 @@
-/* VYBE Geschenke: Bild-Symbole für 1–20 Coins, Zeus ab 4.000, Sportwagen ab 7.500 Coins
+/* VYBE Geschenke: Bild-Symbole für 1–20 Coins, Zeus ab 4.000, Sportwagen ab 7.500, Gold-Drache ab 12.000 Coins
    Einbinden: <script src="gift-effects.js"></script> direkt vor </body>
    Videos zeus.mp4 und auto.mp4 liegen im selben Ordner wie die HTML-Datei. */
 (function () {
   var FX = [
+    { min: 12000, src: 'drache.mp4' },
     { min: 7500, src: 'auto.mp4' },
     { min: 4000, src: 'zeus.mp4' }
   ];
@@ -29,6 +30,9 @@
     });
     if (!CFG.gifts.some(function (g) { return g[1] === 4000; })) {
       CFG.gifts.push(['🌩️ Zeus', 4000, '🌩️'], ['🏎️ Sportwagen', 7500, '🏎️']);
+    }
+    if (!CFG.gifts.some(function (g) { return g[1] === 12000; })) {
+      CFG.gifts.push(['🐲 Gold-Drache', 12000, '🐲']);
     }
     CFG.gifts.sort(function (a, b) { return a[1] - b[1]; });
     EN_MAP.push(['👍 Daumen', '👍 Thumbs Up'], ['💗 Herz', '💗 Heart'], ['⭐ Stern', '⭐ Star'],
