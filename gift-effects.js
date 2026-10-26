@@ -71,13 +71,18 @@
   vid.setAttribute('playsinline', '');
   document.body.appendChild(vid);
 
-  /* Videos beim Live-Start schon in den Zwischenspeicher laden */
-  var warmed = false;
+  /* Videos beim Live-Start komplett in den Speicher laden, damit sie
+     beim Geschenk sofort und ruckelfrei starten (kein Nachladen im Netz) */
+  var blobs = {}, warmed = false;
   function warm() {
     if (warmed) return;
     warmed = true;
     FX.forEach(function (f) {
-      try { fetch(f.src, { cache: 'force-cache' }).catch(function () {}); } catch (e) {}
+      try {
+        fetch(f.src).then(function (r) { return r.blob(); }).then(function (b) {
+          blobs[f.src] = URL.createObjectURL(b);
+        }).catch(function () {});
+      } catch (e) {}
     });
   }
   var oldLive = window.launchCleanLiveStream;
@@ -115,7 +120,7 @@
     vid.onended = function () { end(false); };
     vid.onerror = function () { end(true); };
     dim.classList.add('on');
-    vid.src = it.f.src;
+    vid.src = blobs[it.f.src] || it.f.src;
     vid.classList.add('on');
     vid.muted = false;
     var p = vid.play();
@@ -132,7 +137,7 @@
       ticks++;
       var t = vid.currentTime || 0;
       if (t > last + 0.01) { last = t; still = 0; } else { still++; }
-      if (still >= (last < 0 ? 16 : 6) || ticks > 30) end(last < 0);
+      if (still >= (last < 0 ? 20 : 10) || ticks > 40) end(last < 0);
     }, 500);
   }
 
@@ -290,7 +295,7 @@
   var modal = document.getElementById('liveGiftModal');
   if (modal && window.MutationObserver) {
     new MutationObserver(function () {
-      if (modal.style.display === 'flex') renderTo();
+      if (modal.style.display === 'flex') { renderTo(); warm(); }
     }).observe(modal, { attributes: true, attributeFilter: ['style'] });
   }
   try { window.initStaticUI(); } catch (e) {}
