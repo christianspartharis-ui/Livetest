@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
-<title>VYBE — Short Video & Live Club</title>
+<title>VYBZON — Short, Video & Live Club</title>
 <style>
 :root,[data-mood="lime"]{--bg:#08090d;--card:rgba(16,19,28,.14);--in:rgba(0,0,0,.1);--acc:#b8ff01;--acc2:#00f2fe;--txt:#f5f7fa;--mut:#b0b8ce;--hot:#ff2a5f;--drw:rgba(14,17,26,.84)}
 [data-mood="night"]{--acc:#00f2fe;--acc2:#4facfe}[data-mood="chill"]{--acc:#2af598;--acc2:#009efd}[data-mood="hype"]{--acc:#ff007f;--acc2:#ffbe0b}
@@ -31,7 +31,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 .top-hdr{position:relative;z-index:30;height:50px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--card);backdrop-filter:blur(8px);flex-shrink:0}
 .brand{display:flex;align-items:center;gap:7px;cursor:pointer;user-select:none}
 .b-ico{width:30px;height:30px;border-radius:9px;background:var(--acc);color:#000;font-size:1.2rem;font-weight:900;display:flex;align-items:center;justify-content:center;padding-top:3px}
-.b-tit{font-size:.92rem;font-weight:900;color:#fff;line-height:1}.b-sub{font-size:.38rem;font-weight:700;letter-spacing:1.3px;color:var(--mut)}
+.b-tit{font-size:.92rem;font-weight:900;color:#fff;line-height:1}.b-sub{font-size:.36rem;font-weight:700;letter-spacing:1.1px;color:var(--mut)}
 .h-srch{flex:1;max-width:260px;position:relative;display:flex;align-items:center}
 .h-srch input,.inp{width:100%;background:var(--in);border:none;border-radius:10px;padding:7px 11px;color:var(--txt);font-size:.73rem;outline:none}
 .h-srch input{border-radius:99px;padding-left:26px}.h-srch span{position:absolute;left:9px;color:var(--mut);font-size:.74rem}
@@ -146,8 +146,8 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 <div id="langGate" class="lang-gate">
   <div class="lang-box">
     <div class="b-ico" style="width:52px;height:52px;font-size:2rem;margin:0 auto 12px;border-radius:15px">*</div>
-    <h1 style="font-size:1.35rem;font-weight:900;color:#fff;letter-spacing:.5px">VYBE</h1>
-    <div style="font-size:.65rem;font-weight:800;letter-spacing:2px;color:var(--acc);margin-bottom:14px">SHORT VIDEO & LIVE CLUB</div>
+    <h1 style="font-size:1.38rem;font-weight:900;color:#fff;letter-spacing:.6px">VYBZON</h1>
+    <div style="font-size:.64rem;font-weight:800;letter-spacing:1.8px;color:var(--acc);margin-bottom:14px">SHORT, VIDEO & LIVE CLUB</div>
     <p style="font-size:.76rem;color:#cbd5e1;margin-bottom:16px;line-height:1.4">Wähle deine Sprache / Choose your language:</p>
     <button class="lang-btn pri" onclick="selectAppLang('de')"><span>🇩🇪 Deutsch</span><span>Weiter ›</span></button>
     <button class="lang-btn" onclick="selectAppLang('en')"><span>🇬🇧 English</span><span>Continue ›</span></button>
@@ -157,7 +157,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 <!-- GEHEIMER ADMIN-PIN & BOSS-TRESOR (#admin -> PIN 1983) -->
 <div id="adminPinModal" class="modal" onclick="if(event.target===this)showEl('adminPinModal',false)">
   <div class="m-box" style="max-width:310px;text-align:center">
-    <div class="c-tit"><span>🔐 VYBE Boss-Zugang</span><button class="btn sec" onclick="showEl('adminPinModal',false)">✖</button></div>
+    <div class="c-tit"><span>🔐 VYBZON Boss-Zugang</span><button class="btn sec" onclick="showEl('adminPinModal',false)">✖</button></div>
     <input id="adminPinInp" type="password" inputmode="numeric" class="inp" style="text-align:center;font-size:1.1rem;letter-spacing:6px;font-weight:900" placeholder="PIN (1983)" onkeydown="if(event.key==='Enter')verifyAdminPin()"/>
     <button class="btn full" onclick="verifyAdminPin()">🔓 Tresor öffnen</button>
   </div>
@@ -197,7 +197,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 <div id="liveUserSheet" class="modal" onclick="if(event.target===this)showEl('liveUserSheet',false)">
   <div class="m-box" style="background:#fff;color:#111;max-width:340px;border-radius:24px">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <div style="display:flex;align-items:center;gap:10px"><div id="shAv" style="width:50px;height:50px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff">🦊</div><div><div style="font-size:1rem;font-weight:900" id="shName">@NovaFox</div><div style="font-size:.7rem;color:#6b7280" id="shSub">VYBE Creator</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px"><div id="shAv" style="width:50px;height:50px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff">🦊</div><div><div style="font-size:1rem;font-weight:900" id="shName">@NovaFox</div><div style="font-size:.7rem;color:#6b7280" id="shSub">VYBZON Creator</div></div></div>
       <button onclick="showEl('liveUserSheet',false)" style="border:none;background:#f3f4f6;width:30px;height:30px;border-radius:50%;cursor:pointer">👑</button>
     </div>
     <div style="font-size:.74rem;font-weight:800;margin-bottom:10px">120 Follower · 85 Following</div>
@@ -222,7 +222,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 
 <div id="qrMod" class="modal" onclick="if(event.target===this)showEl('qrMod',false)">
   <div class="m-box" style="text-align:center;max-width:320px">
-    <div class="c-tit"><span>🏁 Dein VYBE QR-Code</span><button class="btn sec" onclick="showEl('qrMod',false)">✖</button></div>
+    <div class="c-tit"><span>🏁 Dein VYBZON QR-Code</span><button class="btn sec" onclick="showEl('qrMod',false)">✖</button></div>
     <div id="qrGridBox" style="width:130px;height:130px;margin:10px auto;padding:8px;background:#fff;border-radius:12px;display:grid;grid-template-columns:repeat(7,1fr);gap:2px"></div>
     <div style="font-weight:900" id="qrNameTxt">Alex Vibe</div><div style="font-size:.7rem;color:var(--acc);margin-bottom:8px;word-break:break-all" id="qrHdlTxt"></div>
     <button class="btn full" onclick="copyRefLink();showEl('qrMod',false)">📋 Link kopieren</button>
@@ -231,7 +231,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 
 <div id="infoMod" class="modal" onclick="if(event.target===this)showEl('infoMod',false)">
   <div class="m-box">
-    <div class="c-tit"><span style="color:var(--acc)">⚡ VYBE – DAS STUFENMODELL</span><button class="btn sec" onclick="showEl('infoMod',false)">✖</button></div>
+    <div class="c-tit"><span style="color:var(--acc)">⚡ VYBZON – DAS STUFENMODELL</span><button class="btn sec" onclick="showEl('infoMod',false)">✖</button></div>
     <div id="infoModBody"></div>
   </div>
 </div>
@@ -244,7 +244,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 
 <!-- HEADER & UNTERE LEISTE -->
 <header class="top-hdr">
-  <div class="brand" onclick="handleLogoTap()"><div class="b-ico">*</div><div><div class="b-tit">VYBE</div><div class="b-sub">SHORT VIDEO CLUB</div></div></div>
+  <div class="brand" onclick="handleLogoTap()"><div class="b-ico">*</div><div><div class="b-tit">VYBZON</div><div class="b-sub">SHORT, VIDEO & LIVE CLUB</div></div></div>
   <div class="h-srch"><span>⚲</span><input id="topSearchInp" placeholder="Creator, #admin oder Trends suchen" onfocus="if(state.liveRunning)stopLiveAndReturnToSetup();openView('search')" oninput="filterSearch(this.value)"/></div>
   <div class="h-acts">
     <button class="h-btn" id="langHdrBtn" onclick="showEl('langGate',true,'flex')" title="Sprache / Language">🇩🇪</button>
@@ -271,7 +271,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
     <div class="hero-vid" id="heroVid">
       <video id="feedRealVideo" autoplay loop playsinline controls></video>
       <div class="shock" id="shock"></div>
-      <div style="position:relative;z-index:2;display:flex;justify-content:space-between"><span class="g-pill" id="cTag">✦ VYBE START</span><span class="g-pill" id="cSnd">♫ Originalton · alex.vibe</span></div>
+      <div style="position:relative;z-index:2;display:flex;justify-content:space-between"><span class="g-pill" id="cTag">✦ VYBZON START</span><span class="g-pill" id="cSnd">♫ Originalton · alex.vibe</span></div>
       <div class="r-acts">
         <div class="a-itm" onclick="favClip()"><div class="a-cir" id="likeCir">♥</div><span class="a-lbl" id="likeCntTxt">120</span></div>
         <div class="a-itm" onclick="commClip()"><div class="a-cir">□</div><span class="a-lbl" id="commTxt">12</span></div>
@@ -284,9 +284,9 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
           <div><div style="font-weight:800;color:#fff" id="cName">Alex Vibe</div><div style="font-size:.7rem;color:#cbd5e1" id="cHdl">@alex.vibe</div></div>
           <button class="sub-b" id="feedFollowBtn" onclick="toggleFeedFollow()">✓ Abonniert</button>
         </div>
-        <div style="font-size:.94rem;font-weight:800;color:#fff;margin-bottom:3px" id="cTit">Willkommen im VYBE Short Video Club</div>
+        <div style="font-size:.94rem;font-weight:800;color:#fff;margin-bottom:3px" id="cTit">Willkommen bei VYBZON — Short, Video & Live Club</div>
         <div style="font-size:.74rem;color:#d0d6e2;margin-bottom:3px" id="cSub">Starte bei Level 1 und lade deine ersten eigenen Clips hoch! 🌿</div>
-        <div style="font-size:.74rem;font-weight:800;color:var(--acc)" id="cTags">#vybe #newcreator</div>
+        <div style="font-size:.74rem;font-weight:800;color:var(--acc)" id="cTags">#vybzon #newcreator</div>
       </div>
     </div>
   </section>
@@ -324,7 +324,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
       <button class="sub-btn" id="btnModeLive" onclick="switchStudioMode('live')">🔴 Live gehen (1–8)</button>
     </div>
     <div id="studioClipBox" class="card">
-      <div class="c-tit"><span>📸 VYBE Kamera-Studio</span><span class="badge" id="camStat">Bereit</span></div>
+      <div class="c-tit"><span>📸 VYBZON Kamera-Studio</span><span class="badge" id="camStat">Bereit</span></div>
       <div id="camStage" class="cam-box">
         <video id="camPrev" autoplay playsinline muted></video><img id="camPhotoPrev" style="display:none"/>
         <div id="camPh" style="position:relative;z-index:3;text-align:center;font-size:.75rem">📷🎙️ Kamera & Mikrofon bereit</div>
@@ -339,7 +339,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 
     <div id="studioLiveBox" style="display:none">
       <div id="preLiveSetupCard" class="card">
-        <div class="c-tit"><span>🎛️ 1. Live-Stream vorab einstellen</span><span class="badge">VYBE Setup</span></div>
+        <div class="c-tit"><span>🎛️ 1. Live-Stream vorab einstellen</span><span class="badge">VYBZON Setup</span></div>
         <input id="setupBannerInp" class="inp" value="Alex Vibe" oninput="state.liveHostLabel=this.value"/>
         <div class="xp-box"><div style="font-size:.72rem;font-weight:800;margin-bottom:5px">👥 Start-Layout wählen:</div><div id="setupSlotPills" style="display:flex;gap:5px;flex-wrap:wrap"></div></div>
         <div class="xp-box">
@@ -442,7 +442,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
           <div style="color:#ffd700"><span id="profCoins">1.000</span> <span style="font-size:.6rem;font-weight:400;display:block;color:#fff">Coins 🪙</span></div>
           <div style="color:#00f2fe"><span id="profDiamonds">0</span> <span style="font-size:.6rem;font-weight:400;display:block;color:#fff">Diamanten 💎</span></div>
         </div>
-        <div style="font-size:.74rem;color:#fff" id="pBioHdr">Willkommen auf meinem VYBE-Profil! 🌿</div>
+        <div style="font-size:.74rem;color:#fff" id="pBioHdr">Willkommen auf meinem VYBZON-Profil! 🌿</div>
       </div>
     </div>
 
@@ -477,11 +477,11 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
         <div class="xp-box" id="profConversionInfoBox" style="margin:0;font-size:.68rem;line-height:1.45"></div>
       </div>
 
-      <div class="card"><div class="c-tit"><span>🃏 VYBE Holo-Sammlerkarte</span><span class="badge" id="cPowTxt">⚡ POWER 125</span></div><div class="holo"><strong id="cOwnName">Alex Vibe</strong><div style="font-size:.7rem;color:var(--acc)" id="cRanksTxt">Mitglieds-Rang LVL 1 (Streamer ab LVL 20)</div></div></div>
+      <div class="card"><div class="c-tit"><span>🃏 VYBZON Holo-Sammlerkarte</span><span class="badge" id="cPowTxt">⚡ POWER 125</span></div><div class="holo"><strong id="cOwnName">Alex Vibe</strong><div style="font-size:.7rem;color:var(--acc)" id="cRanksTxt">Mitglieds-Rang LVL 1 (Streamer ab LVL 20)</div></div></div>
     </div>
 
     <div id="pt-edit" style="display:none" class="card">
-      <input id="inName" class="inp" value="Alex Vibe" oninput="updIdent()"/><input id="inHdl" class="inp" value="@alex.vibe" oninput="updIdent()"/><input id="inBio" class="inp" value="Willkommen auf meinem VYBE-Profil! 🌿" oninput="updIdent()"/>
+      <input id="inName" class="inp" value="Alex Vibe" oninput="updIdent()"/><input id="inHdl" class="inp" value="@alex.vibe" oninput="updIdent()"/><input id="inBio" class="inp" value="Willkommen auf meinem VYBZON-Profil! 🌿" oninput="updIdent()"/>
       <button class="btn full" onclick="swProf('level');toast('✅ Gespeichert!')">💾 Speichern</button>
     </div>
     <div id="pt-shop" style="display:none" class="card">
@@ -513,7 +513,7 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 
     <div id="accSec-privacy" class="card" style="display:none">
       <div class="c-tit"><span>🛡️ Datenschutz, Rechtliches & Sicherheit</span><span class="badge">DSGVO & DDG</span></div>
-      <input class="inp" value="alex.vibe@vybe.club"/>
+      <input class="inp" value="alex.vibe@vybzon.club"/>
       <input type="password" class="inp" placeholder="Neues Passwort festlegen"/>
       <div class="xp-box" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem"><span>🔐 2-Faktor-Authentifizierung (2FA)</span><input type="checkbox" checked onchange="toast('🔐 2FA!')"/></div>
       <div id="legalBox"></div>
@@ -542,9 +542,8 @@ body.in-live .stage{padding:0!important;overflow:hidden!important}
 const $ = id => document.getElementById(id), setTxt = (id,v) => {if($(id))$(id).textContent=v}, setHtml = (id,v) => {if($(id))$(id).innerHTML=v}, showEl = (id,s,m='block') => {if($(id))$(id).style.display=s?m:'none'};
 const L = (de, en) => state.lang === 'en' ? en : de;
 
-/* ERZEUGT AUTOMATISCH DEN ECHTEN FUNKTIONIERENDEN GITHUB-LINK (NICHT MEHR VYBE.CLUB) */
 function getRealShareUrl(){
-  const base = (location.origin && location.origin !== 'null') ? (location.origin + location.pathname) : 'https://christianspartharis-ui.github.io/';
+  const base = (location.origin && location.origin !== 'null') ? (location.origin + location.pathname) : 'https://christianspartharis-ui.github.io/Livetest/';
   return `${base}?ref=alex_vibe&lang=${state.lang}`;
 }
 
@@ -563,7 +562,7 @@ const CFG = {
   ],
   road:[
     ['🔥 Vorregistrierungs-Bonus','🔥 Pre-Registration Bonus','+25 % Coins ab 100k / +50 % ab 500k Nutzern','+25% Coins at 100k / +50% at 500k Users','Launch'],
-    ['⚡ VYBE-Funke (Tages-System)','⚡ VYBE Spark (Daily System)','1-Coin-Funke + 3× Chat + 5m Schauen = Extra-XP','1-Coin Spark + 3× Chat + 5m Watch = Extra XP','Update 1.1'],
+    ['⚡ VYBZON-Funke (Tages-System)','⚡ VYBZON Spark (Daily System)','1-Coin-Funke + 3× Chat + 5m Schauen = Extra-XP','1-Coin Spark + 3× Chat + 5m Watch = Extra XP','Update 1.1'],
     ['🎡 Live-Aktionsrad','🎡 Live Action Wheel','4 Streamer-Aufgaben bei Geschenk-Zielen','4 Streamer Tasks on Gift Goals','Update 1.2'],
     ['🏦 Deine Betreiber-Marge','🏦 Your Platform Margin','S-LVL 1–10: 15% | 11–30: 30% | 31–40: 40% | 41–50: 50%','S-LVL 1–10: 15% | 11–30: 30% | 31–40: 40% | 41–50: 50%','Active']
   ],
@@ -594,11 +593,11 @@ const EN_MAP = [
   ['🔴 JETZT LIVE STARTEN (Vollbild)','🔴 START LIVE NOW (Fullscreen)'],
   ['👤 Zum Profil & Live-Zeiten','👤 To Profile & Live Hours'],
   ['🔐 2-Faktor-Authentifizierung (2FA)','🔐 2-Factor Authentication (2FA)'],
-  ['⚡ VYBE – DAS STUFENMODELL','⚡ VYBE – THE TIER MODEL'],
-  ['🃏 VYBE Holo-Sammlerkarte','🃏 VYBE Holo Collector Card'],
+  ['⚡ VYBZON – DAS STUFENMODELL','⚡ VYBZON – THE TIER MODEL'],
+  ['🃏 VYBZON Holo-Sammlerkarte','🃏 VYBZON Holo Collector Card'],
   ['🎰 Täglicher Neon-Tresor (3×)','🎰 Daily Neon Vault (3×)'],
   ['👀 10 Kurzvideos schauen','👀 Watch 10 Short Videos'],
-  ['📸 VYBE Kamera-Studio','📸 VYBE Camera Studio'],
+  ['📸 VYBZON Kamera-Studio','📸 VYBZON Camera Studio'],
   ['📷🎙️ Kamera & Mikrofon bereit','📷🎙️ Camera & Microphone ready'],
   ['Creator, #admin oder Trends suchen','Search creators, #admin or trends'],
   ['Suche @Name oder #admin...','Search @Name or #admin...'],
@@ -616,8 +615,8 @@ const EN_MAP = [
   ['🗑️ Alles auf 0 setzen','🗑️ Reset All to 0'],
   ['🎨 Hintergrund & Stimmung','🎨 Background & Mood'],
   ['⚲ Creator & Live-Räume','⚲ Creators & Live Rooms'],
-  ['🏁 Dein VYBE QR-Code','🏁 Your VYBE QR Code'],
-  ['🔐 VYBE Boss-Zugang','🔐 VYBE Boss Access'],
+  ['🏁 Dein VYBZON QR-Code','🏁 Your VYBZON QR Code'],
+  ['🔐 VYBZON Boss-Zugang','🔐 VYBZON Boss Access'],
   ['🔓 Tresor öffnen','🔓 Open Vault'],
   ['🎰 Tresor öffnen','🎰 Open Vault'],
   ['🎁 50 Coins abholen','🎁 Claim 50 Coins'],
@@ -706,7 +705,7 @@ const state = {
   admNotes:['VIP & SVIP (85% Instant Coins)','Pre-Registration Bonus (100k/500k)'],
   activeDmIdx:0,
   dms:[
-    {name:'@NovaFox',emo:'🦊',unread:1,msgs:[{me:false,de:'Hey! Willkommen bei VYBE, lass später mal das Multi-Live testen! 🔥',en:'Hey! Welcome to VYBE, let’s test the Multi-Live later! 🔥'}]},
+    {name:'@NovaFox',emo:'🦊',unread:1,msgs:[{me:false,de:'Hey! Willkommen bei VYBZON, lass später mal das Multi-Live testen! 🔥',en:'Hey! Welcome to VYBZON, let’s test the Multi-Live later! 🔥'}]},
     {name:'@LucaBeat',emo:'🎧',unread:1,msgs:[{me:false,de:'Coole App-Optik! Schreib mir, wenn du online bist 🙌',en:'Cool app look! Message me when you are online 🙌'}]},
     {name:'@MiaGlow',emo:'🌸',unread:0,msgs:[{me:false,de:'Hallo! Viel Erfolg beim Leveln ab Level 1 ✨',en:'Hello! Good luck leveling up from Level 1 ✨'}]},
     {name:'@KaiWave',emo:'⚡',unread:0,msgs:[{me:false,de:'Bereit für die nächste Live-Runde!',en:'Ready for the next Live round!'}]}
@@ -716,7 +715,7 @@ const state = {
     {id:2,name:'@lara_sound',lvl:1,supported:false,gold:false},
     {id:3,name:'@nico_flow',lvl:1,supported:false,gold:false}
   ],
-  prods:[{name:'VYBE Starter Shirt',price:'24,90 €'}],
+  prods:[{name:'VYBZON Starter Shirt',price:'24,90 €'}],
   guests:[
     {n:'@NovaFox',e:'🦊',s:0,lvl:1,bg:'#1f1624'},{n:'@LucaBeat',e:'🎧',s:0,lvl:1,bg:'#3b1229'},
     {n:'@MiaGlow',e:'🌸',s:0,lvl:1,bg:'#132a2e'},{n:'@KaiWave',e:'⚡',s:0,lvl:1,bg:'#3b1d5e'},
@@ -727,8 +726,8 @@ const state = {
 };
 
 const clips = [
-  {tag:'✦ VYBE START',snd:'♫ Originalton · alex.vibe',n:'Alex Vibe',h:'@alex.vibe',t_de:'Willkommen im VYBE Short Video Club',t_en:'Welcome to the VYBE Short Video Club',s_de:'Streamer-Rang ab LVL 20 + Fliegende Funken & Größen-Wechsel im Live! 🌿',s_en:'Streamer Rank at LVL 20 + Floating Sparks & Box Resizing in Live! 🌿',g:'#vybe #start',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false},
-  {tag:'⚡ MULTI-LIVE CLUB',snd:'♫ Synthwave · nova.fox',n:'Nova Fox',h:'@nova.fox',t_de:'Tippe im Live auf den Bildschirm für fliegende VYBE-Funken!',t_en:'Tap the screen in Live for floating VYBE Sparks!',s_de:'Mache im Live jeden Gast per Klick auf ⤢ groß oder alle gleich groß 💬',s_en:'Enlarge any guest via ⤢ or switch to equal grid size in Live 💬',g:'#vybeclub #live',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false}
+  {tag:'✦ VYBZON START',snd:'♫ Originalton · alex.vibe',n:'Alex Vibe',h:'@alex.vibe',t_de:'Willkommen bei VYBZON — Short, Video & Live Club',t_en:'Welcome to VYBZON — Short, Video & Live Club',s_de:'Streamer-Rang ab LVL 20 + Fliegende Funken & Größen-Wechsel im Live! 🌿',s_en:'Streamer Rank at LVL 20 + Floating Sparks & Box Resizing in Live! 🌿',g:'#vybzon #start',bg:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false},
+  {tag:'⚡ MULTI-LIVE CLUB',snd:'♫ Synthwave · nova.fox',n:'Nova Fox',h:'@nova.fox',t_de:'Tippe im Live auf den Bildschirm für fliegende VYBZON-Funken!',t_en:'Tap the screen in Live for floating VYBZON Sparks!',s_de:'Mache im Live jeden Gast per Klick auf ⤢ groß oder alle gleich groß 💬',s_en:'Enlarge any guest via ⤢ or switch to equal grid size in Live 💬',g:'#vybzonclub #live',bg:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85',vidUrl:null,liked:false,saved:false}
 ];
 let cIdx = 0, vybeDb = null;
 
@@ -763,9 +762,9 @@ function countUpLiveSpark(){
   setTxt('lrSparkCountTxt', `⚡ ${state.liveSparks}`);
   if(state.liveSparks % 8 === 0){
     const tot = 1000 + state.liveSparks;
-    appendLiveChatRow('⚡','VYBE Live',1,L(
-      `Dieses LIVE hat in den letzten 5 Minuten <strong>${tot} weitere VYBE-Funken</strong> erhalten. Gib auch du deine Funken ab! ⚡`,
-      `This LIVE received <strong>${tot} more VYBE Sparks</strong> in the last 5 minutes. Tap the screen to send sparks! ⚡`
+    appendLiveChatRow('⚡','VYBZON Live',1,L(
+      `Dieses LIVE hat in den letzten 5 Minuten <strong>${tot} weitere VYBZON-Funken</strong> erhalten. Gib auch du deine Funken ab! ⚡`,
+      `This LIVE received <strong>${tot} more VYBZON Sparks</strong> in the last 5 minutes. Tap the screen to send sparks! ⚡`
     ));
   }
 }
@@ -820,8 +819,8 @@ function applyLangToDOM(){
     el.placeholder = state.lang==='en' ? trStr(el._dePh) : el._dePh;
   });
   const bioInp = $('inBio');
-  if(bioInp && (bioInp.value==='Willkommen auf meinem VYBE-Profil! 🌿' || bioInp.value==='Welcome to my VYBE profile! 🌿')){
-    bioInp.value = L('Willkommen auf meinem VYBE-Profil! 🌿','Welcome to my VYBE profile! 🌿');
+  if(bioInp && (bioInp.value==='Willkommen auf meinem VYBZON-Profil! 🌿' || bioInp.value==='Welcome to my VYBZON profile! 🌿')){
+    bioInp.value = L('Willkommen auf meinem VYBZON-Profil! 🌿','Welcome to my VYBZON profile! 🌿');
     setTxt('pBioHdr', bioInp.value);
   }
   const realUrl = getRealShareUrl();
@@ -852,10 +851,10 @@ function swSet(t){
 
 function initCleanMediaDB(){
   try{
-    if(!localStorage.getItem('vybe_clean_reset_v5')){
+    if(!localStorage.getItem('vybzon_clean_reset_v1')){
       indexedDB.deleteDatabase('VYBE_LocalMediaDB');
       localStorage.removeItem('vybe_dms');
-      localStorage.setItem('vybe_clean_reset_v5','1');
+      localStorage.setItem('vybzon_clean_reset_v1','1');
     }
     const req = indexedDB.open('VYBE_LocalMediaDB',1);
     req.onupgradeneeded = e => { const db=e.target.result; if(!db.objectStoreNames.contains('uploads')) db.createObjectStore('uploads',{keyPath:'id',autoIncrement:true}); };
@@ -866,7 +865,7 @@ function initCleanMediaDB(){
         (r2.result||[]).forEach(it=>{
           const url = it.blob ? URL.createObjectURL(it.blob) : it.dataUrl; if(!url) return;
           state.lib.videos.unshift({t:it.title,v:it.sub,bg:url,type:it.type});
-          clips.unshift({tag:'★ UPLOAD',snd:'♫ Original Sound',n:$('inName')?.value||'Alex Vibe',h:$('inHdl')?.value||'@alex.vibe',t_de:it.title,t_en:it.title,s_de:it.sub,s_en:it.sub,g:'#vybe',bg:it.type==='img'?url:clips[0].bg,vidUrl:it.type==='video'?url:null,liked:false,saved:false});
+          clips.unshift({tag:'★ UPLOAD',snd:'♫ Original Sound',n:$('inName')?.value||'Alex Vibe',h:$('inHdl')?.value||'@alex.vibe',t_de:it.title,t_en:it.title,s_de:it.sub,s_en:it.sub,g:'#vybzon',bg:it.type==='img'?url:clips[0].bg,vidUrl:it.type==='video'?url:null,liked:false,saved:false});
         });
         renderLib();
       };
@@ -900,7 +899,7 @@ function renderInbox(){
 function selectDmChat(i){ state.activeDmIdx=i; state.dms[i].unread=0; renderInbox(); }
 function openDmWith(name){
   let idx = state.dms.findIndex(d=>d.name.includes(name)||name.includes(d.name));
-  if(idx===-1){ state.dms.unshift({name,emo:'👤',unread:0,msgs:[{me:false,de:'Hey! Lass uns hier auf VYBE schreiben 👋',en:'Hey! Let’s chat here on VYBE 👋'}]}); idx=0; }
+  if(idx===-1){ state.dms.unshift({name,emo:'👤',unread:0,msgs:[{me:false,de:'Hey! Lass uns hier auf VYBZON schreiben 👋',en:'Hey! Let’s chat here on VYBZON 👋'}]}); idx=0; }
   state.activeDmIdx=idx; state.dms[idx].unread=0; openView('inbox'); renderInbox();
 }
 function sendDirectMsg(){
@@ -947,8 +946,8 @@ function initStaticUI(){
   ));
 
   setHtml('infoModBody', L(
-    `<div class="xp-box"><strong>📈 1. Haupt-Level-Stufen (+25% bis LVL 25):</strong><br/>LVL 1–5 (315 XP) • LVL 5–10 (750 XP) • LVL 10–15 (1.875 XP) • LVL 15–20 (21.875 XP) • LVL 20–25 (50.000 XP). Der Streamer-Rang schaltet sich ab LVL 20 frei!</div><div class="xp-box"><strong>⚡ 2. Fliegende VYBE-Funken & Größen-Wechsel im Live:</strong><br/>Tippe im Live auf den Bildschirm, damit VYBE-Funken fliegen! Über 📐 oder ⤢ machst du den Host groß, alle normal gleich groß oder einen Gast groß.</div><div class="xp-box" style="margin:0"><strong>🌍 3. Zweisprachig (DE / EN):</strong><br/>Über den Startscreen oder den Flaggen-Button oben jederzeit zwischen Deutsch und Englisch wechseln!</div>`,
-    `<div class="xp-box"><strong>📈 1. Main Level Tiers (+25% up to LVL 25):</strong><br/>LVL 1–5 (315 XP) • LVL 5–10 (750 XP) • LVL 10–15 (1,875 XP) • LVL 15–20 (21,875 XP) • LVL 20–25 (50,000 XP). Streamer Rank unlocks at LVL 20!</div><div class="xp-box"><strong>⚡ 2. Floating VYBE Sparks & Box Resizing in Live:</strong><br/>Tap the screen in Live to send flying VYBE Sparks! Use 📐 or ⤢ to make Host big, all boxes equal size, or enlarge any guest.</div><div class="xp-box" style="margin:0"><strong>🌍 3. Bilingual (DE / EN):</strong><br/>Switch anytime between German and English via the start screen or the flag button in the top header!</div>`
+    `<div class="xp-box"><strong>📈 1. Haupt-Level-Stufen (+25% bis LVL 25):</strong><br/>LVL 1–5 (315 XP) • LVL 5–10 (750 XP) • LVL 10–15 (1.875 XP) • LVL 15–20 (21.875 XP) • LVL 20–25 (50.000 XP). Der Streamer-Rang schaltet sich ab LVL 20 frei!</div><div class="xp-box"><strong>⚡ 2. Fliegende VYBZON-Funken & Größen-Wechsel im Live:</strong><br/>Tippe im Live auf den Bildschirm, damit VYBZON-Funken fliegen! Über 📐 oder ⤢ machst du den Host groß, alle normal gleich groß oder einen Gast groß.</div><div class="xp-box" style="margin:0"><strong>🌍 3. Zweisprachig (DE / EN):</strong><br/>Über den Startscreen oder den Flaggen-Button oben jederzeit zwischen Deutsch und Englisch wechseln!</div>`,
+    `<div class="xp-box"><strong>📈 1. Main Level Tiers (+25% up to LVL 25):</strong><br/>LVL 1–5 (315 XP) • LVL 5–10 (750 XP) • LVL 10–15 (1,875 XP) • LVL 15–20 (21,875 XP) • LVL 20–25 (50,000 XP). Streamer Rank unlocks at LVL 20!</div><div class="xp-box"><strong>⚡ 2. Floating VYBZON Sparks & Box Resizing in Live:</strong><br/>Tap the screen in Live to send flying VYBZON Sparks! Use 📐 or ⤢ to make Host big, all boxes equal size, or enlarge any guest.</div><div class="xp-box" style="margin:0"><strong>🌍 3. Bilingual (DE / EN):</strong><br/>Switch anytime between German and English via the start screen or the flag button in the top header!</div>`
   ));
 
   setHtml('drawerItemsBox', [
@@ -965,14 +964,14 @@ function initStaticUI(){
     [L('🛡️ 1. Datenschutzerklärung (Art. 13, 14 DSGVO)','🛡️ 1. Privacy Policy (Art. 13, 14 GDPR)'), L('Verarbeitung von Profildaten, Uploads, Nachrichten, Live-Stunden & Coins ausschließlich zum Plattformbetrieb (Art. 6 Abs. 1 lit. b DSGVO). Kamera/Mikrofon nur nach aktiver Freigabe.','Processing of profile data, uploads, messages, live hours & coins exclusively for platform operation (Art. 6 (1) (b) GDPR). Camera/microphone access only after explicit consent.')],
     [L('📜 2. Allgemeine Geschäftsbedingungen (AGB)','📜 2. Terms of Service (ToS)'), L('Nutzung ab 16 Jahren (Live-Streaming & Coin-Käufe ab 18 Jahren). Empfangene Geschenke werden als Diamanten gutgeschrieben. Auszahlungen ab LVL 20 (S-LVL 5) & 15 Std. Live/Woche (Mo–So).','Use permitted from age 16 (live streaming & coin purchases from age 18). Received gifts are credited as Diamonds. Payouts require LVL 20 (S-LVL 5) & 15h Live/week (Mon–Sun).')],
     [L('💳 3. Widerrufsbelehrung für digitale Güter','💳 3. Right of Withdrawal for Digital Goods'), L('Beim Kauf von virtuellen Coins handelt es sich um digitale Inhalte (§ 356 Abs. 5 BGB). Mit Sofortkauf stimmt der Nutzer der sofortigen Gutschrift zu.','Virtual coins are digital content (§ 356 (5) BGB). By purchasing, the user agrees to immediate credit delivery before the withdrawal period expires.')],
-    [L('⚖️ 4. Jugendmedienschutz (JMStV) & Impressum (§ 5 DDG)','⚖️ 4. Youth Protection & Imprint (§ 5 DDG)'), L('Betreiber: VYBE — Short Video & Live Club • Kontakt & Jugendschutz: support@vybe.club','Operator: VYBE — Short Video & Live Club • Contact & Youth Protection: support@vybe.club')]
+    [L('⚖️ 4. Jugendmedienschutz (JMStV) & Impressum (§ 5 DDG)','⚖️ 4. Youth Protection & Imprint (§ 5 DDG)'), L('Betreiber: VYBZON — Short, Video & Live Club • Kontakt & Jugendschutz: support@vybzon.club','Operator: VYBZON — Short, Video & Live Club • Contact & Youth Protection: support@vybzon.club')]
   ].map(l=>`<details class="legal-details"><summary>${l[0]}</summary><p style="margin-top:4px;font-size:.68rem">${l[1]}</p></details>`).join(''));
 
   setHtml('qrGridBox', [1,1,1,0,1,1,1,1,2,1,1,1,2,1,1,1,1,0,1,1,1,0,1,0,2,0,1,0,1,1,1,0,1,2,1,1,2,1,1,0,1,1,1,1,1,0,1,1,1].map(c=>`<div style="border-radius:2px;background:${c===0?'transparent':c===2?'#ff2a5f':'#111'}"></div>`).join(''));
   setHtml('lrChatList', [
-    ['🦊','@NovaFox',L('Tippe auf den Bildschirm für fliegende VYBE-Funken! ⚡','Tap the screen for flying VYBE Sparks! ⚡'),1],
+    ['🦊','@NovaFox',L('Tippe auf den Bildschirm für fliegende VYBZON-Funken! ⚡','Tap the screen for flying VYBZON Sparks! ⚡'),1],
     ['🎧','@LucaBeat',L('hat <strong>Keks 🍪 ×1</strong> gesendet','sent <strong>Cookie 🍪 ×1</strong>'),1],
-    ['⚡','VYBE Live',L('Dieses LIVE hat in den letzten 5 Minuten <strong>1081 weitere VYBE-Funken</strong> erhalten!','This LIVE received <strong>1081 more VYBE Sparks</strong> in the last 5 minutes!'),1],
+    ['⚡','VYBZON Live',L('Dieses LIVE hat in den letzten 5 Minuten <strong>1081 weitere VYBZON-Funken</strong> erhalten!','This LIVE received <strong>1081 more VYBZON Sparks</strong> in the last 5 minutes!'),1],
     ['🌸','@MiaGlow',L('hat dem LIVE einen Funken gegeben ⚡','sent a Spark to the LIVE ⚡'),1]
   ].map(m=>`<div class="lr-msg-row"><div class="lr-msg-av">${m[0]}</div><div><span class="lr-lvl-bdg">💎 ${m[3]}</span><strong style="color:#fff">${m[1]}</strong> ${m[2]}</div></div>`).join(''));
 }
@@ -995,7 +994,7 @@ function renderLiveGrid(){
   showEl('pkBarWrap', state.slots===2, 'flex');
   const vOn = state.stream && state.camBright;
 
-  const buildHostInner = (isBig) => `<video id="liveHostVid" autoplay playsinline muted style="${vOn?'display:block':'display:none'}"></video><span class="lr-pts-tag">Host • LVL ${state.mLvl}</span><button class="lr-zoom-btn" onclick="event.stopPropagation();cycleBoxSizeMode()" title="Größe ändern">⤢</button><div style="${vOn?'display:none':''}"><div style="font-size:${isBig?'.75rem':'.55rem'};font-weight:900;color:#38bdf8">VYBE CLUB</div><div style="font-size:${isBig?'1.15rem':'.72rem'};font-weight:900;color:#fff;text-shadow:0 0 10px #ec4899">LIVE STAGE</div></div><span class="lr-name-bot">${hL}</span>`;
+  const buildHostInner = (isBig) => `<video id="liveHostVid" autoplay playsinline muted style="${vOn?'display:block':'display:none'}"></video><span class="lr-pts-tag">Host • LVL ${state.mLvl}</span><button class="lr-zoom-btn" onclick="event.stopPropagation();cycleBoxSizeMode()" title="Größe ändern">⤢</button><div style="${vOn?'display:none':''}"><div style="font-size:${isBig?'.75rem':'.55rem'};font-weight:900;color:#38bdf8">VYBZON CLUB</div><div style="font-size:${isBig?'1.15rem':'.72rem'};font-weight:900;color:#fff;text-shadow:0 0 10px #ec4899">LIVE STAGE</div></div><span class="lr-name-bot">${hL}</span>`;
   const buildGuestInner = (i, isBig) => {
     const u = state.guests[i];
     return `<span class="lr-pts-tag">🔵 ${u.s}</span><button class="lr-zoom-btn" onclick="event.stopPropagation();toggleGuestSpotlight(${i})" title="Groß/Klein">${state.spotIdx===i?'👑':'⤢'}</button><div class="lr-circle-av" style="${isBig?'width:68px;height:68px;font-size:1.75rem;':''}background:${u.bg}">${u.e}</div><span class="lr-name-bot">${u.n}</span>`;
@@ -1079,13 +1078,12 @@ function recvGift(coins,guest){
 }
 function addMXp(b){ if(state.mLvl>=50)return; state.mXp+=Math.round(b*(state.founders.some(f=>f.supported&&f.gold)?1.1:1)); while(state.mLvl<50&&state.mXp>=reqM(state.mLvl)){state.mXp-=reqM(state.mLvl);state.mLvl++;fx('🎉',`LEVEL ${state.mLvl}!`);} updateUI(); }
 
-/* KOPIERT UND TEILT JETZT IMMER DEN ECHTEN FUNKTIONIERENDEN GITHUB-LINK */
 function copyRefLink(){
   const realUrl = getRealShareUrl();
   if($('refLinkInp')) $('refLinkInp').value = realUrl;
   navigator.clipboard?.writeText(realUrl);
   if(navigator.share){
-    navigator.share({title:'VYBE — Short Video & Live Club', url:realUrl}).catch(()=>{});
+    navigator.share({title:'VYBZON — Short, Video & Live Club', url:realUrl}).catch(()=>{});
   }
   toast(L('📋 Echter Link kopiert!','📋 Real link copied!'));
 }
@@ -1115,13 +1113,13 @@ function renderLib(){
 }
 function playMediaFromLib(i){
   const it=state.lib[state.libTab][i]; if(!it)return;
-  clips.unshift({tag:'★ MEDIA',snd:'♫ Original Sound',n:$('inName')?.value||'Alex Vibe',h:$('inHdl')?.value||'@alex.vibe',t_de:it.t,t_en:it.t,s_de:it.v,s_en:it.v,g:'#vybe',bg:it.type==='video'?clips[0].bg:it.bg,vidUrl:it.type==='video'?it.bg:null,liked:false,saved:false});
+  clips.unshift({tag:'★ MEDIA',snd:'♫ Original Sound',n:$('inName')?.value||'Alex Vibe',h:$('inHdl')?.value||'@alex.vibe',t_de:it.t,t_en:it.t,s_de:it.v,s_en:it.v,g:'#vybzon',bg:it.type==='video'?clips[0].bg:it.bg,vidUrl:it.type==='video'?it.bg:null,liked:false,saved:false});
   cIdx=0; openView('feed');
 }
 function showClipAtIndex(i,play=true){
   const c=clips[i]; if(!c)return;
   setTxt('cTag',c.tag); setTxt('cSnd',trStr(c.snd)); setTxt('cName',c.n); setTxt('cHdl',c.h);
-  setTxt('cTit',L(c.t_de, c.t_en)); setTxt('cSub',L(c.s_de, c.s_en)); setTxt('cTags',c.g||'#vybe');
+  setTxt('cTit',L(c.t_de, c.t_en)); setTxt('cSub',L(c.s_de, c.s_en)); setTxt('cTags',c.g||'#vybzon');
   $('likeCir')?.classList.toggle('liked',!!c.liked);
   $('saveCir')?.classList.toggle('saved',!!c.saved);
   setTxt('saveLblTxt',c.saved ? L('Gemerkt','Saved') : L('Merken','Save'));
@@ -1149,7 +1147,7 @@ function commClip(){ setTxt('commTxt',(+($('commTxt')?.textContent||12))+1); add
 function uploadMediaFile(e,type){
   const f=e.target.files?.[0]; if(!f)return; const u=URL.createObjectURL(f), n=f.name.replace(/\.[^/.]+$/,"");
   state.lib.videos.unshift({t:n,v:type==='video'?'🎬 Video':'📸 Photo',bg:u,type});
-  clips.unshift({tag:'★ UPLOAD',snd:'♫ Original Sound',n:$('inName')?.value||'Alex Vibe',h:$('inHdl')?.value||'@alex.vibe',t_de:n,t_en:n,s_de:type==='video'?'🎬 Video':'📸 Foto',s_en:type==='video'?'🎬 Video':'📸 Photo',g:'#vybe',bg:type==='img'?u:clips[0].bg,vidUrl:type==='video'?u:null,liked:false,saved:false});
+  clips.unshift({tag:'★ UPLOAD',snd:'♫ Original Sound',n:$('inName')?.value||'Alex Vibe',h:$('inHdl')?.value||'@alex.vibe',t_de:n,t_en:n,s_de:type==='video'?'🎬 Video':'📸 Foto',s_en:type==='video'?'🎬 Video':'📸 Photo',g:'#vybzon',bg:type==='img'?u:clips[0].bg,vidUrl:type==='video'?u:null,liked:false,saved:false});
   if(vybeDb){ try{vybeDb.transaction('uploads','readwrite').objectStore('uploads').add({title:n,sub:type==='video'?'🎬 Video':'📸 Photo',blob:f,type});}catch(err){} }
   cIdx=0; renderLib(); toast(`✅ „${n}“!`);
 }
@@ -1162,7 +1160,7 @@ function updIdent(){ const n=$('inName')?.value||'Alex Vibe', h=$('inHdl')?.valu
 function setBg(u){ document.body.style.setProperty('--app-bg',u?`url('${u}')`:'none'); if(u)$('profBannerBox')?.style.setProperty('--prof-banner-bg',`url('${u}')`); toast('🖼️!'); }
 function setMood(m){ document.documentElement.setAttribute('data-mood',m); try{localStorage.setItem('vybe_mood',m)}catch(e){} toast('🎨!'); }
 function cycleFilter(){ const f=['none','hue-rotate(90deg)','contrast(1.3) saturate(1.5)','sepia(.6)']; state.fIdx=((state.fIdx||0)+1)%f.length; if($('camStage'))$('camStage').style.filter=f[state.fIdx]; }
-function addProd(){ state.prods.push({name:$('pNameIn')?.value||'VYBE Merch',price:$('pPriceIn')?.value||'24,90 €'}); updateUI(); toast('🛍️!'); }
+function addProd(){ state.prods.push({name:$('pNameIn')?.value||'VYBZON Merch',price:$('pPriceIn')?.value||'24,90 €'}); updateUI(); toast('🛍️!'); }
 function filterSearch(q=''){
   if(q.trim().toLowerCase()==='#admin'){ if($('topSearchInp'))$('topSearchInp').value=''; if($('mainSearchInp'))$('mainSearchInp').value=''; openAdminPinPrompt(); return; }
   const rooms=[{h:'@NovaFox',t:L('🔥 Multi-Panel Live (LVL 1)','🔥 Multi-Panel Live (LVL 1)'),s:5},{h:'@LucaBeat',t:L('👥 Panel + Einladen (LVL 1)','👥 Panel + Invite (LVL 1)'),s:3},{h:'@MiaGlow',t:L('⚔️ 2er Battle Live (LVL 1)','⚔️ 2-Player Battle Live (LVL 1)'),s:2}];
@@ -1213,6 +1211,5 @@ try{
 }catch(e){}
 snapshotGermanDOM(); initStaticUI(); initCleanMediaDB(); filterSearch(); renderLib(); showClipAtIndex(0,false); updateUI();
 </script>
-<script src="gift-effects.js?v=6"></script>.
 </body>
 </html>
