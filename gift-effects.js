@@ -75,19 +75,40 @@
   vid.setAttribute('playsinline', '');
   document.body.appendChild(vid);
 
-  /* Videos beim Live-Start komplett in den Speicher laden, damit sie
-     beim Geschenk sofort und ruckelfrei starten (kein Nachladen im Netz) */
-  var blobs = {}, warmed = false;
-  function warm() {
-    if (warmed) return;
-    warmed = true;
-    FX.forEach(function (f) {
-      try {
-        fetch(f.src).then(function (r) { return r.blob(); }).then(function (b) {
-          blobs[f.src] = URL.createObjectURL(b);
-        }).catch(function () {});
-      } catch (e) {}
+  /* Videos in den Speicher laden: nacheinander (Zeus zuerst) und mit Neuversuch.
+     Ist ein Video beim Geschenk noch nicht fertig, wird kurz gewartet,
+     statt halb geladen abzuspielen. */
+  var blobs = {}, loading = {}, warming = false;
+  function load(f) {
+    if (blobs[f.src]) return Promise.resolve(blobs[f.src]);
+    if (loading[f.src]) return loading[f.src];
+    loading[f.src] = fetch(f.src).then(function (r) {
+      if (!r.ok) throw new Error('http ' + r.status);
+      return r.blob();
+    }).then(function (b) {
+      blobs[f.src] = URL.createObjectURL(b);
+      delete loading[f.src];
+      return blobs[f.src];
+    }, function (e) {
+      delete loading[f.src];
+      throw e;
     });
+    return loading[f.src];
+  }
+  function warm() {
+    if (warming) return;
+    warming = true;
+    FX.slice().sort(function (x, y) { return x.min - y.min; })
+      .reduce(function (p, f) {
+        return p.then(function () { return load(f).catch(function () {}); });
+      }, Promise.resolve())
+      .then(function () { warming = false; });
+  }
+  function ready(f) {
+    if (blobs[f.src]) return Promise.resolve(blobs[f.src]);
+    var wait = new Promise(function (res) { setTimeout(function () { res(null); }, 25000); });
+    var tryLoad = load(f).catch(function () { return load(f); }).catch(function () { return null; });
+    return Promise.race([tryLoad, wait]);
   }
   var oldLive = window.launchCleanLiveStream;
   if (typeof oldLive === 'function') {
@@ -111,20 +132,31 @@
   function run() {
     if (busy || !q.length) return;
     busy = true;
-    var it = q.shift(), done = false, last = -1, still = 0, ticks = 0, tm;
+    var it = q.shift();
+    if (!blobs[it.f.src]) {
+      try { toast(L('⏳ Effekt lädt …', '⏳ Loading effect …')); } catch (e) {}
+    }
+    ready(it.f).then(function (u) { play(it, u); });
+  }
+  function play(it, url) {
+    var done = false, last = -1, still = 0, ticks = 0, tm;
     function end(bad) {
       if (done) return;
       done = true;
       clearInterval(tm);
       release();
-      if (bad) { try { fx(it.emo, it.name); } catch (e) {} }
+      if (bad) {
+        try { toast(L('⚠️ Effekt konnte nicht laden', '⚠️ Effect could not load')); } catch (e) {}
+        warm();
+      }
       busy = false;
       setTimeout(run, 400);
     }
+    if (!url) { end(true); return; }
     vid.onended = function () { end(false); };
     vid.onerror = function () { end(true); };
     dim.classList.add('on');
-    vid.src = blobs[it.f.src] || it.f.src;
+    vid.src = url;
     vid.classList.add('on');
     vid.muted = false;
     var p = vid.play();
